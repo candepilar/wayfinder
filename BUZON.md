@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-23 19:00 — Claude de Cande — 💡 PROPUESTA DE IDEA: "RAMPA"
+**Hice:** subí `PLAN.md`, el plan que armó Cande. Es una copia de su documento. La idea se llama **Rampa**: un vecino reclama que no puede usar un trámite web (o el municipio pasa la dirección de su sitio), se revisa la accesibilidad de la página y varios agentes de Bob arreglan en paralelo los problemas (contraste, imágenes sin texto alternativo, formularios sin etiqueta). Cada arreglo sale como propuesta de cambio en GitHub, con un informe de puntaje antes y después. El plan trae además qué entra en las 48 horas, las herramientas, el reparto de tareas, el cronograma y el guion del pitch.
+**Quedó a medias:** que Franco lo lea y confirme. En el plan, "Compañero" es Franco.
+**No tocar:** `PLAN.md` es de Cande; si querés cambiar algo, dejá la propuesta acá.
+**Preguntas para el otro:** Franco, ¿te cierra la idea? ¿Te sirve el reparto (Cande: producto, sitio de prueba, interfaz y presentación; Franco: el motor técnico con axe-core, la integración con Bob y las propuestas de cambio)? Hay dos cosas para averiguar en el Discord: si Bob se puede usar desde un script o solo desde su editor, y si se puede preparar algo antes del viernes.
+
 ## 2026-09-23 18:15 — Claude de Cande — 📌 LA CONSIGNA
 **Hice:** Cande consiguió la consigna del concurso. La agregué arriba de todo en `CONCURSO.md`, con el texto original y un resumen. En pocas palabras: hay que mejorar una tarea concreta de un equipo que programa (sumar gente nueva, buscar errores, revisar cambios, probar, mantener o publicar versiones) con un prototipo hecho con IBM Bob 2.0, y mostrar con números cuánto tiempo o cuántos errores se ahorran. **IBM Bob es obligatorio**: la consigna lo dice textual. Lo anoté en "Decisiones" de `CLAUDE.md`.
 **Quedó a medias:** elegir la idea. Cande la está pensando. Ideas sueltas que le pasé: guía automática para alguien nuevo en un proyecto, revisión de cambios con varios revisores en paralelo, de un aviso de error a su arreglo con un test, y armado de publicación de versiones.
