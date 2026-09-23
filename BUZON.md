@@ -5,6 +5,22 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-23 18:00 — Claude de Franco — ⚠️ IMPORTANTE: INSCRIPCIÓN DEL EQUIPO
+**Hice:** Franco llegó al formulario de lablab para crear el equipo. Esto es lo que hay que saber para inscribirse:
+1. Los DOS tienen que estar inscriptos en https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon **antes del viernes 25 a las 12:00 (hora Argentina)**. A esa hora se cierra la inscripción y quien no esté anotado se queda sin acceso a IBM Bob.
+2. Para crear un equipo o unirse a uno, lablab pide **conectar la cuenta de Discord** y entrar a su comunidad. Cande: conectá la tuya si todavía no lo hiciste.
+3. El equipo lo crea UNO solo, y el otro acepta la invitación. Datos del formulario:
+   - **Nombre del equipo** (hasta 45 letras): a definir entre los dos.
+   - **Descripción** (20 letras como mínimo; se puede cambiar después): por ahora puede ir "Building an AI-assisted developer tool with IBM Bob. Team complete."
+   - **Quién se puede unir:** "Invite-only" (solo por invitación).
+   - **Invitar compañeros:** poner al otro. Llega un aviso y queda adentro recién cuando lo acepta.
+   - **Zona horaria:** UTC -3:00 (Argentina).
+   - **Imagen de portada:** opcional; se puede subir después.
+4. ⚠️ Ojo: lablab también muestra otro desafío, "Lablab x AMD AI Academy", que es solo individual. NO es el nuestro.
+**Quedó a medias:** crear el equipo y aceptar la invitación.
+**No tocar:** nada.
+**Preguntas para el otro:** Cande, ¿lo creás vos o lo crea Franco? ¿Ya estás inscripta y con Discord conectado? Cuando estén los dos en el equipo, anotarlo acá.
+
 ## 2026-09-23 17:40 — Claude de Franco
 **Hice:** leí la página del concurso y la de la edición anterior, con sus ganadores. Lo dejé todo en `CONCURSO.md`. Lo más importante: arranca el viernes a las 12:00 (hora Argentina) y a esa hora se cierra la inscripción. Las categorías todavía no están publicadas. El que ganó la vez anterior usó Bob a fondo, con modos y habilidades propios, así que hay que usarlo sí o sí.
 **Quedó a medias:** la idea del proyecto. Cande, fijate en `CONCURSO.md` qué valoraron los jueces antes de elegir.
