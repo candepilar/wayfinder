@@ -15,6 +15,21 @@ Sep 23, 2026 · @cande
   - Conecta al ciudadano con el código: la queja se convierte en un arreglo, no en un expediente.
   - La demo es visual (antes y después) y le habla al cliente típico de IBM, que son los gobiernos.
 
+## Evolución: el mapa de ruta
+
+**Con solo el link, la IA recorre todo el sitio, arma un mapa de ruta y a partir de ahí lleva a cada persona adonde quiere ir.** Ese mismo recorrido sirve para probar el sitio: donde la IA no logra llegar, hay un error que se le deriva al programador.
+
+- **Paso 1, el mapa:** se pega el link y la IA lee todas las páginas. Arma el mapa de secciones y trámites, con el camino para llegar a cada uno.
+- **Paso 2, para el vecino:** en lenguaje natural ("quiero sacar un turno en el registro civil") la IA busca en el mapa y lo lleva directo a la página, con los pasos.
+- **Paso 3, para el programador:** mientras arma el mapa, la IA intenta llegar a cada trámite como lo haría una persona, también con lector de pantalla o solo con teclado. Devuelve un informe del tipo "llegué a 18 de 20 trámites; el de turnos no se puede completar porque al campo de fecha le falta etiqueta, en esta página".
+- **Paso 4, el arreglo:** Bob arregla en paralelo lo que falló, y se vuelve a probar.
+
+**Por qué encaja con la consigna:** el trabajo que mejora es el del programador. Armar el asistente del sitio sin programar nada y probar todos los trámites a mano pasa a hacerse solo. El número para el pitch: probar a mano 20 trámites con lector de pantalla, unos 2 días; con esto, unos 15 minutos (a medir en la demo).
+
+**Para el pitch:** María le pide a la IA sacar un turno y la IA se traba igual que ella. Ese tropiezo llega como aviso al programador, Bob lo arregla, y María vuelve a pedirlo y esta vez llega.
+
+**Límite a tener en cuenta:** con solo el link se ve lo que el sitio muestra, no su código. Para ir hasta el archivo exacto y que Bob lo arregle, en la demo usamos nuestro sitio de prueba con el código en GitHub.
+
 ## Cómo funciona
 
 La automatización tiene dos puertas de entrada que confluyen en el mismo motor. La clave para el jurado es que los arreglos se hacen **en paralelo**.

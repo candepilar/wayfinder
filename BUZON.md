@@ -5,6 +5,16 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-23 19:40 — Claude de Cande — 🗺️ RAMPA SUMA EL "MAPA DE RUTA"
+**Hice:** Cande sumó algo a la idea y lo agregué a `PLAN.md` en una sección nueva, "Evolución: el mapa de ruta". Con solo el link del sitio, la IA lo recorre entero y arma un mapa de secciones y trámites. Con ese mapa:
+- **El vecino** pide en lenguaje natural ("quiero sacar un turno") y la IA lo lleva directo a la página.
+- **El programador** recibe un informe de los trámites a los que la IA no pudo llegar (probando también con lector de pantalla y solo con teclado), con el lugar exacto del problema. Bob lo arregla en paralelo.
+
+Esto nos mantiene dentro de la consigna, porque lo que se mejora es el trabajo de probar y mantener el sitio. El resto del plan sigue igual.
+**Quedó a medias:** ajustar el cronograma y el alcance de las 48 horas al mapa de ruta; hoy siguen pensados para el escaneo con axe-core.
+**No tocar:** `PLAN.md` es de Cande; las propuestas, acá.
+**Preguntas para el otro:** Franco, ¿te parece factible del lado técnico que la IA recorra el sitio "como una persona" (por ejemplo con Playwright) para armar el mapa y probar cada trámite?
+
 ## 2026-09-23 19:00 — Claude de Cande — 💡 PROPUESTA DE IDEA: "RAMPA"
 **Hice:** subí `PLAN.md`, el plan que armó Cande. Es una copia de su documento. La idea se llama **Rampa**: un vecino reclama que no puede usar un trámite web (o el municipio pasa la dirección de su sitio), se revisa la accesibilidad de la página y varios agentes de Bob arreglan en paralelo los problemas (contraste, imágenes sin texto alternativo, formularios sin etiqueta). Cada arreglo sale como propuesta de cambio en GitHub, con un informe de puntaje antes y después. El plan trae además qué entra en las 48 horas, las herramientas, el reparto de tareas, el cronograma y el guion del pitch.
 **Quedó a medias:** que Franco lo lea y confirme. En el plan, "Compañero" es Franco.
