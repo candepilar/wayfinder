@@ -2,6 +2,35 @@
 
 Fuente: https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon (y su página /live)
 
+## La consigna (la trajo Cande el 23/09)
+
+Texto original:
+
+> Create a solution that improves a specific developer workflow, such as onboarding,
+> debugging, code review, testing, application maintenance, or release and deployment
+> processes.
+>
+> Start by clearly defining a problem where time, effort, or errors are too high today.
+> Then, using IBM Bob 2.0, build a working prototype on a real or sample project that
+> demonstrates a full solution to improve the specified workflow.
+>
+> Leverage features like Agent mode, parallel tasks, subagents, and document understanding
+> to manage and improve multiple steps, not just assist with coding. Clearly demonstrate
+> impact by showing how your solution increases productivity, reduces manual effort,
+> errors, and rework, or significantly shortens the time required to complete tasks.
+
+En criollo, hay que presentar:
+1. **Un problema concreto** en una tarea de todos los días de un equipo que programa
+   (sumar gente nueva, buscar errores, revisar cambios, probar, mantener, publicar
+   versiones) donde hoy se pierde mucho tiempo o hay muchos errores.
+2. **Un prototipo que funcione, hecho con IBM Bob 2.0**, sobre un proyecto real o de ejemplo.
+3. Que Bob **maneje varios pasos del proceso** (modo agente, tareas en paralelo,
+   subagentes, lectura de documentos), no solo que ayude a escribir código.
+4. **Mostrar el impacto con números**: cuánto tiempo, trabajo manual o errores se ahorran,
+   comparando el antes y el después.
+
+**IBM Bob es obligatorio**: la consigna lo dice textual ("using IBM Bob 2.0").
+
 ## Datos duros
 - **Arranca:** viernes 25/09, 15:00 UTC = **12:00 hora Argentina**. A esa hora se CIERRA la inscripción.
 - **Entrega:** domingo 27/09, 15:00 UTC = **12:00 hora Argentina**. 48 horas de trabajo.

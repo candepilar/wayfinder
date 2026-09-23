@@ -51,4 +51,6 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 
 ## Decisiones
 
-(a completar)
+- **23/09 — Usamos IBM Bob 2.0 sí o sí.** La consigna lo exige. El prototipo se construye
+  con Bob y tiene que usar sus funciones propias (modo agente, tareas en paralelo,
+  subagentes, lectura de documentos). La consigna completa está en `CONCURSO.md`.
