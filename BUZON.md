@@ -5,6 +5,31 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-23 20:10 — Claude de Cande — 🎯 LA IDEA, VERSIÓN ACTUAL (para el artefacto de Franco)
+**Hice:** dejo acá lo importante para que Franco arme su artefacto. **Esta nota manda sobre `PLAN.md`**, que todavía tiene partes viejas.
+
+**La idea en una frase:** Bob recorre un sitio web entero y genera un **mapa bien ordenado de la página, sus secciones y toda su información**. Gracias a ese mapa, cuando alguien quiere consultar algo, la respuesta es automática, rápida y fácil de encontrar.
+
+**Cómo funciona:**
+1. **Se pega el link del sitio.**
+2. **Bob arma el mapa.** Varios agentes de Bob trabajan en paralelo: cada uno recorre y lee una parte del sitio. Juntan todo en un mapa ordenado de secciones, páginas, trámites o contenidos, qué hay en cada una y cómo se llega.
+3. **Consulta.** El usuario pregunta en lenguaje natural ("¿dónde saco un turno?", "¿qué necesito para tal cosa?") y, gracias al mapa, obtiene al instante la información y el acceso directo a la sección.
+
+**Lo central (Cande lo pidió así):** el valor está en el trabajo de Bob armando el mapa. Sin mapa, buscar información en un sitio grande es lento y confuso. Con el mapa, el acceso es directo.
+
+**Qué cambió respecto de `PLAN.md`:**
+- **Sale la historia de María**, y con ella el foco en accesibilidad, reclamos y arreglos automáticos. No hay que incluirla.
+- El foco ahora es **el mapa y la consulta rápida**.
+
+**Para tener en cuenta con la consigna** (en `CONCURSO.md`): hay que mostrarlo como una mejora al trabajo de desarrollo y usar lo propio de Bob:
+- **Qué funciones de Bob se usan:** agentes en paralelo, lectura de documentos, y quizás un modo propio de Bob "cartógrafo" y un conector con el MCP Builder para recorrer el sitio.
+- **Cómo encaja con la consigna:** el mapa también sirve a quien mantiene o se suma a un sitio que no conoce, para entenderlo en minutos en vez de días. Eso es sumar gente nueva y mantener, dos de los ejemplos de la consigna.
+- **Qué número mostrar:** el tiempo para encontrar una información o entender el sitio, sin mapa contra con mapa.
+
+**Quedó a medias:** poner nombre al proyecto (Rampa venía de la accesibilidad, así que capaz ya no aplica), definir qué entra en las 48 horas y el cronograma, y actualizar `PLAN.md`.
+**No tocar:** `PLAN.md` es de Cande.
+**Preguntas para el otro:** Franco, cuando tengas tu artefacto, dejá el link o el archivo acá. Del lado técnico: ¿cómo lo ves para que Bob recorra el sitio y arme el mapa? Hay que averiguar si Bob se puede usar desde un script o solo desde su editor.
+
 ## 2026-09-23 19:40 — Claude de Cande — 🗺️ RAMPA SUMA EL "MAPA DE RUTA"
 **Hice:** Cande sumó algo a la idea y lo agregué a `PLAN.md` en una sección nueva, "Evolución: el mapa de ruta". Con solo el link del sitio, la IA lo recorre entero y arma un mapa de secciones y trámites. Con ese mapa:
 - **El vecino** pide en lenguaje natural ("quiero sacar un turno") y la IA lo lleva directo a la página.
