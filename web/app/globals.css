@@ -2,39 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Un solo juego de tokens, definido para claro y redefinido para oscuro.
-   El visor se usa muchas horas seguidas mirando datos: conviene que respete
-   el tema del sistema en vez de imponer uno. */
+/**
+ * Sistema de color.
+ *
+ * Una rampa de verdad y no tres grises: hacen falta tres niveles de texto y
+ * tres de superficie para que algo se lea jerarquico sin recurrir a negritas
+ * por todas partes. El acento es uno solo, y se usa poco: si todo resalta,
+ * nada resalta.
+ */
 :root {
-  --fondo: #ffffff;
-  --surface: #f7f7f8;
-  --line: #e4e4e7;
-  --ink: #18181b;
-  --muted: #71717a;
-  --ember: #c2410c;
+  --fondo: #fbfbfc;
+  --superficie: #ffffff;
+  --superficie-alta: #f3f3f5;
+  --linea: #e7e7eb;
+  --linea-fuerte: #d3d3da;
+
+  --tinta: #0e0e11;
+  --tinta-media: #56565f;
+  --tinta-suave: #8b8b95;
+
+  --acento: #4f46e5;
+  --acento-tinta: #ffffff;
+  --acento-suave: rgba(79, 70, 229, 0.09);
+  --acento-borde: rgba(79, 70, 229, 0.3);
+
+  --sombra: 0 1px 2px rgba(16, 16, 20, 0.04), 0 4px 12px rgba(16, 16, 20, 0.04);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --fondo: #0c0c0e;
-    --surface: #17171a;
-    --line: #27272a;
-    --ink: #f4f4f5;
-    --muted: #8f8f99;
-    --ember: #fb923c;
+    --fondo: #0a0a0c;
+    --superficie: #121216;
+    --superficie-alta: #1c1c22;
+    --linea: #26262d;
+    --linea-fuerte: #36363f;
+
+    --tinta: #f6f6f8;
+    --tinta-media: #a2a2ac;
+    --tinta-suave: #6d6d77;
+
+    --acento: #8b8bf5;
+    --acento-tinta: #0a0a0c;
+    --acento-suave: rgba(139, 139, 245, 0.13);
+    --acento-borde: rgba(139, 139, 245, 0.32);
+
+    --sombra: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 }
 
 :root[data-theme="dark"] {
-  --fondo: #0c0c0e;
-  --surface: #17171a;
-  --line: #27272a;
-  --ink: #f4f4f5;
-  --muted: #8f8f99;
-  --ember: #fb923c;
+  --fondo: #0a0a0c;
+  --superficie: #121216;
+  --superficie-alta: #1c1c22;
+  --linea: #26262d;
+  --linea-fuerte: #36363f;
+  --tinta: #f6f6f8;
+  --tinta-media: #a2a2ac;
+  --tinta-suave: #6d6d77;
+  --acento: #8b8bf5;
+  --acento-tinta: #0a0a0c;
+  --acento-suave: rgba(139, 139, 245, 0.13);
+  --acento-borde: rgba(139, 139, 245, 0.32);
+  --sombra: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
+html,
 body {
   background: var(--fondo);
-  color: var(--ink);
+  color: var(--tinta);
+  /* Las cifras de una tabla de datos tienen que alinearse en columna. */
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Un foco visible y propio: el del navegador es inconsistente entre ellos y
+   feo en oscuro, pero sacarlo sin reemplazo rompe la navegacion con teclado. */
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* La barra de scroll por defecto en Windows es gruesa y clara: en un panel
+   oscuro y angosto canta mucho. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--linea-fuerte) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--linea-fuerte);
+  border: 3px solid transparent;
+  border-radius: 8px;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
 }
