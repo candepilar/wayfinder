@@ -5,6 +5,36 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-25 01:40 — Claude de Cande — 🎨 PANTALLA DE INICIO + PROPUESTA DE DISEÑO (Franco puede vetarla)
+**Hice:** dos cosas, y la segunda **es una propuesta, no una decisión tomada**.
+
+**1. Pantalla de inicio.** Pegás una URL y se abre el mapa de ese sitio; abajo, la lista de mapas que ya existen. Son dos estados en una sola pantalla, sin rutas: no hay recarga entre pegar la URL y ver el mapa, que en una demo se nota. Si la URL no tiene mapa, **lo dice** en vez de mostrar el ejemplo como si fuera el sitio pedido — un dato falso disfrazado de real hace perder más tiempo del que ahorra.
+
+El catálogo quedó aislado en `web/lib/mapas.ts`. Hoy lee el JSON del repo; cuando exista la API **se cambia solo ese archivo** y ninguna pantalla se toca.
+
+**2. ⚠️ PROPUESTA DE DISEÑO — Franco, esto lo decidimos entre los dos y lo podés rechazar.**
+
+Cande vio el visor y le pareció feo, así que le di una pasada de diseño. En el camino toqué cosas que son **convenciones de todo el frontend**, y eso no me correspondía decidirlo solo:
+
+- **Renombré los tokens de color.** Antes eran `ink` / `muted` / `surface` / `line` / `ember`, copiados de otro proyecto de Cande. Ahora son `tinta` / `tinta-media` / `tinta-suave` / `fondo` / `superficie` / `superficie-alta` / `linea` / `linea-fuerte` / `acento`. El motivo: con tres grises no alcanza para que algo se lea jerárquico sin poner negritas por todas partes; hacen falta tres niveles de texto y tres de superficie.
+- **Cambié el acento** de naranja a un índigo (`#4f46e5` en claro, `#8b8bf5` en oscuro).
+- **Agregué fuentes**: Inter para la interfaz y JetBrains Mono para direcciones y rutas. Van por `<link>` a Google Fonts y **no** por `next/font`, porque `next/font` las descarga durante el build y en la máquina de Cande el TLS falla de forma intermitente. Así, si la descarga falla, el navegador cae a la fuente del sistema y no se rompe nada.
+- **Iconos en SVG inline**, sin librería.
+- Guías verticales de indentación en el árbol, y una barra de acento para la selección.
+
+**Si algo de esto no te cierra, decilo y lo cambio.** Está todo en `web/app/globals.css` (los tokens), `web/tailwind.config.ts` (los nombres) y `web/app/layout.tsx` (las fuentes). Volverlo atrás es barato ahora y caro en dos días.
+
+**Quedó a medias:**
+- ⏰ **CREAR EL EQUIPO.** Cierra hoy a las 12:00. Franco: creálo vos y mandale la invitación a Cande.
+- 🔴 **El acceso a Bob de Cande está en "Enrollment pending approval".** El tuyo funciona, así que el problema es de su cuenta. Va al Discord a primera hora. Si no se destraba, Bob corre en tu máquina — que es lo que ya dice el reparto de `PLAN.md`.
+- El crawler. Y la vista de grafo, que todavía no existe: hoy el mapa se ve como árbol.
+
+**No tocar:** `web/` lo estoy tocando yo.
+
+**Preguntas para el otro:**
+- **¿Aceptás los tokens y las fuentes, o los cambiamos?** Es lo único que urge acordar del frontend.
+- Sigue en pie la de antes: **¿te sirve el contrato de `web/lib/tipos.ts` como salida del crawler?**
+
 ## 2026-09-25 00:35 — Claude de Franco — ✅ EQUIPO CREADO: "wayfinder" · ⚠️ CANDE TODAVÍA NO ESTÁ ADENTRO
 **Hice:** guardo acá lo que se ve en la página del equipo (capturas de Franco a las 00:29), porque Cande no puede entrar: **a su cuenta de lablab no se la aceptaron todavía.**
 
