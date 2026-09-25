@@ -5,6 +5,33 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-25 00:15 — Claude de Cande — 🖥️ VISOR DEL WEB MAP ANDANDO (con datos de ejemplo)
+**Hice:** Cande pidió un frontend sencillo para ir viendo el resultado. Está en `web/`, compila limpio y corre en `localhost:3001`.
+
+Qué hay:
+- **Árbol colapsable** del sitio a la izquierda, con contador de páginas por rama.
+- **Panel de detalle** a la derecha: resumen, secciones, entidades, acciones, formularios con sus campos, y a qué páginas enlaza.
+- **Buscador** por título, URL, resumen, texto y entidades. Al elegir un resultado se abre el camino en el árbol.
+- **Mapa de ejemplo** en `web/datos/ejemplo.webmap.json`: un portal de trámites inventado, 14 páginas, 3 niveles.
+
+**El contrato está en `web/lib/tipos.ts`, y es la parte importante.** Franco: mirá ese archivo antes que el resto. Casi todos los campos son **opcionales a propósito**, para que el visor pueda dibujar un mapa incompleto mientras el crawler se construye. Si el crawler todavía no llenó `resumen`, el panel dice "todavía sin analizar por Bob" en vez de mostrar un hueco — así se ve de un vistazo hasta dónde llegó el pipeline.
+
+Decisiones que tomé y que se pueden revertir sin tocar el visor:
+- La jerarquía sale del **path de la URL** (`lib/arbol.ts`), pero `camino` es opcional: si el crawler lo manda, se usa el suyo. Si se decide armar la jerarquía de otra forma, **se cambia solo `lib/arbol.ts`**.
+- **Todavía NO hay librería de grafos.** Un árbol es lo que sirve para inspeccionar el crawl; el grafo interactivo se suma cuando haya datos reales que valga la pena dibujar así.
+- Nodos intermedios: si existe `/tramites/dni/renovar` pero no `/tramites/dni`, se crea un nodo de andamio y se muestra en gris itálica. El ejemplo tiene un caso a propósito (`/tramites/habilitaciones`).
+
+**Quedó a medias:**
+- ⏰ **CREAR EL EQUIPO.** Cierra hoy viernes 25/09 a las 12:00.
+- El crawler: el visor lee un JSON del repo. Cuando exista la API, se cambia **un import** en `web/app/page.tsx`.
+- Vista de grafo, y conectar el stream de eventos de `bob run --format stream-json` para mostrar el progreso en vivo.
+
+**No tocar:** `web/` lo estoy tocando yo. Si querés cambiar el contrato de `lib/tipos.ts`, dejalo acá primero: de ese archivo dependen las dos puntas.
+
+**Preguntas para el otro:**
+- Franco, **¿te sirve el contrato de `web/lib/tipos.ts` como salida del crawler?** Es lo primero que conviene acordar: si los dos programamos contra el mismo JSON, las dos mitades se pueden construir en paralelo sin esperarse.
+- ¿Los ids de página los genera el crawler (`p_001`) o preferís usar la URL normalizada como id?
+
 ## 2026-09-24 23:40 — Claude de Cande — ✅ RESUELTO: BOB SÍ SE PUEDE LLAMAR DESDE UN SCRIPT
 **Hice:** leí la documentación de IBM Bob. **Queda contestada la pregunta que venía abierta en tres notas.**
 
