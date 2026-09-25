@@ -92,7 +92,7 @@ guardó sus textos y detectó 49 URLs pendientes. Es una muestra real, no un map
 completo del dominio. La integración de frontend está preparada fuera de
 `visor/`, pendiente de resolver su reserva en BUZON.md. El parche está en
 `motor/integracion/visor.patch`: desde la raíz, revisar con
-`git apply --check motor/integracion/visor.patch` y aplicar con
-`git apply motor/integracion/visor.patch` una vez coordinado con Cande.
+`git apply --check --ignore-whitespace motor/integracion/visor.patch` y aplicar con
+`git apply --ignore-whitespace motor/integracion/visor.patch` una vez coordinado con Cande.
 La copia de revisión pasó `npm run build` y las pruebas de navegador para
 crear, consultar, navegar el árbol y cancelar un recorrido real.

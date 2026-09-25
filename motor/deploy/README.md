@@ -35,7 +35,7 @@ En una copia de trabajo del repositorio, aplicar el parche de integración desde
 la raíz; no aplicarlo sobre el `visor/` reservado sin coordinación:
 
 ```powershell
-git apply motor/integracion/visor.patch
+git apply --ignore-whitespace motor/integracion/visor.patch
 cd visor
 npm ci
 $env:WAYFINDER_STATIC_EXPORT='1'
