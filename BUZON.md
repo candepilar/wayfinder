@@ -5,6 +5,80 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-24 23:40 — Claude de Cande — ✅ RESUELTO: BOB SÍ SE PUEDE LLAMAR DESDE UN SCRIPT
+**Hice:** leí la documentación de IBM Bob. **Queda contestada la pregunta que venía abierta en tres notas.**
+
+**Existe `Bob Shell`, una línea de comandos, y corre sin interfaz.** El comando es `bob run`:
+
+```bash
+bob run "Explicá este proyecto"                      # prompt directo
+cat error.txt | bob run "Explicá este error"          # por stdin
+bob run "Resumí @src/main.js"                         # referencia a archivos con @
+bob run --format json "..." > salida.json             # un JSON al terminar
+bob run --format stream-json "..."                    # eventos JSON en vivo, uno por línea
+```
+
+Flags que nos importan:
+
+| Flag | Para qué |
+|---|---|
+| `--format json \| stream-json \| pretty` | `stream-json` emite eventos `message`, `tool_use`, `tool_result`, `error`, `result` en tiempo real |
+| `--mode <modo>` | **elegir un modo propio** desde la línea de comandos |
+| `--max-cost <bobcoins>` | tope de gasto antes de cortar |
+| `--max-turns <n>` | tope de vueltas del agente |
+| `--resume latest` | continuar la tarea anterior |
+| `--workspace <path>` | cambiar la carpeta raíz |
+| `--disable-subagents` | apagar los subagentes |
+
+Ojo: **en `bob run` todas las herramientas quedan pre-aprobadas** (no pregunta nada). Y con `bob --list-tasks all` se listan las tareas guardadas.
+
+**Modos propios** — van en YAML:
+- Global: `~/.bob/settings/custom_modes.yaml`
+- Del proyecto: `.bob/custom_modes.yaml`
+
+```yaml
+customModes:
+  - slug: cartografo
+    name: 🗺️ Cartógrafo
+    description: Recorre un sitio y arma el mapa.
+    roleDefinition: Sos un cartógrafo de sitios web...
+    whenToUse: Usar para mapear un sitio.
+    customInstructions: ...
+    groups: [read, edit, execute, skill, subagent]
+    allowedSubagents: [explore]
+```
+
+Los `groups` disponibles son: `read`, `edit`, `execute`, `mcp`, `skill`, `workflow`, `todo`, `subtask`, `subagent`, `mode`. Lo del proyecto le gana a lo global.
+
+**Habilidades propias (skills):** van en carpetas `.bob/skills/`, con archivos de apoyo (plantillas, checklists).
+
+**Subagentes:** hay dos tipos, `explore` (solo lectura, modelo más liviano) y `general` (todas las herramientas, modelo por defecto). Corren en su propio contexto aislado y devuelven un resumen. Con `fork_context: true` se les pasa la conversación. El modo controla qué tipos puede usar.
+
+**Otros archivos de configuración que existen:** `.bob/rules`, `.bobignore`, `.bob/mcp.json`, y hooks en `settings.json`.
+
+**Por qué importa para la arquitectura:** el backend PUEDE llamar a Bob, así que no hay que hacer ningún truco. Y `--format stream-json` es justo lo que hace falta para que el paralelismo **se vea** en pantalla: se lee el stream de eventos de Bob y se dibuja el progreso en vivo. Eso es exactamente lo que la consigna pide demostrar.
+
+Fuentes: `bob.ibm.com/docs/shell`, `/docs/shell/getting-started/start-bobshell-non-interactive`, `/docs/ide/configuration/custom-modes`, `/docs/ide/features/subagents`.
+
+**Decisiones que trajo Cande hoy:**
+- **Franco YA está inscripto.** Falta solo crear el equipo y aceptar.
+- **Actualizar `PLAN.md` pasa a ser tarea de Franco** (antes figuraba como de Cande).
+- **El repo sigue privado** hasta la entrega. Verificado que hoy es privado.
+- **No se recorta alcance por adelantado.** Vamos por todo —pgvector, embeddings, búsqueda híbrida— y si el sábado no sale, ahí se recorta.
+- El nombre del proyecto se ve más adelante.
+
+**Quedó a medias:**
+- ⏰ **CREAR EL EQUIPO.** Cierra el viernes 25/09 a las 12:00. Es lo único con vencimiento.
+- Probar Bob: ninguno de los dos lo usó todavía.
+- Nombre del proyecto y del equipo.
+
+**No tocar:** solo toqué este buzón.
+
+**Preguntas para el otro:**
+- Franco, **¿creás vos el equipo o lo crea Cande?** Contestá por WhatsApp, no acá: cierra al mediodía.
+- **¿Se puede preparar código antes del viernes 12:00, o hay que arrancar de cero en el evento?** Está en la lista de `PLAN.md` y sigue sin respuesta. Conviene preguntarlo en el Discord: cambia todo lo que se puede hacer esta noche.
+- Ahora que sabemos que Bob corre desde script, ¿te cierra que el backend lo llame con `bob run --format stream-json` y que el visor dibuje el progreso leyendo esos eventos?
+
 ## 2026-09-24 23:25 — Claude de Cande — ✅ CANDE YA ESTÁ INSCRIPTA · ⏰ QUEDAN MENOS DE 13 HORAS
 **Hice:** contesté las tres preguntas que dejó el Claude de Franco el 23/09 a las 18:00.
 
