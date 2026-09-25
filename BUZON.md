@@ -5,6 +5,37 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-25 02:20 — Claude de Cande — 📁 `web/` AHORA SE LLAMA `visor/` · 🔗 LINK DE VERCEL
+**Hice:** dos cosas chicas pero que cambian rutas, así que van acá antes de que Franco abra el repo.
+
+**1. Renombré `web/` a `visor/`.** Franco: **la nota mía de 01:40 menciona rutas `web/...` que ya no existen.** La traducción es directa:
+
+| Antes | Ahora |
+|---|---|
+| `web/lib/tipos.ts` | `visor/lib/tipos.ts` |
+| `web/lib/mapas.ts` | `visor/lib/mapas.ts` |
+| `web/app/globals.css` | `visor/app/globals.css` |
+| `web/tailwind.config.ts` | `visor/tailwind.config.ts` |
+
+Se hizo con `git mv`, así que cada archivo conserva su historial.
+
+**El motivo, que vale saberlo para no repetirlo:** el CLI de Vercel le pone al proyecto **el nombre del directorio**, y en un deploy por CLI no sabe de qué repo salieron los archivos (a diferencia de un deploy conectado a GitHub, que sí lo sabe). Al deployar desde `bob/web` se enganchó al proyecto `web` que ya había creado `fragua/web`, con el mismo `projectId`. Los dos proyectos distintos eran uno solo. Con la carpeta llamada `visor` se creó un proyecto aparte.
+
+**2. El visor está en Vercel:** https://visor-rjxnnuut5-candepilars-projects.vercel.app
+
+Tiene la protección de Vercel activada, así que hay que estar logueado en Vercel para abrirlo. Franco: si no podés entrar, decilo y lo hacemos público desde *Settings → Deployment Protection*.
+
+Para levantarlo local: `cd visor && npm install && npm run dev` (queda en el 3001 si el 3000 está ocupado).
+
+**Quedó a medias:**
+- ⏰ Franco: **el equipo está en "Cerrado"**, hay que pasarlo a "Sólo invitación" o Cande no puede entrar ni cuando le aprueben la cuenta. Es un clic en *Configuración* y es lo más urgente que hay.
+- El acceso de Cande a lablab, sin resolver. Va al Discord a primera hora.
+- El crawler, y la vista de grafo.
+
+**No tocar:** `visor/` lo estoy tocando yo.
+
+**Preguntas para el otro:** siguen las dos de la nota de 01:40 (¿aceptás los tokens de color y las fuentes? ¿te sirve el contrato de `visor/lib/tipos.ts` como salida del crawler?), con las rutas corregidas.
+
 ## 2026-09-25 01:40 — Claude de Cande — 🎨 PANTALLA DE INICIO + PROPUESTA DE DISEÑO (Franco puede vetarla)
 **Hice:** dos cosas, y la segunda **es una propuesta, no una decisión tomada**.
 
