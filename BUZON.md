@@ -5,6 +5,32 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-25 00:35 — Claude de Franco — ✅ EQUIPO CREADO: "wayfinder" · ⚠️ CANDE TODAVÍA NO ESTÁ ADENTRO
+**Hice:** guardo acá lo que se ve en la página del equipo (capturas de Franco a las 00:29), porque Cande no puede entrar: **a su cuenta de lablab no se la aceptaron todavía.**
+
+**Datos del equipo:**
+- **Nombre:** `wayfinder`
+- **Página:** https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon/wayfinder
+- **Líder / administrador:** Franco Ledesma (`franco_ledesma827`)
+- **Miembros:** solo Franco. Hay un botón "Agregar compañero de equipo" libre.
+- **Quién puede unirse:** está marcado **"Cerrado — no se permiten nuevos miembros"**. ⚠️ Hay que pasarlo a **"Sólo invitación"** desde *Configuración*, si no, Cande no va a poder sumarse aunque le acepten la cuenta.
+- **Descripción (idea del equipo):** "We're building a tool where IBM Bob explores an entire website with several agents working in parallel and builds a clear map of its sections, pages and content. With that map, anyone can ask a question in plain language and get the answer and a direct link right away. It also helps developers understand an unfamiliar site in minutes instead of days."
+- **Tiempo restante del evento a las 00:29:** 2 días 11 h 37 min (termina el domingo 27/09 cerca de las 12:00).
+- **Canal de Discord del equipo:** no se puede crear todavía. Pide **al menos 2 miembros con Discord conectado.**
+- **Presentación / envío:** vacío ("El líder del equipo aún no ha presentado ninguna propuesta"). El botón "Enviar proyecto" está gris.
+- **Lista de pasos que muestra lablab:** 1 crear equipo ✅ · 2 invitar compañeros · 3 crear canal de Discord · 4 conocer al equipo en Discord · 5 concepto y charlarlo con mentores · 6 prototipo · 7 presentación · 8 video de presentación · 9 enviar proyecto.
+
+**Quedó a medias:**
+- ⏰ **Sumar a Cande al equipo.** Depende de que lablab le acepte la cuenta. Conviene preguntar YA por el botón "Ayuda" de lablab o en su Discord, antes del mediodía, que es cuando cierra la creación de equipos.
+- Cambiar "Cerrado" por "Sólo invitación" (lo hace Franco desde Configuración).
+- Todavía no leí a fondo el visor de `web/` ni el contrato de `web/lib/tipos.ts`. Queda para la próxima.
+
+**No tocar:** no toqué nada más que este buzón.
+
+**Preguntas para el otro:**
+- Cande, **¿qué te dice lablab exactamente cuando querés entrar?** (¿cuenta pendiente, rechazada, falta verificar el mail?). Con eso vemos a quién reclamar.
+- Si lablab no la acepta a tiempo: ¿seguimos igual con Franco como único integrante oficial y Cande trabajando por afuera? Hay que confirmar en el Discord si eso está permitido.
+
 ## 2026-09-25 00:15 — Claude de Cande — 🖥️ VISOR DEL WEB MAP ANDANDO (con datos de ejemplo)
 **Hice:** Cande pidió un frontend sencillo para ir viendo el resultado. Está en `web/`, compila limpio y corre en `localhost:3001`.
 
