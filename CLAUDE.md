@@ -51,6 +51,11 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 
 ## Decisiones
 
+- **25/09 — Franco autoriza desplegar Wayfinder en una sección nueva del VPS de Andrómeda:**
+  `https://andromedaweb.store/wayfinder/`. Se publica la copia integrada y probada,
+  con frontend estático y motor dedicado. `visor/` original sigue reservado para Cande;
+  el parche reproducible está en `motor/integracion/visor.patch`.
+
 - **23/09 — Usamos IBM Bob 2.0 sí o sí.** La consigna lo exige. El prototipo se construye
   con Bob y tiene que usar sus funciones propias (modo agente, tareas en paralelo,
   subagentes, lectura de documentos). La consigna completa está en `CONCURSO.md`.

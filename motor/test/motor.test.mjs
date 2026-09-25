@@ -93,12 +93,12 @@ test('API creates a real crawl, replays events, persists it and answers with sou
   const f = await fixture(t);
   const directory = await mkdtemp(path.join(os.tmpdir(), 'wayfinder-api-'));
   t.after(() => rm(directory, { recursive:true, force:true }));
-  const { app } = createApp({ dataDir:directory, allowLocal:true });
+  const { app } = createApp({ dataDir:directory, allowLocal:true, allowedOrigins:['https://andromedaweb.store'], maxPagesLimit:10, maxMaps:1 });
   const server = app.listen(0, '127.0.0.1');
   await new Promise(resolve => server.once('listening', resolve));
   t.after(() => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); }));
   const base = `http://127.0.0.1:${server.address().port}`;
-  const start = await fetch(`${base}/api/recorridos`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({url:f.url,maxPaginas:10}) });
+  const start = await fetch(`${base}/api/recorridos`, { method:'POST', headers:{'Content-Type':'application/json',Origin:'https://andromedaweb.store'}, body:JSON.stringify({url:f.url,maxPaginas:10}) });
   assert.equal(start.status, 202);
   const job = await start.json();
   const events = await (await fetch(`${base}/api/recorridos/${job.id}/eventos`)).text();
@@ -114,6 +114,10 @@ test('API creates a real crawl, replays events, persists it and answers with sou
   assert.ok(answer.fuentes.length > 0);
   const forbidden = await fetch(`${base}/api/recorridos`, {method:'POST',headers:{'Content-Type':'application/json',Origin:'https://example.com'},body:JSON.stringify({url:f.url})});
   assert.equal(forbidden.status, 403);
+  const tooMany = await fetch(`${base}/api/recorridos`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:f.url,maxPaginas:11})});
+  assert.equal(tooMany.status, 400);
+  const capacity = await fetch(`${base}/api/recorridos`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:'https://example.com/',maxPaginas:1})});
+  assert.equal(capacity.status, 409);
 });
 
 test('Bob parser rejects unsuccessful or malformed results', () => {

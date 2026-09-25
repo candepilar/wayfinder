@@ -9,14 +9,16 @@ import { Store } from './store.mjs';
 import { analyzeWithBob, bobStatus } from './bob.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-export function createApp({ dataDir = path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1' } = {}) {
+export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1', allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean), maxPagesLimit = Number(process.env.MAX_PAGES || 200), maxMaps = Number(process.env.MAX_MAPS || 100) } = {}) {
   const app = express();
   const store = new Store(path.join(dataDir, 'mapas'));
   const jobs = new Map();
+  const starts = new Map();
   app.disable('x-powered-by');
+  app.set('trust proxy', 'loopback');
   app.use((req, res, next) => {
     const origin = req.headers.origin;
-    if (origin && !/^http:\/\/(localhost|127\.0\.0\.1):(3001|3101)$/.test(origin)) return res.status(403).json({ error: 'Origen no permitido.' });
+    if (origin && !allowedOrigins.includes(origin) && !/^http:\/\/(localhost|127\.0\.0\.1):(3001|3101)$/.test(origin)) return res.status(403).json({ error: 'Origen no permitido.' });
     if (origin) { res.setHeader('Access-Control-Allow-Origin', origin); res.setHeader('Vary', 'Origin'); }
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -39,14 +41,22 @@ export function createApp({ dataDir = path.join(root, 'data'), allowLocal = proc
     const map = await store.get(req.params.id);
     return map ? res.json(queryMap(map, req.body.pregunta)) : res.status(404).json({ error: 'Mapa no encontrado.' });
   });
-  app.post('/api/recorridos', (req,res) => {
+  app.post('/api/recorridos', async (req,res) => {
     let url;
     try { if (typeof req.body?.url !== 'string' || req.body.url.length > 2048) throw new Error('Ingresá una dirección válida.'); url = normalizeUrl(req.body.url); }
     catch (error) { return res.status(400).json({ error: error.message }); }
     const maxPages = req.body.maxPaginas ?? 40;
-    if (!Number.isInteger(maxPages) || maxPages < 1 || maxPages > 200) return res.status(400).json({ error: 'El límite debe estar entre 1 y 200 páginas.' });
+    if (!Number.isInteger(maxPages) || maxPages < 1 || maxPages > maxPagesLimit) return res.status(400).json({ error: `El límite debe estar entre 1 y ${maxPagesLimit} páginas.` });
     if (req.body.bob && !bobStatus().disponible) return res.status(409).json({ error: 'Bob Shell todavía no tiene una API key configurada. Podés recorrer el HTML ahora.' });
     if ([...jobs.values()].some(j => j.estado === 'en_curso')) return res.status(409).json({ error: 'Ya hay un recorrido en curso. Esperá o cancelalo.' });
+    const now = Date.now();
+    for (const [ip,history] of starts) if (!history.some(time => now-time < 600000)) starts.delete(ip);
+    const recent = (starts.get(req.ip) || []).filter(time => now-time < 600000);
+    if (recent.length >= 3) return res.status(429).json({ error: 'Alcanzaste tres recorridos en diez minutos. Esperá un momento para iniciar otro.' });
+    if (!(await store.get(siteId(url))) && (await store.count()) >= maxMaps) return res.status(409).json({ error: 'El catálogo alcanzó su capacidad. Podés consultar los mapas existentes.' });
+    // Recheck after filesystem awaits, so simultaneous POSTs cannot reserve two workers.
+    if ([...jobs.values()].some(j => j.estado === 'en_curso')) return res.status(409).json({ error: 'Ya hay un recorrido en curso.' });
+    starts.set(req.ip,[...recent,now]);
     // Keep bounded in-memory event history; completed maps are persisted separately.
     while (jobs.size >= 30) jobs.delete(jobs.keys().next().value);
     const id = randomUUID();
@@ -58,6 +68,7 @@ export function createApp({ dataDir = path.join(root, 'data'), allowLocal = proc
     };
     res.status(202).json({ id, estado: job.estado });
     void (async () => {
+      const deadline = setTimeout(() => job.controller.abort(), 600000);
       try {
         const map = await crawl(url, { maxPages, onEvent: emit, signal: job.controller.signal, allowLocal });
         if (req.body.bob) {
@@ -74,7 +85,7 @@ export function createApp({ dataDir = path.join(root, 'data'), allowLocal = proc
         job.estado = job.controller.signal.aborted ? 'cancelado' : 'error';
         job.error = error.message;
         emit({ type: job.estado, mensaje: error.message, at: new Date().toISOString() });
-      }
+      } finally { clearTimeout(deadline); }
     })();
   });
   app.get('/api/recorridos/:id', (req,res) => {

@@ -21,4 +21,8 @@ export class Store {
     const maps = await Promise.all(files.map(async f => ({ id: f.slice(0, -5), mapa: await this.get(f.slice(0, -5)) })));
     return maps.sort((a,b) => b.mapa.sitio.crawleado_en.localeCompare(a.mapa.sitio.crawleado_en));
   }
+  async count() {
+    await mkdir(this.directory, { recursive: true });
+    return (await readdir(this.directory)).filter(f => /^[a-f0-9]{20}\.json$/.test(f)).length;
+  }
 }
