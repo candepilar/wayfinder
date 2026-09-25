@@ -1,0 +1,131 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import { mkdtemp, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { crawl, extractPage } from '../src/crawler.mjs';
+import { normalizeUrl, isPublicIp, requestText } from '../src/network.mjs';
+import { queryMap } from '../src/search.mjs';
+import { Store } from '../src/store.mjs';
+import { createApp } from '../src/server.mjs';
+import { parseBobResult } from '../src/bob.mjs';
+
+async function fixture(t) {
+  const requests = [];
+  const pages = {
+    '/': '<title>Biblioteca de prueba</title><main><h1>Biblioteca</h1><a href="/socios">Socios</a><a href="/horarios">Horarios</a><a href="/privado">Privado</a><a href="/error">Error</a><a href="/socios#turno">Otra vez</a></main>',
+    '/socios': '<title>Asociate a la biblioteca</title><main><h1>Requisitos para asociarse</h1><p>Para asociarte necesitás DNI y comprobante de domicilio. Solicitá un turno en recepción.</p><form action="/enviar" method="post"><label for="doc">Documento</label><input id="doc" name="dni"><button>Solicitar turno</button></form><a href="/">Inicio</a></main>',
+    '/horarios': '<title>Horarios</title><main>La biblioteca abre de lunes a viernes de 9 a 18. <a href="/horarios?dia=sabado">Sábado</a></main>',
+    '/horarios?dia=sabado': '<title>Horario sábado</title><main>Los sábados atendemos de 10 a 13.</main>',
+  };
+  const server = http.createServer((req,res) => {
+    requests.push(`${req.method} ${req.url}`);
+    if (req.url === '/robots.txt') { res.writeHead(200, {'Content-Type':'text/plain'}); return res.end('User-agent: *\nDisallow: /privado'); }
+    if (req.url === '/error') { res.writeHead(503, {'Content-Type':'text/html'}); return res.end('error'); }
+    res.writeHead(pages[req.url] ? 200 : 404, {'Content-Type':'text/html; charset=utf-8'});
+    res.end(pages[req.url] || 'no existe');
+  });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  t.after(() => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); }));
+  return { url: `http://127.0.0.1:${server.address().port}/`, requests };
+}
+
+test('normalizes URLs without allowing credentials or executable schemes', () => {
+  assert.equal(normalizeUrl('example.com/a?utm_source=x&b=2#x'), 'https://example.com/a?b=2');
+  assert.throws(() => normalizeUrl('javascript:alert(1)', 'https://example.com'));
+  assert.throws(() => normalizeUrl('https://user:pass@example.com'));
+  for (const ip of ['127.0.0.1','10.0.0.1','169.254.169.254','::1','::ffff:127.0.0.1','192.168.1.1']) assert.equal(isPublicIp(ip), false);
+  assert.equal(isPublicIp('1.1.1.1'), true);
+});
+
+test('public crawler rejects private networks', async t => {
+  const f = await fixture(t);
+  await assert.rejects(requestText(f.url), /privada/);
+});
+
+test('real HTTP crawl obeys robots, deduplicates fragments and extracts forms without submission', async t => {
+  const f = await fixture(t);
+  const events = [];
+  const map = await crawl(f.url, { allowLocal: true, onEvent: e => events.push(e) });
+  assert.equal(map.paginas.length, 4);
+  assert.equal(map.ejecucion.estado, 'parcial');
+  assert.equal(map.ejecucion.errores.length, 1);
+  assert.equal(map.ejecucion.omitidas, 1);
+  assert.equal(f.requests.some(r => /privado|POST|enviar/.test(r)), false);
+  const members = map.paginas.find(p => p.url.endsWith('/socios'));
+  assert.deepEqual(members.formularios[0].campos, ['Documento']);
+  assert.equal(members.resumen, undefined);
+  assert.equal(members.enlaces.length, 1);
+  assert.ok(events.some(e => e.type === 'leyendo'));
+  assert.ok(map.paginas.find(p => p.url.includes('?')).camino.includes('?dia=sabado'));
+  const answer = queryMap(map, '¿Qué necesito para asociarme? DNI domicilio');
+  assert.equal(answer.fuentes[0].id, members.id);
+  assert.match(answer.respuesta, /comprobante de domicilio/);
+  assert.equal(queryMap(map, 'astronauta').fuentes.length, 0);
+});
+
+test('page limit is explicit and crawl does not pretend to cover the entire site', async t => {
+  const f = await fixture(t);
+  const map = await crawl(f.url, { maxPages: 1, allowLocal: true });
+  assert.equal(map.paginas.length, 1);
+  assert.equal(map.ejecucion.estado, 'parcial');
+  assert.ok(map.ejecucion.pendientes > 0);
+});
+
+test('extractor removes scripts and never labels HTML as Bob analysis', () => {
+  const page = extractPage('<title>T</title><script>secreto()</script><main>Información visible</main>', 'https://example.com/');
+  assert.equal(page.texto, 'Información visible');
+  assert.equal(page.origen, 'html');
+  assert.equal(page.resumen, undefined);
+});
+
+test('persisted map survives a new store instance', async t => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'wayfinder-test-'));
+  t.after(() => rm(directory, { recursive:true, force:true }));
+  const map = { sitio: { url:'https://example.com/', crawleado_en:'2026-09-25T00:00:00Z' }, paginas:[] };
+  await new Store(directory).save('0123456789abcdefabcd', map);
+  assert.deepEqual(await new Store(directory).get('0123456789abcdefabcd'), map);
+  assert.equal(await new Store(directory).get('../../file'), null);
+});
+
+test('API creates a real crawl, replays events, persists it and answers with sources', async t => {
+  const f = await fixture(t);
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'wayfinder-api-'));
+  t.after(() => rm(directory, { recursive:true, force:true }));
+  const { app } = createApp({ dataDir:directory, allowLocal:true });
+  const server = app.listen(0, '127.0.0.1');
+  await new Promise(resolve => server.once('listening', resolve));
+  t.after(() => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); }));
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const start = await fetch(`${base}/api/recorridos`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({url:f.url,maxPaginas:10}) });
+  assert.equal(start.status, 202);
+  const job = await start.json();
+  const events = await (await fetch(`${base}/api/recorridos/${job.id}/eventos`)).text();
+  assert.match(events, /"type":"completado"/);
+  const result = await (await fetch(`${base}/api/recorridos/${job.id}`)).json();
+  assert.equal(result.estado, 'completado');
+  const maps = await (await fetch(`${base}/api/mapas`)).json();
+  assert.equal(maps.length, 1);
+  const exported = await fetch(`${base}/api/mapas/${result.mapaId}/archivo`);
+  assert.match(exported.headers.get('content-disposition'), /attachment; filename="wayfinder-/);
+  assert.equal((await exported.json()).paginas.length, 4);
+  const answer = await (await fetch(`${base}/api/mapas/${result.mapaId}/consulta`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pregunta:'horarios sábado'})})).json();
+  assert.ok(answer.fuentes.length > 0);
+  const forbidden = await fetch(`${base}/api/recorridos`, {method:'POST',headers:{'Content-Type':'application/json',Origin:'https://example.com'},body:JSON.stringify({url:f.url})});
+  assert.equal(forbidden.status, 403);
+});
+
+test('Bob parser rejects unsuccessful or malformed results', () => {
+  assert.throws(() => parseBobResult({ type:'result', status:'error', last_message:'{}' }));
+  assert.throws(() => parseBobResult({ type:'result', status:'success', last_message:'hello' }));
+  assert.deepEqual(parseBobResult({ type:'result', status:'success', last_message:'```json\n{"paginas":[]}\n```' }), []);
+});
+
+test('search favors the page about a topic over a broad index mentioning it', () => {
+  const map = {paginas:[
+    {id:'index',titulo:'Educación',url:'https://example.com/educacion',headings:['Becas','Progresar'],texto:'Becas Progresar y otros programas.'},
+    {id:'topic',titulo:'Progresar',url:'https://example.com/progresar',headings:['Requisitos'],texto:'Esta beca acompaña a estudiantes.'},
+  ]};
+  assert.equal(queryMap(map,'becas Progresar').fuentes[0].id,'topic');
+});
