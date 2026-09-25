@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import Arbol from "./Arbol";
 import Buscador from "./Buscador";
 import Detalle from "./Detalle";
+import Mapa from "./Mapa";
 import { ancestrosDe, armarArbol, buscar, segmentosDe } from "@/lib/arbol";
 import { Nodo, Pagina, WebMap } from "@/lib/tipos";
 
@@ -18,6 +19,9 @@ export default function Visor({
   const [claveSeleccionada, setClaveSeleccionada] = useState<string | null>(null);
   const [abiertos, setAbiertos] = useState<Set<string>>(new Set());
   const [consulta, setConsulta] = useState("");
+  // El árbol es la herramienta para revisar el crawl; el mapa es para entender
+  // la forma del sitio de un vistazo. Cada uno hace lo que el otro no puede.
+  const [pestana, setPestana] = useState<"arbol" | "mapa">("arbol");
 
   // Se recalcula solo si cambia el mapa, que en la practica es una vez.
   const { nodos, porClave, porId, home, analizadas } = useMemo(() => {
@@ -62,6 +66,11 @@ export default function Visor({
 
   const homeElegida = claveSeleccionada === "" && home;
 
+  /** Lo que muestra el panel de detalle, en cualquiera de las dos pestañas. */
+  const nodoDetalle: Nodo | null = homeElegida
+    ? { clave: "", segmento: "", pagina: home, hijos: [] }
+    : nodoSeleccionado;
+
   return (
     <div className="flex h-screen flex-col">
       <header className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-linea bg-superficie px-4 py-2.5">
@@ -86,15 +95,40 @@ export default function Visor({
           </div>
         </div>
 
-        <div className="flex shrink-0 items-center gap-2 text-[11px] text-tinta-media">
-          <Dato valor={mapa.paginas.length} etiqueta="páginas" />
-          <span className="text-linea-fuerte">·</span>
-          <Dato valor={analizadas} etiqueta="analizadas" />
+        <div className="flex shrink-0 items-center gap-3">
+          <div className="flex rounded-md border border-linea p-0.5">
+            {(["arbol", "mapa"] as const).map((p) => (
+              <button
+                key={p}
+                onClick={() => setPestana(p)}
+                className={`rounded px-2.5 py-1 text-xs transition-colors ${
+                  pestana === p
+                    ? "bg-acento-suave font-medium text-tinta"
+                    : "text-tinta-media hover:text-tinta"
+                }`}
+              >
+                {p === "arbol" ? "Árbol" : "Mapa"}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2 text-[11px] text-tinta-media">
+            <Dato valor={mapa.paginas.length} etiqueta="páginas" />
+            <span className="text-linea-fuerte">·</span>
+            <Dato valor={analizadas} etiqueta="analizadas" />
+          </div>
         </div>
       </header>
 
-      <div className="flex min-h-0 flex-1 flex-col md:flex-row">
-        <aside className="w-full shrink-0 overflow-y-auto border-linea bg-superficie p-2.5 md:w-[19rem] md:border-r">
+      <div
+        className={`flex min-h-0 flex-1 ${
+          pestana === "arbol" ? "flex-col md:flex-row" : ""
+        }`}
+      >
+        <aside
+          hidden={pestana !== "arbol"}
+          className="w-full shrink-0 overflow-y-auto border-linea bg-superficie p-2.5 md:w-[19rem] md:border-r"
+        >
           <Buscador
             consulta={consulta}
             onConsulta={setConsulta}
@@ -130,16 +164,31 @@ export default function Visor({
           )}
         </aside>
 
-        <main className="min-h-0 flex-1 overflow-y-auto">
-          <Detalle
-            nodo={
-              homeElegida
-                ? { clave: "", segmento: "", pagina: home, hijos: [] }
-                : nodoSeleccionado
-            }
-            paginasPorId={porId}
-          />
-        </main>
+        {pestana === "arbol" ? (
+          <main className="min-h-0 flex-1 overflow-y-auto">
+            <Detalle nodo={nodoDetalle} paginasPorId={porId} />
+          </main>
+        ) : (
+          <>
+            <main className="min-h-0 min-w-0 flex-1">
+              <Mapa
+                raices={nodos}
+                home={home}
+                paginas={mapa.paginas}
+                claveSeleccionada={claveSeleccionada}
+                onSeleccionar={(n) => setClaveSeleccionada(n.clave)}
+              />
+            </main>
+
+            {/* El detalle aparece al lado solo si hay pantalla: en un monitor
+                angosto el mapa necesita todo el ancho para servir de algo. */}
+            {nodoDetalle && (
+              <aside className="hidden w-[21rem] shrink-0 overflow-y-auto border-l border-linea bg-superficie lg:block">
+                <Detalle nodo={nodoDetalle} paginasPorId={porId} />
+              </aside>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
