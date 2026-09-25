@@ -5,6 +5,34 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-25 03:05 — Claude de Cande — 🗺️ VISTA DE MAPA LISTA · 🔍 REVISÉ EL PARCHE DE FRANCO
+**Hice:** dos cosas — el mapa, y la revisión de lo que dejó el Codex de Franco.
+
+**1. Vista de mapa (grafo jerárquico).** En el visor hay ahora dos pestañas, **Árbol | Mapa**:
+- El acomodo se calcula en `visor/lib/grafo.ts` con `d3-hierarchy` (dependencia nueva, 12 KB, solo posiciones) y el SVG se dibuja a mano en `visor/components/Mapa.tsx`. Están separados para poder cambiar la geometría sin tocar el dibujo, y al revés.
+- Rueda = zoom hacia el puntero, arrastrar el fondo = mover, clic en un nodo = detalle al costado, hover = globo con el resumen, botón "Encuadrar" = recentrar.
+- **Los cruces** —una página que menciona a otra fuera de su rama— se dibujan punteados en color de acento. Es lo único que el árbol no puede mostrar. Se descartan los que ya son padre-hijo, que en un sitio real son casi todos y solo tapan lo interesante.
+- Sin paleta de categorías: neutros en los nodos, el acento reservado para selección y cruces, y "sin analizar" marcado con **borde punteado y no con color**, para que no dependa de distinguir tonos.
+- El árbol queda intacto: sirve para revisar el crawl, que es otra tarea.
+
+**2. Revisé `motor/integracion/visor.patch`.** Tres hallazgos:
+
+- ⚠️ **`git apply` solo falla por finales de línea.** Tal cual está documentado el comando, no aplica: muere en `visor/next.config.mjs`. Con **`git apply --ignore-whitespace motor/integracion/visor.patch`** aplica limpio. La causa es que este repo **no tiene `.gitattributes` en la raíz**, así que en Windows los archivos se sacan con CRLF y el parche está en LF. Franco: agregar un `.gitattributes` en la raíz con `* text=auto eol=lf` lo arregla de una vez y evita que nos vuelva a pasar con cada parche. Vos ya pusiste uno en `motor/`.
+- ✅ **No choca con el mapa.** El parche toca `app/page.tsx`, `components/Detalle.tsx`, `next.config.mjs` y agrega `components/Motor.tsx` y `lib/motor.ts`. **No toca `Visor.tsx`**, que es donde está el mapa. Las dos cosas conviven.
+- 📌 **Pero reemplaza `app/page.tsx`**, que es la pantalla de inicio. O sea que aplicarlo cambia por dónde se entra al visor, y eso no es un detalle técnico: es una decisión de producto. **Queda pendiente de que Cande lo decida**; todavía no lo aplicamos.
+
+**Quedó a medias:**
+- ⏰ Sigue lo del equipo: Cande no está adentro, y el equipo estaba en "Cerrado".
+- **Aplicar el parche**, pendiente de Cande.
+- El `.gitattributes` de la raíz.
+- Del lado del mapa: no lo pude verificar visualmente (no tengo forma de ver la pantalla), así que si el acomodo queda raro con los mapas reales de Argentina.gob.ar, decilo.
+
+**No tocar:** `visor/` sigue reservado. No toqué `motor/`.
+
+**Preguntas para el otro:**
+- Franco, **tu pregunta de si conectamos el visor a la API del motor la tiene que contestar Cande**, no yo. Lo que sí te digo del lado técnico: el parche es compatible con lo que hay, y el único obstáculo real es el `--ignore-whitespace`.
+- Probaste el motor sobre **Argentina.gob.ar** y salieron mapas de 5 y 6 páginas. ¿Ese es el sitio que vamos a usar en la demo, o es solo una prueba? Si es el definitivo, conviene congelarlo y cachearlo ya, porque de eso dependen el pitch y el número del antes/después.
+
 ## 2026-09-25 02:37 — Codex (Luz) de Franco — MOTOR PROBADO + INTEGRACIÓN LISTA PARA REVISAR
 **Hice:** construí `motor/`: crawler HTML real con robots.txt/Crawl-delay, límites, cancelación, extracción de texto/formularios/enlaces, IDs estables compatibles con `visor/lib/tipos.ts`, persistencia local, API con progreso SSE y consulta textual con fragmentos y URLs. Nueve pruebas automáticas pasan. Probé Argentina.gob.ar: un mapa de 6 páginas y otro de Progresar de 5 páginas; ambos declaran cobertura parcial. Verifiqué desde el navegador crear un mapa, consultar, abrir ramas y detalles, y cancelar conservando el mapa anterior. El motor quedó en localhost:3101. No modifiqué archivos versionados de `visor/`.
 **Hice (integración):** preparé `motor/integracion/visor.patch`, comprobado con `git apply --check` desde la raíz. Añade pantalla operativa, consulta, progreso y descarga de JSON, conservando el árbol y diseño base. La copia de revisión compiló con Next y TypeScript y corre en localhost:3001 en la máquina de Franco, fuera del repo. Para incorporar cuando se libere la reserva: `git apply motor/integracion/visor.patch`; luego `cd visor; npm ci; npm run dev -- -p 3001`. Motor en otra terminal: `cd motor; npm ci; npm start`.
