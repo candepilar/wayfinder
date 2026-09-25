@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Un solo juego de tokens, definido para claro y redefinido para oscuro.
+   El visor se usa muchas horas seguidas mirando datos: conviene que respete
+   el tema del sistema en vez de imponer uno. */
+:root {
+  --fondo: #ffffff;
+  --surface: #f7f7f8;
+  --line: #e4e4e7;
+  --ink: #18181b;
+  --muted: #71717a;
+  --ember: #c2410c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fondo: #0c0c0e;
+    --surface: #17171a;
+    --line: #27272a;
+    --ink: #f4f4f5;
+    --muted: #8f8f99;
+    --ember: #fb923c;
+  }
+}
+
+:root[data-theme="dark"] {
+  --fondo: #0c0c0e;
+  --surface: #17171a;
+  --line: #27272a;
+  --ink: #f4f4f5;
+  --muted: #8f8f99;
+  --ember: #fb923c;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--ink);
+}

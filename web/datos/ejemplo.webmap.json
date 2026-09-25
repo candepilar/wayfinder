@@ -1,0 +1,134 @@
+{
+  "sitio": {
+    "url": "https://portal-ejemplo.gob.ar",
+    "titulo": "Portal de Trámites (ejemplo)",
+    "crawleado_en": "2026-09-24T23:50:00Z",
+    "paginas_totales": 14
+  },
+  "paginas": [
+    {
+      "id": "p_000",
+      "url": "https://portal-ejemplo.gob.ar/",
+      "titulo": "Inicio",
+      "resumen": "Página principal con accesos a trámites, oficinas y noticias.",
+      "headings": ["Trámites más buscados", "Novedades"],
+      "entidades": ["Municipalidad"],
+      "enlaces": ["p_100", "p_300", "p_400"],
+      "texto": "Bienvenidos al portal de trámites de la ciudad."
+    },
+    {
+      "id": "p_100",
+      "url": "https://portal-ejemplo.gob.ar/tramites",
+      "titulo": "Trámites",
+      "resumen": "Listado de todos los trámites disponibles, agrupados por tema.",
+      "headings": ["Documentación", "Habilitaciones", "Impuestos"],
+      "entidades": ["DNI", "Licencia de conducir", "Habilitación comercial"],
+      "enlaces": ["p_110", "p_120", "p_130"]
+    },
+    {
+      "id": "p_110",
+      "url": "https://portal-ejemplo.gob.ar/tramites/dni",
+      "titulo": "DNI",
+      "resumen": "Información general sobre trámites de documento nacional de identidad.",
+      "entidades": ["DNI", "Registro Civil"],
+      "enlaces": ["p_111", "p_112"]
+    },
+    {
+      "id": "p_111",
+      "url": "https://portal-ejemplo.gob.ar/tramites/dni/renovar",
+      "titulo": "Renovar DNI",
+      "resumen": "Requisitos y turnos para renovar el documento. Requiere turno previo y el DNI anterior.",
+      "headings": ["Requisitos", "Costo", "Dónde se hace"],
+      "entidades": ["DNI", "Registro Civil", "Partida de nacimiento"],
+      "acciones": ["Pedir turno", "Descargar formulario"],
+      "formularios": [
+        {
+          "nombre": "Solicitud de turno",
+          "campos": ["DNI", "Nombre completo", "Fecha preferida", "Correo electrónico"],
+          "destino": "/turnos/nuevo"
+        }
+      ],
+      "texto": "Para renovar el DNI necesitás turno previo, el DNI anterior y el comprobante de pago."
+    },
+    {
+      "id": "p_112",
+      "url": "https://portal-ejemplo.gob.ar/tramites/dni/primera-vez",
+      "titulo": "DNI por primera vez",
+      "resumen": "Trámite para menores y personas que nunca tuvieron documento.",
+      "entidades": ["DNI", "Partida de nacimiento"],
+      "acciones": ["Pedir turno"]
+    },
+    {
+      "id": "p_120",
+      "url": "https://portal-ejemplo.gob.ar/tramites/licencia",
+      "titulo": "Licencia de conducir",
+      "resumen": "Otorgamiento y renovación de licencias de conducir.",
+      "entidades": ["Licencia de conducir", "Certificado psicofísico"],
+      "enlaces": ["p_121"]
+    },
+    {
+      "id": "p_121",
+      "url": "https://portal-ejemplo.gob.ar/tramites/licencia/renovar",
+      "titulo": "Renovar licencia",
+      "resumen": "Renovación de licencia vigente o vencida hace menos de 90 días.",
+      "headings": ["Requisitos", "Turnos"],
+      "entidades": ["Licencia de conducir", "Certificado psicofísico"],
+      "acciones": ["Pedir turno"],
+      "formularios": [
+        {
+          "nombre": "Turno de licencia",
+          "campos": ["DNI", "Número de licencia", "Fecha preferida"]
+        }
+      ]
+    },
+    {
+      "id": "p_130",
+      "url": "https://portal-ejemplo.gob.ar/tramites/habilitaciones/comercial",
+      "titulo": "Habilitación comercial",
+      "resumen": "Habilitación para locales comerciales. Nota: no existe una página en /tramites/habilitaciones, así que ese nivel es un nodo intermedio.",
+      "entidades": ["Habilitación comercial", "Inspección"],
+      "acciones": ["Iniciar expediente"]
+    },
+    {
+      "id": "p_300",
+      "url": "https://portal-ejemplo.gob.ar/oficinas",
+      "titulo": "Oficinas",
+      "resumen": "Direcciones y horarios de atención de las oficinas municipales.",
+      "entidades": ["Municipalidad"],
+      "enlaces": ["p_310", "p_320"]
+    },
+    {
+      "id": "p_310",
+      "url": "https://portal-ejemplo.gob.ar/oficinas/centro",
+      "titulo": "Oficina Centro"
+    },
+    {
+      "id": "p_320",
+      "url": "https://portal-ejemplo.gob.ar/oficinas/norte",
+      "titulo": "Oficina Norte"
+    },
+    {
+      "id": "p_400",
+      "url": "https://portal-ejemplo.gob.ar/turnos/nuevo",
+      "titulo": "Pedir un turno",
+      "resumen": "Formulario único para pedir turno en cualquier oficina.",
+      "acciones": ["Confirmar turno"],
+      "formularios": [
+        {
+          "nombre": "Nuevo turno",
+          "campos": ["Trámite", "Oficina", "Fecha", "Hora", "DNI"]
+        }
+      ]
+    },
+    {
+      "id": "p_500",
+      "url": "https://portal-ejemplo.gob.ar/preguntas-frecuentes",
+      "titulo": "Preguntas frecuentes"
+    },
+    {
+      "id": "p_600",
+      "url": "https://portal-ejemplo.gob.ar/contacto",
+      "titulo": "Contacto"
+    }
+  ]
+}
