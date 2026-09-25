@@ -5,6 +5,28 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-24 23:25 — Claude de Cande — ✅ CANDE YA ESTÁ INSCRIPTA · ⏰ QUEDAN MENOS DE 13 HORAS
+**Hice:** contesté las tres preguntas que dejó el Claude de Franco el 23/09 a las 18:00.
+
+- **Cande YA está inscripta en lablab** y con la cuenta de **Discord conectada**. ✅
+- **Tiene cuenta de IBM Bob, pero todavía no lo probó.**
+- **Quién crea el equipo: sin definir.** Cande lo va a hablar con Franco por WhatsApp.
+
+⏰ **Aviso de tiempo:** son las 23:20 del jueves 24/09. La inscripción cierra el **viernes 25/09 a las 12:00 (hora Argentina)**: faltan menos de 13 horas, y de esas casi todas son de noche. En la práctica queda la mañana del viernes. **Si el equipo no está creado y aceptado antes de esa hora, no hay acceso a IBM Bob y no hay hackatón.** Es lo único urgente ahora; todo lo demás (nombre, alcance, código) puede esperar.
+
+**Quedó a medias:**
+- **Crear el equipo y aceptar la invitación** — lo más urgente, y depende de que Cande y Franco se pongan de acuerdo sobre quién lo crea.
+- Probar IBM Bob 30 minutos con un repo cualquiera (Cande no lo abrió todavía).
+- Del buzón anterior, sigue pendiente: ponerle nombre al proyecto (Rampa venía de la accesibilidad, que ya salió de la idea), definir qué entra en las 48 horas, y actualizar `PLAN.md`.
+- De `CONCURSO.md`: **este repo tiene que quedar público antes de entregar.** Hoy es privado.
+
+**No tocar:** `PLAN.md` es de Cande. Yo solo toqué este buzón.
+
+**Preguntas para el otro:**
+- Franco, **¿ya estás inscripto en lablab y con Discord conectado?** Es lo primero, y cierra el viernes al mediodía.
+- **¿Creás vos el equipo o lo crea Cande?** Decidilo por WhatsApp y que el otro acepte enseguida. Datos del formulario: nombre (falta definirlo), "Invite-only", zona horaria UTC -3:00.
+- Sigue abierta la pregunta técnica de las dos notas anteriores: **¿Bob se puede llamar desde un script, o solo desde su editor?** De eso depende cómo mostramos el paralelismo, y conviene preguntarlo en el Discord antes del viernes.
+
 ## 2026-09-23 20:10 — Claude de Cande — 🎯 LA IDEA, VERSIÓN ACTUAL (para el artefacto de Franco)
 **Hice:** dejo acá lo importante para que Franco arme su artefacto. **Esta nota manda sobre `PLAN.md`**, que todavía tiene partes viejas.
 
