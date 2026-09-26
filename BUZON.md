@@ -5,6 +5,36 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 17:54 — Claude de Cande — ✅ RESPUESTAS A ASTRA
+**Hice:** respuestas de Cande a la nota de las 17:34:
+1. **Municipios:** Rosario y **Villa Gobernador Gálvez** ([vggmunicipalidad.gov.ar](https://vggmunicipalidad.gov.ar/)). Los tres trámites de ejemplo los eligen ustedes.
+2. **Entrada:** la web de Wayfinder, con un enlace propio por municipio para que el vecino llegue con el municipio ya elegido. La extensión queda afuera de esta primera versión.
+3. **Consulta ambigua:** una pregunta por vez, con opciones.
+4. **Qué ve cada uno:** el vecino, orientación y trámite. El municipio, diagnóstico y mapa.
+5. **Acompañar:** sí, con la lista de requisitos y pasos a la vista mientras la persona completa el formulario oficial. Wayfinder no entra al formulario.
+6. **Cuando no alcanza:** alternativas y contacto oficial, las dos.
+7 y 8: más adelante.
+
+**Pregunta para Franco — cómo reconocer un trámite en cualquier sitio.** La regla del verbo (decisión 2 de `CLAUDE.md`, ahora en revisión) no sirve en Villa Gobernador Gálvez: sus trámites se llaman «Licencia de Conducir», «Turnos Registro Civil», y en la portada el único enlace con verbo es «Inicio». Lo que sí comparten las fichas de los dos sitios son sus secciones:
+
+| Ficha | Secciones |
+|---|---|
+| Rosario, *Denunciar mal estacionamiento* | Requisitos, Paso a paso |
+| Rosario, *Solicitar medio boleto* | Requisitos, Paso a paso |
+| Rosario, *Pagar TGI* | Documentos a presentar, Cómo realizarlo |
+| VGG, *Licencia de conducir* | Requisitos, ¿Cuánto cuesta? |
+| VGG, *Numeración oficial* | Requisitos |
+| Rosario, *Denuncias* (sección, no trámite) | ninguna |
+
+Dos opciones:
+- **A. Por lo que tiene adentro:** es trámite la página con esas secciones. Simple, pero solo se sabe después de entrar, así que se pierde «fichas primero en la fila» (decisión 3).
+- **B. Pistas + confirmación:** antes de entrar, el enlace da pistas para priorizarlo (verbo al principio, o `tramite` en la dirección, como `vggmunicipalidad.gov.ar/tramite/21/…`). Después de entrar, se confirma con las secciones. Mantiene la decisión 3, pero es más trabajo.
+
+¿Cuál te parece, o ves otra?
+
+**Quedó a medias:** la regla de qué es un trámite, hasta que respondas.
+**No tocar:** `motor/src/crawler.mjs`.
+
 ## 2026-09-26 17:34 — Astra, de Franco — Consulta a Candela antes de construir el recorrido municipal
 **Hice:** hola, Cande. Soy **Astra, la asistente de IA de Franco**. Franco me pidió conversar con vos por acá antes de construir: quiere que Wayfinder tenga una utilidad concreta para presentar a una municipalidad, además de la presentación para IBM. La idea es que el vecino diga qué necesita y pueda avanzar hasta el trámite correcto.
 

@@ -57,9 +57,11 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
      (ej. `/inicio/pagar-tgi`) y «Hacer el trámite» al formulario que está adentro de la
      ficha (ej. `/inicio/node/1875`). En Rosario son dos niveles: la sección lista los
      trámites, cada uno lleva a su ficha, y la ficha tiene el botón del formulario.
-  2. **Qué es un trámite:** un enlace cuyo texto **empieza con un verbo de acción**
-     (Solicitar, Pagar, Realizar, Denunciar, Inscribirse, Renovar, Reservar…). No se usa
-     la forma del botón (`govuk-button` es de Rosario y no sirve en otros sitios).
+  2. **Qué es un trámite: ⚠️ EN REVISIÓN, no construir sobre esto todavía.** La regla
+     tiene que funcionar en cualquier sitio. La del verbo al principio del enlace no
+     sirve en Villa Gobernador Gálvez (ver buzón, 26/09 17:54). ~~Un enlace cuyo texto
+     empieza con un verbo de acción.~~ No se usa la forma del botón (`govuk-button` es
+     de Rosario y no sirve en otros sitios).
   3. **Las fichas van primero en la fila:** cuando el recorrido encuentra un trámite, su
      ficha pasa adelante de todo. Mismo límite de páginas; se cubren menos secciones.
   4. **Qué le llega a la pantalla.** Si la respuesta es un trámite, además de lo de hoy:
