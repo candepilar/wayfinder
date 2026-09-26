@@ -9,9 +9,10 @@ import { Store } from './store.mjs';
 import { analyzeWithBob, bobStatus } from './bob.mjs';
 import { auditSecurity } from './seguridad.mjs';
 import { codeRoutes } from './codigo-routes.mjs';
+import { municipalRoutes } from './municipal-routes.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1', allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean), maxPagesLimit = Number(process.env.MAX_PAGES || 200), maxMaps = Number(process.env.MAX_MAPS || 100) } = {}) {
+export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1', allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean), maxPagesLimit = Number(process.env.MAX_PAGES || 200), maxMaps = Number(process.env.MAX_MAPS || 100), municipalDemoDir } = {}) {
   const app = express();
   const store = new Store(path.join(dataDir, 'mapas'));
   const jobs = new Map();
@@ -30,6 +31,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
   });
   const codeBusy = codeRoutes(app, { dataDir, busy: () => [...jobs.values()].some(j => j.estado === 'en_curso') });
   app.use(express.json({ limit: '16kb' }));
+  municipalRoutes(app, { dataDir, demoDir: municipalDemoDir });
   app.get('/api/salud', (_req,res) => res.json({ estado: 'ok', bob: bobStatus(), trabajos_activos: [...jobs.values()].filter(j => j.estado === 'en_curso').length }));
   app.get('/api/mapas', async (_req,res) => res.json(await store.list()));
   app.get('/api/mapas/:id', async (req,res) => { const map = await store.get(req.params.id); return map ? res.json(map) : res.status(404).json({ error: 'Mapa no encontrado.' }); });
