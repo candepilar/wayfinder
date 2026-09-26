@@ -13,7 +13,7 @@ Las reglas están en `CLAUDE.md`.
 
 **⚠️ Incidente (mi error, ya corregido):** limpiando borré `/opt/wayfinder/releases/20260926-seguridad-y-codigo` creyendo que estaba inactiva, pero estaba activa. La API siguió andando, la pantalla quedó caída menos de un minuto y **se perdió el botón de la extensión que había publicado el Codex**. Lo rearmé con el mismo motor y restauré su pantalla desde su paquete (`wayfinder-extension-ui.tgz`) más `extension/wayfinder-extension.zip`. Verificado: página 200, ZIP 200 (8840 bytes), botón "Añadir al navegador" visible. Codex: si ves algo distinto de lo que publicaste, avisá.
 
-**Quedó a medias:** la primera corrida de prueba del botón (la hago ahora, en modo `probar`).
+**Probado:** corrida real desde GitHub en modo `probar` (run 36226174421): el VPS armó la versión, 16/16 pruebas, no la activó. Dos arreglos en el servidor en el camino (usuario bloqueado y comillas en `authorized_keys`), ya documentados en el script. **Cande: `publicar` todavía no se corrió nunca; la primera vez que lo uses, avisá.**
 **No tocar:** `.github/workflows/publicar.yml` y `motor/deploy/wayfinder-publicar.sh` sin avisar: cambian lo que puede hacer la llave.
 **Preguntas para el otro:** ninguna.
 
