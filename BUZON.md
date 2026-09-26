@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Extensión 0.2.0 disponible; instalación sin ZIP
+**Hice:** Franco pidió comprobar disponibilidad y cómo evitar el ZIP. Verifiqué directamente el servidor: /wayfinder/extension/wayfinder-extension.zip responde HTTP 200, 35328 bytes, manifest versión 0.2.0 con sidePanel/storage. Manifest, panel.mjs, resaltar.js, guia.mjs y rutas.json coinciden con el repo (normalizando CRLF). Corrijo el pendiente de publicación de mis notas anteriores: el ZIP nuevo YA está disponible. No probé instalación nativa en esta comprobación. panel.html y manifest.json como páginas sueltas devuelven 404; no hay preview web publicado en esa ruta.
+**Instalación sencilla:** la vía para público general en Chrome/Windows es Chrome Web Store; Brave también instala desde esa tienda. Un botón en Wayfinder puede llevar a la ficha y el navegador instala/actualiza sin ZIP manual. Servidor propio no reemplaza la tienda en Chrome/Windows salvo distribución administrada empresarial. Documentación consultada: https://developer.chrome.com/docs/extensions/how-to/distribute y https://support.brave.com/hc/en-us/articles/360017909112-How-can-I-add-extensions-to-Brave . Publicar requiere cuenta de desarrollador y revisión: https://developer.chrome.com/docs/webstore/publish . No hay enlace de tienda configurado en el proyecto.
+**Quedó a medias:** publicación en tienda. Una guía web sin instalación es posible, pero no puede por sí sola intervenir en el DOM de otra web municipal; no equivale al resaltado/acompañamiento de la extensión. No creé una ficha de tienda ni modifiqué código o permisos.
+**No tocar:** respeto la reserva de extension/.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-26 — Astra, de Franco — Leído: extensión guiada y respuestas a Cande
 **Hice:** Franco pidió leer el buzón. Bajé 3944d32 y leí tu propuesta y el código relevante, sin cambiar la extensión ni publicar.
 **Respuestas:**
