@@ -5,6 +5,43 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 18:45 — Claude de Cande — 🧭 PROPUESTA: EL MOTOR ES EL PRODUCTO (para que Franco y Astra la analicen)
+**Hice:** Cande pidió dejar esto para que lo analicen. Es una **propuesta, no una decisión**. Leí sus notas hasta «Conectar Abrir con el escaneo real»: mucho de lo que sigue ya lo construyeron (requisitos completos, enlaces por municipio, tarjeta del trámite), así que lo marco como hecho.
+
+**Cómo lo ve Cande:**
+- **El problema es real:** hacer un trámite del gobierno da fiaca porque la página tiene demasiada información. Nadie quiere pasar por eso.
+- **No hacemos páginas web ni un chatbot**, sino un **motor genérico** que ordena la información de cualquier sitio en un mapa, y desde ahí resolver un trámite se vuelve amigable.
+- **Valor para el concurso:** el motor y la organización de la información, aplicable a otros sitios y útil para desarrolladores.
+- **Valor para un cliente:** hacer un trámite sin que lleve más tiempo del necesario.
+
+**En una frase:** *Wayfinder convierte cualquier sitio de gobierno en un catálogo de trámites: para cada uno, qué es, qué necesitás y el enlace directo para hacerlo.*
+
+**La idea: la ficha de trámite es la unidad del mapa.** El motor devuelve un catálogo estructurado y genérico:
+```
+tramite: nombre, requisitos, pasos, costo, donde_se_hace, formulario, fuente, fecha
+```
+- ✅ **Ya está** (gracias a ustedes): detectar trámites por secciones, requisitos completos, destino al formulario, fuente y fecha.
+- ⬜ **Falta, si les parece:** pasos y costo cuando la ficha los tiene («Paso a paso», «¿Cuánto cuesta?», «Cómo realizarlo»).
+
+**Para desarrolladores (el ángulo de la consigna):**
+- **Catálogo descargable** (JSON) por sitio: lo que cualquier dev conecta en minutos (chatbot, widget, app, accesibilidad), en vez de leer y copiar cientos de páginas a mano.
+- **Control de calidad del contenido:** fichas sin requisitos, formularios rotos, destinos caídos. Es mantenimiento, lo que pide la consigna.
+- **Relación con la propuesta de Astra** («pruebas de recorridos»): son compatibles. El catálogo dice qué trámites existen y adónde llevan; las pruebas verifican que se pueda llegar. Bob sigue con el diagnóstico técnico, sin aplicar arreglos.
+
+**Para el video:**
+- **Lo genérico:** la misma pregunta en Rosario y en VGG (sitios armados distinto) da una ficha igual de limpia.
+- **Un número que se entiende:** palabras y clics de la ficha original contra la de Wayfinder. Ejemplo: «La ficha de Pagar TGI tiene X palabras y hacen falta Y clics; con Wayfinder, 1 pantalla y 1 clic». Medirlo con los datos reales, sin inventar.
+
+**Qué dejaría afuera hasta la entrega:** la pregunta aclaratoria y la extensión.
+
+**Quedó a medias:** todo esto espera su opinión. En la compu de Cande hay además una **prueba de paleta azul con blanco roto** en `visor/app/globals.css`, **sin subir**: Cande todavía no la aprobó y no se publica.
+**No tocar:** nada nuevo. Siguen las reservas de antes.
+**Preguntas para el otro:**
+1. ¿Les cierra que el mensaje principal sea «el motor que convierte cualquier sitio en un catálogo de trámites»?
+2. ¿Cuánto cuesta sumar el **catálogo descargable** y **pasos/costo** antes de la entrega? ¿Quién lo hace?
+3. ¿Juntamos el catálogo con las pruebas de recorridos de Astra, o elegimos uno para el video?
+4. ¿Quién mide los números (palabras y clics) para el pitch?
+
 ## 2026-09-26 — Astra, de Franco — Conectar Abrir con el escaneo real
 **Hice:** Franco volvió a reportar el bloqueo al pegar La Económica. Inicio ahora abre un mapa existente o inicia POST `/recorridos` con hasta 40 páginas, sigue el estado real y abre el mapa guardado al finalizar. Agregué progreso, cancelación, validación de URL y reintento de seguimiento sin duplicar trabajos ante desconexión. La cobertura parcial queda visible en el visor. Conservé el diseño y la posición del bloque municipal. No cambié el crawler ni los módulos reservados de Cande.
 **Quedó a medias:** publicación y prueba completa en navegador público, incluido La Económica. Este escaneo crea el mapa HTML; no ejecuta ni atribuye a Bob un análisis nuevo. La propuesta de pruebas de recorridos sigue separada.
