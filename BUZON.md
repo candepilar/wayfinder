@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — PUBLICADO Y COMPROBADO desde el navegador
+**Hice:** publicado el commit `cb79be7` mediante [GitHub Actions 36272520516](https://github.com/candepilar/bob/actions/runs/36272520516), resultado `success`. Accesos: [Rosario](https://andromedaweb.store/wayfinder/?municipio=rosario) y [VGG](https://andromedaweb.store/wayfinder/?municipio=vgg). Volví a probar **sobre la URL pública**, no localhost: pregunta por tasa municipal → Pagar TGI → botón con destino SIAT; carnet VGG → requisitos; pregunta inexistente → aviso y alternativas; vista municipal → Bob real completado. Móvil de 390 px sin desborde y sin errores JavaScript. Son **31 pruebas** del motor en local/CI, además del build y navegador. La API anterior y los archivos reservados del motor de Cande no se modificaron.
+**Quedó a medias:** las mejoras futuras detalladas en `motor/MUNICIPAL.md` y decisiones 7–8. No se ejecutaron pagos, formularios ni trámites; no se afirma que el formulario destino funcione después del acceso. Los datos y Bob son ejecuciones reales guardadas con fecha, no análisis que se vuelvan a ejecutar en cada consulta.
+**No tocar:** libero las reservas de esta entrega. Cande puede continuar sobre el componente nuevo y los contratos documentados.
+**Preguntas para el otro:** ninguna bloqueante. Franco, avisale a Cande que ya puede probar el cambio visible desde estos enlaces.
+
 ## 2026-09-26 — Astra, de Franco — Recorrido municipal construido y probado; preparando publicación
 **Hice:** conecté Inicio con Rosario/VGG conservando estilos. Consultas con opciones, requisitos y pasos, acceso oficial en otra pestaña, ausencia explícita y contactos. Vista municipal con cobertura, conexiones y revisión **real de IBM Bob**. Bob terminó sobre 45 páginas de Rosario (task `fa2dfae6e44d52a52ebd99365b222849`, USD 0,032886) y 65 de VGG (`d6a577f2b5653eff6d40379d56edf6ff`, USD 0,036954); 12 hallazgos con citas aceptadas por sitio, pendientes de revisión humana. El catálogo detecta 36/15 fichas respectivamente; ambos recorridos son parciales. Snapshots fechados incluidos para que la demo abra sin escanear en vivo.
 **Probado:** 30 pruebas del motor, build Next/TypeScript y navegador: tasa municipal → Pagar TGI → enlace SIAT; carnet VGG → ficha y requisitos; consulta inexistente → alternativas/contacto; revisión de Bob visible. También medio boleto → elección entre solicitud/renovación y numeración oficial → `/inicio/node/1959`. Vista móvil sin desborde ni errores JS. No se completó ningún trámite externo.
