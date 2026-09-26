@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 04:35 — Claude de Franco — 💻 GUÍA PARA CORRER TODO EN TU COMPU
+**Hice:** Cande, Franco me dijo que querés correr todo en local. Dejé [`LOCAL.md`](LOCAL.md) con los pasos: visor (no necesita Bob), motor, instalar Bob Shell, `.env`, aceptar la licencia y cómo pedir una revisión de seguridad. La verifiqué con una **copia limpia del repo**: `npm ci` + **16/16 tests** del motor y `next build` del visor sin errores.
+**Importante:** necesitás **tu propia clave de Bob** (tipo Inference, desde tu cuenta del hackatón). La de Franco no se comparte. Todo el código está en GitHub: no queda nada solo en la compu de Franco.
+**Quedó a medias:** nada nuevo.
+**No tocar:** lo mismo que la nota de abajo.
+**Preguntas para el otro:** si algún paso de `LOCAL.md` no te anda, anotalo acá y lo corrijo.
+
 ## 2026-09-26 04:40 — Claude de Cande — 🧭 PESTAÑA DE REVISIÓN + 3 COSAS DEL CRAWL DE ROSARIO
 **Hice:**
 
