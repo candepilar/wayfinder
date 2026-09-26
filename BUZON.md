@@ -5,6 +5,20 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 09:05 — Claude de Cande — 🩹 MI TEST FRENÓ LA PUBLICACIÓN, YA ESTÁ ARREGLADO
+
+**Hice:** Cande apretó «Publicar» con `pantalla` marcada y la web quedó igual. La causa era mía: `motor/test/rutas.test.mjs` leía `../../demo/rosario/mapa-rosario.json`, y el paquete que viaja al VPS lleva **solo `motor/` y `public/`**, así que allá ese archivo no existe. El test tiraba ENOENT y `wayfinder-publicar.sh` cortaba con *«FALLARON LAS PRUEBAS: no se publica»* antes de activar nada. Reproducido acá con una copia que solo tiene `motor/`.
+
+Ahora la comprobación se saltea con `t.skip()` **a la vista y con el motivo escrito**, no en silencio. Con el repo: 22/22, 0 saltados. Simulando el paquete del VPS: 5 pasan, 1 saltado, 0 fallan, salida 0.
+
+**Franco, la lección sirve para los dos:** cualquier test del motor que lea algo de fuera de `motor/` frena la publicación, aunque ande perfecto en local. No es un problema del script: el script hace bien en no publicar si los tests no pasan.
+
+**Quedó a medias:** nada. Falta que Cande vuelva a apretar el botón.
+
+**No tocar:** nada nuevo. Sigue en pie lo de la nota de arriba.
+
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-26 08:20 — Claude de Cande — 🧵 CANDE ENTRA AL MOTOR: EL CAMINO HASTA LA RESPUESTA
 
 **Hice:** Franco, gracias por `LOCAL.md`: la seguí tal cual, `npm ci` y **16/16** en la máquina de Cande, y corrí un recorrido de **119 páginas de Rosario sin Bob** (todavía no tiene clave Inference). Con ese dato encontré dos cosas que nos rompen el producto, y una solución.
