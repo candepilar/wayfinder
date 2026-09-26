@@ -9,8 +9,45 @@ export const pageId = url => `p_${createHash('sha256').update(url).digest('hex')
 export const siteId = url => createHash('sha256').update(normalizeUrl(url)).digest('hex').slice(0, 20);
 const downloadable = /\.(pdf|zip|gz|jpe?g|png|gif|webp|svg|ico|mp[34]|webm|docx?|xlsx?|pptx?|woff2?|css|js|xml|json)(?:\?|$)/i;
 
-export function extractPage(html, url) {
+// Cabeceras que importan para la revisión técnica. Las cookies se guardan sin su
+// valor: alcanza con el nombre y los atributos para evaluarlas.
+const TECH_HEADERS = ['strict-transport-security', 'content-security-policy', 'content-security-policy-report-only', 'x-frame-options', 'x-content-type-options', 'referrer-policy', 'permissions-policy', 'cross-origin-opener-policy', 'access-control-allow-origin', 'server', 'x-powered-by', 'x-aspnet-version', 'x-aspnetmvc-version', 'x-generator', 'set-cookie'];
+const cookieShape = raw => { const [pair, ...attrs] = String(raw).split(';'); return [pair.split('=')[0].trim(), ...attrs.map(a => a.trim()).filter(Boolean)].join('; ').slice(0, 300); };
+
+export function extractTechnical($, url, headers = {}) {
+  const cabeceras = {};
+  for (const name of TECH_HEADERS) if (headers[name] !== undefined) cabeceras[name] = name === 'set-cookie' ? [].concat(headers[name]).slice(0, 20).map(cookieShape) : String(headers[name]).slice(0, 800);
+  const origin = new URL(url).origin;
+  const abs = value => { try { return new URL(value, url).href; } catch { return null; } };
+  const scripts = $('script[src]').map((_i, el) => {
+    const src = abs($(el).attr('src'));
+    return src && { src: src.slice(0, 300), externo: new URL(src).origin !== origin, integrity: $(el).attr('integrity') !== undefined };
+  }).get().filter(Boolean).slice(0, 40);
+  const https = url.startsWith('https:');
+  const mixto = https ? unique($('script[src],link[href][rel~=stylesheet],img[src],iframe[src],audio[src],video[src],source[src]').map((_i, el) => $(el).attr('src') || $(el).attr('href')).get().filter(v => /^http:\/\//i.test(v))).slice(0, 20) : [];
+  const formularios = $('form').map((_i, form) => ({
+    accion: abs($(form).attr('action') || url)?.slice(0, 300) || '',
+    metodo: ($(form).attr('method') || 'get').toLowerCase(),
+    con_clave: $(form).find('input[type=password]').length > 0,
+  })).get().slice(0, 20);
+  const iframes = $('iframe[src]').map((_i, el) => ({ src: abs($(el).attr('src'))?.slice(0, 300), sandbox: $(el).attr('sandbox') !== undefined })).get().filter(f => f.src).slice(0, 20);
+  return {
+    cabeceras,
+    cabeceras_ausentes: TECH_HEADERS.slice(0, 8).filter(name => headers[name] === undefined),
+    generador: clean($('meta[name=generator]').attr('content')).slice(0, 200) || null,
+    scripts,
+    scripts_en_linea: $('script:not([src])').length,
+    manejadores_en_linea: $('[onclick],[onload],[onerror],[onmouseover],[onsubmit],[onchange]').length,
+    blank_sin_noopener: $('a[target=_blank]').filter((_i, a) => !/noopener|noreferrer/i.test($(a).attr('rel') || '')).length,
+    contenido_mixto: mixto,
+    formularios,
+    iframes,
+  };
+}
+
+export function extractPage(html, url, headers) {
   const $ = load(html);
+  const tecnico = extractTechnical($, url, headers);
   const forms = $('form').map((_i, form) => ({
     nombre: clean($(form).attr('aria-label') || $(form).find('legend,h2,h3').first().text() || 'Formulario'),
     campos: unique($(form).find('input:not([type=hidden]):not([type=submit]),select,textarea').map((_j, field) => {
@@ -31,7 +68,7 @@ export function extractPage(html, url) {
   const text = clean((main.length ? main : $('body')).text()).slice(0, 70000);
   return {
     id: pageId(url), url, titulo: title, headings, acciones: actions, formularios: forms,
-    texto: text, descripcion: description, origen: 'html', enlaces: [],
+    texto: text, descripcion: description, origen: 'html', enlaces: [], tecnico,
     camino: [...new URL(url).pathname.split('/').filter(Boolean), ...(new URL(url).search ? [new URL(url).search] : [])],
     links: nofollow ? [] : links,
   };
@@ -79,7 +116,7 @@ export async function crawl(input, { maxPages = 40, concurrency = 3, signal, onE
   let attempted = 1;
   function add(response) {
     if (pages.some(p => p.url === response.url)) return;
-    const page = extractPage(response.body, response.url);
+    const page = extractPage(response.body, response.url, response.headers);
     pages.push(page);
     for (const link of page.links) {
       if (new URL(link).origin !== origin || downloadable.test(link) || seen.has(link)) continue;

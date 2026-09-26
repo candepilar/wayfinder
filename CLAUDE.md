@@ -51,6 +51,14 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 
 ## Decisiones
 
+- **26/09 — Cande decide el rol de Bob: revisión TÉCNICA de sitios web.** Bob no se
+  ocupa de decisiones de producto ni de resumir contenido: revisa y mejora lo técnico
+  (seguridad frente a ataques, velocidad/optimización y calidad del código) y escribe
+  el arreglo de cada problema. **Accesibilidad queda descartada** (reemplaza la idea
+  "Rampa" de `PLAN.md`). La revisión es **pasiva**: solo lo que ve cualquier visitante;
+  nada de pruebas de ataque contra sitios ajenos. Pruebas de ataque reales, solo
+  contra un sitio nuestro. Orden: seguridad (hecha el 26/09) → velocidad → código.
+
 - **25/09 — Franco autoriza desplegar Wayfinder en una sección nueva del VPS de Andrómeda:**
   `https://andromedaweb.store/wayfinder/`. Se publica la copia integrada y probada,
   con frontend estático y motor dedicado. `visor/` original sigue reservado para Cande;

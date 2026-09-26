@@ -5,6 +5,25 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 03:40 — Claude de Franco — 🛡️ BOB YA HACE REVISIÓN DE SEGURIDAD
+**Hice:** Franco me pasó tu decisión, Cande: Bob se dedica a lo técnico (seguridad, optimización, código) y no a decisiones de producto; accesibilidad descartada. Quedó anotada en `CLAUDE.md` → Decisiones. Arranqué por **seguridad** y anda de punta a punta:
+- El motor junta evidencia **pasiva** de cada página (cabeceras, cookies sin su valor, scripts, formularios, iframes, certificado, https, security.txt). Nada de ataques.
+- Bob la revisa y devuelve cada problema con gravedad, riesgo explicado simple, arreglo y **código listo para copiar** (nginx/Apache/HTML).
+- **Control anti-invento:** cada hallazgo tiene que citar textual algo de la evidencia; si no, se descarta y queda registrado por qué. Hay un test que le mete a Bob una "inyección SQL" inventada y comprueba que se descarta.
+- Prueba real en www.rosario.gob.ar (5 páginas): **12 hallazgos probados, 0 descartados, USD 0,017, 41 segundos.** Ej.: faltan CSP y HSTS, script de jsDelivr sin integrity, Drupal 10 y Apache expuestos en cabeceras.
+- 11/11 tests. Detalle técnico y API en `motor/README.md` → "Revisión de seguridad con Bob". Refactoricé `bob.mjs`: `runBob()` sirve para cualquier tarea de Bob; los resúmenes siguen andando igual.
+
+**Quedó a medias:**
+- **Mostrarlo en pantalla:** el resultado queda en `mapa.auditoria.seguridad` pero el visor todavía no lo dibuja. Es tu zona, no la toqué.
+- Todavía NO subí esta versión al VPS: la página pública sigue con lo de antes.
+- Faltan velocidad y calidad de código, y que las tres revisiones corran **en paralelo con subagentes de Bob** (eso es lo que más pide la consigna). En el VPS ojo: cada Bob usa ~320 MB; tres a la vez no entran, conviene usar los subagentes de Bob dentro de un solo proceso.
+
+**No tocar:** `motor/src/seguridad.mjs`, `motor/src/bob.mjs`, `motor/src/crawler.mjs` mientras sigo con velocidad y código.
+
+**Preguntas para el otro:**
+- Cande: ¿cómo querés mostrar los hallazgos en el visor? Propuesta: una pestaña "Revisión técnica" con semáforo alta/media/baja y, en cada problema, la prueba, el riesgo y el código para copiar.
+- ¿Para la demo usamos un sitio nuestro con fallas puestas a propósito, así mostramos el antes y el después con el arreglo de Bob aplicado?
+
 ## 2026-09-26 03:10 — Claude de Franco — ✅ BOB TAMBIÉN EN LA PÁGINA PÚBLICA
 **Hice:** por pedido de Franco, instalé Bob en el VPS: https://andromedaweb.store/wayfinder/ ahora tiene habilitada la casilla "Analizar con IBM Bob". Probado desde la página pública: 3 páginas resumidas por Bob, USD 0,008. Detalle técnico, respaldo y cómo sacarlo en `motor/deploy/README.md`. Subí al VPS el `bob.mjs` con el arreglo de las 03:01 (mismo archivo que el repo). El bot y la API de Andrómeda no se reiniciaron.
 **Quedó a medias:** lo mismo que la nota de abajo (subagentes y tareas en paralelo). Cada análisis público se cobra al saldo de Bob de Franco; hay tope de USD 0,20 por análisis y los límites por IP que ya existían.

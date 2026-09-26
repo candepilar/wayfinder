@@ -64,9 +64,42 @@ Los resúmenes siguen siendo texto generado: verificar contra las fuentes antes
 de usar la demo para decisiones. Si Bob falla, el HTML guardado sigue disponible
 y la falla queda explícita en el mapa.
 
-Verificación en esta máquina: Bob Shell 2.0.5 ejecuta `--version` y `run --help`.
-La prueba de inferencia devolvió `Bob API key is required`. Por eso no se presenta
-el análisis de Bob como probado ni como cumplimiento completo de la consigna.
+~~La prueba de inferencia devolvió `Bob API key is required`.~~ Resuelto el 26/09:
+con clave Inference, Bob responde (PC de Franco y VPS). Bob Shell 2.x manda el texto
+en eventos `message` y el `result` final no trae `last_message`; `runBob()` junta
+los pedazos. La licencia se acepta una vez por máquina con `--accept-license`.
+
+## Revisión de seguridad con Bob (26/09)
+
+Decisión de Cande: Bob revisa lo técnico del sitio (ver `CLAUDE.md`, Decisiones).
+Pedirla al crear el recorrido: `POST /api/recorridos` con `{"url":…, "seguridad": true}`.
+El resultado queda en `mapa.auditoria.seguridad`. Código en `src/seguridad.mjs`.
+
+Cómo funciona, en tres pasos:
+
+1. **Evidencia pasiva** (código, sin IA). El crawler guarda en `pagina.tecnico` las
+   cabeceras de seguridad, las cookies **sin su valor** (nombre y atributos), los
+   scripts (externo, con o sin `integrity`), contenido mixto, formularios (destino,
+   método, si piden clave), iframes (sandbox), scripts y manejadores en línea y
+   `target=_blank` sin `noopener`. Además `siteChecks()` mira si http redirige a
+   https, el certificado (protocolo, validez, días para vencer) y `security.txt`.
+   No se prueban ataques, no se buscan archivos ocultos, no se envían formularios.
+2. **Bob revisa** (`securityPrompt`): con la evidencia como datos no confiables,
+   devuelve hallazgos con severidad (alta/media/baja con criterio escrito en el
+   prompt), riesgo en lenguaje simple, arreglo y código listo para copiar.
+3. **Control anti-invento** (`verifyFindings`): cada hallazgo tiene que citar un
+   fragmento que exista TEXTUAL en la evidencia (sin importar mayúsculas, comillas
+   ni espacios). Lo que no se puede probar va a `descartados_por_falta_de_prueba`
+   con su cita y motivo. Las URLs que Bob nombra se filtran contra las recorridas.
+
+Prueba real (26/09, www.rosario.gob.ar, 5 páginas): 12 hallazgos probados
+(4 media, 8 baja: faltan CSP y HSTS, script de jsDelivr sin integrity, iframe sin
+sandbox, Drupal y Apache expuestos, etc.), 0 descartados, USD 0,017, 41 s.
+Los tests cubren la extracción (y que no se guarde el valor de las cookies) y que
+un hallazgo inventado ("inyección SQL" sin prueba) se descarte.
+
+Pendiente: mostrarlo en el visor (reservado por Cande), velocidad y calidad de
+código, y repartir las tres revisiones entre subagentes de Bob en paralelo.
 
 ## Alcance del crawler
 

@@ -7,6 +7,7 @@ import { normalizeUrl } from './network.mjs';
 import { queryMap } from './search.mjs';
 import { Store } from './store.mjs';
 import { analyzeWithBob, bobStatus } from './bob.mjs';
+import { auditSecurity } from './seguridad.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1', allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean), maxPagesLimit = Number(process.env.MAX_PAGES || 200), maxMaps = Number(process.env.MAX_MAPS || 100) } = {}) {
@@ -47,7 +48,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
     catch (error) { return res.status(400).json({ error: error.message }); }
     const maxPages = req.body.maxPaginas ?? 40;
     if (!Number.isInteger(maxPages) || maxPages < 1 || maxPages > maxPagesLimit) return res.status(400).json({ error: `El límite debe estar entre 1 y ${maxPagesLimit} páginas.` });
-    if (req.body.bob && !bobStatus().disponible) return res.status(409).json({ error: 'Bob Shell todavía no tiene una API key configurada. Podés recorrer el HTML ahora.' });
+    if ((req.body.bob || req.body.seguridad) && !bobStatus().disponible) return res.status(409).json({ error: 'Bob Shell todavía no tiene una API key configurada. Podés recorrer el HTML ahora.' });
     if ([...jobs.values()].some(j => j.estado === 'en_curso')) return res.status(409).json({ error: 'Ya hay un recorrido en curso. Esperá o cancelalo.' });
     const now = Date.now();
     for (const [ip,history] of starts) if (!history.some(time => now-time < 600000)) starts.delete(ip);
@@ -75,6 +76,10 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
           emit({ type: 'bob_inicio', at: new Date().toISOString() });
           try { await analyzeWithBob(map, { signal: job.controller.signal, onEvent: emit, workspace: path.join(dataDir, 'bob', id) }); }
           catch (error) { map.ejecucion.bob = { estado: 'error', error: error.message }; map.ejecucion.advertencias.push(error.message); }
+        }
+        if (req.body.seguridad) {
+          try { await auditSecurity(map, { signal: job.controller.signal, onEvent: emit, workspace: path.join(dataDir, 'bob', id), allowLocal }); }
+          catch (error) { map.auditoria = { ...(map.auditoria || {}), seguridad: { estado: 'error', error: error.message } }; map.ejecucion.advertencias.push(`Seguridad: ${error.message}`); }
         }
         if (job.controller.signal.aborted) throw new Error('Recorrido cancelado.');
         job.mapaId = siteId(url);

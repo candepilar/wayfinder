@@ -10,6 +10,7 @@ import { queryMap } from '../src/search.mjs';
 import { Store } from '../src/store.mjs';
 import { createApp } from '../src/server.mjs';
 import { parseBobResult } from '../src/bob.mjs';
+import { buildEvidence, verifyFindings } from '../src/seguridad.mjs';
 
 async function fixture(t) {
   const requests = [];
@@ -134,4 +135,35 @@ test('search favors the page about a topic over a broad index mentioning it', ()
     {id:'topic',titulo:'Progresar',url:'https://example.com/progresar',headings:['Requisitos'],texto:'Esta beca acompaña a estudiantes.'},
   ]};
   assert.equal(queryMap(map,'becas Progresar').fuentes[0].id,'topic');
+});
+
+test('technical evidence keeps security headers and cookie attributes without cookie values', () => {
+  const html = '<title>x</title><script src="http://cdn.example.net/jquery-1.8.3.min.js"></script><script>var a=1</script><form action="http://example.com/login" method="post"><input type="password"></form><a target="_blank" href="/x">x</a>';
+  const page = extractPage(html, 'https://example.com/', { server: 'Apache/2.4.29 (Ubuntu)', 'set-cookie': ['PHPSESSID=secreto123; path=/'], 'x-frame-options': 'DENY' });
+  const t = page.tecnico;
+  assert.equal(t.cabeceras.server, 'Apache/2.4.29 (Ubuntu)');
+  assert.deepEqual(t.cabeceras['set-cookie'], ['PHPSESSID; path=/']);
+  assert.ok(!JSON.stringify(t).includes('secreto123'));
+  assert.ok(t.cabeceras_ausentes.includes('content-security-policy'));
+  assert.ok(!t.cabeceras_ausentes.includes('x-frame-options'));
+  assert.deepEqual(t.contenido_mixto, ['http://cdn.example.net/jquery-1.8.3.min.js']);
+  assert.equal(t.scripts[0].externo, true);
+  assert.equal(t.scripts[0].integrity, false);
+  assert.equal(t.scripts_en_linea, 1);
+  assert.equal(t.blank_sin_noopener, 1);
+  assert.deepEqual(t.formularios, [{ accion: 'http://example.com/login', metodo: 'post', con_clave: true }]);
+});
+
+test('security findings without literal evidence are discarded', () => {
+  const page = extractPage('<title>x</title>', 'https://example.com/', { server: 'nginx/1.18.0' });
+  const evidence = buildEvidence({ sitio: { url: 'https://example.com/' }, paginas: [page] }, { http_redirige_a_https: true });
+  const { aceptados, descartados } = verifyFindings([
+    { titulo: 'Versión del servidor visible', severidad: 'baja', categoria: 'exposicion', paginas: ['https://example.com/', 'https://otro.com/'], evidencia: 'nginx/1.18.0' },
+    { titulo: 'Falta CSP', severidad: 'media', categoria: 'cabeceras', evidencia: 'Content-Security-Policy' },
+    { titulo: 'Inyección SQL en el login', severidad: 'alta', categoria: 'otro', evidencia: "' OR 1=1" },
+    { titulo: 'Sin severidad válida', severidad: 'critica', evidencia: 'nginx' },
+  ], evidence);
+  assert.deepEqual(aceptados.map(h => h.titulo), ['Falta CSP', 'Versión del servidor visible']);
+  assert.deepEqual(aceptados[1].paginas, ['https://example.com/']);
+  assert.deepEqual(descartados.map(d => d.motivo), ['la evidencia citada no aparece en lo recolectado', 'severidad inválida']);
 });
