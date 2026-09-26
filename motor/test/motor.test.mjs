@@ -162,9 +162,10 @@ test('security findings without literal evidence are discarded', () => {
     { titulo: 'Falta CSP', severidad: 'media', categoria: 'cabeceras', evidencia: 'Content-Security-Policy' },
     { titulo: 'Inyección SQL en el login', severidad: 'alta', categoria: 'otro', evidencia: "' OR 1=1" },
     { titulo: 'Sin severidad válida', severidad: 'critica', evidencia: 'nginx' },
-  ], evidence);
+  ], evidence, new Map([[page.url, page.id]]));
   assert.deepEqual(aceptados.map(h => h.titulo), ['Falta CSP', 'Versión del servidor visible']);
   assert.deepEqual(aceptados[1].paginas, ['https://example.com/']);
+  assert.deepEqual(aceptados[1].paginas_ids, [page.id]);
   // Decisión de Franco (26/09): la revisión diagnostica, no devuelve arreglos.
   assert.ok(aceptados.every(h => !('arreglo' in h) && !('codigo' in h)));
   assert.deepEqual(descartados.map(d => d.motivo), ['la evidencia citada no aparece en lo recolectado', 'severidad inválida']);

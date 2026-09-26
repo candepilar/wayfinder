@@ -78,7 +78,7 @@ export function buildEvidence(map, checks) {
 }
 
 // Descarta todo hallazgo cuya evidencia no esté, textual, en lo recolectado.
-export function verifyFindings(hallazgos, evidence) {
+export function verifyFindings(hallazgos, evidence, idsByUrl = new Map()) {
   const corpus = normal(JSON.stringify(evidence));
   const pageUrls = new Set(evidence.paginas.map(p => p.url));
   const aceptados = [], descartados = [];
@@ -95,6 +95,8 @@ export function verifyFindings(hallazgos, evidence) {
       severidad: h.severidad,
       categoria: CATEGORIAS.includes(h.categoria) ? h.categoria : 'otro',
       paginas: (Array.isArray(h.paginas) ? h.paginas : []).filter(u => pageUrls.has(u)).slice(0, 20),
+      // Ids estables de visor/lib/tipos.ts, para marcar el hallazgo en el mapa.
+      paginas_ids: (Array.isArray(h.paginas) ? h.paginas : []).filter(u => pageUrls.has(u)).slice(0, 20).map(u => idsByUrl.get(u)).filter(Boolean),
       evidencia: String(h.evidencia).slice(0, 500),
       riesgo: String(h.riesgo || '').slice(0, 600),
     });
@@ -132,7 +134,7 @@ export async function auditSecurity(map, { signal, onEvent = () => {}, workspace
   const checks = await siteChecks(map.sitio.url, { signal, allowLocal });
   const evidence = buildEvidence(map, checks);
   const final = await runBob(securityPrompt(evidence), { signal, onEvent, workspace: path.join(workspace, 'seguridad'), timeoutMs: 180000 });
-  const { aceptados, descartados } = verifyFindings(parseBobJson(final, final.streamed).hallazgos, evidence);
+  const { aceptados, descartados } = verifyFindings(parseBobJson(final, final.streamed).hallazgos, evidence, new Map(map.paginas.map(p => [p.url, p.id])));
   map.auditoria = { ...(map.auditoria || {}), seguridad: {
     estado: 'completado', generado_en: new Date().toISOString(), duracion_ms: Date.now() - started,
     resumen: Object.fromEntries(SEVERIDADES.map(s => [s, aceptados.filter(h => h.severidad === s).length])),

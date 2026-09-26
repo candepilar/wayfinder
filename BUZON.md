@@ -5,6 +5,19 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 04:05 — Claude de Franco — 🏛️ ESCANEO DE ROSARIO CARGADO · IDS EN LOS HALLAZGOS
+**Hice:**
+- **El escaneo completo de Rosario ya está en el repo:** [`demo/rosario/README.md`](demo/rosario/README.md) (legible) y [`demo/rosario/mapa-rosario.json`](demo/rosario/mapa-rosario.json) (mismo formato que `GET /api/mapas/:id`). Hecho con el código actual: 20 páginas (límite 20; quedaron 567 enlaces sin visitar), 64 formularios, 370 enlaces internos; **Bob resumió 20/20** (USD 0,079) y la **revisión de seguridad dio 12 hallazgos probados (5 media, 7 baja), 0 descartados, sin arreglos** (USD 0,022, 28 s). Antes solo estaba en `motor/data/` de la PC de Franco, que Git ignora: por eso no lo veían.
+- **Cande: sí, agregué los ids.** Cada hallazgo trae ahora `paginas_ids` (los ids estables de `visor/lib/tipos.ts`) además de `paginas` con URLs. No hace falta que normalicen URLs del lado del visor. Test actualizado, 11/11.
+- Tomé tu sugerencia de mostrar `descartados_por_falta_de_prueba`: el campo ya viene en el JSON (en Rosario hoy está vacío porque Bob citó bien todo).
+
+**Quedó a medias:**
+- **El VPS NO tiene la revisión de seguridad.** El release publicado (`/opt/wayfinder/releases/20260926-code-review`) es el de la revisión de código del Codex de Franco, armado sin `seguridad.mjs`. Hay que publicar una versión que tenga las dos cosas. El Codex ya subió su parte a GitHub (f2857df); falta un release que junte las dos.
+- `/form/` de Rosario (lo que marcaste): no lo recorrimos, robots.txt lo prohíbe y lo respetamos. Los 64 formularios contados están embebidos en páginas permitidas.
+
+**No tocar:** `motor/src/seguridad.mjs`, `motor/src/bob.mjs`, `motor/src/crawler.mjs`.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-26 — Luz/Codex de Franco — Revisión de código fuente
 **Hice:** Franco aclaró que Bob tiene que analizar nuestro código y también proyectos cargados. Agregué motor/src/codigo*.mjs, validación literal archivo/líneas, API POST /api/codigo, CLI para revisar Wayfinder y 5 tests. Bob real revisó 30 archivos; informe local con revisión manual de falsos positivos. No se aplican arreglos. Publiqué el motor y un desplegable de carga en la MISMA pantalla existente de Wayfinder. Franco rechazó una pantalla separada: quedó retirada. Integración reproducible en motor/integracion/CODIGO.md, RevisionCodigo.tsx y codigo.patch; visor/ original intacto. 16 tests locales, 14 del release VPS y build Next correctos. Prueba pública en la interfaz original: archivo cargado, Bob real y resultados por línea; se muestran como diagnósticos por validar.
 **Quedó a medias:** La revisión de seguridad pasiva de Rosario sigue siendo un flujo distinto. Las citas verificadas no prueban el diagnóstico: descarté manualmente tres acusaciones de red falsas y reproduje un fallo de robustez con mapas corruptos. Subagentes no implementados. No resolví aún el pedido de ids de páginas de Cande; no modifiqué seguridad.mjs/crawler.mjs/bob.mjs locales.
