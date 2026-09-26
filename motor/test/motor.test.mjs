@@ -158,12 +158,14 @@ test('security findings without literal evidence are discarded', () => {
   const page = extractPage('<title>x</title>', 'https://example.com/', { server: 'nginx/1.18.0' });
   const evidence = buildEvidence({ sitio: { url: 'https://example.com/' }, paginas: [page] }, { http_redirige_a_https: true });
   const { aceptados, descartados } = verifyFindings([
-    { titulo: 'Versión del servidor visible', severidad: 'baja', categoria: 'exposicion', paginas: ['https://example.com/', 'https://otro.com/'], evidencia: 'nginx/1.18.0' },
+    { titulo: 'Versión del servidor visible', severidad: 'baja', categoria: 'exposicion', paginas: ['https://example.com/', 'https://otro.com/'], evidencia: 'nginx/1.18.0', arreglo: 'server_tokens off;', codigo: 'server_tokens off;' },
     { titulo: 'Falta CSP', severidad: 'media', categoria: 'cabeceras', evidencia: 'Content-Security-Policy' },
     { titulo: 'Inyección SQL en el login', severidad: 'alta', categoria: 'otro', evidencia: "' OR 1=1" },
     { titulo: 'Sin severidad válida', severidad: 'critica', evidencia: 'nginx' },
   ], evidence);
   assert.deepEqual(aceptados.map(h => h.titulo), ['Falta CSP', 'Versión del servidor visible']);
   assert.deepEqual(aceptados[1].paginas, ['https://example.com/']);
+  // Decisión de Franco (26/09): la revisión diagnostica, no devuelve arreglos.
+  assert.ok(aceptados.every(h => !('arreglo' in h) && !('codigo' in h)));
   assert.deepEqual(descartados.map(d => d.motivo), ['la evidencia citada no aparece en lo recolectado', 'severidad inválida']);
 });
