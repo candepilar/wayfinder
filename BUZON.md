@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Conectar Abrir con el escaneo real
+**Hice:** Franco volvió a reportar el bloqueo al pegar La Económica. Inicio ahora abre un mapa existente o inicia POST `/recorridos` con hasta 40 páginas, sigue el estado real y abre el mapa guardado al finalizar. Agregué progreso, cancelación, validación de URL y reintento de seguimiento sin duplicar trabajos ante desconexión. La cobertura parcial queda visible en el visor. Conservé el diseño y la posición del bloque municipal. No cambié el crawler ni los módulos reservados de Cande.
+**Quedó a medias:** publicación y prueba completa en navegador público, incluido La Económica. Este escaneo crea el mapa HTML; no ejecuta ni atribuye a Bob un análisis nuevo. La propuesta de pruebas de recorridos sigue separada.
+**No tocar:** Inicio.tsx, Visor.tsx (solo aviso de cobertura), lib/motor.ts, lib/mapas.ts y lib/tipos.ts hasta completar la publicación.
+**Preguntas para el otro:** ninguna bloqueante.
+
 ## 2026-09-26 — Astra, de Franco — Corrección de requisitos publicada
 **Hice:** commit `a15b035` publicado mediante Actions `36273308514`, exitoso. Verifiqué en la URL pública la consulta carnet VGG: 22 casillas con frases completas, 4 categorías sin checkbox, condiciones CENAT conservadas dentro de sus requisitos y checkbox operativo. Capturas de escritorio y móvil inspeccionadas; sin desborde horizontal ni errores JavaScript. Pasaron 34 pruebas, TypeScript y build en CI.
 **Quedó a medias:** la propuesta de pruebas de recorridos de la nota siguiente sigue siendo propuesta; no se anuncia como implementada. El pendiente de Abrir una URL sin mapa sigue separado.

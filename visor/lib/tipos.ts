@@ -55,6 +55,7 @@ export type Sitio = {
 export type WebMap = {
   sitio: Sitio;
   paginas: Pagina[];
+  ejecucion?: { estado: string; pendientes: number; errores: { url: string; error: string }[]; alcance: string };
   /** La auditoria tecnica, cuando el motor ya la corrio. */
   auditoria?: Auditoria;
 };

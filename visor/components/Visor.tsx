@@ -141,6 +141,8 @@ export default function Visor({
         </div>
       </header>
 
+      {mapa.ejecucion?.estado === 'parcial' && <p role="status" className="border-b border-linea bg-acento-suave px-4 py-2 text-xs text-tinta-media">Recorrido parcial · {mapa.paginas.length} páginas leídas · {mapa.ejecucion.pendientes} enlaces pendientes · {mapa.ejecucion.errores.length} páginas con error. {mapa.ejecucion.alcance}</p>}
+
       <div
         className={`flex min-h-0 flex-1 ${
           pestana === "arbol" ? "flex-col md:flex-row" : ""

@@ -20,9 +20,9 @@ import rosario from "../../demo/rosario/mapa-rosario.json";
 
 const COMMITEADO: WebMap[] = [rosario as unknown as WebMap];
 
-export async function listarMapas(): Promise<WebMap[]> {
+export async function listarMapas(signal?: AbortSignal): Promise<WebMap[]> {
   try {
-    const guardados = await api<Guardado[]>("/mapas");
+    const guardados = await api<Guardado[]>("/mapas", undefined, signal);
     if (guardados.length) return guardados.map((g) => g.mapa);
   } catch {
     // El motor no esta levantado. No es un error para mostrar: hay con que seguir.
@@ -34,11 +34,11 @@ export async function listarMapas(): Promise<WebMap[]> {
  * Compara por dominio y no por URL exacta: nadie escribe a mano
  * "https://sitio.com/" con la barra final, y pedirlo seria una trampa tonta.
  */
-export async function buscarMapaPorUrl(entrada: string): Promise<WebMap | null> {
+export async function buscarMapaPorUrl(entrada: string, signal?: AbortSignal): Promise<WebMap | null> {
   const dominio = dominioDe(entrada);
   if (!dominio) return null;
 
-  const mapas = await listarMapas();
+  const mapas = await listarMapas(signal);
   return mapas.find((m) => dominioDe(m.sitio.url) === dominio) ?? null;
 }
 

@@ -1,10 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ExtensionButton from './ExtensionButton';
 
 import { buscarMapaPorUrl, listarMapas } from "@/lib/mapas";
 import { WebMap } from "@/lib/tipos";
+import { api, Evento, MapaReal } from "@/lib/motor";
+
+type Recorrido = { estado: string; mapaId: string | null; error: string | null; eventos: Evento[] };
+const maxPaginas = Math.min(200, Math.max(1, Number(process.env.NEXT_PUBLIC_MAX_PAGES) || 40));
+
+function validarUrl(value: string) {
+  const text = value.trim();
+  const parsed = new URL(/^[a-z][a-z0-9+.-]*:/i.test(text) ? text : `https://${text}`);
+  if (!['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password || !parsed.hostname.includes('.'))
+    throw new Error('Ingresá una dirección pública http o https, sin usuario ni contraseña.');
+  return parsed.href;
+}
 
 export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMap) => void; onMunicipio?: (id: string) => void }) {
   const [url, setUrl] = useState("");
@@ -12,6 +24,34 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
   const [error, setError] = useState<string | null>(null);
   const [mapas, setMapas] = useState<WebMap[]>([]);
   const [buscando, setBuscando] = useState(false);
+  const [job, setJob] = useState<string | null>(null);
+  const [events, setEvents] = useState<Evento[]>([]);
+  const [cancelando, setCancelando] = useState(false);
+  const controller = useRef<AbortController | null>(null);
+  const ocupado = useRef(false);
+  useEffect(() => () => controller.current?.abort(), []);
+
+  async function seguir(id: string, signal: AbortSignal) {
+    while (!signal.aborted) {
+      const state = await api<Recorrido>(`/recorridos/${id}`, undefined, AbortSignal.any([signal, AbortSignal.timeout(20000)]));
+      if (signal.aborted) return;
+      setEvents(state.eventos);
+      if (state.estado === 'completado' && state.mapaId) {
+        const mapa = await api<MapaReal>(`/mapas/${state.mapaId}`, undefined, AbortSignal.any([signal, AbortSignal.timeout(20000)]));
+        if (!signal.aborted) { setJob(null); onAbrir(mapa); }
+        return;
+      }
+      if (state.estado === 'error' || state.estado === 'cancelado') {
+        setJob(null);
+        throw new Error(state.estado === 'cancelado' ? 'Recorrido cancelado.' : state.error || 'No se pudo recorrer el sitio.');
+      }
+      await new Promise<void>(resolve => {
+        const done = () => { clearTimeout(timer); signal.removeEventListener('abort', done); resolve(); };
+        const timer = setTimeout(done, 1200);
+        signal.addEventListener('abort', done, { once: true });
+      });
+    }
+  }
 
   // Los mapas los tiene el motor. Si no contesta, `listarMapas` deja el escaneo
   // commiteado, asi que la pantalla nunca queda vacia por una caida.
@@ -27,21 +67,43 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
 
   async function analizar(e: React.FormEvent) {
     e.preventDefault();
+    if (ocupado.current) return;
+    ocupado.current = true;
+    controller.current?.abort();
+    const task = new AbortController(); controller.current = task;
     setError(null);
     setBuscando(true);
-
-    const mapa = await buscarMapaPorUrl(url);
-    setBuscando(false);
-
-    if (mapa) {
-      onAbrir(mapa);
-      return;
+    try {
+      // Resume observation after a network failure without creating a second job.
+      if (job) { await seguir(job, task.signal); return; }
+      let normalized;
+      try { normalized = validarUrl(url); } catch { throw new Error('Ingresá una dirección válida, por ejemplo https://laeconomica.com.ar/'); }
+      setEvents([]);
+      const mapa = await buscarMapaPorUrl(normalized, AbortSignal.any([task.signal, AbortSignal.timeout(20000)]));
+      if (task.signal.aborted) return;
+      if (mapa) { onAbrir(mapa); return; }
+      const created = await api<{ id: string }>('/recorridos', { url: normalized, maxPaginas }, task.signal);
+      if (task.signal.aborted) return;
+      setJob(created.id);
+      await seguir(created.id, task.signal);
+    } catch (e) {
+      if (!task.signal.aborted) setError(e instanceof Error ? e.message : 'No se pudo iniciar el recorrido.');
+    } finally {
+      if (controller.current === task) { ocupado.current = false; setBuscando(false); }
     }
-
-    // Decirlo es mejor que mostrar otro mapa como si fuera el sitio pedido: un
-    // dato falso disfrazado de real hace perder mas tiempo del que ahorra.
-    setError("Todavía no hay un mapa de este sitio. Se crea con un recorrido del motor.");
   }
+
+  async function cancelar() {
+    if (!job || cancelando) return;
+    setCancelando(true);
+    try {
+      await api(`/recorridos/${job}/cancelar`, {});
+      controller.current?.abort(); ocupado.current = false;
+      setJob(null); setBuscando(false); setError('Recorrido cancelado.');
+    } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo cancelar.'); }
+    finally { setCancelando(false); }
+  }
+  const leidas = Math.max(0, ...events.map(e => e.leidas || 0));
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-16">
@@ -66,6 +128,8 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
               <IconoGlobo />
             </span>
             <input
+              aria-label="Dirección del sitio"
+              disabled={buscando || Boolean(job)}
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="portal-ejemplo.gob.ar"
@@ -78,13 +142,19 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
               disabled={!url.trim() || buscando}
               className="shrink-0 rounded-lg bg-acento px-4 py-2 text-sm font-medium text-acento-tinta transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-25"
             >
-              {buscando ? "Buscando…" : "Abrir"}
+              {buscando ? (job ? "Escaneando…" : "Buscando…") : job ? "Reintentar seguimiento" : "Abrir"}
             </button>
           </div>
         </form>
 
+        <p className="mt-3 px-1 text-xs leading-relaxed text-tinta-suave">Si todavía no hay un mapa, recorremos hasta {maxPaginas} páginas públicas y abrimos el resultado. El recorrido puede ser parcial.</p>
+        {job && <section role="status" aria-live="polite" className="mt-4 rounded-xl border border-linea bg-superficie p-4">
+          <div className="flex items-center justify-between gap-3"><p className="text-sm font-medium text-tinta">{buscando ? 'Recorrido en curso' : 'Seguimiento interrumpido'} · {leidas} páginas leídas</p><button type="button" disabled={cancelando} onClick={() => void cancelar()} className="text-xs text-tinta-media underline">{cancelando ? 'Cancelando…' : 'Cancelar'}</button></div>
+          <div className="mt-3 space-y-2 text-xs text-tinta-media">{events.slice(-4).map(event => <p className="break-words" key={event.secuencia}>{event.type === 'pagina' ? '✓ ' : ''}{event.titulo || event.mensaje || event.url || event.type.replaceAll('_', ' ')}</p>)}</div>
+        </section>}
+
         {error && (
-          <p className="mt-3 flex items-start gap-2 px-1 text-[13px] leading-relaxed text-tinta-media">
+          <p role="alert" className="mt-3 flex items-start gap-2 px-1 text-[13px] leading-relaxed text-tinta-media">
             <span className="mt-[3px] shrink-0 text-tinta-suave">
               <IconoAviso />
             </span>

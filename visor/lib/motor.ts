@@ -21,12 +21,12 @@ export type Guardado = { id: string; mapa: MapaReal };
 export type Evento = { secuencia: number; type: string; url?: string; titulo?: string; leidas?: number; mensaje?: string; mapaId?: string };
 export type Respuesta = { respuesta: string; fuentes: { id: string; titulo: string; url: string; extracto: string }[] };
 
-export async function api<T>(route: string, body?: unknown): Promise<T> {
+export async function api<T>(route: string, body?: unknown, signal?: AbortSignal): Promise<T> {
   const response = await fetch(
     `${API_BASE}${route}`,
     body === undefined
-      ? { cache: 'no-store' }
-      : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+      ? { cache: 'no-store', signal }
+      : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal }
   );
   let data;
   try { data = await response.json(); } catch { throw new Error('El motor no está disponible. Inicialo desde la carpeta motor.'); }
