@@ -5,6 +5,31 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 17:34 — Astra, de Franco — Consulta a Candela antes de construir el recorrido municipal
+**Hice:** hola, Cande. Soy **Astra, la asistente de IA de Franco**. Franco me pidió conversar con vos por acá antes de construir: quiere que Wayfinder tenga una utilidad concreta para presentar a una municipalidad, además de la presentación para IBM. La idea es que el vecino diga qué necesita y pueda avanzar hasta el trámite correcto.
+
+Leí tus decisiones de las 17:11 y la corrección de las 17:20: **«Ver requisitos» / «Hacer el trámite»**, fichas prioritarias, `tramite: { nombre, requisitos, formulario, encontrado_en }`, y Bob para revisión técnica; su posible trabajo sobre la lista sigue en pausa. No hace falta volver a decidir eso. También vi que estás trabajando en `crawler.mjs` y `rutas.mjs`.
+
+**Base comprobada en el repo:** hoy el visor tiene buscador, árbol, mapa y revisión técnica. `responder()` arma un destino con camino, cita y alternativas; todavía no incluye el nuevo objeto `tramite`. Esto describe el código subido, no tus cambios locales ni una verificación de la web publicada. El buscador visible filtra páginas; todavía no es una conversación guiada. Agregar lógica al motor por sí solo no vuelve interactiva la pantalla: cuando acordemos el contrato, la conexión visual queda de tu lado, conservando tu diseño.
+
+**Propuesta para que la evalúes, no decisión tomada:** empezar con un recorrido corto: consulta → una aclaración si hace falta → trámite y requisitos con fuente → botón al destino oficial. Ejemplo ilustrativo: «necesito el carnet» → «¿primera licencia o renovación?» → ficha correspondiente → «Hacer el trámite». Solo mostrar destinos encontrados y comprobados; si falta información, decir qué falta. Abrir el formulario no significa que el trámite haya sido realizado.
+
+**Preguntas para el otro — Cande, con una frase por punto alcanza:**
+1. **Primer caso:** ¿a qué municipalidad queremos presentarlo y qué tres trámites te gustaría mostrar? Rosario ya es la demo elegida; falta confirmar si también es el destinatario.
+2. **Entrada del vecino:** ¿lo imaginás entrando a Wayfinder, desde la web municipal o desde la extensión? ¿Debe llegar con el municipio ya seleccionado?
+3. **Interacción:** si «necesito el carnet» es ambiguo, ¿preferís una pregunta por vez con opciones o mostrar dos o tres trámites para elegir?
+4. **Qué ve cada uno:** ¿el vecino ve solo orientación, requisitos y acceso al trámite, y el municipio ve además mapa y diagnóstico técnico? ¿Hay algo de la pantalla actual que quieras que ambos sigan viendo?
+5. **Hasta dónde acompañamos:** ¿esta primera versión termina al abrir el formulario oficial o querés una guía paso a paso mientras lo completa? Si hay login, pago o envío, propongo que lo haga la persona en el portal oficial; automatizarlo sería otro alcance.
+6. **Cuando no alcanza:** si falta la ficha, el enlace falla o el trámite es presencial, ¿preferís alternativas, contacto oficial o ambos? ¿Te sirve distinguir «no lo encontramos en lo recorrido» de «no existe»?
+7. **Operación y datos:** ¿quién del equipo o del municipio validaría y mantendría el catálogo? ¿Te parece arrancar sin cuenta del vecino ni guardar sus consultas, con actualización diaria y aviso de enlaces fallidos, o necesitás historial/seguimiento?
+8. **Prueba de utilidad:** ¿qué recorrido completo elegirías para demostrarlo y quién lo prueba como vecino? Propongo medir acierto del destino, tiempo y clics hasta llegar, dejando separado el acceso al formulario de la finalización real del trámite.
+
+**Cómo esas respuestas guían la infraestructura:** catálogo de trámites con ficha, destino, fuente y fecha de revisión; resolución de consultas con aclaraciones y estados de cobertura; una API compatible con el contrato acordado; actualización y comprobación de enlaces por detrás. Si hay sesión conversacional o vista municipal privada, las definimos según tus respuestas. Son piezas propuestas, no funciones ya implementadas ni infraestructura contratada. Para IBM mantenemos el rol técnico de Bob acordado y mostramos únicamente lo que podamos verificar funcionando.
+
+**Quedó a medias:** tus respuestas y el reparto concreto antes de programar. Con eso podemos cerrar un recorrido de ejemplo, los datos que devuelve el motor y quién conecta cada parte. Esta nota no reemplaza las decisiones vigentes ni autoriza un piloto municipal.
+**No tocar:** en esta entrega solo agregué esta nota. `visor/` sigue siendo tuyo; no toqué motor, configuración ni despliegues. Respeto tus reservas de `crawler.mjs`, `rutas.mjs` y sus pruebas; no reactivé el trabajo de Bob sobre trámites.
+**Para responder:** dejá una nota nueva arriba con los números 1–8 y lo que prefieras cambiar. Franco, avisale a Cande por WhatsApp que tiene estas preguntas en el buzón.
+
 ## 2026-09-26 17:25 — Claude de Franco — ✅ RESPUESTAS: CRAWLER LIBRE, BOB EN PAUSA
 **Hice:** leí tus tres notas. Respondo:
 - **¿Algo en `crawler.mjs` sin subir?** No, nada. Mi copia está igual que GitHub. Es toda tuya: cambiala cuando quieras.
