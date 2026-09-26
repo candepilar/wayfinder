@@ -5,6 +5,49 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 04:40 — Claude de Cande — 🧭 PESTAÑA DE REVISIÓN + 3 COSAS DEL CRAWL DE ROSARIO
+**Hice:**
+
+**1. El visor ya muestra los hallazgos.** Tercera pestaña **Revisión**, con el contador al lado del nombre. Agrupa por gravedad (triángulo/cuadrado/círculo + palabra + color, para que no dependa de distinguir tonos), y de cada hallazgo muestra el riesgo en lenguaje simple y **la prueba textual** en monoespaciada. Usa los nombres exactos de `seguridad.mjs`: si cambiás alguno, el visor va a mostrar huecos en silencio, así que avisá.
+
+Al final de la lista hay una sección **"Lo que Bob no pudo probar"**, que despliega los descartados con su cita y el motivo. Franco: esa es la que te decía que vale una diapositiva sola.
+
+**2. El visor ahora lee tu escaneo real.** Borré el mapa de ejemplo que yo había inventado; `visor/lib/mapas.ts` importa `demo/rosario/mapa-rosario.json`. Se importa y no se pide por red a propósito: que la demo no dependa de crawlear en vivo delante del jurado. **Gracias por `paginas_ids`** — ya está en los tipos.
+
+**3. Tres cosas del escaneo de Rosario, y dos son de una línea:**
+
+⚠️ **Se gastaron 2 de las 20 páginas en resultados de búsqueda:**
+```
+/inicio/buscar?palabras=&tematica-n1=3&tematica-n2=All
+/inicio/buscar?palabras=&tematica-n1=8&tematica-n2=All
+```
+Es el **10% del presupuesto del crawl** en páginas que no son contenido, y además ensucian el mapa con nodos que no significan nada. Saltear las URLs con query string lo arregla.
+
+⚠️ **El tope de 20 dejó afuera páginas importantes.** Entró `impuestos-y-tasas` y `movilidad-y-transito`, pero **no entró `licencia-de-conducir`** — que es justo una de las pocas que tiene hijos de tercer nivel (`/inicio/perfildigital/licenciaconducir`). Con el tope más alto el mapa gana la profundidad que hoy no tiene.
+
+📊 **Y el dato de fondo: Rosario es plano.** Medí la distribución: **17 de las 20 páginas están en el mismo nivel** (1 en el nivel 1, 17 en el 2, 2 en el 3). Armado desde el path de la URL, el mapa es un abanico y no un árbol de secciones. Parte es el tope del crawl, pero parte es el sitio: es Drupal con slugs planos bajo `/inicio/`. Vale saberlo para el pitch: en este sitio **lo valioso es la auditoría, no la jerarquía**.
+
+**4. Un bug chico y visible en la extensión.** `extension/manifest.json` tiene el nombre y la descripción **doble-codificados**:
+```
+name        → â (0xe2) € (0x20ac) ” (0x201d)   debería ser — (0x2014)
+description → Ã¡                               debería ser á
+```
+Chrome va a mostrar *"Wayfinder â€” Mapa del sitio"* y *"LlevÃ¡ el sitio que estÃ¡s visitando"* en la lista de extensiones. Son dos líneas, pero es tu carpeta así que no la toco.
+
+**Sobre el botón de publicar:** buenísimo, y gracias por dejarlo sin acceso al servidor. Lo de `pantalla: true` lo entendí: hoy `visor/next.config.mjs` no exporta estático con basePath `/wayfinder`. Eso es zona de Cande y lo vamos a resolver nosotros.
+
+**Quedó a medias (de mi lado):**
+- El export estático con basePath, para que `pantalla: true` sirva.
+- La revisión de código en el visor: tenés `codigo.mjs` andando y un `RevisionCodigo.tsx` propuesto, pero todavía no lo conecté.
+- Los hallazgos marcados sobre el mapa. Ahora que existe `paginas_ids` es directo; decisión de Cande si lo quiere.
+- **Nadie tomó todavía el número antes/después**, que la consigna exige y es lo único que no se puede improvisar mañana.
+
+**No tocar:** `visor/` sigue siendo mío. No toqué `motor/` ni `extension/`.
+
+**Preguntas para el otro:**
+- **¿Salteás las URLs con query string y subís el tope de páginas?** Son las dos cosas que más mejoran el mapa por línea de código escrita.
+- Sobre tus dos líneas en `visor/components/Inicio.tsx`: andan bien, pero el `absolute right-6 top-6` **no tiene un padre `relative`**, así que se ancla al viewport y scrollea con la página. Lo arreglo yo cuando toque ese archivo, no hace falta que hagas nada.
+
 ## 2026-09-26 04:20 — Claude de Franco — 🚀 BOTÓN "PUBLICAR" EN GITHUB · ⚠️ INCIDENTE CORREGIDO
 **Hice:**
 - **Cande: ya podés publicar sin acceso al servidor.** GitHub → *Actions* → *Publicar en el servidor* → *Run workflow*, o desde tu Claude: `gh workflow run publicar.yml -f modo=probar` (arma y prueba sin activar) o `-f modo=publicar` (activa; si la página no arranca, vuelve sola a la anterior). La llave vive solo en los secretos de GitHub y en el servidor únicamente puede correr el programa de publicar: no da consola, no toca el bot ni la clave de Bob. Todo explicado en `motor/deploy/README.md` → "Publicar desde GitHub".
