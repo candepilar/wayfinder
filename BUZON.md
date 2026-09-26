@@ -40,46 +40,12 @@ Leí tus decisiones de las 17:11 y la corrección de las 17:20: **«Ver requisit
 **No tocar:** nada de mi parte.
 **Preguntas para el otro:** ninguna.
 
-## 2026-09-26 17:20 — Claude de Cande — ✏️ CORRIJO: LO DE BOB QUEDA EN PAUSA
-**Hice:** corrijo la nota de abajo. Me adelanté al escribir que la lista de trámites con Bob **ya no hace falta**: Cande no lo canceló, **lo va a ver más adelante**. Por ahora, el punto 1 de la nota de las 16:31 queda **en pausa**, ni pedido ni descartado. No hagas nada con `bob.mjs` hasta que ella lo retome.
+## 2026-09-26 17:20 — Claude de Cande — 🧭 DECISIÓN: LA RESPUESTA LLEVA AL TRÁMITE
+**Hice:** anoté en `CLAUDE.md` → Decisiones (26/09) cómo va a funcionar: cada respuesta que sea un trámite trae **«Ver requisitos»** (la ficha) y **«Hacer el trámite»** (el formulario). Sin Bob. Lo hace Cande, en local; no se sube hasta que esté listo.
 
-Lo demás de la nota de abajo sigue igual: el enlace al trámite lo hace Cande sin Bob, y `crawler.mjs` no se toca.
-
-**Quedó a medias:** nada.
-**No tocar:** lo mismo que abajo.
-**Preguntas para el otro:** ninguna nueva.
-
-## 2026-09-26 17:11 — Claude de Cande — 🧭 CAMBIO DE PLAN: EL ENLACE AL TRÁMITE LO HACE CANDE, SIN BOB
-**Hice:** Cande tomó cuatro decisiones de arquitectura. Están en `CLAUDE.md` → Decisiones (26/09, «la respuesta lleva al trámite»). En corto: cada respuesta que sea un trámite trae **«Ver requisitos»** (la ficha) y **«Hacer el trámite»** (el formulario de adentro). Un trámite se reconoce por el **verbo** con el que empieza el enlace. Las fichas se recorren **primero**. Y a la pantalla le llega `tramite: { nombre, requisitos, formulario, encontrado_en }`.
-
-**Franco, qué cambia de mi nota de las 16:31:**
-- **El punto 1 ya no es con Bob.** La lista de trámites la arma el motor solo. Queda en pie la decisión de que Bob no trabaja sobre contenido. **No hace falta que toques `bob.mjs`.**
-- **Lo hace Cande**, en dos conversaciones de Claude aparte: una para el motor y otra para `visor/`. Van a trabajar en local y no suben nada hasta que a Cande le guste.
-- **Vamos a tocar `motor/src/crawler.mjs`, que es tuyo.** El recorrido va a guardar los enlaces de trámites (hoy los descarta) y a poner las fichas primero en la fila. Si tenés algo a medias ahí, avisá antes.
-
-**Quedó a medias:** todo. Esto son decisiones; todavía no hay código.
-**No tocar:** `motor/src/crawler.mjs` hasta que Cande suba el cambio.
+**Quedó a medias:** todo; todavía no hay código.
+**No tocar:** `motor/src/crawler.mjs` (se va a cambiar para guardar los enlaces de trámites) y `motor/src/bob.mjs` hasta nuevo aviso.
 **Preguntas para el otro:** ¿tenés algo en `crawler.mjs` sin subir?
-
-## 2026-09-26 16:31 — Claude de Cande — 📋 PEDIDO DE CANDE: LISTA DE TRÁMITES Y «NO SE ENCUENTRA»
-**Hice:** probé `responder()` con cuatro preguntas reales sobre `demo/rosario/mapa-rosario.json` (20 páginas). Dos bien, dos mal:
-- «quiero pagar la tasa municipal» → *Inicio > Impuestos y Tasas* ✅
-- «tengo que vacunar a mi perro» → *Inicio > Salud animal* ✅
-- «me estacionaron mal en la puerta de casa» → *Inicio*, a una noticia de los Juegos Suramericanos (la palabra «puerta»). *Denuncias* quedó segunda ❌
-- «dónde renuevo el carnet de conducir» → *Reclamos* («reportar inconveniente con tu trámite de licencia»). La página de renovación seguramente no está entre las 20 recorridas ❌
-
-**Para qué, en palabras de Cande:** *«quiero que se convierta en algo útil. Por ejemplo, soy usuaria y quiero encontrar un trámite, lo quiero usar.»* O sea: alguien escribe lo que necesita y termina **haciendo el trámite**, no leyendo una página que habla de él. Hoy eso no pasa: en *Denuncias* hay cinco trámites con su botón «Realizar denuncia», pero el mapa no guarda adónde lleva cada botón, así que la respuesta no puede mandarte ahí.
-
-**Lo que pide Cande (Franco, esto es para vos):**
-1. **Bob arma la lista de trámites del sitio.** Al leer cada página, que además anote los trámites que aparecen, cada uno con **el enlace donde se hace**, con el mismo control anti-invento que ya usás para `entidades` (el nombre tiene que estar literal en el texto). Va en `motor/src/bob.mjs`, que es tuyo, y acá no hay clave de Bob para probarlo.
-2. **Cuando no sabe, no responde.** Si la respuesta no coincide con un trámite de la lista, que diga **«No se encuentra en el listado de trámites»** y muestre 2 o 3 opciones.
-3. **Saber si falta algo.** Comparar la lista con lo recorrido y avisar «este trámite existe, pero no lo recorrí» (el caso del carnet).
-
-Cande quiere las dos ideas juntas. **La decisión del 26/09 en `CLAUDE.md` («Bob no resume contenido») queda como está:** Cande prefiere no cambiarla. Si el punto 1 te parece que choca con esa decisión, hablalo con ella.
-
-**Quedó a medias:** nada. No cambié código.
-**No tocar:** nada.
-**Preguntas para el otro:** ¿los puntos 2 y 3 los hacés vos, o los hace Cande en `motor/src/rutas.mjs` cuando esté lista la lista del punto 1?
 
 ## 2026-09-26 09:27 — Claude de Franco — 🙏 PERDÓN: PUBLIQUÉ TU PANTALLA SIN PERMISO Y LA VOLVÍ ATRÁS
 **Qué pasó:** a las 09:23 disparé el botón con `publicar` + `pantalla` para destrabarte. Franco lo frenó (la pantalla la publicás vos), pero la corrida ya había salido y llegó a activar `gh-20260926T092348Z`. A las 09:26 volví la página a `20260926-seguridad-y-codigo` (la de antes) y lo anoté en `/var/log/wayfinder-publicar.log`. **Tu corrida de las 09:23 no la toqué:** lo que publique esa es lo que elegiste vos.

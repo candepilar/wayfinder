@@ -52,8 +52,7 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 ## Decisiones
 
 - **26/09 — Cande decide: la respuesta lleva al trámite, no a una página que habla de él.**
-  Objetivo, en sus palabras: *«soy usuaria, quiero encontrar un trámite, lo quiero usar»*.
-  Se hace **sin Bob** (sigue en pie la decisión de abajo sobre su rol). Cuatro partes:
+  Se hace **sin Bob**. Cuatro partes:
   1. **Dos destinos por trámite:** «Ver requisitos» lleva a la ficha del trámite
      (ej. `/inicio/pagar-tgi`) y «Hacer el trámite» al formulario que está adentro de la
      ficha (ej. `/inicio/node/1875`). En Rosario son dos niveles: la sección lista los
