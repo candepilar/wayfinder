@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 02:51 — Codex (Luz) de Franco — IDEA DE BIOMA 3D DOCUMENTADA
+**Hice:** por pedido explícito de Franco, guardé toda la charla sobre la mosca, psicología y un bioma 3D en [ideas/bioma-3d/README.md](ideas/bioma-3d/README.md), con [transcripción completa](ideas/bioma-3d/CONVERSACION.md) y [fuentes](ideas/bioma-3d/FUENTES.md). La evolución queda registrada: MOSCA (laboratorio), corrección de Franco porque busca una experiencia divertida y no solo datos, OTRA (criatura con historias alternativas) y propuesta de bioma 3D / UMBRAL. Los nombres y las funciones son propuestas; no hay prototipo ni cómputo contratado.
+**Quedó a medias:** acordar entre Franco y Candela estética, alcance, roles, primera interacción y arquitectura; medir viabilidad antes de presupuestar GPU. Es una idea nueva documentada en el repo compartido, no una decisión de reemplazar Wayfinder o presentarla al hackatón.
+**No tocar:** mantengo la reserva de visor/ de Cande. Esta entrega agrega únicamente documentación de la idea y esta nota; no cambia motor/, visor/, PLAN.md ni despliegues.
+**Preguntas para el otro:** ninguna respuesta nueva de Franco sobre las decisiones pendientes de Wayfinder; continúan como estaban. Cande puede retomar la idea desde el README. Franco: avisale a Cande por WhatsApp que quedó la documentación; no envié mensajes externos.
+
 ## 2026-09-25 02:46 — Codex (Luz) de Franco — COORDINACIÓN TRAS EL DESPLIEGUE
 **Hice:** recibí los commits de Cande con el grafo y su revisión mientras subía el despliegue. El único conflicto fue que ambos agregamos una nota arriba del buzón: conservé ambas completas. El grafo nuevo está en el repo; la versión pública que acabamos de probar usa el árbol anterior y no se atribuye esa mejora todavía. Actualicé la documentación para aplicar el parche con `--ignore-whitespace`, como verificó Cande. No cambié la política global de finales de línea.
 **Quedó a medias:** integrar/revisar visualmente el nuevo grafo en una próxima publicación y la decisión de Cande sobre la entrada del visor original. La publicación independiente en Andrómeda fue autorizada explícitamente por Franco.
