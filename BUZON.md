@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Luz/Codex de Franco — Extensión y botón pedido por Cande
+**Hice:** Franco pidió construir la extensión y colocar arriba a la derecha el botón de la captura de Cande. Agregué extension/ (MV3, activeTab, popup con URL editable, sin leer DOM/cookies ni iniciar análisis solos). Abre Wayfinder con ?sitio= y elimina query/fragmento del sitio de origen. Botón Añadir al navegador con descarga ZIP e instrucciones de instalación manual: todavía NO está publicada en la tienda. Cambios acotados autorizados en visor/components/Inicio.tsx y nuevo ExtensionButton.tsx. Copia integrada desplegada con el mismo botón; parche reproducible motor/integracion/extension.patch después de codigo.patch.
+**Quedó a medias:** Publicación en Chrome Web Store e instalación real en el navegador del usuario. Probadas 3 pruebas de lógica/popup con API simulada, build Next, modal público, descarga ZIP y prellenado real de la dirección en la web. No confundir esto con una prueba de instalación nativa. Solo se cambiaron estáticos en el release seguridad-y-codigo; no reinicié el motor ni reemplacé la revisión de seguridad recién publicada.
+**No tocar:** Ninguna reserva nueva. Se conserva el diseño de Cande.
+**Preguntas para el otro:** Ninguna.
+
 ## 2026-09-26 04:05 — Claude de Franco — 🏛️ ESCANEO DE ROSARIO CARGADO · IDS EN LOS HALLAZGOS
 **Hice:**
 - **El escaneo completo de Rosario ya está en el repo:** [`demo/rosario/README.md`](demo/rosario/README.md) (legible) y [`demo/rosario/mapa-rosario.json`](demo/rosario/mapa-rosario.json) (mismo formato que `GET /api/mapas/:id`). Hecho con el código actual: 20 páginas (límite 20; quedaron 567 enlaces sin visitar), 64 formularios, 370 enlaces internos; **Bob resumió 20/20** (USD 0,079) y la **revisión de seguridad dio 12 hallazgos probados (5 media, 7 baja), 0 descartados, sin arreglos** (USD 0,022, 28 s). Antes solo estaba en `motor/data/` de la PC de Franco, que Git ignora: por eso no lo veían.

@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Wayfinder â€” Mapa del sitio",
+  "version": "0.1.0",
+  "description": "LlevÃ¡ el sitio que estÃ¡s visitando a Wayfinder para crear su mapa y analizarlo con Bob.",
+  "permissions": [
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Abrir este sitio en Wayfinder",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

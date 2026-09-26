@@ -1,0 +1,27 @@
+--- a/visor/components/Motor.tsx
++++ b/visor/components/Motor.tsx
+@@ -1,6 +1,7 @@
+ 'use client';
+ import { useEffect, useRef, useState } from 'react';
+ import Visor from './Visor';
++import ExtensionButton from './ExtensionButton';
+ import RevisionCodigo from './RevisionCodigo';
+ import { api, API_BASE, Evento, Guardado, MapaReal, Respuesta } from '@/lib/motor';
+ 
+@@ -27,6 +28,7 @@
+       setReady(health.bob.disponible);setConnected(true);setMaps(saved);
+     } catch(e) {setConnected(false);setError((e as Error).message);}
+   }
++  useEffect(()=>{try{const raw=new URLSearchParams(window.location.search).get('sitio');if(raw){const u=new URL(raw);if(['http:','https:'].includes(u.protocol)&&!u.username&&!u.password)setUrl(u.href);}}catch{}},[]);
+   useEffect(()=>{void refresh();return ()=>stream.current?.close();},[]);
+   async function receive(event:Evento) {
+     setEvents(previous=>[...previous.filter(e=>e.secuencia!==event.secuencia),event].slice(-60));
+@@ -59,7 +61,7 @@
+   if(selected)return <Resultado selected={selected} onBack={()=>setSelected(null)}/>;
+   const read=events.filter(e=>e.type==='pagina').slice(-1)[0]?.leidas || 0;
+   return <div className="min-h-screen px-5 py-10 md:py-16"><main className="mx-auto max-w-3xl">
+-    <header className="mb-10"><div className="mb-6 flex items-center justify-between gap-3"><span className="text-sm font-semibold tracking-widest text-acento">WAYFINDER</span><span className="rounded-full border border-linea px-3 py-1 text-xs text-tinta-media">{connected?'Motor conectado':'Motor sin conexión'}</span></div><h1 className="text-3xl font-semibold tracking-tight md:text-4xl">Explorá un sitio. Encontrá el camino.</h1><p className="mt-3 max-w-xl text-base leading-relaxed text-tinta-media">Recorré sus páginas públicas, inspeccioná el mapa y buscá información con acceso directo a la fuente.</p></header>
++    <header className="mb-10"><div className="mb-6 flex items-center justify-between gap-3"><span className="text-sm font-semibold tracking-widest text-acento">WAYFINDER</span><span className="rounded-full border border-linea px-3 py-1 text-xs text-tinta-media">{connected?'Motor conectado':'Motor sin conexión'}</span><ExtensionButton/></div><h1 className="text-3xl font-semibold tracking-tight md:text-4xl">Explorá un sitio. Encontrá el camino.</h1><p className="mt-3 max-w-xl text-base leading-relaxed text-tinta-media">Recorré sus páginas públicas, inspeccioná el mapa y buscá información con acceso directo a la fuente.</p></header>
+     <section className="rounded-2xl border border-linea bg-superficie p-5 shadow-panel"><form onSubmit={start}>
+       <label htmlFor="sitio" className="mb-2 block text-sm font-medium">Dirección del sitio</label><div className="flex flex-col gap-2 sm:flex-row"><input id="sitio" value={url} onChange={e=>setUrl(e.target.value)} placeholder="https://www.argentina.gob.ar" required disabled={!!job||starting} className="min-w-0 flex-1 rounded-lg border border-linea bg-fondo px-3 py-3 font-mono text-sm outline-none focus:border-acento"/><button className={button} disabled={!url.trim()||!!job||starting||!connected}>{starting?'Iniciando…':job?'Recorriendo…':'Crear mapa'}</button></div>
+       <div className="mt-4 flex flex-wrap items-center gap-5 text-sm text-tinta-media"><label className="flex items-center gap-2">Límite de páginas <select aria-label="Límite de páginas" value={limit} onChange={e=>setLimit(Number(e.target.value))} disabled={!!job} className="rounded border border-linea bg-fondo p-1">{[5,20,40,100,200].filter(n=>n<=Number(process.env.NEXT_PUBLIC_MAX_PAGES||200)).map(n=><option key={n} value={n}>{n}</option>)}</select></label><label className="flex items-center gap-2"><input type="checkbox" checked={bob} onChange={e=>setBob(e.target.checked)} disabled={!ready||!!job}/>Analizar con IBM Bob</label></div>

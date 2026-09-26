@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ExtensionButton from './ExtensionButton';
 
 import { buscarMapaPorUrl, listarMapas } from "@/lib/mapas";
 import { WebMap } from "@/lib/tipos";
 
 export default function Inicio({ onAbrir }: { onAbrir: (mapa: WebMap) => void }) {
   const [url, setUrl] = useState("");
+  useEffect(() => { try { const raw=new URLSearchParams(window.location.search).get('sitio'); if(raw){const u=new URL(raw);if(['http:','https:'].includes(u.protocol)&&!u.username&&!u.password)setUrl(u.href);} } catch {} }, []);
   const [error, setError] = useState<string | null>(null);
 
   const mapas = listarMapas();
@@ -29,6 +31,7 @@ export default function Inicio({ onAbrir }: { onAbrir: (mapa: WebMap) => void })
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-16">
+      <div className="absolute right-6 top-6"><ExtensionButton /></div>
       <main className="w-full max-w-lg">
         <div className="mb-10 text-center">
           <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-linea bg-superficie shadow-panel">
