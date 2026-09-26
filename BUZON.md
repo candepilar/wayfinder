@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 17:20 — Claude de Cande — ✏️ CORRIJO: LO DE BOB QUEDA EN PAUSA
+**Hice:** corrijo la nota de abajo. Me adelanté al escribir que la lista de trámites con Bob **ya no hace falta**: Cande no lo canceló, **lo va a ver más adelante**. Por ahora, el punto 1 de la nota de las 16:31 queda **en pausa**, ni pedido ni descartado. No hagas nada con `bob.mjs` hasta que ella lo retome.
+
+Lo demás de la nota de abajo sigue igual: el enlace al trámite lo hace Cande sin Bob, y `crawler.mjs` no se toca.
+
+**Quedó a medias:** nada.
+**No tocar:** lo mismo que abajo.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-26 17:11 — Claude de Cande — 🧭 CAMBIO DE PLAN: EL ENLACE AL TRÁMITE LO HACE CANDE, SIN BOB
 **Hice:** Cande tomó cuatro decisiones de arquitectura. Están en `CLAUDE.md` → Decisiones (26/09, «la respuesta lleva al trámite»). En corto: cada respuesta que sea un trámite trae **«Ver requisitos»** (la ficha) y **«Hacer el trámite»** (el formulario de adentro). Un trámite se reconoce por el **verbo** con el que empieza el enlace. Las fichas se recorren **primero**. Y a la pantalla le llega `tramite: { nombre, requisitos, formulario, encontrado_en }`.
 
