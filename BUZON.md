@@ -5,6 +5,25 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 03:01 — Claude de Franco — ✅ BOB ANDA DE VERDAD DENTRO DEL MOTOR
+**Hice:** se destrabó lo que estaba pendiente desde el 25/09: que Bob respondiera de verdad.
+- Franco sacó una clave de Bob de tipo **Inference** en bob.ibm.com y la guardó en `motor/.env` (ignorado por Git, **no está en el repo**). Con autorización de Franco acepté la licencia de Bob Shell (`--accept-license`, se hace una sola vez por máquina).
+- Prueba suelta: `bob run` respondió en 3 s, costo USD 0,012.
+- **Bug encontrado y arreglado en `motor/src/bob.mjs`:** Bob Shell 2.x manda la respuesta en pedazos (eventos `message` con `role: assistant`) y el evento `result` final trae **solo estado y costos, sin `last_message`**. El adaptador leía `last_message`, así que siempre fallaba con "Unexpected end of JSON input" aunque Bob hubiera contestado bien. Ahora junta los pedazos y usa `last_message` solo como respaldo; además toma el JSON entre la primera `{` y la última `}`. Agregué el caso a la prueba del parser: **9/9 pasan**.
+- **Prueba de punta a punta:** `POST /api/recorridos` con `bob:true` sobre `https://info.cern.ch/hypertext/WWW/TheProject.html`, 4 páginas → `ejecucion.bob.estado = "completado"`, 4/4 páginas con `origen: "bob"`, resúmenes fieles en español y entidades filtradas contra el texto. Costo total USD 0,010.
+
+**Quedó a medias:**
+- Esto corre en la compu de Franco. En el VPS (`andromedaweb.store/wayfinder/`) **todavía no hay Bob**: falta instalar Bob Shell ahí con Node 24 y la clave. No lo hice.
+- Hoy Bob se usa en una sola llamada y sin herramientas (modo ask). Lo que pide la consigna (modo agente, subagentes, tareas en paralelo) todavía no está.
+- Lo de las notas anteriores sigue igual: parche del visor pendiente de Cande, `.gitattributes` de la raíz.
+
+**No tocar:** respeto la reserva de `visor/`. Solo toqué `motor/src/bob.mjs`, `motor/test/motor.test.mjs` y este buzón.
+
+**Preguntas para el otro:**
+- Cande: ¿qué parte del flujo querés que haga Bob con subagentes o en paralelo para la demo? Con la clave andando ya se puede probar.
+- **Mensaje de Franco para Cande, textual de su parte:** "me gusta mucho cuando se ríe" 😊
+
+
 ## 2026-09-26 02:51 — Codex (Luz) de Franco — IDEA DE BIOMA 3D DOCUMENTADA
 **Hice:** por pedido explícito de Franco, guardé toda la charla sobre la mosca, psicología y un bioma 3D en [ideas/bioma-3d/README.md](ideas/bioma-3d/README.md), con [transcripción completa](ideas/bioma-3d/CONVERSACION.md) y [fuentes](ideas/bioma-3d/FUENTES.md). La evolución queda registrada: MOSCA (laboratorio), corrección de Franco porque busca una experiencia divertida y no solo datos, OTRA (criatura con historias alternativas) y propuesta de bioma 3D / UMBRAL. Los nombres y las funciones son propuestas; no hay prototipo ni cómputo contratado.
 **Quedó a medias:** acordar entre Franco y Candela estética, alcance, roles, primera interacción y arquitectura; medir viabilidad antes de presupuestar GPU. Es una idea nueva documentada en el repo compartido, no una decisión de reemplazar Wayfinder o presentarla al hackatón.

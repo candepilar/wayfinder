@@ -8,10 +8,14 @@ export function bobStatus() {
   return { instalado: Boolean(entry && existsSync(entry)), configurado: Boolean(process.env.BOB_API_KEY), disponible: Boolean(entry && existsSync(entry) && process.env.BOB_API_KEY) };
 }
 
-export function parseBobResult(event) {
+// Bob Shell 2.x transmite la respuesta en eventos "message" del asistente y el
+// evento "result" trae solo estado y costos; last_message queda como respaldo.
+export function parseBobResult(event, streamed = '') {
   if (event.type !== 'result' || event.status !== 'success') throw new Error('Bob no completó el análisis.');
-  const text = String(event.last_message || '').replace(/^\s*```(?:json)?\s*/, '').replace(/\s*```\s*$/, '');
-  const parsed = JSON.parse(text);
+  const raw = String(event.last_message || streamed || '');
+  const start = raw.indexOf('{'), end = raw.lastIndexOf('}');
+  if (start < 0 || end < start) throw new Error('Bob respondió sin JSON.');
+  const parsed = JSON.parse(raw.slice(start, end + 1));
   if (!Array.isArray(parsed.paginas)) throw new Error('Bob no devolvió el contrato esperado.');
   return parsed.paginas;
 }
@@ -24,14 +28,15 @@ export async function analyzeWithBob(map, { signal, onEvent = () => {}, workspac
   const args = [process.env.BOB_ENTRY, 'run', '--format', 'stream-json', '--mode', 'ask', '--max-cost', process.env.BOB_MAX_COST || '0.50', '--max-turns', '2', '--disable-mcp', '--disable-subagents', '--disable-tool-groups', 'read,edit,execute,mcp,skill,workflow,todo,subtask,subagent,mode', '--workspace', path.resolve(workspace)];
   const final = await new Promise((resolve, reject) => {
     const child = spawn(process.execPath, args, { windowsHide: true, cwd: workspace, stdio: ['pipe','pipe','pipe'], signal });
-    let buffer = '', stderr = '', result;
+    let buffer = '', stderr = '', result, streamed = '';
     let total = 0;
     const timer = setTimeout(() => { child.kill(); reject(new Error('Bob superó el límite de 120 segundos.')); }, 120000);
     const consume = line => {
       try {
         const event = JSON.parse(line);
         onEvent({ type: 'bob_evento', evento: event.type, estado: event.status, at: new Date().toISOString() });
-        if (event.type === 'result') result = event;
+        if (event.type === 'message' && event.role === 'assistant' && typeof event.content === 'string') streamed += event.content;
+        if (event.type === 'result') result = { ...event, streamed };
       } catch { /* Non-JSON diagnostic output is not presented as an agent event. */ }
     };
     child.stdout.on('data', chunk => {
@@ -51,7 +56,7 @@ export async function analyzeWithBob(map, { signal, onEvent = () => {}, workspac
     child.stdin.on('error', () => {});
     child.stdin.end(prompt);
   });
-  const results = parseBobResult(final);
+  const results = parseBobResult(final, final.streamed);
   const byId = new Map(map.paginas.map(page => [page.id, page]));
   let count = 0;
   const used = new Set();

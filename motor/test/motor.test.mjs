@@ -124,6 +124,8 @@ test('Bob parser rejects unsuccessful or malformed results', () => {
   assert.throws(() => parseBobResult({ type:'result', status:'error', last_message:'{}' }));
   assert.throws(() => parseBobResult({ type:'result', status:'success', last_message:'hello' }));
   assert.deepEqual(parseBobResult({ type:'result', status:'success', last_message:'```json\n{"paginas":[]}\n```' }), []);
+  // Bob Shell 2.x: el result no trae el texto; llega en pedazos por eventos message.
+  assert.deepEqual(parseBobResult({ type:'result', status:'success' }, '{"pagi' + 'nas":[{"id":"a"}]}'), [{ id:'a' }]);
 });
 
 test('search favors the page about a topic over a broad index mentioning it', () => {
