@@ -109,9 +109,10 @@ y un MIME repetido; no forman parte de esta modificación y no se alteraron.
 Pedido de Franco: que Cande (o su Claude) pueda publicar sin tener acceso al VPS.
 
 **Cómo se usa:** GitHub → pestaña *Actions* → *Publicar en el servidor* → *Run workflow*.
-Desde Claude: `gh workflow run publicar.yml -f modo=probar` (o `-f modo=publicar`).
-- `probar` (por defecto): arma la versión en el VPS y corre las pruebas, **sin activarla**.
-- `publicar`: además la activa. Si la página no arranca, vuelve sola a la anterior.
+Desde Claude: `gh workflow run publicar.yml -f modo=publicar -f pantalla=true`.
+- `publicar` (por defecto): arma, prueba y **cambia la página**. Si no arranca, vuelve sola a la anterior.
+- `probar`: arma y prueba **sin cambiar la página** (26/09: Cande perdió dos horas porque el modo por defecto era este; ahora el resumen de la corrida lo dice en grande).
+- `pantalla: true` además arma `public/extension/wayfinder-extension.zip` desde `extension/`, para que no se rompa "Añadir al navegador".
 - `pantalla: true`: publica también `visor/out`. Requiere que `visor/next.config.mjs`
   exporte estático con basePath `/wayfinder`; si no, falla antes de tocar el servidor.
   Sin esa opción se conserva la pantalla publicada tal cual (incluida la descarga

@@ -99,4 +99,4 @@ Contrato de datos y API completos: `motor/README.md`.
 ## 5. Publicar lo que hiciste
 
 No hace falta acceso al servidor: GitHub → *Actions* → *Publicar en el servidor*,
-o `gh workflow run publicar.yml -f modo=probar`. Detalle en `motor/deploy/README.md`.
+o `gh workflow run publicar.yml -f modo=publicar -f pantalla=true`. Detalle en `motor/deploy/README.md`.

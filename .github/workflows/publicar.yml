@@ -8,12 +8,12 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: "publicar = activa la versión · probar = arma y prueba sin activar"
+        description: "publicar = CAMBIA la página · probar = solo prueba, la página NO cambia"
         type: choice
-        options: [probar, publicar]
-        default: probar
+        options: [publicar, probar]
+        default: publicar
       pantalla:
-        description: "¿Publicar también la pantalla (carpeta visor/)?"
+        description: "Tildar para subir también la pantalla (visor/). Sin tildar solo cambia el motor."
         type: boolean
         default: false
 
@@ -57,7 +57,12 @@ jobs:
         run: |
           mkdir -p paquete/motor
           cp -r motor/src motor/test motor/package.json motor/package-lock.json paquete/motor/
-          if [ "${{ inputs.pantalla }}" = "true" ]; then cp -r visor/out paquete/public; fi
+          if [ "${{ inputs.pantalla }}" = "true" ]; then
+            cp -r visor/out paquete/public
+            # La descarga "Añadir al navegador" se arma siempre desde extension/.
+            mkdir -p paquete/public/extension
+            (cd extension && zip -qr ../paquete/public/extension/wayfinder-extension.zip . -x test.mjs)
+          fi
           tar -czf paquete.tgz -C paquete .
           ls -la paquete.tgz
 
@@ -67,8 +72,19 @@ jobs:
           WF_KNOWN_HOSTS: ${{ secrets.WF_KNOWN_HOSTS }}
           WF_HOST: ${{ secrets.WF_HOST }}
         run: |
+          set -o pipefail
           [ -n "$WF_DEPLOY_KEY" ] || { echo "::error::Falta el secreto WF_DEPLOY_KEY (ver motor/deploy/README.md)"; exit 1; }
           install -m 700 -d ~/.ssh
           printf '%s\n' "$WF_DEPLOY_KEY" > ~/.ssh/wf && chmod 600 ~/.ssh/wf
           printf '%s\n' "$WF_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          ssh -i ~/.ssh/wf -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes "wfdeploy@$WF_HOST" "${{ inputs.modo }}" < paquete.tgz
+          ssh -i ~/.ssh/wf -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes "wfdeploy@$WF_HOST" "${{ inputs.modo }}" < paquete.tgz | tee salida.txt
+
+      - name: Resultado
+        if: always()
+        run: |
+          {
+            if grep -q "^PUBLICADO" salida.txt 2>/dev/null; then echo "## ✅ Publicado: la página ya cambió"; echo "https://andromedaweb.store/wayfinder/"
+            elif grep -q "^PRUEBA OK" salida.txt 2>/dev/null; then echo "## ⚠️ Solo prueba: la página NO cambió"; echo "Pasó todo. Para cambiar la página, volvé a correrlo con modo **publicar**."
+            else echo "## ❌ No se publicó"; echo "Mirá el paso que quedó en rojo. La página sigue como estaba."; fi
+            echo; echo "Pantalla incluida: ${{ inputs.pantalla }}"
+          } >> "$GITHUB_STEP_SUMMARY"
