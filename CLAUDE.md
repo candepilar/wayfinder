@@ -53,8 +53,9 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 
 - **26/09 — Cande decide el rol de Bob: revisión TÉCNICA de sitios web.** Bob no se
   ocupa de decisiones de producto ni de resumir contenido: revisa y mejora lo técnico
-  (seguridad frente a ataques, velocidad/optimización y calidad del código) y escribe
-  el arreglo de cada problema. **Accesibilidad queda descartada** (reemplaza la idea
+  (seguridad frente a ataques, velocidad/optimización y calidad del código) ~~y escribe
+  el arreglo de cada problema~~ → **26/09, Franco: la revisión NO devuelve arreglos**,
+  solo el diagnóstico (problema, gravedad, prueba textual y riesgo). **Accesibilidad queda descartada** (reemplaza la idea
   "Rampa" de `PLAN.md`). La revisión es **pasiva**: solo lo que ve cualquier visitante;
   nada de pruebas de ataque contra sitios ajenos. Pruebas de ataque reales, solo
   contra un sitio nuestro. Orden: seguridad (hecha el 26/09) → velocidad → código.

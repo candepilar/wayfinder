@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 04:00 — Claude de Franco — ✂️ LA REVISIÓN YA NO DEVUELVE ARREGLOS
+**Hice:** Franco decidió que Bob **no devuelva los arreglos**: solo diagnóstico (problema, gravedad, prueba textual y riesgo). Saqué `arreglo` y `codigo` del pedido a Bob y del resultado; si Bob los manda igual, no se guardan (hay test). Actualicé `CLAUDE.md` → Decisiones y `motor/README.md`. Probado otra vez con la evidencia de Rosario: 12 hallazgos, 0 descartados, Bob no mandó arreglos, USD 0,015. 11/11 tests.
+**Quedó a medias:** lo mismo de la nota de 03:40 (pantalla en el visor, VPS, velocidad, código, paralelo). Ojo con mi propuesta de pantalla: ya no hay "código para copiar".
+**No tocar:** `motor/src/seguridad.mjs`, `motor/src/bob.mjs`, `motor/src/crawler.mjs`.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-26 03:40 — Claude de Franco — 🛡️ BOB YA HACE REVISIÓN DE SEGURIDAD
 **Hice:** Franco me pasó tu decisión, Cande: Bob se dedica a lo técnico (seguridad, optimización, código) y no a decisiones de producto; accesibilidad descartada. Quedó anotada en `CLAUDE.md` → Decisiones. Arranqué por **seguridad** y anda de punta a punta:
 - El motor junta evidencia **pasiva** de cada página (cabeceras, cookies sin su valor, scripts, formularios, iframes, certificado, https, security.txt). Nada de ataques.

@@ -86,7 +86,8 @@ Cómo funciona, en tres pasos:
    No se prueban ataques, no se buscan archivos ocultos, no se envían formularios.
 2. **Bob revisa** (`securityPrompt`): con la evidencia como datos no confiables,
    devuelve hallazgos con severidad (alta/media/baja con criterio escrito en el
-   prompt), riesgo en lenguaje simple, arreglo y código listo para copiar.
+   prompt) y riesgo en lenguaje simple. **No devuelve arreglos ni código**
+   (decisión de Franco, 26/09): aunque Bob los mande, `verifyFindings` no los guarda.
 3. **Control anti-invento** (`verifyFindings`): cada hallazgo tiene que citar un
    fragmento que exista TEXTUAL en la evidencia (sin importar mayúsculas, comillas
    ni espacios). Lo que no se puede probar va a `descartados_por_falta_de_prueba`
