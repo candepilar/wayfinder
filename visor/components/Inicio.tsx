@@ -10,23 +10,37 @@ export default function Inicio({ onAbrir }: { onAbrir: (mapa: WebMap) => void })
   const [url, setUrl] = useState("");
   useEffect(() => { try { const raw=new URLSearchParams(window.location.search).get('sitio'); if(raw){const u=new URL(raw);if(['http:','https:'].includes(u.protocol)&&!u.username&&!u.password)setUrl(u.href);} } catch {} }, []);
   const [error, setError] = useState<string | null>(null);
+  const [mapas, setMapas] = useState<WebMap[]>([]);
+  const [buscando, setBuscando] = useState(false);
 
-  const mapas = listarMapas();
+  // Los mapas los tiene el motor. Si no contesta, `listarMapas` deja el escaneo
+  // commiteado, asi que la pantalla nunca queda vacia por una caida.
+  useEffect(() => {
+    let vivo = true;
+    listarMapas().then((m) => {
+      if (vivo) setMapas(m);
+    });
+    return () => {
+      vivo = false;
+    };
+  }, []);
 
-  function analizar(e: React.FormEvent) {
+  async function analizar(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    setBuscando(true);
 
-    const mapa = buscarMapaPorUrl(url);
+    const mapa = await buscarMapaPorUrl(url);
+    setBuscando(false);
+
     if (mapa) {
       onAbrir(mapa);
       return;
     }
 
-    // Mientras no exista el crawler, decirlo es mejor que mostrar el ejemplo
-    // como si fuera el sitio pedido: un dato falso disfrazado de real hace
-    // perder mas tiempo del que ahorra.
-    setError("Todavía no hay un mapa de este sitio. El crawler está en construcción.");
+    // Decirlo es mejor que mostrar otro mapa como si fuera el sitio pedido: un
+    // dato falso disfrazado de real hace perder mas tiempo del que ahorra.
+    setError("Todavía no hay un mapa de este sitio. Se crea con un recorrido del motor.");
   }
 
   return (
@@ -61,10 +75,10 @@ export default function Inicio({ onAbrir }: { onAbrir: (mapa: WebMap) => void })
             />
             <button
               type="submit"
-              disabled={!url.trim()}
+              disabled={!url.trim() || buscando}
               className="shrink-0 rounded-lg bg-acento px-4 py-2 text-sm font-medium text-acento-tinta transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-25"
             >
-              Abrir
+              {buscando ? "Buscando…" : "Abrir"}
             </button>
           </div>
         </form>
@@ -78,6 +92,7 @@ export default function Inicio({ onAbrir }: { onAbrir: (mapa: WebMap) => void })
           </p>
         )}
 
+        {mapas.length > 0 && (
         <section className="mt-12">
           <h2 className="mb-3 px-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-tinta-suave">
             Mapas listos
@@ -90,6 +105,7 @@ export default function Inicio({ onAbrir }: { onAbrir: (mapa: WebMap) => void })
             ))}
           </ul>
         </section>
+        )}
       </main>
     </div>
   );

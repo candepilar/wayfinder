@@ -1,34 +1,45 @@
 /**
  * Los mapas que tenemos a mano.
  *
- * Hoy es un escaneo REAL commiteado en `demo/rosario/`, hecho por el motor:
- * 20 paginas de rosario.gob.ar con su revision de seguridad. Nada inventado.
+ * Primero se le piden al motor, que es donde estan los escaneos de verdad y el
+ * unico que puede hacer uno nuevo. Si el motor no contesta queda el escaneo REAL
+ * commiteado en `demo/rosario/`: 20 paginas de rosario.gob.ar con su revision de
+ * seguridad. Nada inventado, ni aca ni alla.
  *
- * Se importa en vez de pedirlo por red a proposito: que la demo no dependa de
- * que el motor este levantado ni de crawlear en vivo delante de nadie. Cuando
- * el visor hable con la API, esto se cambia por un fetch y no hay que tocar
- * ninguna pantalla: afuera solo se ven `listarMapas()` y `buscarMapaPorUrl()`.
+ * Ese respaldo existe para que la demo no dependa de que el motor este levantado.
+ * Es el mismo criterio de antes, con una diferencia importante: ahora cuando el
+ * motor SI esta, se ve lo que el motor tiene.
+ *
+ * Afuera se siguen viendo solo `listarMapas()` y `buscarMapaPorUrl()`.
  */
 
+import { Guardado, api } from "./motor";
 import { WebMap } from "./tipos";
 
 import rosario from "../../demo/rosario/mapa-rosario.json";
 
-const MAPAS: WebMap[] = [rosario as unknown as WebMap];
+const COMMITEADO: WebMap[] = [rosario as unknown as WebMap];
 
-export function listarMapas(): WebMap[] {
-  return MAPAS;
+export async function listarMapas(): Promise<WebMap[]> {
+  try {
+    const guardados = await api<Guardado[]>("/mapas");
+    if (guardados.length) return guardados.map((g) => g.mapa);
+  } catch {
+    // El motor no esta levantado. No es un error para mostrar: hay con que seguir.
+  }
+  return COMMITEADO;
 }
 
 /**
  * Compara por dominio y no por URL exacta: nadie escribe a mano
  * "https://sitio.com/" con la barra final, y pedirlo seria una trampa tonta.
  */
-export function buscarMapaPorUrl(entrada: string): WebMap | null {
+export async function buscarMapaPorUrl(entrada: string): Promise<WebMap | null> {
   const dominio = dominioDe(entrada);
   if (!dominio) return null;
 
-  return MAPAS.find((m) => dominioDe(m.sitio.url) === dominio) ?? null;
+  const mapas = await listarMapas();
+  return mapas.find((m) => dominioDe(m.sitio.url) === dominio) ?? null;
 }
 
 function dominioDe(entrada: string): string | null {
