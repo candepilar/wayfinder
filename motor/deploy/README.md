@@ -103,3 +103,37 @@ y datos. No restaurar ciegamente el vhost antiguo si hubo otros cambios posterio
 
 El `nginx -t` previo ya informaba advertencias por vhosts de respaldo duplicados
 y un MIME repetido; no forman parte de esta modificación y no se alteraron.
+
+## Publicar desde GitHub, sin acceso al servidor (26/09/2026)
+
+Pedido de Franco: que Cande (o su Claude) pueda publicar sin tener acceso al VPS.
+
+**Cómo se usa:** GitHub → pestaña *Actions* → *Publicar en el servidor* → *Run workflow*.
+Desde Claude: `gh workflow run publicar.yml -f modo=probar` (o `-f modo=publicar`).
+- `probar` (por defecto): arma la versión en el VPS y corre las pruebas, **sin activarla**.
+- `publicar`: además la activa. Si la página no arranca, vuelve sola a la anterior.
+- `pantalla: true`: publica también `visor/out`. Requiere que `visor/next.config.mjs`
+  exporte estático con basePath `/wayfinder`; si no, falla antes de tocar el servidor.
+  Sin esa opción se conserva la pantalla publicada tal cual (incluida la descarga
+  de la extensión en `public/extension/`).
+
+**Qué puede hacer la llave:** nada más que esto. Cómo está armado:
+- Usuario `wfdeploy` sin contraseña. En su `authorized_keys` la llave tiene
+  `restrict,command="sudo -n /usr/local/sbin/wayfinder-publicar <modo>"`: no abre
+  consola, no reenvía puertos y siempre corre ese único programa.
+- `/etc/sudoers.d/wfdeploy` permite solo `wayfinder-publicar publicar` y `… probar`.
+- La llave privada vive **solo** en el secreto `WF_DEPLOY_KEY` de GitHub (también
+  `WF_KNOWN_HOSTS` con la huella verificada del VPS y `WF_HOST`). No está en ninguna PC.
+- `wayfinder-publicar` (copia en `motor/deploy/wayfinder-publicar.sh`) recibe el
+  paquete por stdin, acepta solo `./motor/…` y `./public/…` (sin rutas absolutas,
+  `..` ni enlaces, máx. 40 MB), copia la versión activa, reemplaza `motor/src`,
+  `test`, `package.json` y `package-lock.json` (reinstala dependencias solo si
+  cambió el lock), corre `npm test` con Node 24 y recién ahí cambia el enlace
+  `current` y reinicia **solo** `wayfinder`. No toca `/etc/wayfinder.env` (la clave
+  de Bob sigue ahí), ni nginx, ni el bot, ni la API de Andrómeda.
+- Una publicación por vez (lock). Registro en `/var/log/wayfinder-publicar.log`.
+  Se conservan las últimas 5 versiones `releases/gh-*`; las otras no se borran.
+
+**Para sacar el acceso:** borrar `/var/lib/wfdeploy/.ssh/authorized_keys` en el VPS
+(o el secreto en GitHub). Para cambiar la llave: generar otra, poner la pública en
+ese archivo con el mismo prefijo `restrict,command=…` y la privada en el secreto.

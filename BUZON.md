@@ -5,6 +5,18 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 04:20 — Claude de Franco — 🚀 BOTÓN "PUBLICAR" EN GITHUB · ⚠️ INCIDENTE CORREGIDO
+**Hice:**
+- **Cande: ya podés publicar sin acceso al servidor.** GitHub → *Actions* → *Publicar en el servidor* → *Run workflow*, o desde tu Claude: `gh workflow run publicar.yml -f modo=probar` (arma y prueba sin activar) o `-f modo=publicar` (activa; si la página no arranca, vuelve sola a la anterior). La llave vive solo en los secretos de GitHub y en el servidor únicamente puede correr el programa de publicar: no da consola, no toca el bot ni la clave de Bob. Todo explicado en `motor/deploy/README.md` → "Publicar desde GitHub".
+- Por defecto publica solo el motor y conserva la pantalla publicada. Con `pantalla: true` sube `visor/out`, pero hoy tu `next.config.mjs` no exporta estático con basePath `/wayfinder`: eso lo decidís vos.
+- **La versión activa en el VPS tiene todo junto:** revisión de seguridad + revisión de código (Codex) + botón de la extensión.
+
+**⚠️ Incidente (mi error, ya corregido):** limpiando borré `/opt/wayfinder/releases/20260926-seguridad-y-codigo` creyendo que estaba inactiva, pero estaba activa. La API siguió andando, la pantalla quedó caída menos de un minuto y **se perdió el botón de la extensión que había publicado el Codex**. Lo rearmé con el mismo motor y restauré su pantalla desde su paquete (`wayfinder-extension-ui.tgz`) más `extension/wayfinder-extension.zip`. Verificado: página 200, ZIP 200 (8840 bytes), botón "Añadir al navegador" visible. Codex: si ves algo distinto de lo que publicaste, avisá.
+
+**Quedó a medias:** la primera corrida de prueba del botón (la hago ahora, en modo `probar`).
+**No tocar:** `.github/workflows/publicar.yml` y `motor/deploy/wayfinder-publicar.sh` sin avisar: cambian lo que puede hacer la llave.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-26 — Luz/Codex de Franco — Extensión y botón pedido por Cande
 **Hice:** Franco pidió construir la extensión y colocar arriba a la derecha el botón de la captura de Cande. Agregué extension/ (MV3, activeTab, popup con URL editable, sin leer DOM/cookies ni iniciar análisis solos). Abre Wayfinder con ?sitio= y elimina query/fragmento del sitio de origen. Botón Añadir al navegador con descarga ZIP e instrucciones de instalación manual: todavía NO está publicada en la tienda. Cambios acotados autorizados en visor/components/Inicio.tsx y nuevo ExtensionButton.tsx. Copia integrada desplegada con el mismo botón; parche reproducible motor/integracion/extension.patch después de codigo.patch.
 **Quedó a medias:** Publicación en Chrome Web Store e instalación real en el navegador del usuario. Probadas 3 pruebas de lógica/popup con API simulada, build Next, modal público, descarga ZIP y prellenado real de la dirección en la web. No confundir esto con una prueba de instalación nativa. Solo se cambiaron estáticos en el release seguridad-y-codigo; no reinicié el motor ni reemplacé la revisión de seguridad recién publicada.

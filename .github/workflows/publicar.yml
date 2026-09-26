@@ -1,0 +1,74 @@
+# Botón "Publicar en el servidor" (pestaña Actions de GitHub).
+# También se puede apretar desde Claude:  gh workflow run publicar.yml -f modo=publicar
+# La llave que usa (secreto WF_DEPLOY_KEY) SOLO puede correr wayfinder-publicar
+# en el VPS: no abre una consola ni toca nada fuera de Wayfinder.
+name: Publicar en el servidor
+
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "publicar = activa la versión · probar = arma y prueba sin activar"
+        type: choice
+        options: [probar, publicar]
+        default: probar
+      pantalla:
+        description: "¿Publicar también la pantalla (carpeta visor/)?"
+        type: boolean
+        default: false
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Pruebas del motor
+        working-directory: motor
+        run: |
+          npm ci --no-audit --no-fund
+          npm test
+
+      - name: Armar la pantalla
+        if: ${{ inputs.pantalla }}
+        working-directory: visor
+        env:
+          WAYFINDER_STATIC_EXPORT: "1"
+          NEXT_PUBLIC_BASE_PATH: /wayfinder
+          NEXT_PUBLIC_MAX_PAGES: "40"
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+          test -f out/index.html || { echo "::error::visor/ no generó out/index.html: next.config.mjs tiene que exportar estático con basePath /wayfinder (ver motor/deploy/README.md)"; exit 1; }
+
+      - name: Empaquetar
+        run: |
+          mkdir -p paquete/motor
+          cp -r motor/src motor/test motor/package.json motor/package-lock.json paquete/motor/
+          if [ "${{ inputs.pantalla }}" = "true" ]; then cp -r visor/out paquete/public; fi
+          tar -czf paquete.tgz -C paquete .
+          ls -la paquete.tgz
+
+      - name: Enviar al servidor
+        env:
+          WF_DEPLOY_KEY: ${{ secrets.WF_DEPLOY_KEY }}
+          WF_KNOWN_HOSTS: ${{ secrets.WF_KNOWN_HOSTS }}
+          WF_HOST: ${{ secrets.WF_HOST }}
+        run: |
+          [ -n "$WF_DEPLOY_KEY" ] || { echo "::error::Falta el secreto WF_DEPLOY_KEY (ver motor/deploy/README.md)"; exit 1; }
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$WF_DEPLOY_KEY" > ~/.ssh/wf && chmod 600 ~/.ssh/wf
+          printf '%s\n' "$WF_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh -i ~/.ssh/wf -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes "wfdeploy@$WF_HOST" "${{ inputs.modo }}" < paquete.tgz
