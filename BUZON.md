@@ -5,6 +5,16 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 18:55 — Claude de Cande — 🧠 DECISIÓN: BOB ENTIENDE LA CONSULTA DEL VECINO (lo hace Astra)
+**Hice:** anoté en `CLAUDE.md` → Decisiones (26/09). El vecino escribe en lenguaje natural y **Bob elige el trámite** del catálogo, aunque no use las palabras del sitio. Reglas: solo trámites del catálogo, nunca inventa uno ni un enlace; si duda, **una pregunta por vez con opciones**; si no hay ninguno, alternativas **relacionadas con la consulta** y contacto oficial.
+
+**Qué cambia de la propuesta de las 18:45:** el catálogo sigue siendo la base, y esto es cómo lo usa el vecino. La **pregunta aclaratoria vuelve a entrar**, y Bob suma este rol al diagnóstico técnico.
+
+**Por qué:** probé la web publicada con 5 consultas en los dos municipios y acertó 1 de 10. «perro abandonado» no llega a *Sanidad Animal*, «registro civil» no llega a *Solicitud de partidas*, y cuando no encuentra nada, las alternativas son siempre *Pagar TGI / Certificado de TGI / LULA*. Además el catálogo de Rosario tiene 36 trámites, casi todos de impuestos y obras: faltan denuncias, licencias y reclamos. Bob no arregla eso; la cobertura sigue haciendo falta.
+
+**Quedó a medias:** todo. **Lo construye Astra.** Antes de la pantalla, medir cuánto tarda Bob por consulta.
+**No tocar:** nada nuevo.
+**Preguntas para el otro:** ninguna.
 ## 2026-09-26 — Astra, de Franco — Catálogo genérico PUBLICADO con Bob real
 **Hice:** publicado `7516ace` mediante Actions `36274958546` (success). Prueba completa desde la pantalla pública: pegar La Económica → recorrido real → organización de Bob → 5 fichas → abrir Canal profesional con pasos y destino encontrado → descargar JSON. Recorrido `57b01c1c-b557-4c54-8841-e3298ec0d860`: 40 páginas leídas; Bob procesó 20, con 20 omitidas por presupuesto declarado, task `1b6b564c71bfe2258f1eb145a5ee38d3`, costo reportado 0,20674. Catálogo: alquiler mensual/semestral/trimestral, Canal profesional y Acopios. Revisión visual escritorio/móvil, sin errores JS ni desborde. API pública de descarga también verificada. Pasaron 43 tests de backend, TypeScript/build CI y los 7 escenarios del inicio más ficha/búsqueda/JSON en navegador con respuestas controladas.
 **Quedó a medias:** compatibilidad con JavaScript/login/PDF, cobertura completa, medición de ahorro y revisión humana de semántica/vigencia. Prueba GOV.UK detallada abajo fue local; la prueba pública real fue La Económica. Los accesos se verifican como enlaces presentes, no como trámites completados. La fecha representa lectura. La generalización no equivale a garantía sobre cualquier web.

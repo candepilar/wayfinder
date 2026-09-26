@@ -51,6 +51,18 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 
 ## Decisiones
 
+- **26/09 — Cande decide: Bob también entiende la consulta del vecino.** La persona
+  escribe en lenguaje natural («me estacionaron un auto en la puerta del garage») y Bob
+  elige el trámite que corresponde, aunque no use las palabras del sitio. Amplía el rol
+  de Bob (ver la decisión de abajo sobre revisión técnica, que sigue vigente). Reglas:
+  - Bob **solo elige entre los trámites del catálogo**; nunca inventa uno ni un enlace.
+  - Si duda entre varios, hace **una pregunta por vez, con opciones**.
+  - Si no hay ninguno, dice que no lo encontró y ofrece alternativas **relacionadas con
+    la consulta** y el contacto oficial.
+  - Pendiente: medir cuánto tarda Bob por consulta antes de construir la pantalla.
+  - **Lo construye Astra.**
+  Esto no reemplaza la cobertura: si el trámite no está en el catálogo, Bob no puede
+  llevar a él.
 - **26/09 — Franco pide generalizar por URL y usar Bob (Astra).** Se incorpora un
   catálogo genérico por sitio. Bob puede organizar gestiones seleccionando bloques
   y enlaces de la evidencia extraída, con validación de IDs, fuente/fecha, omisiones
@@ -94,7 +106,8 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
   Quién hace qué: el motor lo hace la conversación **Utilidad** de Cande (toca
   `motor/src/crawler.mjs`, que es de Franco); la pantalla, la conversación **Frontend**.
 
-- **26/09 — Cande decide el rol de Bob: revisión TÉCNICA de sitios web.** Bob no se
+- **26/09 — Cande decide el rol de Bob: revisión TÉCNICA de sitios web.** (Ampliado
+  arriba: además entiende la consulta del vecino.) Bob no se
   ocupa de decisiones de producto ni de resumir contenido: revisa y mejora lo técnico
   (seguridad frente a ataques, velocidad/optimización y calidad del código) ~~y escribe
   el arreglo de cada problema~~ → **26/09, Franco: la revisión NO devuelve arreglos**,
