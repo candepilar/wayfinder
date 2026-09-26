@@ -9,7 +9,7 @@ const map={sitio:catalog.sitio,paginas:[{id:'f1',url:ficha.fuente,titulo:ficha.n
  try {
   const page=await browser.newPage({viewport:{width:390,height:844},acceptDownloads:true});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.route('**/api/motor/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify([{id:'catalog-test',mapa:map}])}));
+  await page.route('**/api/motor/**',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(r.request().url().endsWith('/asistente/sitios')?{disponible:true,sitios:[]}:[{id:'catalog-test',mapa:map}])}));
   await page.goto(process.argv[2]||'http://127.0.0.1:3001/');
   await page.getByLabel('Dirección del sitio').fill('library.example.org');await page.getByRole('button',{name:'Abrir',exact:true}).click();
   await page.getByRole('heading',{name:'Biblioteca',exact:true}).waitFor();

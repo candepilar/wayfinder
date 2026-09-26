@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import ExtensionButton from './ExtensionButton';
+import Asistente from './Asistente';
 
 import { buscarMapaPorUrl, listarMapas } from "@/lib/mapas";
 import { WebMap } from "@/lib/tipos";
@@ -172,6 +173,8 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
             <button onClick={() => onMunicipio('vgg')} className="rounded-lg border border-linea bg-superficie px-4 py-3 text-sm font-medium text-tinta hover:border-acento-borde">Villa Gobernador Gálvez →</button>
           </div>
         </section>}
+
+        <Asistente />
 
         {mapas.length > 0 && (
         <section className="mt-12">

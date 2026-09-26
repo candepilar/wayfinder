@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { api } from "@/lib/motor";
+import Asistente from './Asistente';
 
 type Section = { tipo: string; titulo: string; texto: string; items: string[]; fuente: string; bloques?: { tipo: "item" | "parrafo" | "subtitulo"; texto: string }[] };
 type Choice = { id: string; nombre: string; url?: string };
@@ -66,6 +67,9 @@ export default function Municipal({ municipio, onVolver }: { municipio: string; 
       {error && <p role="alert" className="mb-5 rounded-xl border border-linea p-4 text-sm">{error} <button className="ml-2 underline" onClick={() => window.location.reload()}>Reintentar</button></p>}
       {mode === "vecino" ? <>
         <div className="max-w-2xl"><p className="mb-2 text-xs font-medium uppercase tracking-widest text-acento">Del “¿dónde voy?” al próximo paso</p><h2 className="text-3xl font-semibold tracking-tight">¿Qué necesitás hacer?</h2><p className="mt-3 text-tinta-media">Encontrá el trámite, revisá lo que necesitás y continuá en el portal oficial con esta guía a mano.</p></div>
+        <Asistente contexto={`municipio:${municipio}`} nombre={catalog?.nombre || municipio} />
+        <details className="mt-7 rounded-xl border border-linea p-5">
+        <summary className="cursor-pointer text-sm font-medium">Explorar fichas del municipio sin conversar</summary>
         <form className="mt-7 flex max-w-3xl gap-2 rounded-xl border border-linea bg-superficie p-2 shadow-panel" onSubmit={e => { e.preventDefault(); void ask(question); }}>
           <label className="sr-only" htmlFor="consulta-municipal">Qué trámite necesitás</label>
           <input id="consulta-municipal" value={question} maxLength={1000} onChange={e => setQuestion(e.target.value)} placeholder="Por ejemplo: necesito el carnet de conducir" className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm outline-none" />
@@ -88,7 +92,8 @@ export default function Municipal({ municipio, onVolver }: { municipio: string; 
             </aside>
           </div>}
         </div>
-        {catalog && <p className="mt-10 max-w-3xl text-xs leading-relaxed text-tinta-suave">{catalog.tramites.length} fichas detectadas · Cobertura {catalog.cobertura.estado} · Consultado {new Date(catalog.revisado_en).toLocaleString("es-AR")}. Información extraída de fuentes oficiales; verificá vigencia y condiciones en la ficha. Esta demostración no es un servicio municipal oficial. No guardamos tu consulta.</p>}
+        </details>
+        {catalog && <p className="mt-10 max-w-3xl text-xs leading-relaxed text-tinta-suave">{catalog.tramites.length} fichas detectadas · Cobertura {catalog.cobertura.estado} · Consultado {new Date(catalog.revisado_en).toLocaleString("es-AR")}. Información extraída de fuentes oficiales; verificá vigencia y condiciones en la ficha. Esta demostración no es un servicio municipal oficial.</p>}
       </> : <Technical diagnostic={diagnostic} total={catalog?.tramites.length || 0} />}
     </main>
   </div>;

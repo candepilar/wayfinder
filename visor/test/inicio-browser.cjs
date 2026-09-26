@@ -20,6 +20,7 @@ const map = {
       await page.route('**/api/motor/**', async route => {
         const req = route.request(), pathname = new URL(req.url()).pathname;
         const reply = (json, status = 200) => route.fulfill({status, contentType: 'application/json', body: JSON.stringify(json)});
+        if (pathname.endsWith('/asistente/sitios')) return reply({disponible:true,sitios:[]});
         if (pathname.endsWith('/mapas')) return reply(scenario === 'saved' ? [{id: 'saved', mapa: map}] : []);
         if (pathname.endsWith('/recorridos') && req.method() === 'POST') {
           starts++;

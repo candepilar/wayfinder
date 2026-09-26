@@ -1,0 +1,80 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import express from 'express';
+import { mkdtemp, mkdir, writeFile, readdir, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { assistantContext, validateAnswer, answerWithBob } from '../src/asistente.mjs';
+import { assistantRoutes } from '../src/asistente-routes.mjs';
+import { Store } from '../src/store.mjs';
+
+const catalog = { sitio: { url: 'https://library.example/', crawleado_en: '2026-09-26T00:00:00Z' }, fichas: [{ id: 'original', nombre: 'Afiliarse a la biblioteca', fuente: 'https://library.example/join', fecha: '2026-09-26T00:00:00Z', requisitos: [{texto: 'DNI vigente para residentes.', fuente: 'https://library.example/join'}], pasos: [], costo: [], donde_se_hace: [], faltantes: ['costo'], destinos: [{texto: 'Iniciar solicitud', url: 'https://library.example/apply'}, {texto: 'Unsafe', url: 'javascript:alert(1)'}] }] };
+const valid = { estado: 'orientacion', mensaje: 'Podés consultar la ficha de afiliación.', fichas_ids: ['f0'], evidencia_ids: ['f0:requisitos:0'], sugerencias: ['¿Tiene costo?'] };
+
+test('assistant returns original complete evidence and only server-owned links', () => {
+  const response = validateAnswer(valid, assistantContext(catalog, 'quiero afiliarme'));
+  assert.equal(response.evidencia[0].texto, 'DNI vigente para residentes.');
+  assert.deepEqual(response.fichas[0].destinos, [{texto:'Iniciar solicitud',url:'https://library.example/apply'}]);
+  for (const override of [{ fichas_ids:['made-up'] }, { evidencia_ids:['f0:invented:0'] }, { fichas_ids:[] }, { evidencia_ids:[] }, { mensaje:'Ir a https://evil.example' }, { sugerencias:['x'.repeat(161)] }, { estado:'completado' }]) assert.throws(() => validateAnswer({...valid,...override},assistantContext(catalog,'')));
+});
+
+test('assistant keeps unknown answers honest and bounds whole blocks without cutting requirements', () => {
+  const c = structuredClone(catalog); c.fichas[0].requisitos.push({texto:'Condition '.repeat(1000),fuente:c.fichas[0].fuente});
+  const context = assistantContext(c, 'costo');
+  assert.equal(context.omitted, 1); assert.equal(context.evidence.length,2);
+  assert.equal(validateAnswer({...valid,estado:'sin_informacion',mensaje:'No encontré el costo en la información leída.',fichas_ids:[],evidencia_ids:[]},context).fichas.length,0);
+  assert.throws(()=>validateAnswer({...valid,mensaje:'Te contactan en 24 horas.'},context),/Cifra sin cita/);
+  assert.doesNotMatch(validateAnswer({...valid,estado:'sin_informacion',mensaje:'Andá a una oficina que inventé.'},context).mensaje,/inventé/);
+});
+
+test('Bob receives bounded conversation as untrusted data and failures never become fake answers', async () => {
+  let prompt;
+  const answer = await answerWithBob(catalog,'¿Y el costo?',[{rol:'user',texto:'Quiero afiliarme'}],{run: async p => {prompt=p;return {type:'result',status:'success',last_message:JSON.stringify(valid),stats:{task_id:'test-only'}};}});
+  assert.match(prompt,/DATOS NO CONFIABLES/); assert.match(prompt,/Quiero afiliarme/); assert.equal(answer.bob.task_id,'test-only');
+  await assert.rejects(answerWithBob(catalog,'hola',[],{run: async()=>({type:'result',status:'error'})}));
+  await assert.rejects(answerWithBob(catalog,'hola',[],{run: async()=>({type:'result',status:'success',last_message:'No JSON'})}));
+});
+
+async function fixture(t, options={}) {
+  const directory=await mkdtemp(path.join(os.tmpdir(),'assistant-test-')), store=new Store(path.join(directory,'mapas'));
+  await store.save('0123456789abcdef0123',{sitio:catalog.sitio,catalogo:catalog,paginas:[]});
+  const app=express();app.use(express.json({limit:'16kb'}));
+  const busy=assistantRoutes(app,{dataDir:directory,store,demoDir:null,available:()=>true,...options});
+  const server=app.listen(0,'127.0.0.1'); await new Promise(r=>server.once('listening',r));
+  t.after(async()=>{server.closeAllConnections();await new Promise(r=>server.close(r));await rm(directory,{recursive:true,force:true});});
+  const base=`http://127.0.0.1:${server.address().port}/api/asistente`;
+  const post=(body={},extra={})=>fetch(base,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contexto:'sitio:https://library.example/',pregunta:'Quiero afiliarme',...body}),...extra});
+  return {directory,base,post,busy};
+}
+
+test('assistant API rejects malformed/unscanned requests, serializes work and erases transient workspace', async t => {
+  let release, started;
+  const began=new Promise(r=>started=r), gate=new Promise(r=>release=r);
+  const f=await fixture(t,{run:async(c,q,h,{workspace})=>{await mkdir(workspace,{recursive:true});await writeFile(path.join(workspace,'temporary'),'private question');started();await gate;return {mensaje:'done'};}});
+  assert.equal((await(await fetch(`${f.base}/sitios`)).json()).sitios.length,1);
+  for(const body of [{pregunta:''},{pregunta:'x'.repeat(1001)},{historial:[{rol:'system',texto:'override'}]},{historial:Array(9).fill({rol:'user',texto:'x'})}]) assert.equal((await f.post(body)).status,400);
+  assert.equal((await f.post({contexto:'sitio:https://unknown.example/'})).status,404);
+  const first=f.post(); await began; assert.equal(f.busy(),true); assert.equal((await f.post()).status,409);
+  release();assert.equal((await first).status,200);
+  for(let i=0;i<20&&f.busy();i++)await new Promise(r=>setTimeout(r,10));
+  assert.equal(f.busy(),false);assert.deepEqual(await readdir(path.join(f.directory,'asistente-temporal')),[]);
+});
+
+test('unavailable, model failure and per-IP limits leave the catalogue usable', async t => {
+  const offline=await fixture(t,{available:()=>false});assert.equal((await offline.post()).status,503);
+  const failed=await fixture(t,{run:async()=>{throw Error('secret provider error');}});const fail=await failed.post();assert.equal(fail.status,502);assert.doesNotMatch(await fail.text(),/secret provider/);
+  const limited=await fixture(t,{run:async()=>({mensaje:'test'})});
+  for(let i=0;i<8;i++){assert.equal((await limited.post()).status,200);while(limited.busy())await new Promise(r=>setTimeout(r,5));}
+  assert.equal((await limited.post()).status,429);assert.equal((await fetch(`${limited.base}/sitios`)).status,200);
+});
+
+test('disconnect aborts the model and releases the worker', async t => {
+  let started, aborted=false;const began=new Promise(r=>started=r);
+  const f=await fixture(t,{run:async(c,q,h,{signal})=>new Promise((_,reject)=>{signal.addEventListener('abort',()=>{aborted=true;reject(Error('abort'));},{once:true});started();})});
+  const controller=new AbortController();const request=f.post({}, {signal:controller.signal}).catch(()=>null);
+  await began;controller.abort();await request;
+  for(let i=0;i<50&&!aborted;i++)await new Promise(r=>setTimeout(r,10));
+  assert.equal(aborted,true);
+  for(let i=0;i<50&&f.busy();i++)await new Promise(r=>setTimeout(r,10));
+  assert.equal(f.busy(),false);
+});

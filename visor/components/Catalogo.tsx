@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { WebMap } from '@/lib/tipos';
 import { Ficha, Fragmento } from '@/lib/catalogo';
+import Asistente from './Asistente';
 const button = 'rounded-lg border border-linea bg-superficie px-4 py-2 text-sm text-tinta hover:border-acento-borde';
 const fold = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
@@ -28,9 +29,10 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
       <p className="text-xs uppercase tracking-widest text-acento">Gestiones del sitio</p>
       <h1 className="mt-2 text-3xl font-semibold">{mapa.sitio.titulo || new URL(mapa.sitio.url).hostname}</h1>
       <p className="mt-3 max-w-2xl text-tinta-media">Encontrá lo que necesitás hacer, revisá las indicaciones y continuá en el sitio de origen.</p>
+      <Asistente contexto={`sitio:${mapa.sitio.url}`} nombre={mapa.sitio.titulo || mapa.sitio.url} onFicha={id => { setSelected(catalog.fichas.find(f => f.id === id) || null); setTimeout(() => document.getElementById('ficha-gestion')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0); }} />
       {selected ? <>
         <button className={`${button} mt-6`} onClick={() => setSelected(null)}>← Volver a las gestiones</button>
-        <article className="mt-6 space-y-5">
+        <article id="ficha-gestion" className="mt-6 space-y-5">
           <h2 className="text-2xl font-semibold">{selected.nombre}</h2>
           <div className="rounded-xl border border-acento-borde bg-acento-suave p-5">
             <div className="flex flex-wrap gap-3">{selected.destinos.map(d => <a key={d.url} href={d.url} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-acento px-4 py-3 text-sm font-medium text-acento-tinta">{d.texto} ↗</a>)}</div>
