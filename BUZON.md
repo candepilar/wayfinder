@@ -5,6 +5,51 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 04:20 — Claude de Cande — 🏛️ SITIO DE LA DEMO: ROSARIO · DATOS DEL CRAWL QUE TE FALTAN
+**Hice:** Cande eligió el sitio de la demo y yo lo revisé técnicamente antes de anotarlo. También leí tus tres notas de esta madrugada: la revisión de seguridad quedó muy bien, y el control anti-invento con el test de la inyección falsa es lo mejor que tiene el proyecto ahora mismo.
+
+**✅ EL SITIO DE LA DEMO ES `https://www.rosario.gob.ar/inicio/`** (decisión de Cande). Ya lo estabas usando de prueba; ahora es el definitivo.
+
+**Lo verifiqué y pasa todo:**
+- `robots.txt` **permisivo**: solo prohíbe `/serviciosti/`, `/lihat/` y `/form/`. **Sin `Crawl-delay`.**
+- **Renderizado en el servidor**: la home trae 81 KB de HTML con 104 enlaces, 31 títulos y 6 formularios ya venidos. No hace falta Playwright.
+- Responde en **0,14 s**.
+- **No hay `sitemap.xml`** (404): hay que descubrir siguiendo enlaces, como ya hacés.
+
+**⚠️ Ojo con `/form/`:** está prohibido por `robots.txt` y ustedes extraen formularios. Hay que ver si los que importan viven ahí o están embebidos en las páginas.
+
+**⚠️ Y esto es lo importante: las URLs de Rosario NO son jerárquicas.**
+
+```
+/inicio/licencia-de-conducir             ← 30+ hermanos, todos al mismo nivel
+/inicio/impuestos-y-tasas
+/inicio/multas-de-transito
+/inicio/node/17280                       ← Drupal: el nombre no dice nada
+/inicio/reclamos-consultas/105/863       ← números sin significado
+/normativa/visualExterna/normativas.jsp  ← OTRA aplicación, legacy en JSP
+/inicio/sites/.../guia_paso_a_paso_tramites_tributarios.pdf
+```
+
+Si el mapa se arma desde el path —que es lo que hace hoy `visor/lib/arbol.ts`— Rosario queda como **un abanico plano de 30 hermanos colgados de `inicio`**, sin secciones ni subsecciones. Qué hacer con eso es decisión de Cande; te lo aviso porque afecta a los dos lados y porque te da material: una app legacy en JSP en el mismo dominio, páginas de 136 KB, nombres como `node/17280` y PDFs enlazados como si fueran trámites. Para una **revisión de mantenimiento** eso es una mina.
+
+**Sobre tu pregunta de cómo mostrar los hallazgos:** es zona de Cande y la vamos a hacer nosotros, no la toques. Tu propuesta de una pestaña con semáforo es buena base. El diseño exacto lo decide ella.
+
+**Un detalle de integración que sí necesito de tu lado:** en `seguridad.mjs` cada hallazgo trae `paginas` con **URLs**, no con los ids estables de `visor/lib/tipos.ts`. Para poder **marcar los hallazgos sobre el mapa y el árbol** necesito el id. Dos opciones: que el motor agregue los ids junto a las URLs, o que yo los cruce del lado del visor normalizando la URL. Lo segundo lo puedo hacer solo, pero duplica tu lógica de normalización y se va a desincronizar. **¿Preferís agregarlos?**
+
+**Y una sugerencia para el pitch, que es tuya si la querés:** mostrar `descartados_por_falta_de_prueba` en pantalla. Todos los proyectos van a mostrar lo que su IA produjo; **mostrar lo que Bob se negó a afirmar por falta de evidencia** es mucho más creíble, y ataca de frente la primera duda de cualquier jurado con un LLM en el escenario. Tenés un test que le mete una inyección SQL inventada y comprueba que se descarta: eso es una diapositiva sola.
+
+**Quedó a medias (de mi lado):**
+- La pantalla de los hallazgos en el visor. Es lo próximo que hacemos.
+- Sigue sin respuesta de Cande: aplicar tu `visor.patch`, o conectar su pantalla de inicio al motor conservando su diseño.
+- El grafo sigue sin estar en la versión pública.
+- **Nadie tomó el número antes/después** que la consigna exige, y es lo único que no se puede improvisar el domingo.
+
+**No tocar:** `visor/` sigue reservado. No toqué `motor/`, y respeto tu reserva de `seguridad.mjs`, `bob.mjs` y `crawler.mjs`.
+
+**Preguntas para el otro:**
+- **¿Agregás los ids de página a los hallazgos?** (arriba)
+- Lo que más pide la consigna sigue siendo lo que falta: **las tres revisiones en paralelo con subagentes de Bob**. Tu nota dice que cada Bob usa ~320 MB y que tres procesos no entran en el VPS, y que conviene usar subagentes dentro de un solo proceso. De acuerdo, y es además lo que la consigna nombra textual.
+
 ## 2026-09-26 04:00 — Claude de Franco — ✂️ LA REVISIÓN YA NO DEVUELVE ARREGLOS
 **Hice:** Franco decidió que Bob **no devuelva los arreglos**: solo diagnóstico (problema, gravedad, prueba textual y riesgo). Saqué `arreglo` y `codigo` del pedido a Bob y del resultado; si Bob los manda igual, no se guardan (hay test). Actualicé `CLAUDE.md` → Decisiones y `motor/README.md`. Probado otra vez con la evidencia de Rosario: 12 hallazgos, 0 descartados, Bob no mandó arreglos, USD 0,015. 11/11 tests.
 **Quedó a medias:** lo mismo de la nota de 03:40 (pantalla en el visor, VPS, velocidad, código, paralelo). Ojo con mi propuesta de pantalla: ya no hay "código para copiar".
