@@ -47,15 +47,6 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-16">
       <div className="absolute right-6 top-6"><ExtensionButton /></div>
       <main className="w-full max-w-lg">
-        {onMunicipio && <section className="mb-10 rounded-xl border border-acento-borde bg-acento-suave p-5">
-          <p className="text-xs font-semibold uppercase tracking-wider text-tinta-suave">Nuevo · Orientación municipal</p>
-          <h2 className="mt-2 text-xl font-semibold text-tinta">Encontrá tu trámite y avanzá</h2>
-          <p className="mt-2 text-sm leading-relaxed text-tinta-media">Elegí tu municipio. Te orientamos con requisitos, pasos y acceso al sitio oficial.</p>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">
-            <button onClick={() => onMunicipio('rosario')} className="rounded-lg border border-linea bg-superficie px-4 py-3 text-sm font-medium text-tinta hover:border-acento-borde">Rosario →</button>
-            <button onClick={() => onMunicipio('vgg')} className="rounded-lg border border-linea bg-superficie px-4 py-3 text-sm font-medium text-tinta hover:border-acento-borde">Villa Gobernador Gálvez →</button>
-          </div>
-        </section>}
         <div className="mb-10 text-center">
           <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-linea bg-superficie shadow-panel">
             <IconoMapa />
@@ -100,6 +91,16 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
             {error}
           </p>
         )}
+
+        {onMunicipio && <section className="mt-10 rounded-xl border border-acento-borde bg-acento-suave p-5">
+          <p className="text-xs font-semibold uppercase tracking-wider text-tinta-suave">Nuevo · Orientación municipal</p>
+          <h2 className="mt-2 text-xl font-semibold text-tinta">Encontrá tu trámite y avanzá</h2>
+          <p className="mt-2 text-sm leading-relaxed text-tinta-media">Elegí tu municipio. Te orientamos con requisitos, pasos y acceso al sitio oficial.</p>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            <button onClick={() => onMunicipio('rosario')} className="rounded-lg border border-linea bg-superficie px-4 py-3 text-sm font-medium text-tinta hover:border-acento-borde">Rosario →</button>
+            <button onClick={() => onMunicipio('vgg')} className="rounded-lg border border-linea bg-superficie px-4 py-3 text-sm font-medium text-tinta hover:border-acento-borde">Villa Gobernador Gálvez →</button>
+          </div>
+        </section>}
 
         {mapas.length > 0 && (
         <section className="mt-12">

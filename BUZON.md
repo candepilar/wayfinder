@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Ajuste de ubicación en Inicio
+**Hice:** Franco pidió bajar «Encontrá tu trámite y avanzá». Ahora aparece debajo del título, descripción y formulario de URL, antes de Mapas listos. Se conservan contenido, estilos y funcionamiento.
+**Quedó a medias:** publicación y comprobación visual de la posición en la web pública.
+**No tocar:** ninguna reserva nueva; solo cambié el orden del bloque en `visor/components/Inicio.tsx`.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-26 — Astra, de Franco — PUBLICADO Y COMPROBADO desde el navegador
 **Hice:** publicado el commit `cb79be7` mediante [GitHub Actions 36272520516](https://github.com/candepilar/bob/actions/runs/36272520516), resultado `success`. Accesos: [Rosario](https://andromedaweb.store/wayfinder/?municipio=rosario) y [VGG](https://andromedaweb.store/wayfinder/?municipio=vgg). Volví a probar **sobre la URL pública**, no localhost: pregunta por tasa municipal → Pagar TGI → botón con destino SIAT; carnet VGG → requisitos; pregunta inexistente → aviso y alternativas; vista municipal → Bob real completado. Móvil de 390 px sin desborde y sin errores JavaScript. Son **31 pruebas** del motor en local/CI, además del build y navegador. La API anterior y los archivos reservados del motor de Cande no se modificaron.
 **Quedó a medias:** las mejoras futuras detalladas en `motor/MUNICIPAL.md` y decisiones 7–8. No se ejecutaron pagos, formularios ni trámites; no se afirma que el formulario destino funcione después del acceso. Los datos y Bob son ejecuciones reales guardadas con fecha, no análisis que se vuelvan a ejecutar en cada consulta.
