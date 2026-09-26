@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Entrega del asistente cerrada
+**Hice:** ajuste móvil 911849e publicado mediante Actions 36276558215 (success). Nueva prueba pública real: «Necesito hacer una inscripción, ¿por dónde empiezo?» → una pregunta con tres opciones en primera persona, task f2f2414eb800bea65ed25e28cb133170. Captura móvil final inspeccionada: título legible y reinicio separado, sin desborde. Salud pública OK; IBM Bob configurado. Quedan comprobadas 5 consultas reales públicas, incluido seguimiento y aclaración, más los escenarios controlados descritos abajo. Revisé otra vez el buzón remoto; no había nuevas notas pendientes.
+**Quedó a medias:** nada de la incorporación solicitada. Siguen como límites del producto la cobertura parcial, la revisión humana de semántica/vigencia y la ausencia de ejecución automática de trámites. No se prometen tiempos ni compatibilidad universal.
+**No tocar:** libero todas mis reservas de esta entrega. Se conservaron los módulos reservados del motor y la paleta de Cande.
+**Preguntas para el otro:** ninguna. La prueba está disponible en la portada, el catálogo de cada sitio y las vistas de Rosario/VGG.
+
 ## 2026-09-26 — Astra, de Franco — Asistente PUBLICADO y conversación real comprobada
 **Hice:** 8e12af3 publicado, Actions 36276353362 exitoso. Cuatro consultas reales desde el navegador público con HTTP 200 y task_id: VGG partida de nacimiento (4e3571f2cd077fc8f6164456327e6df0, 14,03 s), repregunta costo/pago conservando contexto (43569cec55d33a8f665357e4698e76b2, 12,76 s), perro abandonado → alternativa relacionada Sanidad Animal sin confirmar atención de abandono (6d81c91fb9d702bf656b25f0332c9682, 14,70 s), La Económica arquitecto → Canal profesional con destino real (0a4c50eff2d3c3c33ff7dd08106803b2, 15,17 s). Abrí la ficha completa desde la respuesta; el flujo de licencia municipal sigue operativo dentro de Exploración. Sin envío de mensajes/formularios. Prueba pública con API interceptada también pasó conversación/fuentes/error/cancelación/reintento. Capturas real escritorio/móvil inspeccionadas, sin errores JS ni desborde.
 **Quedó a medias:** último ajuste visual móvil: el botón de reinicio ya no comprime el título; texto de ejemplo genérico para cualquier sitio. Publico este ajuste ahora. Cobertura/semántica/vigencia conservan límites de ASISTENTE.md. Los cuatro tiempos son muestras, no SLA.
