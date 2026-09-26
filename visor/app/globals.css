@@ -11,58 +11,58 @@
  * nada resalta.
  */
 :root {
-  --fondo: #fbfbfc;
+  --fondo: #fdf5f8;
   --superficie: #ffffff;
-  --superficie-alta: #f3f3f5;
-  --linea: #e7e7eb;
-  --linea-fuerte: #d3d3da;
+  --superficie-alta: #faedf2;
+  --linea: #f2e1e8;
+  --linea-fuerte: #e2c5d1;
 
-  --tinta: #0e0e11;
-  --tinta-media: #56565f;
-  --tinta-suave: #8b8b95;
+  --tinta: #1a0e13;
+  --tinta-media: #6b5560;
+  --tinta-suave: #9c8891;
 
-  --acento: #4f46e5;
+  --acento: #be185d;
   --acento-tinta: #ffffff;
-  --acento-suave: rgba(79, 70, 229, 0.09);
-  --acento-borde: rgba(79, 70, 229, 0.3);
+  --acento-suave: rgba(190, 24, 93, 0.08);
+  --acento-borde: rgba(190, 24, 93, 0.3);
 
-  --sombra: 0 1px 2px rgba(16, 16, 20, 0.04), 0 4px 12px rgba(16, 16, 20, 0.04);
+  --sombra: 0 1px 2px rgba(80, 20, 45, 0.05), 0 4px 12px rgba(80, 20, 45, 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --fondo: #0a0a0c;
-    --superficie: #121216;
-    --superficie-alta: #1c1c22;
-    --linea: #26262d;
-    --linea-fuerte: #36363f;
+    --fondo: #120a0e;
+    --superficie: #1b1016;
+    --superficie-alta: #261720;
+    --linea: #33202b;
+    --linea-fuerte: #472e3c;
 
-    --tinta: #f6f6f8;
-    --tinta-media: #a2a2ac;
-    --tinta-suave: #6d6d77;
+    --tinta: #f9f5f7;
+    --tinta-media: #b4a3ab;
+    --tinta-suave: #7d6b74;
 
-    --acento: #8b8bf5;
-    --acento-tinta: #0a0a0c;
-    --acento-suave: rgba(139, 139, 245, 0.13);
-    --acento-borde: rgba(139, 139, 245, 0.32);
+    --acento: #f9a8d4;
+    --acento-tinta: #120a0e;
+    --acento-suave: rgba(249, 168, 212, 0.13);
+    --acento-borde: rgba(249, 168, 212, 0.32);
 
     --sombra: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 }
 
 :root[data-theme="dark"] {
-  --fondo: #0a0a0c;
-  --superficie: #121216;
-  --superficie-alta: #1c1c22;
-  --linea: #26262d;
-  --linea-fuerte: #36363f;
-  --tinta: #f6f6f8;
-  --tinta-media: #a2a2ac;
-  --tinta-suave: #6d6d77;
-  --acento: #8b8bf5;
-  --acento-tinta: #0a0a0c;
-  --acento-suave: rgba(139, 139, 245, 0.13);
-  --acento-borde: rgba(139, 139, 245, 0.32);
+  --fondo: #120a0e;
+  --superficie: #1b1016;
+  --superficie-alta: #261720;
+  --linea: #33202b;
+  --linea-fuerte: #472e3c;
+  --tinta: #f9f5f7;
+  --tinta-media: #b4a3ab;
+  --tinta-suave: #7d6b74;
+  --acento: #f9a8d4;
+  --acento-tinta: #120a0e;
+  --acento-suave: rgba(249, 168, 212, 0.13);
+  --acento-borde: rgba(249, 168, 212, 0.32);
   --sombra: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
