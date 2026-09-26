@@ -1,14 +1,39 @@
 {
   "manifest_version": 3,
-  "name": "Wayfinder â€” Mapa del sitio",
-  "version": "0.1.0",
-  "description": "LlevÃ¡ el sitio que estÃ¡s visitando a Wayfinder para crear su mapa y analizarlo con Bob.",
+  "name": "Wayfinder — Te guía en tu trámite",
+  "version": "0.2.0",
+  "description": "Te lleva paso a paso en los trámites de tu municipio, con la información oficial ordenada por Wayfinder.",
+  "minimum_chrome_version": "116",
   "permissions": [
-    "activeTab"
+    "sidePanel",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.rosario.gob.ar/*",
+    "https://siat.rosario.gob.ar/*",
+    "https://auth.afip.gob.ar/*",
+    "https://vggmunicipalidad.gov.ar/*",
+    "https://www.vggmunicipalidad.gov.ar/*"
+  ],
+  "background": {
+    "service_worker": "fondo.js"
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.rosario.gob.ar/*",
+        "https://vggmunicipalidad.gov.ar/*",
+        "https://www.vggmunicipalidad.gov.ar/*"
+      ],
+      "js": ["resaltar.js"],
+      "run_at": "document_idle"
+    }
   ],
   "action": {
-    "default_popup": "popup.html",
-    "default_title": "Abrir este sitio en Wayfinder",
+    "default_title": "Abrir la guía de Wayfinder",
     "default_icon": {
       "16": "icon16.png",
       "32": "icon32.png"

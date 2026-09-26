@@ -5,6 +5,24 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 20:10 — Claude de Cande — 🧭 EXTENSIÓN QUE TE LLEVA PASO A PASO (decisión de Cande)
+**Hice:** Cande decidió que Wayfinder **te lleve de la mano** en el trámite, sobre la página oficial. Esto reemplaza su respuesta anterior de que la extensión quedaba afuera. Nueva `extension/` 0.2.0 (panel lateral, Chrome 116 o más):
+- Sabe en qué trámite y en qué paso estás por la página abierta (ficha → sitio del trámite).
+- En la página oficial **marca el enlace del paso siguiente** y **abre el desplegable** si está escondido. Es genérico para acordeones con `aria-controls` (GOV.UK) y `<details>`.
+- **Cruza fichas del mismo sitio** para decir qué pide cada camino, con fuente. Ej. Pagar TGI: «con Código de gestión» → «Número de Cuenta y Código de Gestión Personal, presentes en todo recibo de TGI» (ficha *Obtener certificado de pago de TGI*); «ARCA» → «CUIT, clave fiscal nivel 3…» (ficha *Pagar DReI*). Si una opción no nombra nada concreto («Comenzar»), no inventa.
+- Datos: `extension/rutas.json`, generado con `node extension/generar-rutas.mjs` desde `motor/src/municipal-demo/` (Rosario 36, VGG 15 trámites). Sugerencias ordenadas por cuántas páginas del sitio enlazan a cada trámite.
+- Sin leer formularios, cookies ni datos; no completa nada. Permisos: `sidePanel`, `storage` y solo los dominios de Rosario/VGG/SIAT/ARCA.
+- Probado sobre **rosario.gob.ar real**: en *Pagar TGI* abre «Pagar la TGI de mi propiedad» y marca los 2 destinos (2 de 2). `node --test extension/test.mjs`: 8/8.
+- Saqué el popup viejo («abrir este sitio en Wayfinder»): ahora es un enlace dentro del panel. Arreglé los acentos rotos del `manifest.json`. Actualicé el texto de «Añadir al navegador» en `ExtensionButton.tsx`.
+
+**Hallazgo para el motor (Astra):** en *Pagar TGI* hay un **tercer camino, el botón «GESTIONAR» (Perfil Digital)**, que el catálogo no tiene como destino. Además, el texto de los desplegables («Si sos titular… con perfil digital…») no está en las secciones. ¿Se puede sumar?
+
+**Quedó a medias:** publicar (con `pantalla` tildado, para que salga el ZIP nuevo) y grabar el recorrido para el video.
+**No tocar:** `extension/` mientras Cande prueba y graba.
+**Preguntas para el otro:**
+1. ¿Pueden sumar el destino «Gestionar» y el texto de los acordeones al catálogo?
+2. Para el pitch: ¿la extensión como demo principal («te lleva de la mano, en cualquier sitio») y el asistente con Bob como la forma de entrar?
+
 ## 2026-09-26 — Astra, de Franco — Entrega del asistente cerrada
 **Hice:** ajuste móvil 911849e publicado mediante Actions 36276558215 (success). Nueva prueba pública real: «Necesito hacer una inscripción, ¿por dónde empiezo?» → una pregunta con tres opciones en primera persona, task f2f2414eb800bea65ed25e28cb133170. Captura móvil final inspeccionada: título legible y reinicio separado, sin desborde. Salud pública OK; IBM Bob configurado. Quedan comprobadas 5 consultas reales públicas, incluido seguimiento y aclaración, más los escenarios controlados descritos abajo. Revisé otra vez el buzón remoto; no había nuevas notas pendientes.
 **Quedó a medias:** nada de la incorporación solicitada. Siguen como límites del producto la cobertura parcial, la revisión humana de semántica/vigencia y la ausencia de ejecución automática de trámites. No se prometen tiempos ni compatibilidad universal.

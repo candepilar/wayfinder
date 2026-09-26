@@ -1,0 +1,1741 @@
+{
+ "generado": "2026-09-26T23:30:02.271Z",
+ "sitios": [
+  {
+   "id": "rosario",
+   "nombre": "Rosario",
+   "hosts": [
+    "rosario.gob.ar",
+    "www.rosario.gob.ar"
+   ],
+   "portada": "https://www.rosario.gob.ar/inicio/",
+   "tramites": [
+    {
+     "id": "p_939691edf20691da",
+     "nombre": "Obtener certificado de pago de TGI",
+     "ficha": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-tgi",
+     "antes": [
+      "No registrar obligaciones fiscales impagas a la fecha de asentamiento que consta en los registros del Municipio",
+      "Proporcionar Número de Cuenta y Código de Gestión Personal, presentes en todo recibo de TGI.",
+      "Si optás por resolver a través de AFIP, necesitas CUIT, Clave fiscal y adherir el Servicio Municipalidad de Rosario - trámites tributarios, en el Administrador de Relaciones de Clave Fiscal de AFIP. Consultá cómo adherir el Servicio Municipalidad de Rosario en AFIP",
+      "Último recibo de pago del tributo",
+      "Comprobantes de pago, en caso de existir obligaciones fiscales pagas que aún no se encuentren asentadas en el sistema"
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-tgi"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Acercate a la oficina de finanzas del Centro Municipal de Distrito más cercano con la documentación a presentar indicada. Si sos Contribuyente Estratégico dirigite al Programa CER."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-tgi",
+     "enlazado": 5
+    },
+    {
+     "id": "p_9d4ceab9b24bf490",
+     "nombre": "Pagar TGI",
+     "ficha": "https://www.rosario.gob.ar/inicio/pagar-tgi",
+     "antes": [
+      "Para convenio de pago, DNI.",
+      "Para saldo por caducidad, DNI y comprobantes de pago de todas las cuotas del convenio."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [
+      "Tarjeta de crédito y débito: en el mismo momento en que se genera la boleta, mediante pagos.rosario.gob.ar. Se acredita inmediatamente.",
+      "Homebanking (Link y Banelco): pasadas las 24 hs de generada la boleta, adhiriendo el Código de Pago Electrónico que se encuentra en el margen superior derecho de la Boleta.",
+      "Volante Electrónico de Pago (VEP): en el mismo momento en que se genera la boleta, utilizando el servicio de AFIP “Municipalidad de Rosario-Trámites Tributarios (CUIT y Clave Fiscal).",
+      "Débito en cuenta bancaria: en el mismo momento en que se genera la boleta, utilizando el servicio de AFIP “Municipalidad de Rosario-Trámites Tributarios (CUIT y Clave Fiscal), informando la CBU de la cuenta bancaria.",
+      "Presencialmente: MuniPagos (en las sucursales de Munipagos de los Centros Municipales de Distrito podés abonar con cualquier billetera virtual a través de un QR o con tarjeta de débito), Santa Fe Servicios y/o Pago Fácil."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/pagar-tgi"
+      },
+      {
+       "titulo": "Elegí cómo hacerlo",
+       "detalle": "Hay más de una forma; con una alcanza.",
+       "opciones": [
+        {
+         "texto": "con Código de gestión",
+         "url": "https://siat.rosario.gob.ar/siat/seg/Login.do?id=14&method=anonimo&url=%2Fgde%2FAdministrarLiqDeuda.do%3Fmethod%3DinicializarContr",
+         "sitio": "siat.rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/pagar-tgi",
+         "necesitas": {
+          "texto": "Proporcionar Número de Cuenta y Código de Gestión Personal, presentes en todo recibo de TGI.",
+          "fuente": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-tgi",
+          "ficha": "Obtener certificado de pago de TGI"
+         }
+        },
+        {
+         "texto": "desde ARCA - Trámites tributarios",
+         "url": "https://auth.afip.gob.ar/contribuyente_/login.xhtml?action=SYSTEM&system=muniro_tributos",
+         "sitio": "auth.afip.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/pagar-tgi",
+         "necesitas": {
+          "texto": "CUIT, clave fiscal nivel 3 y adherir el Servicio Municipalidad de Rosario - trámites tributarios en el Administrador de Relaciones de Clave Fiscal de AFIP",
+          "fuente": "https://www.rosario.gob.ar/inicio/pagar-drei",
+          "ficha": "Pagar DReI"
+         }
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/pagar-tgi",
+     "enlazado": 4
+    },
+    {
+     "id": "p_a3af48d73663b56b",
+     "nombre": "Obtener certificado de pago de Tasa de Cementerio",
+     "ficha": "https://www.rosario.gob.ar/inicio/certificado-de-pago-de-tasa-de-cementerio",
+     "antes": [
+      "No registrar obligaciones fiscales impagas a la fecha de asentamiento que consta en los registros del Municipio.",
+      "Número de cuenta y código de gestión personal (presentes en todo recibo de Tasa de Cementerio)",
+      "Si resolvés a través de AFIP, necesitas CUIT, Clave fiscal y adherir el Servicio Municipalidad de Rosario - Trámites tributarios, en el Administrador de Relaciones de Clave Fiscal de AFIP. Consultá cómo adherir el Servicio Municipalidad de Rosario en AFIP"
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/certificado-de-pago-de-tasa-de-cementerio"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Ingresá desde los botones y luego seleccioná la opción Certificado de pago en tu estado de cuenta. Resolvé Resolvé con Clave Fiscal"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/certificado-de-pago-de-tasa-de-cementerio",
+     "enlazado": 3
+    },
+    {
+     "id": "p_4ccc2973e7f5af64",
+     "nombre": "Obtener certificado de pago de DReI",
+     "ficha": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-drei",
+     "antes": [
+      "CUIT, Clave fiscal y adherir el Servicio Municipalidad de Rosario - trámites tributarios, en el Administrador de Relaciones de Clave Fiscal de AFIP",
+      "No registrar obligaciones fiscales impagas a la fecha de asentamiento que consta en los registros del Municipio",
+      "Formulario Certificado de pago de tributos municipales",
+      "Último recibo de pago del tributo",
+      "Comprobantes de pago, en caso de existir obligaciones fiscales pagas que aún no se encuentren asentadas en el sistema"
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-drei"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Acercate a la oficina de finanzas del Centro Municipal de Distrito más cercano con la documentación a presentar indicada.. Si sos Contribuyente Estratégico dirigite al Programa CER."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-drei",
+     "enlazado": 2
+    },
+    {
+     "id": "p_74c5f7bd8e320823",
+     "nombre": "Obtener duplicado DDJJ de chofer de taxi/remis/transporte escolar y especial",
+     "ficha": "https://www.rosario.gob.ar/inicio/obtener-duplicado-ddjj-de-chofer-de-taxiremistransporte-escolar-y-especial",
+     "antes": [
+      "Los siguientes documentos serán requeridos al momento de comenzar el trámite:"
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/obtener-duplicado-ddjj-de-chofer-de-taxiremistransporte-escolar-y-especial"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/6861",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/obtener-duplicado-ddjj-de-chofer-de-taxiremistransporte-escolar-y-especial",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/obtener-duplicado-ddjj-de-chofer-de-taxiremistransporte-escolar-y-especial",
+     "enlazado": 2
+    },
+    {
+     "id": "p_c4802161754c423b",
+     "nombre": "Obtener duplicado de chapa/placa acrílica",
+     "ficha": "https://www.rosario.gob.ar/inicio/obtener-duplicado-de-chapa-placa-acrilica",
+     "antes": [
+      "Libre deuda de patente emitido por la Pcia. de Santa Fe o recibo de pago proporcional de 0km.",
+      "Póliza de seguro a cargo del titular del vehículo.",
+      "Comprobante del último recibo de pago del seguro. En caso de estar en trámite o Plan de ahorro deberá presentar última cuota paga del plan donde figura el seguro.",
+      "Certificado de Revisión Técnica Vehicular vigente.",
+      "En caso de robo o extravío, denuncia del hecho realizada ante la autoridad competente. La misma deberá estar a nombre del titular, representante de persona jurídica o apoderado."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/obtener-duplicado-de-chapa-placa-acrilica"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/8205",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/obtener-duplicado-de-chapa-placa-acrilica",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/obtener-duplicado-de-chapa-placa-acrilica",
+     "enlazado": 2
+    },
+    {
+     "id": "p_5f9f0bc77aa50ed4",
+     "nombre": "Obtener final de demolición",
+     "ficha": "https://www.rosario.gob.ar/inicio/obtener-final-de-demolicion",
+     "antes": [
+      "Ser el propietario o el profesional a cargo de la obra.",
+      "Tener descargado y configurado el Adobe Acrobat Reader DC, para visualizar el permiso firmado digitalmente y poder validar las firmas.",
+      "Cumplir los siguientes recaudos: Impermeabilización de los muros medianeros Inmueble en buenas condiciones y demolido según lo solicitado",
+      "Permiso de demolición otorgado con planos embebidos.",
+      "Certificado de matrícula e incumbencias. Es la certificación de la matrícula habilitante vigente y la conformidad de incumbencias y responsabilidades profesionales emitida por la autoridad competente de acuerdo a la legislación vigente, para la obra en cuestión.",
+      "Constancia del Seguro de Responsabilidad Civil.",
+      "Certificado de pago de TGI. La cuenta no deberá registrar obligaciones fiscales exigibles: TGI y Tasa Revisión de Planos",
+      "Formulario de Actualización de Construcciones (FAC). Consultá la guía paso a paso.",
+      "En caso de demolición de unidad/es funcional/es o espacios comunes de inmuebles sometidos al régimen de la Propiedad Horizontal (PH), adjuntar plano con Corrección Previa de Propiedad Horizontal de la Dirección General de Topografía y Catastro.",
+      "En caso de que el Final de Demolición esté condicionado a cumplir con alguna cláusula de una normativa específica, deberás adjuntarla."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/obtener-final-de-demolicion"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/2658",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/obtener-final-de-demolicion",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/obtener-final-de-demolicion",
+     "enlazado": 2
+    },
+    {
+     "id": "p_7d5b8afded08e70c",
+     "nombre": "Obtener final de obra de construcción de isla callejera",
+     "ficha": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-construccion-de-isla-callejera",
+     "antes": [
+      "Ser el propietario o el profesional de la obra.",
+      "Seguro de responsabilidad civil con cláusula de no repetición a la Municipalidad de Rosario.",
+      "Fotografías de la isla con su entorno, adjuntá de 3 a 6 fotos en un único .pdf."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-construccion-de-isla-callejera"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/13332",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-construccion-de-isla-callejera",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-construccion-de-isla-callejera",
+     "enlazado": 2
+    },
+    {
+     "id": "p_e9a33e0f9c1d6ad0",
+     "nombre": "Obtener final de obra de desagües pluviales",
+     "ficha": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-desagues-pluviales",
+     "antes": [
+      "Plano de desagües pluviales aprobado.",
+      "Certificación de aportes definitivos del Colegio de Profesionales que corresponda.",
+      "Plano de desagües pluviales conforme a obra, en el caso que hayas realizado alguna modificación del proyecto aprobado."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-desagues-pluviales"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/12469",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-desagues-pluviales",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-desagues-pluviales",
+     "enlazado": 2
+    },
+    {
+     "id": "p_803ce74da25eb571",
+     "nombre": "Obtener final de obra parcial",
+     "ficha": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-parcial",
+     "antes": [
+      "Los profesionales que firman los planos deben hacerlo con firma digital.",
+      "Tener descargado y configurado el Adobe Acrobat Reader DC, para visualizar el permiso firmado digitalmente y poder validar las firmas.",
+      "El día de la inspección se deberán cumplir con los siguientes recaudos: El/la profesional deberá tener in situ la/s copias certificadas de planos del permiso de edificación que intervino. Deberá estar disponible el ingreso a los locales por el cual se solicita el final parcial. Que la estructura resistente, muros portantes y albañilería gruesa o perimetral se haya ejecutado totalmente. Que las unidades terminadas se encuentren debidamente aisladas de los sectores en obra, de modo que no impliquen peligro para sus habitantes. Que los ascensores, circulaciones verticales, horizontales y medios de escape necesarios para el uso de la unidad operen adecuadamente.",
+      "Permiso de Edificación intervenido. Para ello seguí los siguientes pasos: Solicitá Copia Certificada de tu Permiso de Edificación (se entregará en papel). Intervení la copia entregada según las siguientes especificaciones: marcar rayando a 45° el sector por el que solicita final de obra parcial con un balance de superficies que contenga: el total de la Edificación autorizada, la parte por la que se solicita el Final Parcial, la superficie remanente y el plazo de finalización de la misma. Escaneá el plano intervenido, firmalo digitalmente y cargá el archivo.",
+      "Certificado de matrícula e incumbencias, de todos los Profesionales Intervinientes, del sector por el cual se solicita el Final de obra parcial. Es la certificación de la matrícula habilitante vigente y la conformidad de incumbencias y responsabilidades profesionales emitida por la autoridad competente de acuerdo a la legislación vigente, para la obra en cuestión.",
+      "Constancia del Seguro de Responsabilidad Civil con vigencia hasta la fecha que solicita el Final de obra parcial.",
+      "Plano de electricidad del sector a otorgar el Final de obra parcial, firmado digitalmente por los profesionales intervinientes. Deberán confeccionarse conforme al Reglamento de Edificación, de acuerdo a dibujos de NOrmas IRAM y simbología de circuitos eléctricos según Normas AEA (Asociación Electrónica Argentina). Consultá los requisitos mínimos para la Planimetría Descargá la Carátula del plano",
+      "Formulario de Actualización de Construcciones (FAC). Consultá la guía paso a paso. (Detallar sólo sector que solicita el final parcial)",
+      "Certificado de pago de TGI y otros tributos",
+      "Plano de sanitarios firmado digitalmente por el/la profesional interviniente con carácter de declaración jurada. Consultá los requisitos mínimos para la Planimetría Descargá la Carátula del plano",
+      "Certificado final de Aspectos higrotermicos y eficiencia enrgética. Deberás presentar la culminación del trámite Presentar proyecto de aspectos higrotérmicos",
+      "En caso de obra nueva, modificación o ampliación de unidad/es funcional/es o sectores comunes de inmuebles sometidos al régimen de la Propiedad Horizontal (PH), adjuntar visación previa del plano modificatorio correspondiente aprobada por la Dirección General de Topografía y Catastro.",
+      "Si el sector por el que se solicita Final de Obra Parcial incluye el inmueble de valor patrimonial, deberás presentar Final de obra patrimonial.",
+      "En caso de que el Final de Obra esté condicionado a cumplir con alguna cláusula de una normativa específica, deberás adjuntarla."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-parcial"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/2694",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-parcial",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-parcial",
+     "enlazado": 2
+    },
+    {
+     "id": "p_fb0218fc3f328def",
+     "nombre": "Pagar DReI",
+     "ficha": "https://www.rosario.gob.ar/inicio/pagar-drei",
+     "antes": [
+      "CUIT, clave fiscal nivel 3 y adherir el Servicio Municipalidad de Rosario - trámites tributarios en el Administrador de Relaciones de Clave Fiscal de AFIP",
+      "Declarar clave bancaria uniforme (CBU) y una dirección de correo electrónico",
+      "En caso de contribuyentes de Régimen Simplificado, la cuenta de DReI debe estar adherida a dicho régimen",
+      "En caso de contribuyentes de Régimen General, la cuenta de DReI debe registrar la presentación de la Declaración Jurada",
+      "Para convenio de pago, DNI.",
+      "El formulario del convenio debe llevar firma de titulares certificada por Entidad Bancaria, Escribano Público, Tribunales Provinciales o por el agente municipal interviniente.",
+      "Para saldo por caducidad, DNI y comprobantes de pago de todas las cuotas del convenio.",
+      "Para solicitar un estado de cuenta impreso, formulario Solicitud de estado de cuenta, impreso y completo.",
+      "En caso de terceros, autorización escrita con firma del titular.",
+      "En caso de apoderado, poder.",
+      "En caso de sociedades, Contrato Social."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "Podés generar Volante Electrónico de Pago (VEP) en caso de: reimprimir recibos, gestionar un convenio de pago, reimprimir cuotas de convenio de pago vigente, o imprimir la tasa de actuación administrativa (sellado)."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/pagar-drei"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Realizá este trámite con Clave Fiscal haciendo click en el botón. Resolvé con clave fiscal"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/pagar-drei",
+     "enlazado": 2
+    },
+    {
+     "id": "p_d1f3339a1f0f177b",
+     "nombre": "Pagar patente automotor",
+     "ficha": "https://www.rosario.gob.ar/inicio/pagar-patente-automotor",
+     "antes": [
+      "Conocer la patente (dominio) del vehículo",
+      "En caso de convenio de pago: CUIT y clave fiscal Tener adherido el servicio API-Santa Fe- Solicitud Plan de Pago Declarar una CBU para el débito automático Ser titular del Impuesto de patente única sobre vehículos",
+      "Consultar la Guía paso a paso",
+      "Documentación del vehículo, en caso de patentes que no figuran en la base de datos del API.",
+      "Número de CUIT o CUIL del titular del vehículo, en caso de que el mismo no estuviese registrado en ningún formulario."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/pagar-patente-automotor"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/pagar-patente-automotor",
+     "enlazado": 2
+    },
+    {
+     "id": "p_4b901bf37a67e6cf",
+     "nombre": "Pagar Tasa de Cementerio",
+     "ficha": "https://www.rosario.gob.ar/inicio/pagar-tasa-de-cementerio",
+     "antes": [
+      "Número de cuenta y código de gestión personal"
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "Podés pagar online con tarjeta de débito o crédito. Es un medio seguro y se acredita inmediatamente. Resolvé Resolvé con clave fiscal"
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/pagar-tasa-de-cementerio"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/pagar-tasa-de-cementerio",
+     "enlazado": 2
+    },
+    {
+     "id": "p_3c140e46d56e5c3a",
+     "nombre": "Renovar alquiler de nichos, sepulturas y urnas",
+     "ficha": "https://www.rosario.gob.ar/inicio/renovar-alquiler-de-nichos-sepulturas-y-urnas",
+     "antes": [
+      "Certificado de pago de Tasa de Cementerio.",
+      "Título original (Opcional). En caso de extravío podés gestionar el Duplicado de título.",
+      "Verificación del sepulcro, en caso de que el vencimiento del arriendo supere los 30 días fijados en la Ordenanza de Cementerios (se solicita sin costo en el cementerio donde se encuentra el sepulcro)."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [
+      "Para nicho y nicho urna, el arancel es determinado, según los casos, por el decreto 840/08. En este último también se especifica el porcentaje de recargo de cada contrato, dependiendo de la renovación: 1ª Renovación 20% 6ª Renovación 70% 2ª Renovación 30% 7ª Renovación 80% 3ª Renovación 40% 8ª Renovación 90% 4ª Renovación 50% 9ª Renovación 100% 5ª Renovación 60% 10ª Renovación 110%"
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/renovar-alquiler-de-nichos-sepulturas-y-urnas"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Cementerio El Salvador (LAGOS OVIDIO 1840)"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/renovar-alquiler-de-nichos-sepulturas-y-urnas",
+     "enlazado": 2
+    },
+    {
+     "id": "p_f465e1827a24969f",
+     "nombre": "Renovar derecho de explotación de licencia de taxi",
+     "ficha": "https://www.rosario.gob.ar/inicio/renovar-derecho-de-explotacion-de-licencia-de-taxi",
+     "antes": [
+      "DNI del titular, con domicilio actualizado. En caso de extravío, constancia de DNI en trámite del Registro Civil y Partida de Nacimiento legalizada, a los fines de acreditar identidad y domicilio del interesado. Validez: 6 meses.",
+      "Formularios de Consentimiento de Renovación y Condiciones de Méritos firmados por el área competente.",
+      "Si cambia el vehículo afectado a la licencia presentar: Titulo del automotor a nombre del titular de la licencia, en caso de tramitar sólo la renovación. Título del automotor a nombre del aspirante a titular, en caso de tramitar la renovación con transferencia. Los títulos deben tener declarado como uso: Servicio Público Taxi. Sino, actualizar en el Registro Nacional del Automotor.",
+      "Formulario “Control de unidad - Apto” completo y firmado por el solicitante.",
+      "Libre deuda de patente emitido por la Pcia. de Santa Fe o recibo de pago proporcional de 0km.",
+      "Revisión Técnica Vehicular expedido por el C.I.T.A., si es la unidad afectada actualmente.",
+      "Póliza de Seguro y Recibo de Pago. En caso de estar en trámite o Plan de ahorro deberá presentar Certificado de Cobertura actualizado y última cuota paga del plan. Responsabilidad civil frente a terceros y personas transportadas. Uso: Servicio Público que corresponda. Constancia Bimestral de Desinfección (si es la unidad afectada actualmente)."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/renovar-derecho-de-explotacion-de-licencia-de-taxi"
+      },
+      {
+       "titulo": "Elegí cómo hacerlo",
+       "detalle": "Hay más de una forma; con una alcanza.",
+       "opciones": [
+        {
+         "texto": "Renovar",
+         "url": "https://www.rosario.gob.ar/inicio/node/9983",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/renovar-derecho-de-explotacion-de-licencia-de-taxi",
+         "necesitas": null
+        },
+        {
+         "texto": "Renovar y transferir",
+         "url": "https://www.rosario.gob.ar/inicio/node/12296",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/renovar-derecho-de-explotacion-de-licencia-de-taxi",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/renovar-derecho-de-explotacion-de-licencia-de-taxi",
+     "enlazado": 2
+    },
+    {
+     "id": "p_2884a5991bed8c50",
+     "nombre": "Renovar estacionamiento reservado para personas con discapacidad",
+     "ficha": "https://www.rosario.gob.ar/inicio/renovar-estacionamiento-reservado-para-personas-con-discapacidad",
+     "antes": [
+      "DNI de la persona beneficiaria, donde conste el mismo domicilio para el cual se solicita el estacionamiento reservado.",
+      "DNI de la persona representante, si el trámite es solicitado por una tercera persona.",
+      "Certificado Único de Discapacidad (CUD), vigente.",
+      "En caso de agregar o modificar vehículos informados: Título o Cédula de identificación del vehículo. Libre multa de tránsito del vehículo.",
+      "Si renueva el beneficio para un domicilio de trabajo deberá adjuntar alguna documentación que acredite el vínculo laboral."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/renovar-estacionamiento-reservado-para-personas-con-discapacidad"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/1782",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/renovar-estacionamiento-reservado-para-personas-con-discapacidad",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/renovar-estacionamiento-reservado-para-personas-con-discapacidad",
+     "enlazado": 2
+    },
+    {
+     "id": "p_f1d460cd22a61eab",
+     "nombre": "Renovar medio boleto estudiantil",
+     "ficha": "https://www.rosario.gob.ar/inicio/renovar-medio-boleto-estudiantil",
+     "antes": [
+      "Ser alumno regular de establecimientos educativos de la ciudad de Rosario, en los niveles: jardín de infantes (4 años), preescolar, primaria, secundaria, EEMPA o escuela especial.",
+      "Tener domicilio a más de 8 cuadras del establecimiento educativo, y que el mismo figure en el DNI. Esto incluye estudiantes que residan en las localidades de Coronel Bogado, Soldini, Pérez, Villa Gobernador Gálvez, Alvear, Pueblo Esther, General Lagos, Funes, Ibarlucea, Baigorria, Capitán Bermúdez, que cursen en un establecimiento educativo en Rosario. En estos casos, el beneficio no aplica para los viajes interurbanos, sino exclusivamente para los trayectos urbanos",
+      "Ingreso del grupo familiar que no supere lo estipulado por la Ordenanza N° 6896/1999: Hasta 3 hijos en edad escolar, no debe sobrepasar hasta 3 veces y medio el salario para la categoría A de maestranza -escala salarial de empleados de comercio, según convenio colectivo de trabajo vigente. Más de 3 hijos en edad escolar, no debe superar la suma de 5 salarios y medio de la categoría anteriormente mencionada.",
+      "Si el estudiante es mayor de edad debe declararse dentro del grupo familiar.",
+      "No ser titular de otra franquicia municipal de transporte."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/renovar-medio-boleto-estudiantil"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Solicitar",
+         "url": "https://www.rosario.gob.ar/franquicias/ingresar.do;jsessionid=EB0CBD574437F5802C6A980EBE26800D.tcat1b_worker05?accion=ingresar",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/renovar-medio-boleto-estudiantil",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/renovar-medio-boleto-estudiantil",
+     "enlazado": 2
+    },
+    {
+     "id": "p_a8a93af69d7f0d33",
+     "nombre": "Solicitar acceso a Información Pública",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-acceso-informacion-publica",
+     "antes": [],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "El trámite es gratuito a menos que requiera su reproducción. En ese caso, el costo quedará a cargo del solicitante. Importante Para resolver online este trámite necesitás tener Perfil Digital. Comenzar"
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-acceso-informacion-publica"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/1738",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-acceso-informacion-publica",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-acceso-informacion-publica",
+     "enlazado": 2
+    },
+    {
+     "id": "p_e4e0908390dabb80",
+     "nombre": "Solicitar asesoramiento sobre alquileres",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-asesoramiento-sobre-alquileres",
+     "antes": [
+      "Documento Nacional de Identidad.",
+      "Antigüedad laboral 6 meses.",
+      "Contrato de alquiler o recibo de la inmobiliaria.",
+      "Empleados:",
+      "Autónomos:",
+      "Monotributistas:"
+     ],
+     "antesTitulo": "Requisitos y documentación",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-asesoramiento-sobre-alquileres"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-asesoramiento-sobre-alquileres",
+     "enlazado": 2
+    },
+    {
+     "id": "p_ec309b96e17a81e4",
+     "nombre": "Solicitar broche de TGI para corredor inmobiliario",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-broche-de-tgi-para-corredor-inmobiliario",
+     "antes": [
+      "Contar con Perfil Digital con identidad verificada",
+      "Estar inscripto en COCIR",
+      "Planilla de cálculo donde consten las cuentas a incluir en el broche."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-broche-de-tgi-para-corredor-inmobiliario"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/20126",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-broche-de-tgi-para-corredor-inmobiliario",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-broche-de-tgi-para-corredor-inmobiliario",
+     "enlazado": 2
+    },
+    {
+     "id": "p_82b9046564f83e12",
+     "nombre": "Solicitar caso social para TGI",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-caso-social-para-tgi",
+     "antes": [
+      "Ser propietario, copropietario, usufructuario, inquilino, comodatario, o tenedor de boleto de compraventa, de inmueble único, exclusivamente destinado a vivienda familiar, y habitarlo.",
+      "El inmueble debe tributar hasta 2 mínimos absolutos de la TGI del radio correspondiente.",
+      "El total de ingreso de todos los habitantes no debe superar el correspondiente a un haber y medio previsional mínimo ($ 642.949); no se suma la Asignación Universal por Hijo.",
+      "Si el solicitante no coincide con el titular del inmueble: escritura de propiedad; boleto de compraventa sellado con fecha no menor a 5 años; si el titular falleció: declaratoria de herederos o libreta de matrimonio y certificado de defunción.",
+      "Si el solicitante es usufructuario: escritura donde conste reserva de usufructo. Inquilinos: contrato de locación sellado vigente. Comodatarios: contrato de comodato sellado vigente. En estos últimos casos, con cláusula donde conste el pago total del tributo a cargo del locatario o comodatario, respectivamente.",
+      "En caso de haber alguna persona con discapacidad o problemas de salud, certificado médico.",
+      "Último recibo de haberes de todos los convivientes que tengan ingresos demostrables.",
+      "Formulario Solicitud de caso social de TGI completo e impreso.",
+      "Si el solicitante no coincide con el titular del inmueble: escritura de propiedad; boleto de compraventa sellado con fecha no menor a 5 años; si el titular falleció: declaratoria de herederos o libreta de matrimonio y certificado de defunción.",
+      "Si el solicitante es usufructuario: escritura donde conste reserva de usufructo. Inquilinos: contrato de locación sellado vigente. Comodatarios: contrato de comodato sellado vigente. En estos últimos casos, con cláusula donde conste el pago total del tributo a cargo del locatario o comodatario, respectivamente.",
+      "En caso de haber alguna persona con discapacidad o problemas de salud, certificado médico.",
+      "Último recibo de haberes de todos los convivientes que tengan ingresos demostrables."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-caso-social-para-tgi"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/1661",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-caso-social-para-tgi",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-caso-social-para-tgi",
+     "enlazado": 2
+    },
+    {
+     "id": "p_da3994d7148f1081",
+     "nombre": "Solicitar certificado urbanístico",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-certificado-urbanistico",
+     "antes": [
+      "Contar con CUIT y Clave Fiscal nivel 3 y tener adherido el Servicio Municipalidad de Rosario – Trámites Tributarios",
+      "Registrar una cuenta de correo electrónico para recibir notificaciones. En caso de necesitar cambiarlo, lo podés hacer desde la opción \"Datos contribuyente\" antes de iniciar el trámite",
+      "Número de cuenta de TGI",
+      "Formulario Certificado Urbanístico proyectos especiales, impreso y completo. Boleta de pago abonada. Fotografías del entorno. Esquema gráfico del proyecto. Texto explicativo y usos previsto."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "50 MT",
+      "$452 (actualizado al 1 de abril de 2026)",
+      "292 MT - Certificado Urbanístico de Proyectos Edilicios Especiales. Generar boleta de pago"
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-certificado-urbanistico"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Ingresá al portal de ARCA, seleccioná la CUIT con la cual vas a trabajar y generá el sellado respectivo. Una vez ingresado el trámite recibirás una confirmación al mail y la constancia con número de solicitud y código de barra para poder abonar el sellado respectivo. Recordá que debes abonar el sellado para que podamos dar curso a la gestión de tu trámite. Una vez realizado el pago, este puede demorar hasta 72 horas días hábiles en impactar en el sistema dependiendo del medio de pago. Resolvé con clave fiscal Cuando el trámite esté resuelto recibirás el Certificado Urbanístico en tu correo electrónico. Gestiones para casos particulares"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-certificado-urbanistico",
+     "enlazado": 2
+    },
+    {
+     "id": "p_a76771f86c3c9454",
+     "nombre": "Solicitar copia de historia clínica",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-copia-de-historia-clinica",
+     "antes": [
+      "Formulario de Historia Clínica completo.",
+      "DNI del paciente, original y copia.",
+      "Si el solicitante es un familiar, instrumento legal que acredite parentesco.",
+      "Si el solicitante es un profesional o persona autorizada, fotocopia legalizada del poder otorgado por el paciente o su representante legal. La legalización debe gestionarse en los Tribunales Provinciales de Rosario."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-copia-de-historia-clinica"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Acercate a la oficina de Mesa de Entradas de cualquier Centro Municipal de Distrito con la documentación a presentar indicada."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-copia-de-historia-clinica",
+     "enlazado": 2
+    },
+    {
+     "id": "p_a95035e797969f1f",
+     "nombre": "Solicitar cuenta de TGI para viviendas en mayor área",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-cuenta-de-tgi-para-viviendas-en-mayor-area",
+     "antes": [
+      "Formulario Certificado de mayor área, completo y firmado.",
+      "Copia del boleto de compraventa o constancia de la adjudicación.",
+      "Todos aquellos documentos que puedan ayudar a la individualización geográfica del inmueble."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [
+      "5,5 MT - Constancia de mayor área. Generar Boleta de pago",
+      "$452 (actualizado al 1 de abril de 2026)"
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-cuenta-de-tgi-para-viviendas-en-mayor-area"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Acercate a la oficina de Catastro del Centro Municipal de Distrito correspondiente con la documentación a presentar indicada. Esta constancia es útil en los trámites relacionados con obras de instalación de gas natural. Enviar mensaje por WhatsApp"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-cuenta-de-tgi-para-viviendas-en-mayor-area",
+     "enlazado": 2
+    },
+    {
+     "id": "p_84198c2a1cc19d37",
+     "nombre": "Solicitar estacionamiento reservado para personas con discapacidad",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-estacionamiento-reservado-para-personas-con-discapacidad",
+     "antes": [
+      "DNI de la persona beneficiaria, donde conste el mismo domicilio para el cual se solicita el estacionamiento reservado.",
+      "DNI de la persona representante, si el trámite es solicitado por una tercera persona.",
+      "Certificado Único de Discapacidad (CUD), vigente.",
+      "Titulo o Cédula de identificación del vehículo.",
+      "Libre multa de tránsito del vehículo.",
+      "Si solicita el estacionamiento reservado para el domicilio de trabajo deberá adjuntar documentación que acredite el vínculo laboral."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-estacionamiento-reservado-para-personas-con-discapacidad"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/1781",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-estacionamiento-reservado-para-personas-con-discapacidad",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-estacionamiento-reservado-para-personas-con-discapacidad",
+     "enlazado": 2
+    },
+    {
+     "id": "p_8f2a517dfbe17e66",
+     "nombre": "Solicitar exención de pago de TGI para cultos religiosos",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-cultos-religiosos",
+     "antes": [
+      "Completar los datos requeridos aquí. También podés ingresar aquí con clave fiscal nivel 3 de AFIP.",
+      "Documentación legal que acredite la condición de beneficiario.",
+      "Declaración Jurada del destino de los inmuebles por los cuales se solicita la exención.",
+      "Nota dirigida al Intendente solicitando la exención.",
+      "Copia autenticada de la documentación legal que acredite la condición de beneficiario."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-cultos-religiosos"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/1664",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-cultos-religiosos",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-cultos-religiosos",
+     "enlazado": 2
+    },
+    {
+     "id": "p_402340911d877c25",
+     "nombre": "Solicitar exención de pago de TGI para Ex-combatientes de Malvinas",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-ex-combatientes-de-malvinas",
+     "antes": [
+      "Ser ex-Combatiente de Malvinas beneficiario de la pensión Ley Nacional Nº 23848/90.",
+      "En caso de propietario, debe serlo de único inmueble dentro del Municipio, destinado en forma permanente a vivienda familiar.",
+      "En caso de inquilino, no debe poseer propiedad raíz alguna.",
+      "Formulario Exención de TGI a ex-combatientes de Malvinas, impreso y completo.",
+      "Recibo de TGI.",
+      "DNI, original y copia.",
+      "Último recibo de haberes.",
+      "Contrato de locación vigente debidamente sellado, donde se establezca la obligatoriedad del pago íntegro del gravámen a cargo del locatario, en caso de ser inquilino."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-ex-combatientes-de-malvinas"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Acercate a la oficina de mesa de entrada del Centro Municipal de Distrito más cercano con la documentación a presentar indicada."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-ex-combatientes-de-malvinas",
+     "enlazado": 2
+    },
+    {
+     "id": "p_9103d8abd58395a9",
+     "nombre": "Solicitar exención de pago de TGI para instituciones, fundaciones y clubes",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-instituciones-fundaciones-y-clubes",
+     "antes": [
+      "El uso del inmueble debe encuadrarse en alguna de las opciones listadas en este documento.",
+      "Documentación legal que fundamente la solicitud.",
+      "Para los casos autorizados, si el inmueble es alquilado contrato legal con vigencia para dicho año, sellado y en el que se establezca la obligatoriedad de pago íntegro del gravamen municipal a cargo del locatario.",
+      "En caso de Entidades de Bien Público con el carácter de comodatarios o que cuenten con una cesión de uso otorgada por el Estado, documentación respaldatoria que lo acredite.",
+      "Copia autenticada de la documentación legal que acredite la condición de beneficiario.",
+      "Copia del contrato legal con vigencia para dicho año, sellado y en el que se establezca la obligatoriedad de pago íntegro del gravamen municipal a cargo del locatario.",
+      "Copia certificada de la documentación respaldatoria pertinente, en caso de Entidades de Bien Público que detenten el carácter de comodatarios o cuenten con una cesión de uso otorgada por el Estado."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-instituciones-fundaciones-y-clubes"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/1665",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-instituciones-fundaciones-y-clubes",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-instituciones-fundaciones-y-clubes",
+     "enlazado": 2
+    },
+    {
+     "id": "p_4637fb9e354067b6",
+     "nombre": "Solicitar exención de pago de TGI para jubilados y pensionados",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-jubilados-y-pensionados",
+     "antes": [
+      "No superar el ingreso correspondiente a dos haberes previsionales mínimos ($ 857.266). Para el caso de jubilados inquilinos no superar el ingreso correspondiente a tres haberes previsionales mínimos ($ 1.285.899)",
+      "Que el inmueble donde habita esté empadronado como \"Finca\" y sea destinado exclusivamente a vivienda familiar.",
+      "Ser propietario o copropietario de única propiedad, usufructuario, inquilino o comodatario del inmueble y no poseer propiedad raíz alguna.",
+      "Si el grupo familiar percibe otros ingresos, el total de ellos no deberá superar el tope mencionado. En caso de beneficios previsionales acordados \"sin aportes\", debe computarse el importe neto de cobro hasta tanto el beneficiario cancele su deuda previsional.",
+      "Formulario de exención de pago de TGI a jubilados y pensionados, completo.",
+      "Carnet previsional.",
+      "Recibo de TGI correspondiente al último período.",
+      "Recibos de último período de haberes y complementos, si corresponde.",
+      "DNI del jubilado con domicilio actualizado. En caso de no tener domicilio actualizado, realizar el trámite Declaración de domicilio.",
+      "DNI de convivientes. En caso de haber alguna persona discapacitada o con problemas de salud presentar también certificado médico.",
+      "Libreta de familia y certificado de defunción o declaratoria de herederos, si es cónyuge del titular del inmueble fallecido.",
+      "Escritura si es propietario o usufructuario.",
+      "Contrato de locación con sellado vigente, si es inquilino.",
+      "Contrato de comodato con sellado vigente, si es comodatario.",
+      "Acta de divorcio, división de bienes, denuncia policial, testimonial, documento de identidad del ex cónyuge con cambio de domicilio registrado, entre otros, en caso que el solicitante se encuentre divorciado o separado de hecho de su cónyuge y ambos sean los titulares del inmueble.",
+      "En caso de presentarse un tercero, DNI y autorización especial y Certificado de supervivencia del jubilado/pensionado."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-jubilados-y-pensionados"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Resolvé Resolvé con clave fiscal Necesitás clave fiscal de nivel 3, adherí el Servicio Municipalidad de Rosario - trámites tributarios en el Administrador de Relaciones de Clave Fiscal de AFIP"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-jubilados-y-pensionados",
+     "enlazado": 2
+    },
+    {
+     "id": "p_ca57ee7640ed7dd0",
+     "nombre": "Solicitar inicio de expediente",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-inicio-de-expediente",
+     "antes": [
+      "Acreditar el interés que se invoca presentando la documentación correspondiente.",
+      "Nota dirigida al Sr. Intendente detallando las características de tu pedido."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-inicio-de-expediente"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Acercate a la oficina de Mesa de Entradas de cualquier Centro Municipal de Distrito con la documentación a presentar indicada. Enviar mensaje por WhatsApp"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-inicio-de-expediente",
+     "enlazado": 2
+    },
+    {
+     "id": "p_a9e94cee46799368",
+     "nombre": "Solicitar inicio de expediente de oficio judicial",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-inicio-de-expediente-de-oficio-judicial",
+     "antes": [
+      "Acreditar el interés que se invoca presentando la documentación correspondiente.",
+      "Oficio Judicial"
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-inicio-de-expediente-de-oficio-judicial"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Acercate a la oficina de Mesa de Entradas de cualquier Centro Municipal de Distrito con la documentación a presentar indicada. Enviar mensaje por WhatsApp"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-inicio-de-expediente-de-oficio-judicial",
+     "enlazado": 2
+    },
+    {
+     "id": "p_1b39c6e4444ebeb8",
+     "nombre": "Solicitar licencia de uso y libre afectación (LULA)",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-licencia-de-uso-y-libre-afectacion-lula",
+     "antes": [
+      "Formulario de Solicitud de Licencia de uso y Libre afectación, impreso, completo, firmado y su correspondiente comprobante de pago efectuado (Si optás realizar el pago online, no olvides: completar el formulario con los datos requeridos para el trámite y luego imprimir el formulario -clic en \"Imprimir\"- antes de proceder con el pago online).",
+      "Si vas a tramitar un Permiso de Edificación recordá que, según la Ord. 10139/20 y el Dto. 914/22 Anexo III, los depósitos complementarios de comercio y servicios que integren la misma unidad de uso y no superen el 50% de su superficie (incluido el espacio de carga y descarga) no son considerados depósitos para la zonificación. En consecuencia, si tu espacio cumple con esta condición, no es necesario que lo declares en la solicitud de la Licencia de Uso y Libre Afectación (LULA).",
+      "En caso que la actividad genere residuos peligrosos: Descargá el Asistente de cálculo e indicá la categoría de los mismos en el campo del formulario. Para más información consultá la guía de uso del asistente.",
+      "En caso que el rubro declarado sea industria, fabricación o depósito, presentá: Formulario Memoria descriptiva para procesos de manufactura con el detalle necesario para la resolución del LULA. Formulario Memoria descriptiva para depósitos de corresponder."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [
+      "50 MT - Solicitud de Licencia de uso y Libre afectación.",
+      "$452 (actualizado al 1 de abril de 2026)"
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-licencia-de-uso-y-libre-afectacion-lula"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Por mail, enviando a tramur@rosario.gob.ar, toda la documentación solicitada y el sellado abonado."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-licencia-de-uso-y-libre-afectacion-lula",
+     "enlazado": 2
+    },
+    {
+     "id": "p_684298f48a68e232",
+     "nombre": "Solicitar medio boleto estudiantil",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-medio-boleto-estudiantil",
+     "antes": [
+      "Ser alumno regular de establecimientos educativos de la ciudad de Rosario, en los niveles: jardín de infantes (4 años), preescolar, primaria, secundaria, escuela especial.",
+      "Tener domicilio a más de 8 cuadras del establecimiento educativo, y que el mismo figure en el DNI. Esto incluye estudiantes que residan en las localidades de Coronel Bogado, Soldini, Pérez, Villa Gobernador Gálvez, Alvear, Pueblo Esther, General Lagos, Funes, Ibarlucea, Baigorria, Capitán Bermúdez, que cursen en un establecimiento educativo en Rosario. En estos casos, el beneficio no aplica para los viajes interurbanos, sino exclusivamente para los trayectos urbanos",
+      "Ingreso del grupo familiar que no supere lo estipulado por la Ordenanza N° 6896/1999: Hasta 3 hijos en edad escolar, no debe sobrepasar hasta 3 veces y medio el salario para la categoría A de maestranza -escala salarial de empleados de comercio, según convenio colectivo de trabajo vigente. Más de 3 hijos en edad escolar, no debe superar la suma de 5 salarios y medio de la categoría anteriormente mencionada.",
+      "Si el estudiante es mayor de edad debe declararse dentro del grupo familiar.",
+      "No ser titular de otra franquicia municipal de transporte."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-medio-boleto-estudiantil"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Solicitar",
+         "url": "https://www.rosario.gob.ar/franquicias/ingresar.do;jsessionid=EB0CBD574437F5802C6A980EBE26800D.tcat1b_worker05?accion=ingresar",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-medio-boleto-estudiantil",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-medio-boleto-estudiantil",
+     "enlazado": 2
+    },
+    {
+     "id": "p_a9861a87e3377a72",
+     "nombre": "Solicitar numeración oficial",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-numeracion-oficial",
+     "antes": [
+      "Planta baja del plano de edificación o del anteproyecto de edificación, indicando el ingreso previsto para el cual se solicita la numeración oficial.",
+      "Si la numeración solicitada es para presentar un plano de Propiedad Horizontal, adjuntar el plano de PH o la planta baja del mismo, indicando el ingreso previsto para el cual se solicita la numeración oficial."
+     ],
+     "antesTitulo": "Documentos a presentar",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-numeracion-oficial"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Comenzar",
+         "url": "https://www.rosario.gob.ar/inicio/node/1959",
+         "sitio": "rosario.gob.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-numeracion-oficial",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-numeracion-oficial",
+     "enlazado": 2
+    },
+    {
+     "id": "p_0b03fefa810443cf",
+     "nombre": "Solicitar pase libre de colectivos para mayores de 69 años",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-pase-libre-de-colectivos-para-mayores-de-69-anos",
+     "antes": [
+      "Tener registrado domicilio en Rosario en el DNI.",
+      "Contar con ingresos totales que no superen la jubilación mínima, conforme Ley de Movilidad Jubilatoria N° 26.417.",
+      "No poseer más de un inmueble.",
+      "No ser titular de ningún vehículo.",
+      "No poseer ninguna otra franquicia municipal de transporte."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-pase-libre-de-colectivos-para-mayores-de-69-anos"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "El trámite es personal, debe presentarse en Ovidio lagos 1634 de Lunes a Viernes de 8 a 12:30 horas con DNI original del titular de la franquicia y el último recibo de cobro de Jubilación. Se puede llevar una tarjeta SUBE que ya tengan o adquirirla y así activar el beneficio. Por consultas o reclamos escribinos a reclamos_franquicias@rosario.gob.ar Enviar mensaje por WhatsApp"
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-pase-libre-de-colectivos-para-mayores-de-69-anos",
+     "enlazado": 2
+    },
+    {
+     "id": "p_02049e922cd2bca6",
+     "nombre": "Solicitar plano catastral, de mensura y/o material cartográfico",
+     "ficha": "https://www.rosario.gob.ar/inicio/solicitar-plano-catastral-de-mensura-yo-material-cartografico",
+     "antes": [
+      "Número y año del plano o certificado.",
+      "Empadronamiento catastral (podés obtenerlo de la TGI)",
+      "Número de cuenta de TGI",
+      "Número de partida del Impuesto Inmobilario"
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "50 MT - Ploteo planos color, con plenos, por metro cuadrado",
+      "3 MT - Fotocopia de planos certificadas. Por cada módulo oficio",
+      "15 MT - Imágenes digitales de planos de mensura certificada",
+      "$452 (actualizado al 1 de abril de 2026)"
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://www.rosario.gob.ar/inicio/solicitar-plano-catastral-de-mensura-yo-material-cartografico"
+      },
+      {
+       "titulo": "Entrá al sistema del trámite",
+       "detalle": "Es el botón de la ficha que inicia el trámite.",
+       "opciones": [
+        {
+         "texto": "Acceder a Infomapa",
+         "url": "https://infomapa.rosario.gov.ar/emapa/mapa.htm",
+         "sitio": "infomapa.rosario.gov.ar",
+         "desde": "https://www.rosario.gob.ar/inicio/solicitar-plano-catastral-de-mensura-yo-material-cartografico",
+         "necesitas": null
+        }
+       ]
+      },
+      {
+       "titulo": "Completalo en el sitio oficial",
+       "detalle": "Wayfinder no ve ni completa tus datos. Si algo no coincide, manda la ficha oficial."
+      }
+     ],
+     "fuente": "https://www.rosario.gob.ar/inicio/solicitar-plano-catastral-de-mensura-yo-material-cartografico",
+     "enlazado": 2
+    }
+   ]
+  },
+  {
+   "id": "vggmunicipalidad",
+   "nombre": "Villa Gobernador Gálvez",
+   "hosts": [
+    "vggmunicipalidad.gov.ar",
+    "www.vggmunicipalidad.gov.ar"
+   ],
+   "portada": "https://vggmunicipalidad.gov.ar/",
+   "tramites": [
+    {
+     "id": "p_6f990897addb2359",
+     "nombre": "Licencia de conducir",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+     "antes": [
+      "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
+      "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)",
+      "Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación)",
+      "Fotocopia legible del CUIL",
+      "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
+      "Saber leer (para categorías C y E también saber escribir)",
+      "Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación).",
+      "Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI.",
+      "Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible.",
+      "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
+      "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)",
+      "Fotocopia legible de la LICENCIA acompañada por la original",
+      "Fotocopia legible del CUIL",
+      "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
+      "Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí.",
+      "Saber leer y escribir",
+      "No ser mayor de 65 años",
+      "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
+      "Denuncia de extravío – Validez de 30 días desde la fecha de emisión",
+      "DNI",
+      "Fotocopia del DNI o fotocopia de inicio de trámite del DNI",
+      "Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3)"
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "18 a 20 años (1 año - 3 años): $24.500",
+      "21 a 65 años (5 años): $35.000",
+      "66 a 70 años (3 años): $17.500",
+      "71 años o más (1 año): $7.000",
+      "Extravío/cambio de datos: $17.000",
+      "21 a 45 años (5 años): $63.000",
+      "46 años a 65 años (3 años): $42.000",
+      "66 años a 70 años (2 años): $28.000",
+      "71 años o más (1 año): $24.500"
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+     "enlazado": 15
+    },
+    {
+     "id": "p_3e26e10a29628d91",
+     "nombre": "Turnos Centros de Salud",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/106/turnos-centros-de-salud/",
+     "antes": [
+      "Estar registrado como ciudadano.",
+      "Tener tu domicilio cargado y georeferenciado para obtener información en línea sobre los centros de salud disponibles."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "money_off El trámite es TOTALMENTE GRATUITO."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/106/turnos-centros-de-salud/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/106/turnos-centros-de-salud/",
+     "enlazado": 15
+    },
+    {
+     "id": "p_08cc3abfcc4ed96f",
+     "nombre": "Inscripción de Cooperativas",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/135/inscripcion-de-cooperativas/",
+     "antes": [
+      "Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012).",
+      "Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe.",
+      "Registro actualizado de asociados.",
+      "Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes.",
+      "Inventario detallado de maquinarias y elementos de trabajo.",
+      "Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar).",
+      "Declaración jurada con la actividad principal y secundaria de la cooperativa.",
+      "Estatuto social vigente.",
+      "Última acta de designación de autoridades."
+     ],
+     "antesTitulo": "Requisitos al momento de ser convocadas",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/135/inscripcion-de-cooperativas/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/135/inscripcion-de-cooperativas/",
+     "enlazado": 3
+    },
+    {
+     "id": "p_0b6f31133e96d243",
+     "nombre": "Solicitud de partidas",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/",
+     "antes": [],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "El costo se encuentra expresado en la plataforma. El pago se realiza con tarjeta de débito. Luego debes ingresar en tu homebanking y autorizar la transacción. Para finalizar accedes nuevamente a www.santafe.gov.ar/rcdigital y validas el pago."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "Ingresar nueva solicitud de partida."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/",
+     "enlazado": 3
+    },
+    {
+     "id": "p_3ea37a27b0ebf79e",
+     "nombre": "Bajas bromatológicas de comercios sin RNE",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/11/bajas-bromatologicas-de-comercios-sin-rne/",
+     "antes": [
+      "Formulario bromatológico de cese.",
+      "Cuaderno de habilitación bromatológico."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/11/bajas-bromatologicas-de-comercios-sin-rne/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/11/bajas-bromatologicas-de-comercios-sin-rne/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_22710dbfebeebef5",
+     "nombre": "Habilitaciones bromatológicas de comercios sin RNE",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/15/habilitaciones-bromatologicas-de-comercios-sin-rne/",
+     "antes": [
+      "Inspección bromatológica.",
+      "Condiciones edilicias.",
+      "Indumentaria obligatoria.",
+      "Libretas sanitarias.",
+      "Carnet de manipulador.",
+      "Condiciones higiénicas-sanitarias.",
+      "Condiciones de frío.",
+      "Cuaderno de inspección."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/15/habilitaciones-bromatologicas-de-comercios-sin-rne/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/15/habilitaciones-bromatologicas-de-comercios-sin-rne/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_ee04128d3e05e86d",
+     "nombre": "Inscripción al Registro de Capacitadores",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/",
+     "antes": [
+      "Tener experiencia comprobable en la enseñanza de oficios y desear formar parte de nuestras propuestas de capacitación."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "money_off El trámite es TOTALMENTE GRATUITO."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_56ade75f3672e01e",
+     "nombre": "Inscripción al Registro de Interesados para adquisición de 60 (sesenta) lotes con destino a vivienda familiar.",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/",
+     "antes": [
+      "Ser mayor de 18 años.",
+      "Contar como mínimo con 2 (dos) años de residencia o lugar de trabajo efectivo y acreditable en la ciudad.",
+      "No ser propietario o copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta gama y/o aeronaves.",
+      "No haber sido beneficiario de sorteos anteriores.",
+      "Contar con ingresos demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo declarando el promedio mensual de facturación de, por lo menos, los últimos 6 (seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del límite máximo de la categoría en la cual se encuadra.",
+      "No figurar inscripto en el Registro de Deudores Alimentarios."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "money_off El trámite de inscripción al registro es TOTALMENTE GRATUITO."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_c51234bbdb2ffc2f",
+     "nombre": "Liberación de Vehículos/Motocicletas",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/127/liberacion-de-vehiculosmotocicletas/",
+     "antes": [
+      "Liberación del Tribunal de Faltas, válido por 30 días (original).",
+      "DNI del titular del vehículo (fotocopia frente y dorso).",
+      "Licencia de conducir del titular (fotocopia frente y dorso).",
+      "Tarjeta de identificación del vehículo, tarjeta verde (fotocopia).",
+      "Póliza de seguro y recibo de seguro del mes en curso pago (fotocopia).",
+      "Último recibo de patente paga con boleta (fotocopia).",
+      "En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros.",
+      "En autos: espejos, luces, cinturón de seguridad, chapa patente.",
+      "DNI del autorizado (fotocopia frente y dorso).",
+      "Licencia de conducir del habilitado (copia frente y dorso).",
+      "Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso)."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/127/liberacion-de-vehiculosmotocicletas/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/127/liberacion-de-vehiculosmotocicletas/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_c4ede3d5a4259e9d",
+     "nombre": "Preinscripción a Feria de Artesanos y Emprendedores",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/",
+     "antes": [
+      "Residir en Villa Gobernador Gálvez.",
+      "Contar con producción propia de carácter artesanal o emprendedor.",
+      "Completar correctamente el formulario de preinscripción."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "money_off El trámite es TOTALMENTE GRATUITO."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_3f00a70ad490e5fa",
+     "nombre": "Preinscripción a Feria Sarmiento",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/",
+     "antes": [
+      "Residir en Villa Gobernador Gálvez.",
+      "Tener un emprendimiento productivo o artesanal propio.",
+      "Completar correctamente el formulario de preinscripción."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "money_off El trámite es TOTALMENTE GRATUITO."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_7f35057b0dc8056e",
+     "nombre": "Preinscripción a la Feria de Moda Circular",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/",
+     "antes": [
+      "Residir en Villa Gobernador Gálvez.",
+      "Ofrecer indumentaria y/o accesorios en buen estado, aptos para la comercialización.",
+      "Completar correctamente el formulario de preinscripción."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "money_off El trámite es TOTALMENTE GRATUITO."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_bb31f72568373bff",
+     "nombre": "Preinscripción a VGG Mercado",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/",
+     "antes": [
+      "Residir en Villa Gobernador Gálvez.",
+      "Contar con un emprendimiento productivo, alimenticio o manufacturero.",
+      "Cumplir con las normas de salubridad e higiene correspondientes en caso de ofrecer alimentos.",
+      "Completar correctamente el formulario de preinscripción."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "money_off El trámite es TOTALMENTE GRATUITO."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_27bd56dd69477323",
+     "nombre": "Sanidad Animal (Castraciones, Atención Veterinaria)",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/134/sanidad-animal-castraciones-atencion-veterinaria/",
+     "antes": [
+      "Haber registrado previamente a la mascota desde la app VGGMuni.",
+      "DNI del responsable con domicilio en la ciudad de Villa Gobernador Gálvez.",
+      "Carnet de vacunas del animal.",
+      "Manta (para después de la cirugía).",
+      "8 horas de ayuno de líquidos y sólidos.",
+      "Caninos con correa, felinos en bolsa de red.",
+      "Avisar si la mascota está en tratamiento médico."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/134/sanidad-animal-castraciones-atencion-veterinaria/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/134/sanidad-animal-castraciones-atencion-veterinaria/",
+     "enlazado": 2
+    },
+    {
+     "id": "p_39bb08f97dcabd9d",
+     "nombre": "Solicitud de Turno Charlas de Educación Vial",
+     "ficha": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/",
+     "antes": [
+      "Las instituciones deben estar ubicadas en la ciudad de Villa Gobernador Gálvez y contar con un espacio adecuado. En caso de cancelación hacerlo con 48 horas de anticipación."
+     ],
+     "antesTitulo": "Requisitos",
+     "costos": [
+      "money_off El trámite es TOTALMENTE GRATUITO."
+     ],
+     "pasos": [
+      {
+       "titulo": "Abrí la ficha oficial",
+       "detalle": "Ahí está la información vigente del trámite.",
+       "url": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/"
+      },
+      {
+       "titulo": "Seguí las indicaciones de la ficha",
+       "detalle": "La ficha no tiene un botón para hacerlo online: indica cómo resolverlo."
+      }
+     ],
+     "fuente": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/",
+     "enlazado": 2
+    }
+   ]
+  }
+ ]
+}
