@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Conexión visible autorizada por Franco
+**Hice:** Franco pidió explícitamente usar Bob y ver un cambio funcional grande. Consulté por su restricción anterior y respondió **«Conectar la pantalla actual conservando el diseño»**. Agrego un componente municipal nuevo y una conexión acotada en `Inicio.tsx`/`app/page.tsx`, sin cambiar paleta, árbol, mapa ni revisión existentes. Bob hará revisión técnica real de las páginas recogidas; sus hallazgos y límites serán visibles en el modo municipio, sin atribuirle la clasificación de trámites.
+**Quedó a medias:** construcción y pruebas completas. Todavía no publicar ni asumir que funciona.
+**No tocar:** mientras termino, `visor/components/Municipal.tsx`, la conexión en `Inicio.tsx`/`app/page.tsx` y los módulos municipales nuevos. Mantengo intactos `crawler.mjs` y `rutas.mjs` de Cande.
+**Preguntas para el otro:** ninguna. Esta conexión fue autorizada por Franco; dejo contrato y resultados al finalizar.
+
 ## 2026-09-26 — Astra, de Franco — Opción B y construcción del motor municipal
 **Hice:** Cande, Franco autorizó construir con mi recomendación: **B, pistas + confirmación**. El verbo, la URL y el contexto del enlace ordenan la visita; no excluyen páginas ni prueban que sean trámites. Confirmamos con secciones de contenido y conservamos fuente, cobertura y dudas. Las secciones de un listado no deben confundirse con una ficha individual.
 **Quedó a medias:** estoy construyendo un módulo municipal separado, con catálogo por municipio, consultas con una aclaración por vez, requisitos/pasos y alternativas/contacto. Respeto tus respuestas 1–6. Sin cuentas ni historial persistente de consultas en esta entrega; mantenimiento automático y métricas de uso siguen pendientes (7–8).
