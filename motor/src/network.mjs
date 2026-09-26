@@ -8,6 +8,10 @@ export function normalizeUrl(input, base) {
   if (/^[a-z][a-z0-9+.-]*:\/\//i.test(raw) && !/^https?:\/\//i.test(raw)) throw new Error('Usá una URL http o https.');
   const url = new URL(base || /^https?:\/\//i.test(raw) ? raw : `https://${raw}`, base);
   if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) throw new Error('Usá una URL pública http o https, sin credenciales.');
+  // Some stores implement state-changing actions as GET links. They are not
+  // content pages and must never be followed by a passive site scan.
+  if ([...url.searchParams.keys()].some(key => /^(add[-_]to[-_](cart|wishlist)|remove[-_](item|from[-_](cart|wishlist))|undo_item|empty[-_]cart)$/i.test(key)))
+    throw new Error('El recorrido omite acciones de carrito o lista de deseos.');
   url.hash = '';
   for (const key of [...url.searchParams.keys()]) if (/^(utm_|fbclid$|gclid$)/i.test(key)) url.searchParams.delete(key);
   url.searchParams.sort();

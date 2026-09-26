@@ -40,6 +40,16 @@ test('normalizes URLs without allowing credentials or executable schemes', () =>
   assert.equal(isPublicIp('1.1.1.1'), true);
 });
 
+test('passive scans never request shopping-cart or wishlist action links', async t => {
+  const { url, requests } = await fixture(t);
+  for (const query of ['add-to-cart=42', 'add_to_wishlist=42', 'remove_item=42', 'empty-cart=1']) {
+    await assert.rejects(requestText(`${url}?${query}`, { allowLocal: true }), /omite acciones/);
+  }
+  assert.deepEqual(requests, []);
+  const page = extractPage('<h1>Tienda</h1><a href="/?add-to-cart=42">Comprar</a><a href="/?add_to_wishlist=42">Favorito</a><a href="/producto/42">Ver producto</a>', url);
+  assert.deepEqual(page.links, [`${url}producto/42`]);
+});
+
 test('public crawler rejects private networks', async t => {
   const f = await fixture(t);
   await assert.rejects(requestText(f.url), /privada/);

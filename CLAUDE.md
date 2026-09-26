@@ -51,6 +51,17 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 
 ## Decisiones
 
+- **26/09 — Franco aclara el valor central del producto (Astra).** Wayfinder debe
+  ayudar al ciudadano a encontrar y resolver un trámite en pasos simples, con la
+  menor búsqueda y tiempo posibles. No se redefine como una herramienta dirigida
+  principalmente a desarrolladores, ni como un constructor de páginas o un chat
+  genérico. La organización de información y el motor con Bob sostienen una UX
+  que pregunta solo lo indispensable, presenta requisitos pertinentes y lleva al
+  acceso oficial. El aporte de Bob al concurso debe demostrarse con lo que realmente
+  ejecuta; hoy revisa evidencia técnica, y la clasificación municipal es heurística.
+  La propuesta de Astra de centrar el producto en pruebas de cambios queda descartada
+  como dirección principal. Las pruebas siguen siendo verificación interna.
+
 - **26/09 — Cande decide: la respuesta lleva al trámite, no a una página que habla de él.**
   Se hace **sin Bob**. Cuatro partes:
   1. **Dos destinos por trámite:** «Ver requisitos» lleva a la ficha del trámite

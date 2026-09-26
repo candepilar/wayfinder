@@ -42,7 +42,7 @@ const map = {
       await page.getByLabel('Dirección del sitio').fill(scenario === 'invalid' ? 'javascript:alert(1)' : 'qa.example.org');
       await page.getByRole('button', {name: 'Abrir', exact: true}).click();
       if (scenario === 'resume') {
-        await page.getByRole('alert').waitFor();
+        await page.locator('p[role=alert]').waitFor();
         await page.getByRole('button', {name: 'Reintentar seguimiento', exact: true}).click();
       }
       if (['saved', 'new', 'resume'].includes(scenario)) {
@@ -55,8 +55,8 @@ const map = {
         assert.equal(cancels, 1);
         assert.equal(await page.getByLabel('Dirección del sitio').isEnabled(), true);
       } else {
-        await page.getByRole('alert').waitFor();
-        const alert = await page.getByRole('alert').innerText();
+        await page.locator('p[role=alert]').waitFor();
+        const alert = await page.locator('p[role=alert]').innerText();
         assert.match(alert, scenario === 'busy' ? /Ya hay un recorrido/ : scenario === 'failed' ? /robots.txt/ : /dirección válida/);
         assert.equal(starts, scenario === 'invalid' ? 0 : 1);
         assert.equal(await page.getByRole('button', {name: 'Abrir', exact: true}).isEnabled(), true);
