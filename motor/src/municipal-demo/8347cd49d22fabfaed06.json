@@ -465,13 +465,26 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Registro Civil Dirección: J. Piazza 784 Tel.: 492-1297 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Registro Civil Dirección: J. Piazza 784",
-              "Tel.: 492-1297",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Registro Civil Dirección: J. Piazza 784 Tel.: 492-1297 ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Registro Civil"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: J. Piazza 784"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 492-1297"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/138/turnos-registro-civil/"
           }
         ],
@@ -597,7 +610,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:30:59.307Z"
       }
     },
     {
@@ -614,49 +628,136 @@
           {
             "tipo": "requisitos",
             "titulo": "Requisitos",
-            "texto": "Para las categorías A, B, C, E y F: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí . Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual) Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación) Fotocopia legible del CUIL Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva) Saber leer (para categorías C y E también saber escribir) Para Profesionales E1, E2, C, D1 Y D2: Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación). Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI. Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible. Para Servicios Públicos, correspondientes a las categorías D1 y D3: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí . Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual) Fotocopia legible de la LICENCIA acompañada por la original Fotocopia legible del CUIL Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva) Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí . Saber leer y escribir No ser mayor de 65 años En caso de extravío: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí . Denuncia de extravío – Validez de 30 días desde la fecha de emisión DNI Fotocopia del DNI o fotocopia de inicio de trámite del DNI Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3 )",
+            "texto": "Para las categorías A, B, C, E y F: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí. Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual) Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación) Fotocopia legible del CUIL Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva) Saber leer (para categorías C y E también saber escribir) Para Profesionales E1, E2, C, D1 Y D2: Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación). Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI. Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible. Para Servicios Públicos, correspondientes a las categorías D1 y D3: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí. Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual) Fotocopia legible de la LICENCIA acompañada por la original Fotocopia legible del CUIL Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva) Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí. Saber leer y escribir No ser mayor de 65 años En caso de extravío: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí. Denuncia de extravío – Validez de 30 días desde la fecha de emisión DNI Fotocopia del DNI o fotocopia de inicio de trámite del DNI Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3)",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Para las categorías A, B, C, E y F:"
+              },
+              {
+                "tipo": "item",
+                "texto": "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí."
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)"
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación)"
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia legible del CUIL"
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)"
+              },
+              {
+                "tipo": "item",
+                "texto": "Saber leer (para categorías C y E también saber escribir)"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Para Profesionales E1, E2, C, D1 Y D2:"
+              },
+              {
+                "tipo": "item",
+                "texto": "Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI."
+              },
+              {
+                "tipo": "item",
+                "texto": "Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Para Servicios Públicos, correspondientes a las categorías D1 y D3:"
+              },
+              {
+                "tipo": "item",
+                "texto": "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí."
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)"
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia legible de la LICENCIA acompañada por la original"
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia legible del CUIL"
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)"
+              },
+              {
+                "tipo": "item",
+                "texto": "Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí."
+              },
+              {
+                "tipo": "item",
+                "texto": "Saber leer y escribir"
+              },
+              {
+                "tipo": "item",
+                "texto": "No ser mayor de 65 años"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "En caso de extravío:"
+              },
+              {
+                "tipo": "item",
+                "texto": "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí."
+              },
+              {
+                "tipo": "item",
+                "texto": "Denuncia de extravío – Validez de 30 días desde la fecha de emisión"
+              },
+              {
+                "tipo": "item",
+                "texto": "DNI"
+              },
+              {
+                "tipo": "item",
+                "texto": "Fotocopia del DNI o fotocopia de inicio de trámite del DNI"
+              },
+              {
+                "tipo": "item",
+                "texto": "Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3)"
+              }
+            ],
             "items": [
-              "Para las categorías A, B, C, E y F: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago.",
-              "Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí .",
+              "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
               "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)",
-              "Fotocopia legible de la LICENCIA acompañada por la",
-              "original (en caso de renovación)",
+              "Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación)",
               "Fotocopia legible del CUIL",
-              "Fotocopia legible de Grupo",
-              "Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
+              "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
               "Saber leer (para categorías C y E también saber escribir)",
-              "Para Profesionales E1, E2, C, D1 Y D2:",
-              "Los",
-              "profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados",
-              "otorgados por el LINTI (psicofísico y capacitación).",
-              "Los",
-              "profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI.",
+              "Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación).",
+              "Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI.",
               "Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible.",
-              "Para Servicios Públicos, correspondientes a las categorías D1 y D3:",
-              "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago.",
-              "Por",
-              "disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener",
-              "72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el",
-              "trámite. Podés gestionarlo ingresando aquí .",
+              "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
               "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)",
-              "Fotocopia legible de la",
-              "LICENCIA acompañada por la original",
+              "Fotocopia legible de la LICENCIA acompañada por la original",
               "Fotocopia legible del CUIL",
-              "Fotocopia legible de Grupo",
-              "Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
-              "Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí .",
+              "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
+              "Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí.",
               "Saber leer y escribir",
               "No ser mayor de 65 años",
-              "En caso de extravío:",
-              "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago.",
-              "Por",
-              "disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener",
-              "72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el",
-              "trámite. Podés gestionarlo ingresando aquí .",
+              "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
               "Denuncia de extravío – Validez de 30 días desde la fecha de emisión",
               "DNI",
               "Fotocopia del DNI o fotocopia de inicio de trámite del DNI",
-              "Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3 )"
+              "Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3)"
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/"
           },
@@ -664,37 +765,108 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "VIGENCIA/COSTO POR CATEGORÍA 18 a 20 años (1 año - 3 años): $24.500 21 a 65 años (5 años): $35.000 66 a 70 años (3 años): $17.500 71 años o más (1 año): $7.000 Extravío/cambio de datos: $17.000 E1/C/D (SOLO PROFESIONALES) 21 a 45 años (5 años): $63.000 46 años a 65 años (3 años): $42.000 66 años a 70 años (2 años): $28.000 71 años o más (1 año): $24.500 HORARIOS DE CAJA: - De 7 a 11:30hs Pago efectivo y débito - De 12 a 14:00hs Solamente pago débito Importante: Recordá abonar el monto correspondiente a tu licencia antes de presentarte con el turno confirmado, de lo contrario no podrás realizar el trámite.",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "VIGENCIA/COSTO POR CATEGORÍA"
+              },
+              {
+                "tipo": "item",
+                "texto": "18 a 20 años (1 año - 3 años): $24.500"
+              },
+              {
+                "tipo": "item",
+                "texto": "21 a 65 años (5 años): $35.000"
+              },
+              {
+                "tipo": "item",
+                "texto": "66 a 70 años (3 años): $17.500"
+              },
+              {
+                "tipo": "item",
+                "texto": "71 años o más (1 año): $7.000"
+              },
+              {
+                "tipo": "item",
+                "texto": "Extravío/cambio de datos: $17.000"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E1/C/D (SOLO PROFESIONALES)"
+              },
+              {
+                "tipo": "item",
+                "texto": "21 a 45 años (5 años): $63.000"
+              },
+              {
+                "tipo": "item",
+                "texto": "46 años a 65 años (3 años): $42.000"
+              },
+              {
+                "tipo": "item",
+                "texto": "66 años a 70 años (2 años): $28.000"
+              },
+              {
+                "tipo": "item",
+                "texto": "71 años o más (1 año): $24.500"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "HORARIOS DE CAJA:"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "- De 7 a 11:30hs Pago efectivo y débito"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "- De 12 a 14:00hs Solamente pago débito"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Importante: Recordá abonar el monto correspondiente a tu licencia antes de presentarte con el turno confirmado, de lo contrario no podrás realizar el trámite."
+              }
+            ],
             "items": [
-              "VIGENCIA/COSTO POR CATEGORÍA",
               "18 a 20 años (1 año - 3 años): $24.500",
               "21 a 65 años (5 años): $35.000",
               "66 a 70 años (3 años): $17.500",
               "71 años o más (1 año): $7.000",
               "Extravío/cambio de datos: $17.000",
-              "E1/C/D (SOLO PROFESIONALES)",
               "21 a 45 años (5 años): $63.000",
               "46 años a 65 años (3 años): $42.000",
               "66 años a 70 años (2 años): $28.000",
-              "71 años o más (1 año): $24.500",
-              "HORARIOS DE CAJA:",
-              "- De 7 a 11:30hs Pago efectivo y débito",
-              "- De 12 a 14:00hs Solamente pago débito",
-              "Importante: Recordá abonar el monto correspondiente a tu licencia antes de presentarte con el turno confirmado, de lo contrario no podrás realizar el trámite."
+              "71 años o más (1 año): $24.500"
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Oficina Carnet de Conductor Horario: Lunes a viernes, de 7:00 a 15:00 Av. Juan D. Perón 1549 - 2º piso Tel.: 4923772 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Oficina Carnet de Conductor",
-              "Horario: Lunes a viernes, de 7:00 a 15:00",
-              "Av. Juan D. Perón 1549 - 2º piso",
-              "Tel.: 4923772",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Oficina Carnet de Conductor Horario: Lunes a viernes, de 7:00 a 15:00 Av. Juan D. Perón 1549 - 2º piso Tel.: 4923772 ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Oficina Carnet de Conductor"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Horario: Lunes a viernes, de 7:00 a 15:00"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Av. Juan D. Perón 1549 - 2º piso"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 4923772"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/"
           }
         ],
@@ -878,49 +1050,136 @@
             {
               "tipo": "requisitos",
               "titulo": "Requisitos",
-              "texto": "Para las categorías A, B, C, E y F: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí . Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual) Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación) Fotocopia legible del CUIL Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva) Saber leer (para categorías C y E también saber escribir) Para Profesionales E1, E2, C, D1 Y D2: Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación). Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI. Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible. Para Servicios Públicos, correspondientes a las categorías D1 y D3: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí . Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual) Fotocopia legible de la LICENCIA acompañada por la original Fotocopia legible del CUIL Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva) Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí . Saber leer y escribir No ser mayor de 65 años En caso de extravío: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí . Denuncia de extravío – Validez de 30 días desde la fecha de emisión DNI Fotocopia del DNI o fotocopia de inicio de trámite del DNI Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3 )",
+              "texto": "Para las categorías A, B, C, E y F: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí. Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual) Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación) Fotocopia legible del CUIL Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva) Saber leer (para categorías C y E también saber escribir) Para Profesionales E1, E2, C, D1 Y D2: Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación). Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI. Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible. Para Servicios Públicos, correspondientes a las categorías D1 y D3: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí. Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual) Fotocopia legible de la LICENCIA acompañada por la original Fotocopia legible del CUIL Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva) Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí. Saber leer y escribir No ser mayor de 65 años En caso de extravío: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí. Denuncia de extravío – Validez de 30 días desde la fecha de emisión DNI Fotocopia del DNI o fotocopia de inicio de trámite del DNI Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3)",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para las categorías A, B, C, E y F:"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación)"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia legible del CUIL"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Saber leer (para categorías C y E también saber escribir)"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para Profesionales E1, E2, C, D1 Y D2:"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para Servicios Públicos, correspondientes a las categorías D1 y D3:"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia legible de la LICENCIA acompañada por la original"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia legible del CUIL"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Saber leer y escribir"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "No ser mayor de 65 años"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "En caso de extravío:"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Denuncia de extravío – Validez de 30 días desde la fecha de emisión"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "DNI"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Fotocopia del DNI o fotocopia de inicio de trámite del DNI"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3)"
+                }
+              ],
               "items": [
-                "Para las categorías A, B, C, E y F: Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago.",
-                "Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí .",
+                "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
                 "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)",
-                "Fotocopia legible de la LICENCIA acompañada por la",
-                "original (en caso de renovación)",
+                "Fotocopia legible de la LICENCIA acompañada por la original (en caso de renovación)",
                 "Fotocopia legible del CUIL",
-                "Fotocopia legible de Grupo",
-                "Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
+                "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
                 "Saber leer (para categorías C y E también saber escribir)",
-                "Para Profesionales E1, E2, C, D1 Y D2:",
-                "Los",
-                "profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados",
-                "otorgados por el LINTI (psicofísico y capacitación).",
-                "Los",
-                "profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI.",
+                "Los profesionales E1 INTERJURISDICCIONAL tendrán que presentar los certificados otorgados por el LINTI (psicofísico y capacitación).",
+                "Los profesionales E2, C, D1, D2 que circulen dentro del RADIO JURISDICCIONAL lo podrán efectuar sin presentar los certificados del LINTI.",
                 "Todos los trámites tendrán que ser presentados con fotocopia en tamaño real, legible.",
-                "Para Servicios Públicos, correspondientes a las categorías D1 y D3:",
-                "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago.",
-                "Por",
-                "disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener",
-                "72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el",
-                "trámite. Podés gestionarlo ingresando aquí .",
+                "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
                 "Fotocopia legible del DNI acompañada por el DNI original (con domicilio actual)",
-                "Fotocopia legible de la",
-                "LICENCIA acompañada por la original",
+                "Fotocopia legible de la LICENCIA acompañada por la original",
                 "Fotocopia legible del CUIL",
-                "Fotocopia legible de Grupo",
-                "Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
-                "Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí .",
+                "Fotocopia legible de Grupo Sanguíneo firmado y sellado por un bioquímico (en caso de ser licencia nueva)",
+                "Certificado de Reincidencia - Validez de 30 días por disposición de la Agencia de Seguridad Vial. Podés gestionarlo ingresando aquí.",
                 "Saber leer y escribir",
                 "No ser mayor de 65 años",
-                "En caso de extravío:",
-                "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago.",
-                "Por",
-                "disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener",
-                "72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el",
-                "trámite. Podés gestionarlo ingresando aquí .",
+                "Impresión legible de Certificado Nacional de Antecedentes de Tránsito (CeNAT) y comprobante de pago. Por disposición de Nación, a partir del 14/09/2020, el CENAT deberá tener 72hs hábiles de acreditación de pago. Caso contrario no se podrá ingresar el trámite. Podés gestionarlo ingresando aquí.",
                 "Denuncia de extravío – Validez de 30 días desde la fecha de emisión",
                 "DNI",
                 "Fotocopia del DNI o fotocopia de inicio de trámite del DNI",
-                "Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3 )"
+                "Certificado de reincidencia con menos de 30 días de emitido (solo D1 y D3)"
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/"
             },
@@ -928,44 +1187,116 @@
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "VIGENCIA/COSTO POR CATEGORÍA 18 a 20 años (1 año - 3 años): $24.500 21 a 65 años (5 años): $35.000 66 a 70 años (3 años): $17.500 71 años o más (1 año): $7.000 Extravío/cambio de datos: $17.000 E1/C/D (SOLO PROFESIONALES) 21 a 45 años (5 años): $63.000 46 años a 65 años (3 años): $42.000 66 años a 70 años (2 años): $28.000 71 años o más (1 año): $24.500 HORARIOS DE CAJA: - De 7 a 11:30hs Pago efectivo y débito - De 12 a 14:00hs Solamente pago débito Importante: Recordá abonar el monto correspondiente a tu licencia antes de presentarte con el turno confirmado, de lo contrario no podrás realizar el trámite.",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "VIGENCIA/COSTO POR CATEGORÍA"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "18 a 20 años (1 año - 3 años): $24.500"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "21 a 65 años (5 años): $35.000"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "66 a 70 años (3 años): $17.500"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "71 años o más (1 año): $7.000"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Extravío/cambio de datos: $17.000"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E1/C/D (SOLO PROFESIONALES)"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "21 a 45 años (5 años): $63.000"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "46 años a 65 años (3 años): $42.000"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "66 años a 70 años (2 años): $28.000"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "71 años o más (1 año): $24.500"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "HORARIOS DE CAJA:"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "- De 7 a 11:30hs Pago efectivo y débito"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "- De 12 a 14:00hs Solamente pago débito"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Importante: Recordá abonar el monto correspondiente a tu licencia antes de presentarte con el turno confirmado, de lo contrario no podrás realizar el trámite."
+                }
+              ],
               "items": [
-                "VIGENCIA/COSTO POR CATEGORÍA",
                 "18 a 20 años (1 año - 3 años): $24.500",
                 "21 a 65 años (5 años): $35.000",
                 "66 a 70 años (3 años): $17.500",
                 "71 años o más (1 año): $7.000",
                 "Extravío/cambio de datos: $17.000",
-                "E1/C/D (SOLO PROFESIONALES)",
                 "21 a 45 años (5 años): $63.000",
                 "46 años a 65 años (3 años): $42.000",
                 "66 años a 70 años (2 años): $28.000",
-                "71 años o más (1 año): $24.500",
-                "HORARIOS DE CAJA:",
-                "- De 7 a 11:30hs Pago efectivo y débito",
-                "- De 12 a 14:00hs Solamente pago débito",
-                "Importante: Recordá abonar el monto correspondiente a tu licencia antes de presentarte con el turno confirmado, de lo contrario no podrás realizar el trámite."
+                "71 años o más (1 año): $24.500"
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Oficina Carnet de Conductor Horario: Lunes a viernes, de 7:00 a 15:00 Av. Juan D. Perón 1549 - 2º piso Tel.: 4923772 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Oficina Carnet de Conductor",
-                "Horario: Lunes a viernes, de 7:00 a 15:00",
-                "Av. Juan D. Perón 1549 - 2º piso",
-                "Tel.: 4923772",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Oficina Carnet de Conductor Horario: Lunes a viernes, de 7:00 a 15:00 Av. Juan D. Perón 1549 - 2º piso Tel.: 4923772 ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Oficina Carnet de Conductor"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Horario: Lunes a viernes, de 7:00 a 15:00"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Av. Juan D. Perón 1549 - 2º piso"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Tel.: 4923772"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:00.660Z"
       }
     },
     {
@@ -982,24 +1313,59 @@
           {
             "tipo": "requisitos",
             "titulo": "Requisitos al momento de ser convocadas",
-            "texto": "Al momento de proceder con la contratación, las cooperativas deberán presentar la siguiente documentación: Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012). Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe. Registro actualizado de asociados. Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes. Inventario detallado de maquinarias y elementos de trabajo. Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar). Declaración jurada con la actividad principal y secundaria de la cooperativa. Estatuto social vigente. Última acta de designación de autoridades. 2026 Municipalidad de Villa Gobernador Gálvez",
+            "texto": "Al momento de proceder con la contratación, las cooperativas deberán presentar la siguiente documentación: Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012). Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe. Registro actualizado de asociados. Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes. Inventario detallado de maquinarias y elementos de trabajo. Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar). Declaración jurada con la actividad principal y secundaria de la cooperativa. Estatuto social vigente. Última acta de designación de autoridades.",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Al momento de proceder con la contratación, las cooperativas deberán presentar la siguiente documentación:"
+              },
+              {
+                "tipo": "item",
+                "texto": "Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe."
+              },
+              {
+                "tipo": "item",
+                "texto": "Registro actualizado de asociados."
+              },
+              {
+                "tipo": "item",
+                "texto": "Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes."
+              },
+              {
+                "tipo": "item",
+                "texto": "Inventario detallado de maquinarias y elementos de trabajo."
+              },
+              {
+                "tipo": "item",
+                "texto": "Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Declaración jurada con la actividad principal y secundaria de la cooperativa."
+              },
+              {
+                "tipo": "item",
+                "texto": "Estatuto social vigente."
+              },
+              {
+                "tipo": "item",
+                "texto": "Última acta de designación de autoridades."
+              }
+            ],
             "items": [
-              "Al momento de proceder con la contratación, las cooperativas deberán presentar la siguiente documentación:",
-              "Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos",
-              "por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto",
-              "3059/2012).",
+              "Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012).",
               "Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe.",
               "Registro actualizado de asociados.",
-              "Certificado y copia de la póliza de seguros por accidentes de trabajo",
-              "y/o personales y seguro de responsabilidad civil por las maquinarias",
-              "utilizadas, según las exigencias legales vigentes.",
+              "Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes.",
               "Inventario detallado de maquinarias y elementos de trabajo.",
-              "Acreditación de capacidad económica y de ejecución (capital real",
-              "específico y monto máximo anual de obras públicas que pueden ejecutar).",
+              "Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar).",
               "Declaración jurada con la actividad principal y secundaria de la cooperativa.",
               "Estatuto social vigente.",
-              "Última acta de designación de autoridades.",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+              "Última acta de designación de autoridades."
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/135/inscripcion-de-cooperativas/"
           }
@@ -1136,24 +1502,59 @@
             {
               "tipo": "requisitos",
               "titulo": "Requisitos al momento de ser convocadas",
-              "texto": "Al momento de proceder con la contratación, las cooperativas deberán presentar la siguiente documentación: Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012). Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe. Registro actualizado de asociados. Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes. Inventario detallado de maquinarias y elementos de trabajo. Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar). Declaración jurada con la actividad principal y secundaria de la cooperativa. Estatuto social vigente. Última acta de designación de autoridades. 2026 Municipalidad de Villa Gobernador Gálvez",
+              "texto": "Al momento de proceder con la contratación, las cooperativas deberán presentar la siguiente documentación: Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012). Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe. Registro actualizado de asociados. Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes. Inventario detallado de maquinarias y elementos de trabajo. Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar). Declaración jurada con la actividad principal y secundaria de la cooperativa. Estatuto social vigente. Última acta de designación de autoridades.",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Al momento de proceder con la contratación, las cooperativas deberán presentar la siguiente documentación:"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Registro actualizado de asociados."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Inventario detallado de maquinarias y elementos de trabajo."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Declaración jurada con la actividad principal y secundaria de la cooperativa."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Estatuto social vigente."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Última acta de designación de autoridades."
+                }
+              ],
               "items": [
-                "Al momento de proceder con la contratación, las cooperativas deberán presentar la siguiente documentación:",
-                "Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos",
-                "por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto",
-                "3059/2012).",
+                "Constancia de inscripción en el Registro de Bienes y Servicios ofrecidos por Cooperativas de Trabajo de la Provincia de Santa Fe (Decreto 3059/2012).",
                 "Constancia de Subsistencia emitida por el Gobierno de la Provincia de Santa Fe.",
                 "Registro actualizado de asociados.",
-                "Certificado y copia de la póliza de seguros por accidentes de trabajo",
-                "y/o personales y seguro de responsabilidad civil por las maquinarias",
-                "utilizadas, según las exigencias legales vigentes.",
+                "Certificado y copia de la póliza de seguros por accidentes de trabajo y/o personales y seguro de responsabilidad civil por las maquinarias utilizadas, según las exigencias legales vigentes.",
                 "Inventario detallado de maquinarias y elementos de trabajo.",
-                "Acreditación de capacidad económica y de ejecución (capital real",
-                "específico y monto máximo anual de obras públicas que pueden ejecutar).",
+                "Acreditación de capacidad económica y de ejecución (capital real específico y monto máximo anual de obras públicas que pueden ejecutar).",
                 "Declaración jurada con la actividad principal y secundaria de la cooperativa.",
                 "Estatuto social vigente.",
-                "Última acta de designación de autoridades.",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+                "Última acta de designación de autoridades."
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/135/inscripcion-de-cooperativas/"
             }
@@ -1161,7 +1562,8 @@
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:02.020Z"
       }
     },
     {
@@ -1178,16 +1580,34 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Oficina de Patentamiento Horarios: Lunes a Viernes de 7:30 a 12:00 Hs. Dirección: J. D. Perón 1549 Tel.: 5187706 E-mail: patentamiento@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Oficina de Patentamiento",
-              "Horarios: Lunes a Viernes de 7:30 a 12:00 Hs.",
-              "Dirección: J. D. Perón 1549",
-              "Tel.: 5187706",
-              "E-mail: patentamiento@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Oficina de Patentamiento Horarios: Lunes a Viernes de 7:30 a 12:00 Hs. Dirección: J. D. Perón 1549 Tel.: 5187706 E-mail: patentamiento@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Oficina de Patentamiento"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Horarios: Lunes a Viernes de 7:30 a 12:00 Hs."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: J. D. Perón 1549"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 5187706"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: patentamiento@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/92/turnos-online/"
           }
         ],
@@ -1393,7 +1813,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:03.298Z"
       }
     },
     {
@@ -1539,32 +1960,46 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "El ingreso a la Granja es gratuito para las escuelas de la ciudad de Villa Gobernador Gálvez, y en el caso de otras localidades se abona la entrada al Parque Regional que tiene un costo de $1.000 por visitante (mayores de 4 años, pago únicamente vía transferencia) lo cual incluye el uso de las instalaciones del predio, el ingreso a la Granja Educativa y también a la Reserva Natural.",
-            "items": [
-              "El ingreso a la Granja es gratuito para las",
-              "escuelas de la ciudad de Villa Gobernador Gálvez, y en el caso de otras localidades se",
-              "abona la entrada al Parque Regional que tiene un costo de $1.000 por",
-              "visitante (mayores",
-              "de 4 años, pago únicamente vía transferencia) lo",
-              "cual incluye el uso de las instalaciones del predio, el ingreso a la Granja",
-              "Educativa y también a la Reserva Natural."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "El ingreso a la Granja es gratuito para las escuelas de la ciudad de Villa Gobernador Gálvez, y en el caso de otras localidades se abona la entrada al Parque Regional que tiene un costo de $1.000 por visitante (mayores de 4 años, pago únicamente vía transferencia) lo cual incluye el uso de las instalaciones del predio, el ingreso a la Granja Educativa y también a la Reserva Natural."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/93/turno-de-visita-a-la-granja-educativa/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Parque Regional Dirección: Juan Pablo II S/N, sobre la colectora de la circunvalación a la altura de la bajada Villa Diego/Pueblo Nuevo. Tel.: 7353218 E-mail: granja@vggmunicipalidad.gov.ar (Toda comunicación se hará a través del email oficial de la Granja). ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Parque Regional",
-              "Dirección: Juan Pablo II S/N, sobre",
-              "la colectora de la circunvalación a la altura de la bajada Villa Diego/Pueblo",
-              "Nuevo.",
-              "Tel.: 7353218",
-              "E-mail: granja@vggmunicipalidad.gov.ar",
-              "(Toda comunicación se hará a través del email oficial de la Granja).",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Parque Regional Dirección: Juan Pablo II S/N, sobre la colectora de la circunvalación a la altura de la bajada Villa Diego/Pueblo Nuevo. Tel.: 7353218 E-mail: granja@vggmunicipalidad.gov.ar (Toda comunicación se hará a través del email oficial de la Granja). ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Parque Regional"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan Pablo II S/N, sobre la colectora de la circunvalación a la altura de la bajada Villa Diego/Pueblo Nuevo."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 7353218"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: granja@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "(Toda comunicación se hará a través del email oficial de la Granja)."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/93/turno-de-visita-a-la-granja-educativa/"
           }
         ],
@@ -1706,7 +2141,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:04.608Z"
       }
     },
     {
@@ -1865,6 +2301,16 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Estar registrado como ciudadano. Tener tu domicilio cargado y georeferenciado para obtener información en línea sobre los centros de salud disponibles.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Estar registrado como ciudadano."
+              },
+              {
+                "tipo": "item",
+                "texto": "Tener tu domicilio cargado y georeferenciado para obtener información en línea sobre los centros de salud disponibles."
+              }
+            ],
             "items": [
               "Estar registrado como ciudadano.",
               "Tener tu domicilio cargado y georeferenciado para obtener información en línea sobre los centros de salud disponibles."
@@ -1875,23 +2321,42 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/106/turnos-centros-de-salud/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Secretaría de Salud y Ambiente Dirección: Av. Juan Domingo Perón 1620 Tel.: 4929553 E-mail: secsalud@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Secretaría de Salud y Ambiente",
-              "Dirección: Av. Juan Domingo Perón 1620",
-              "Tel.: 4929553",
-              "E-mail: secsalud@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Secretaría de Salud y Ambiente Dirección: Av. Juan Domingo Perón 1620 Tel.: 4929553 E-mail: secsalud@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Secretaría de Salud y Ambiente"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Av. Juan Domingo Perón 1620"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 4929553"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: secsalud@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/106/turnos-centros-de-salud/"
           }
         ],
@@ -2036,6 +2501,16 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Estar registrado como ciudadano. Tener tu domicilio cargado y georeferenciado para obtener información en línea sobre los centros de salud disponibles.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Estar registrado como ciudadano."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Tener tu domicilio cargado y georeferenciado para obtener información en línea sobre los centros de salud disponibles."
+                }
+              ],
               "items": [
                 "Estar registrado como ciudadano.",
                 "Tener tu domicilio cargado y georeferenciado para obtener información en línea sobre los centros de salud disponibles."
@@ -2046,30 +2521,50 @@
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-              "items": [
-                "money_off El trámite es TOTALMENTE GRATUITO."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/106/turnos-centros-de-salud/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Secretaría de Salud y Ambiente Dirección: Av. Juan Domingo Perón 1620 Tel.: 4929553 E-mail: secsalud@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Secretaría de Salud y Ambiente",
-                "Dirección: Av. Juan Domingo Perón 1620",
-                "Tel.: 4929553",
-                "E-mail: secsalud@vggmunicipalidad.gov.ar",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Secretaría de Salud y Ambiente Dirección: Av. Juan Domingo Perón 1620 Tel.: 4929553 E-mail: secsalud@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Secretaría de Salud y Ambiente"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dirección: Av. Juan Domingo Perón 1620"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Tel.: 4929553"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: secsalud@vggmunicipalidad.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/106/turnos-centros-de-salud/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:06.247Z"
       }
     },
     {
@@ -2087,21 +2582,34 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/124/tribunal-de-faltas/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Av. Juan Domingo Perón 1549 Tel.: 4925959 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Av. Juan Domingo Perón 1549",
-              "Tel.: 4925959",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Av. Juan Domingo Perón 1549 Tel.: 4925959 ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Av. Juan Domingo Perón 1549"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 4925959"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/124/tribunal-de-faltas/"
           }
         ],
@@ -2235,7 +2743,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:07.734Z"
       }
     },
     {
@@ -2252,11 +2761,14 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Ante cualquier duda comunicarse vía mail a drei@vggmunicipalidad.gov.ar. 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Ante cualquier duda comunicarse vía mail a drei@vggmunicipalidad.gov.ar.",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Ante cualquier duda comunicarse vía mail a drei@vggmunicipalidad.gov.ar.",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Ante cualquier duda comunicarse vía mail a drei@vggmunicipalidad.gov.ar."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/77/derecho-de-registro-e-inspeccion-ddjj/"
           }
         ],
@@ -2398,7 +2910,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:09.060Z"
       }
     },
     {
@@ -2415,15 +2928,30 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Municipalidad de Villa Gobernador Gálvez Dirección: Ing. Mosconi 1541 Tel.: 4988277 E-mail: tgi@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Municipalidad de Villa Gobernador Gálvez",
-              "Dirección: Ing. Mosconi 1541",
-              "Tel.: 4988277",
-              "E-mail: tgi@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Municipalidad de Villa Gobernador Gálvez Dirección: Ing. Mosconi 1541 Tel.: 4988277 E-mail: tgi@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Municipalidad de Villa Gobernador Gálvez"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Ing. Mosconi 1541"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 4988277"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: tgi@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/8/tasa-general-de-inmuebles/"
           }
         ],
@@ -2565,7 +3093,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:10.611Z"
       }
     },
     {
@@ -4468,14 +4997,30 @@
           {
             "tipo": "pasos",
             "titulo": "Pasos",
-            "texto": "Ingresar nueva solicitud de partida. Acceder con usuario y contraseña de ID CIUDADANA Santa Fe . Crear un pedido de partida. Ingresar los datos y elegir el método de entrega: - Con firma digital, descargable. - En papel, pudiendo retirarla en el Registro Civil.",
+            "texto": "Ingresar nueva solicitud de partida. Acceder con usuario y contraseña de ID CIUDADANA Santa Fe. Crear un pedido de partida. Ingresar los datos y elegir el método de entrega: - Con firma digital, descargable. - En papel, pudiendo retirarla en el Registro Civil.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Ingresar nueva solicitud de partida."
+              },
+              {
+                "tipo": "item",
+                "texto": "Acceder con usuario y contraseña de ID CIUDADANA Santa Fe."
+              },
+              {
+                "tipo": "item",
+                "texto": "Crear un pedido de partida."
+              },
+              {
+                "tipo": "item",
+                "texto": "Ingresar los datos y elegir el método de entrega: - Con firma digital, descargable. - En papel, pudiendo retirarla en el Registro Civil."
+              }
+            ],
             "items": [
               "Ingresar nueva solicitud de partida.",
-              "Acceder con usuario y contraseña de ID CIUDADANA Santa Fe .",
+              "Acceder con usuario y contraseña de ID CIUDADANA Santa Fe.",
               "Crear un pedido de partida.",
-              "Ingresar los datos y elegir el método de entrega:",
-              "- Con firma digital, descargable.",
-              "- En papel, pudiendo retirarla en el Registro Civil."
+              "Ingresar los datos y elegir el método de entrega: - Con firma digital, descargable. - En papel, pudiendo retirarla en el Registro Civil."
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/"
           },
@@ -4483,24 +5028,46 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "El costo se encuentra expresado en la plataforma. El pago se realiza con tarjeta de débito. Luego debes ingresar en tu homebanking y autorizar la transacción. Para finalizar accedes nuevamente a www.santafe.gov.ar/rcdigital y validas el pago.",
-            "items": [
-              "El costo se encuentra expresado en la plataforma. El pago se realiza con tarjeta de débito.",
-              "Luego debes ingresar en tu homebanking y autorizar la transacción.",
-              "Para finalizar accedes nuevamente a www.santafe.gov.ar/rcdigital y validas el pago."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "El costo se encuentra expresado en la plataforma. El pago se realiza con tarjeta de débito."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Luego debes ingresar en tu homebanking y autorizar la transacción."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Para finalizar accedes nuevamente a www.santafe.gov.ar/rcdigital y validas el pago."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "E-mail: rcreclamospartidasweb@santafe.gov.ar Consultas por actas del Departamento Rosario: E-mail: partidaswebrosario@santafe.gov.ar WhatsApp: 3426400215 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "E-mail: rcreclamospartidasweb@santafe.gov.ar",
-              "Consultas por actas del Departamento Rosario:",
-              "E-mail: partidaswebrosario@santafe.gov.ar",
-              "WhatsApp: 3426400215",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "E-mail: rcreclamospartidasweb@santafe.gov.ar Consultas por actas del Departamento Rosario: E-mail: partidaswebrosario@santafe.gov.ar WhatsApp: 3426400215",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: rcreclamospartidasweb@santafe.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Consultas por actas del Departamento Rosario:"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: partidaswebrosario@santafe.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "WhatsApp: 3426400215"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/"
           }
         ],
@@ -4636,14 +5203,30 @@
             {
               "tipo": "pasos",
               "titulo": "Pasos",
-              "texto": "Ingresar nueva solicitud de partida. Acceder con usuario y contraseña de ID CIUDADANA Santa Fe . Crear un pedido de partida. Ingresar los datos y elegir el método de entrega: - Con firma digital, descargable. - En papel, pudiendo retirarla en el Registro Civil.",
+              "texto": "Ingresar nueva solicitud de partida. Acceder con usuario y contraseña de ID CIUDADANA Santa Fe. Crear un pedido de partida. Ingresar los datos y elegir el método de entrega: - Con firma digital, descargable. - En papel, pudiendo retirarla en el Registro Civil.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Ingresar nueva solicitud de partida."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Acceder con usuario y contraseña de ID CIUDADANA Santa Fe."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Crear un pedido de partida."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Ingresar los datos y elegir el método de entrega: - Con firma digital, descargable. - En papel, pudiendo retirarla en el Registro Civil."
+                }
+              ],
               "items": [
                 "Ingresar nueva solicitud de partida.",
-                "Acceder con usuario y contraseña de ID CIUDADANA Santa Fe .",
+                "Acceder con usuario y contraseña de ID CIUDADANA Santa Fe.",
                 "Crear un pedido de partida.",
-                "Ingresar los datos y elegir el método de entrega:",
-                "- Con firma digital, descargable.",
-                "- En papel, pudiendo retirarla en el Registro Civil."
+                "Ingresar los datos y elegir el método de entrega: - Con firma digital, descargable. - En papel, pudiendo retirarla en el Registro Civil."
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/"
             },
@@ -4651,31 +5234,54 @@
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "El costo se encuentra expresado en la plataforma. El pago se realiza con tarjeta de débito. Luego debes ingresar en tu homebanking y autorizar la transacción. Para finalizar accedes nuevamente a www.santafe.gov.ar/rcdigital y validas el pago.",
-              "items": [
-                "El costo se encuentra expresado en la plataforma. El pago se realiza con tarjeta de débito.",
-                "Luego debes ingresar en tu homebanking y autorizar la transacción.",
-                "Para finalizar accedes nuevamente a www.santafe.gov.ar/rcdigital y validas el pago."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "El costo se encuentra expresado en la plataforma. El pago se realiza con tarjeta de débito."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Luego debes ingresar en tu homebanking y autorizar la transacción."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para finalizar accedes nuevamente a www.santafe.gov.ar/rcdigital y validas el pago."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "E-mail: rcreclamospartidasweb@santafe.gov.ar Consultas por actas del Departamento Rosario: E-mail: partidaswebrosario@santafe.gov.ar WhatsApp: 3426400215 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "E-mail: rcreclamospartidasweb@santafe.gov.ar",
-                "Consultas por actas del Departamento Rosario:",
-                "E-mail: partidaswebrosario@santafe.gov.ar",
-                "WhatsApp: 3426400215",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "E-mail: rcreclamospartidasweb@santafe.gov.ar Consultas por actas del Departamento Rosario: E-mail: partidaswebrosario@santafe.gov.ar WhatsApp: 3426400215",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: rcreclamospartidasweb@santafe.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Consultas por actas del Departamento Rosario:"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: partidaswebrosario@santafe.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "WhatsApp: 3426400215"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:11.911Z"
       }
     },
     {
@@ -4692,11 +5298,14 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Ante cualquier duda comunicarse vía mail a drei@vggmunicipalidad.gov.ar. 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Ante cualquier duda comunicarse vía mail a drei@vggmunicipalidad.gov.ar.",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Ante cualquier duda comunicarse vía mail a drei@vggmunicipalidad.gov.ar.",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Ante cualquier duda comunicarse vía mail a drei@vggmunicipalidad.gov.ar."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/77/derecho-de-registro-e-inspeccion-declaracion-jurada/"
           }
         ],
@@ -4838,7 +5447,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:13.276Z"
       }
     },
     {
@@ -4856,21 +5466,34 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/124/turnos-tribunal-de-faltas/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Av. Juan Domingo Perón 1549 Tel.: 4925959 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Av. Juan Domingo Perón 1549",
-              "Tel.: 4925959",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Av. Juan Domingo Perón 1549 Tel.: 4925959 ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Av. Juan Domingo Perón 1549"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 4925959"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/124/turnos-tribunal-de-faltas/"
           }
         ],
@@ -5004,7 +5627,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:14.615Z"
       }
     },
     {
@@ -5021,16 +5645,34 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Oficina de Patentamiento Horarios: Lunes a Viernes de 7:30 a 12:00 Hs. Dirección: J. D. Perón 1549 Tel.: 5187706 E-mail: patentamiento@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Oficina de Patentamiento",
-              "Horarios: Lunes a Viernes de 7:30 a 12:00 Hs.",
-              "Dirección: J. D. Perón 1549",
-              "Tel.: 5187706",
-              "E-mail: patentamiento@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Oficina de Patentamiento Horarios: Lunes a Viernes de 7:30 a 12:00 Hs. Dirección: J. D. Perón 1549 Tel.: 5187706 E-mail: patentamiento@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Oficina de Patentamiento"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Horarios: Lunes a Viernes de 7:30 a 12:00 Hs."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: J. D. Perón 1549"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 5187706"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: patentamiento@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/92/solicitud-de-turnos-patente/"
           }
         ],
@@ -5236,7 +5878,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:16.552Z"
       }
     },
     {
@@ -5253,12 +5896,18 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "E-mail: circuitoeducativo@vggmunicipalidad.gov.ar Tel.: 3413456436 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "E-mail: circuitoeducativo@vggmunicipalidad.gov.ar",
-              "Tel.: 3413456436",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "E-mail: circuitoeducativo@vggmunicipalidad.gov.ar Tel.: 3413456436",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: circuitoeducativo@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 3413456436"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/141/circuito-educativo-villa-gobernador-galvez/"
           }
         ],
@@ -5400,7 +6049,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:17.883Z"
       }
     },
     {
@@ -5418,31 +6068,54 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "Cama por día ..... $5.000 Estacionamiento de Automóvil/Pick Up ..... $5.000 Estacionamiento de motos ..... $ 2.000 Instalación de carpa por día ..... $9.500 El valor del uso de las instalaciones deberá ser cancelado con una anticipación límite de 72 horas, mediante transferencia bancaria y enviando comprobante bancario por WhatsApp al 3417356117 para su confirmación.",
-            "items": [
-              "Cama por día ..... $5.000",
-              "Estacionamiento de Automóvil/Pick Up ..... $5.000",
-              "Estacionamiento de motos ..... $ 2.000",
-              "Instalación de carpa por día ..... $9.500",
-              "El valor del uso de las instalaciones",
-              "deberá ser cancelado con una anticipación límite de 72 horas, mediante",
-              "transferencia bancaria y enviando comprobante bancario por WhatsApp al",
-              "3417356117 para su confirmación."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Cama por día ..... $5.000"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Estacionamiento de Automóvil/Pick Up ..... $5.000"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Estacionamiento de motos ..... $ 2.000"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Instalación de carpa por día ..... $9.500"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "El valor del uso de las instalaciones deberá ser cancelado con una anticipación límite de 72 horas, mediante transferencia bancaria y enviando comprobante bancario por WhatsApp al 3417356117 para su confirmación."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/140/alojamiento-para-delegaciones/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Parque Regional Dirección: Juan Pablo II S/N, sobre la colectora de la circunvalación a la altura de la bajada Villa Diego/Pueblo Nuevo. Tel.: 3417356117 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Parque Regional",
-              "Dirección: Juan Pablo II S/N, sobre",
-              "la colectora de la circunvalación a la altura de la bajada Villa Diego/Pueblo",
-              "Nuevo.",
-              "Tel.: 3417356117",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Parque Regional Dirección: Juan Pablo II S/N, sobre la colectora de la circunvalación a la altura de la bajada Villa Diego/Pueblo Nuevo. Tel.: 3417356117 ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Parque Regional"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan Pablo II S/N, sobre la colectora de la circunvalación a la altura de la bajada Villa Diego/Pueblo Nuevo."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 3417356117"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/140/alojamiento-para-delegaciones/"
           }
         ],
@@ -5568,7 +6241,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:19.763Z"
       }
     },
     {
@@ -5780,27 +6454,43 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Ser mayor de 18 años. Contar como mínimo con 2 (dos) años de residencia o lugar de trabajo efectivo y acreditable en la ciudad. No ser propietario o copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta gama y/o aeronaves. No haber sido beneficiario de sorteos anteriores. Contar con ingresos demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo declarando el promedio mensual de facturación de, por lo menos, los últimos 6 (seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del límite máximo de la categoría en la cual se encuadra. No figurar inscripto en el Registro de Deudores Alimentarios. Todas las disposiciones reglamentarias relativas a la inscripción, verificación de la información declarada, sorteo y adjudicación se encuentran detalladas en el Decreto Reglamentario N° 6787/2026. (ver en Decreto adjunto)",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Ser mayor de 18 años."
+              },
+              {
+                "tipo": "item",
+                "texto": "Contar como mínimo con 2 (dos) años de residencia o lugar de trabajo efectivo y acreditable en la ciudad."
+              },
+              {
+                "tipo": "item",
+                "texto": "No ser propietario o copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta gama y/o aeronaves."
+              },
+              {
+                "tipo": "item",
+                "texto": "No haber sido beneficiario de sorteos anteriores."
+              },
+              {
+                "tipo": "item",
+                "texto": "Contar con ingresos demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo declarando el promedio mensual de facturación de, por lo menos, los últimos 6 (seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del límite máximo de la categoría en la cual se encuadra."
+              },
+              {
+                "tipo": "item",
+                "texto": "No figurar inscripto en el Registro de Deudores Alimentarios."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Todas las disposiciones reglamentarias relativas a la inscripción, verificación de la información declarada, sorteo y adjudicación se encuentran detalladas en el Decreto Reglamentario N° 6787/2026. (ver en Decreto adjunto)"
+              }
+            ],
             "items": [
               "Ser mayor de 18 años.",
-              "Contar como mínimo con 2",
-              "(dos) años de residencia o lugar de trabajo efectivo y acreditable en la",
-              "ciudad.",
-              "No ser propietario o",
-              "copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta",
-              "gama y/o aeronaves.",
-              "No haber sido",
-              "beneficiario de sorteos anteriores.",
-              "Contar con ingresos",
-              "demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo",
-              "declarando el promedio mensual de facturación de, por lo menos, los últimos 6",
-              "(seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del",
-              "límite máximo de la categoría en la cual se encuadra.",
-              "No figurar inscripto en",
-              "el Registro de Deudores Alimentarios.",
-              "Todas las disposiciones reglamentarias",
-              "relativas a la inscripción, verificación de la información declarada, sorteo y",
-              "adjudicación se encuentran detalladas en el Decreto Reglamentario N° 6787/2026.",
-              "(ver en Decreto adjunto)"
+              "Contar como mínimo con 2 (dos) años de residencia o lugar de trabajo efectivo y acreditable en la ciudad.",
+              "No ser propietario o copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta gama y/o aeronaves.",
+              "No haber sido beneficiario de sorteos anteriores.",
+              "Contar con ingresos demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo declarando el promedio mensual de facturación de, por lo menos, los últimos 6 (seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del límite máximo de la categoría en la cual se encuadra.",
+              "No figurar inscripto en el Registro de Deudores Alimentarios."
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/"
           },
@@ -5808,25 +6498,42 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite de inscripción al registro es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite de inscripción al registro es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite de inscripción al registro es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Centro de Atención Ciudadana Tel.: 4988888 Whatsapp: 341-7388888 E-mail: atencionciudadana@vggmunicipalidad.gov.ar En su defecto podrán dirigirse de manera presencial a la Oficina de Vivienda del Municipio para mayor información. 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Centro de Atención Ciudadana",
-              "Tel.: 4988888",
-              "Whatsapp: 341-7388888",
-              "E-mail: atencionciudadana@vggmunicipalidad.gov.ar",
-              "En",
-              "su defecto podrán dirigirse de manera presencial a la Oficina de Vivienda del",
-              "Municipio para mayor información.",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Centro de Atención Ciudadana Tel.: 4988888 Whatsapp: 341-7388888 E-mail: atencionciudadana@vggmunicipalidad.gov.ar En su defecto podrán dirigirse de manera presencial a la Oficina de Vivienda del Municipio para mayor información.",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Centro de Atención Ciudadana"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 4988888"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Whatsapp: 341-7388888"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: atencionciudadana@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "En su defecto podrán dirigirse de manera presencial a la Oficina de Vivienda del Municipio para mayor información."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/"
           }
         ],
@@ -6003,27 +6710,43 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Ser mayor de 18 años. Contar como mínimo con 2 (dos) años de residencia o lugar de trabajo efectivo y acreditable en la ciudad. No ser propietario o copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta gama y/o aeronaves. No haber sido beneficiario de sorteos anteriores. Contar con ingresos demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo declarando el promedio mensual de facturación de, por lo menos, los últimos 6 (seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del límite máximo de la categoría en la cual se encuadra. No figurar inscripto en el Registro de Deudores Alimentarios. Todas las disposiciones reglamentarias relativas a la inscripción, verificación de la información declarada, sorteo y adjudicación se encuentran detalladas en el Decreto Reglamentario N° 6787/2026. (ver en Decreto adjunto)",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Ser mayor de 18 años."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Contar como mínimo con 2 (dos) años de residencia o lugar de trabajo efectivo y acreditable en la ciudad."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "No ser propietario o copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta gama y/o aeronaves."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "No haber sido beneficiario de sorteos anteriores."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Contar con ingresos demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo declarando el promedio mensual de facturación de, por lo menos, los últimos 6 (seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del límite máximo de la categoría en la cual se encuadra."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "No figurar inscripto en el Registro de Deudores Alimentarios."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Todas las disposiciones reglamentarias relativas a la inscripción, verificación de la información declarada, sorteo y adjudicación se encuentran detalladas en el Decreto Reglamentario N° 6787/2026. (ver en Decreto adjunto)"
+                }
+              ],
               "items": [
                 "Ser mayor de 18 años.",
-                "Contar como mínimo con 2",
-                "(dos) años de residencia o lugar de trabajo efectivo y acreditable en la",
-                "ciudad.",
-                "No ser propietario o",
-                "copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta",
-                "gama y/o aeronaves.",
-                "No haber sido",
-                "beneficiario de sorteos anteriores.",
-                "Contar con ingresos",
-                "demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo",
-                "declarando el promedio mensual de facturación de, por lo menos, los últimos 6",
-                "(seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del",
-                "límite máximo de la categoría en la cual se encuadra.",
-                "No figurar inscripto en",
-                "el Registro de Deudores Alimentarios.",
-                "Todas las disposiciones reglamentarias",
-                "relativas a la inscripción, verificación de la información declarada, sorteo y",
-                "adjudicación se encuentran detalladas en el Decreto Reglamentario N° 6787/2026.",
-                "(ver en Decreto adjunto)"
+                "Contar como mínimo con 2 (dos) años de residencia o lugar de trabajo efectivo y acreditable en la ciudad.",
+                "No ser propietario o copropietario de vivienda, embarcaciones suntuarias o de lujo, vehículos de alta gama y/o aeronaves.",
+                "No haber sido beneficiario de sorteos anteriores.",
+                "Contar con ingresos demostrables, sea recibo de sueldo, o en caso de ser monotributista o autónomo declarando el promedio mensual de facturación de, por lo menos, los últimos 6 (seis) meses, el que no podrá ser superior al 80% (ochenta por ciento) del límite máximo de la categoría en la cual se encuadra.",
+                "No figurar inscripto en el Registro de Deudores Alimentarios."
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/"
             },
@@ -6031,32 +6754,50 @@
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "money_off El trámite de inscripción al registro es TOTALMENTE GRATUITO.",
-              "items": [
-                "money_off El trámite de inscripción al registro es TOTALMENTE GRATUITO."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "money_off El trámite de inscripción al registro es TOTALMENTE GRATUITO."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Centro de Atención Ciudadana Tel.: 4988888 Whatsapp: 341-7388888 E-mail: atencionciudadana@vggmunicipalidad.gov.ar En su defecto podrán dirigirse de manera presencial a la Oficina de Vivienda del Municipio para mayor información. 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Centro de Atención Ciudadana",
-                "Tel.: 4988888",
-                "Whatsapp: 341-7388888",
-                "E-mail: atencionciudadana@vggmunicipalidad.gov.ar",
-                "En",
-                "su defecto podrán dirigirse de manera presencial a la Oficina de Vivienda del",
-                "Municipio para mayor información.",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Centro de Atención Ciudadana Tel.: 4988888 Whatsapp: 341-7388888 E-mail: atencionciudadana@vggmunicipalidad.gov.ar En su defecto podrán dirigirse de manera presencial a la Oficina de Vivienda del Municipio para mayor información.",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Centro de Atención Ciudadana"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Tel.: 4988888"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Whatsapp: 341-7388888"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: atencionciudadana@vggmunicipalidad.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "En su defecto podrán dirigirse de manera presencial a la Oficina de Vivienda del Municipio para mayor información."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:21.503Z"
       }
     },
     {
@@ -6074,6 +6815,36 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Haber registrado previamente a la mascota desde la app VGGMuni. DNI del responsable con domicilio en la ciudad de Villa Gobernador Gálvez. Carnet de vacunas del animal. Manta (para después de la cirugía). 8 horas de ayuno de líquidos y sólidos. Caninos con correa, felinos en bolsa de red. Avisar si la mascota está en tratamiento médico.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Haber registrado previamente a la mascota desde la app VGGMuni."
+              },
+              {
+                "tipo": "item",
+                "texto": "DNI del responsable con domicilio en la ciudad de Villa Gobernador Gálvez."
+              },
+              {
+                "tipo": "item",
+                "texto": "Carnet de vacunas del animal."
+              },
+              {
+                "tipo": "item",
+                "texto": "Manta (para después de la cirugía)."
+              },
+              {
+                "tipo": "item",
+                "texto": "8 horas de ayuno de líquidos y sólidos."
+              },
+              {
+                "tipo": "item",
+                "texto": "Caninos con correa, felinos en bolsa de red."
+              },
+              {
+                "tipo": "item",
+                "texto": "Avisar si la mascota está en tratamiento médico."
+              }
+            ],
             "items": [
               "Haber registrado previamente a la mascota desde la app VGGMuni.",
               "DNI del responsable con domicilio en la ciudad de Villa Gobernador Gálvez.",
@@ -6088,15 +6859,30 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Sanidad Animal Dirección: Libertad y 12 de Octubre Tel.: 5186993 Horario de atención: Lunes a viernes de 7:00 a 13:00 hs. ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Sanidad Animal",
-              "Dirección: Libertad y 12 de Octubre",
-              "Tel.: 5186993",
-              "Horario de atención: Lunes a viernes de 7:00 a 13:00 hs.",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Sanidad Animal Dirección: Libertad y 12 de Octubre Tel.: 5186993 Horario de atención: Lunes a viernes de 7:00 a 13:00 hs. ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Sanidad Animal"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Libertad y 12 de Octubre"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 5186993"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Horario de atención: Lunes a viernes de 7:00 a 13:00 hs."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/134/sanidad-animal-castraciones-atencion-veterinaria/"
           }
         ],
@@ -6241,6 +7027,36 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Haber registrado previamente a la mascota desde la app VGGMuni. DNI del responsable con domicilio en la ciudad de Villa Gobernador Gálvez. Carnet de vacunas del animal. Manta (para después de la cirugía). 8 horas de ayuno de líquidos y sólidos. Caninos con correa, felinos en bolsa de red. Avisar si la mascota está en tratamiento médico.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Haber registrado previamente a la mascota desde la app VGGMuni."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "DNI del responsable con domicilio en la ciudad de Villa Gobernador Gálvez."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Carnet de vacunas del animal."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Manta (para después de la cirugía)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "8 horas de ayuno de líquidos y sólidos."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Caninos con correa, felinos en bolsa de red."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Avisar si la mascota está en tratamiento médico."
+                }
+              ],
               "items": [
                 "Haber registrado previamente a la mascota desde la app VGGMuni.",
                 "DNI del responsable con domicilio en la ciudad de Villa Gobernador Gálvez.",
@@ -6255,22 +7071,38 @@
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Sanidad Animal Dirección: Libertad y 12 de Octubre Tel.: 5186993 Horario de atención: Lunes a viernes de 7:00 a 13:00 hs. ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Sanidad Animal",
-                "Dirección: Libertad y 12 de Octubre",
-                "Tel.: 5186993",
-                "Horario de atención: Lunes a viernes de 7:00 a 13:00 hs.",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Sanidad Animal Dirección: Libertad y 12 de Octubre Tel.: 5186993 Horario de atención: Lunes a viernes de 7:00 a 13:00 hs. ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Sanidad Animal"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dirección: Libertad y 12 de Octubre"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Tel.: 5186993"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Horario de atención: Lunes a viernes de 7:00 a 13:00 hs."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/134/sanidad-animal-castraciones-atencion-veterinaria/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:23.185Z"
       }
     },
     {
@@ -6288,14 +7120,29 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Residir en Villa Gobernador Gálvez. Contar con un emprendimiento productivo, alimenticio o manufacturero. Cumplir con las normas de salubridad e higiene correspondientes en caso de ofrecer alimentos. Completar correctamente el formulario de preinscripción.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Residir en Villa Gobernador Gálvez."
+              },
+              {
+                "tipo": "item",
+                "texto": "Contar con un emprendimiento productivo, alimenticio o manufacturero."
+              },
+              {
+                "tipo": "item",
+                "texto": "Cumplir con las normas de salubridad e higiene correspondientes en caso de ofrecer alimentos."
+              },
+              {
+                "tipo": "item",
+                "texto": "Completar correctamente el formulario de preinscripción."
+              }
+            ],
             "items": [
               "Residir en Villa Gobernador Gálvez.",
-              "Contar con un emprendimiento productivo,",
-              "alimenticio o manufacturero.",
-              "Cumplir con las normas de salubridad e",
-              "higiene correspondientes en caso de ofrecer alimentos.",
-              "Completar correctamente el formulario de",
-              "preinscripción."
+              "Contar con un emprendimiento productivo, alimenticio o manufacturero.",
+              "Cumplir con las normas de salubridad e higiene correspondientes en caso de ofrecer alimentos.",
+              "Completar correctamente el formulario de preinscripción."
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/"
           },
@@ -6303,22 +7150,38 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Juan B. Justo 1854",
-              "Teléfono: 5186539",
-              "E-mail: empleo@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan B. Justo 1854"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Teléfono: 5186539"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: empleo@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/"
           }
         ],
@@ -6463,14 +7326,29 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Residir en Villa Gobernador Gálvez. Contar con un emprendimiento productivo, alimenticio o manufacturero. Cumplir con las normas de salubridad e higiene correspondientes en caso de ofrecer alimentos. Completar correctamente el formulario de preinscripción.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Residir en Villa Gobernador Gálvez."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Contar con un emprendimiento productivo, alimenticio o manufacturero."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Cumplir con las normas de salubridad e higiene correspondientes en caso de ofrecer alimentos."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Completar correctamente el formulario de preinscripción."
+                }
+              ],
               "items": [
                 "Residir en Villa Gobernador Gálvez.",
-                "Contar con un emprendimiento productivo,",
-                "alimenticio o manufacturero.",
-                "Cumplir con las normas de salubridad e",
-                "higiene correspondientes en caso de ofrecer alimentos.",
-                "Completar correctamente el formulario de",
-                "preinscripción."
+                "Contar con un emprendimiento productivo, alimenticio o manufacturero.",
+                "Cumplir con las normas de salubridad e higiene correspondientes en caso de ofrecer alimentos.",
+                "Completar correctamente el formulario de preinscripción."
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/"
             },
@@ -6478,29 +7356,46 @@
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-              "items": [
-                "money_off El trámite es TOTALMENTE GRATUITO."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Dirección: Juan B. Justo 1854",
-                "Teléfono: 5186539",
-                "E-mail: empleo@vggmunicipalidad.gov.ar",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dirección: Juan B. Justo 1854"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Teléfono: 5186539"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: empleo@vggmunicipalidad.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:24.541Z"
       }
     },
     {
@@ -6517,22 +7412,58 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Oficina de Tasa General de Inmuebles Dirección: Ing. Mosconi 1541 Tel.: 4988277 3413128554 E-mail: tgi@vggmunicipalidad.gov.ar Horario: 7:00 a 13:00 Hs. ¿Cómo llegar? Oficina de Recaudación y Patentamiento Dirección: J. D. Perón 1549 Tel.: 5187706 Horario: 7:00 a 12:45 Hs. ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Oficina de Tasa General de Inmuebles",
-              "Dirección: Ing. Mosconi 1541",
-              "Tel.: 4988277",
-              "3413128554",
-              "E-mail: tgi@vggmunicipalidad.gov.ar",
-              "Horario: 7:00 a 13:00 Hs.",
-              "¿Cómo llegar?",
-              "Oficina de Recaudación y Patentamiento",
-              "Dirección: J. D. Perón 1549",
-              "Tel.: 5187706",
-              "Horario: 7:00 a 12:45 Hs.",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Oficina de Tasa General de Inmuebles Dirección: Ing. Mosconi 1541 Tel.: 4988277 3413128554 E-mail: tgi@vggmunicipalidad.gov.ar Horario: 7:00 a 13:00 Hs. ¿Cómo llegar? Oficina de Recaudación y Patentamiento Dirección: J. D. Perón 1549 Tel.: 5187706 Horario: 7:00 a 12:45 Hs. ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "subtitulo",
+                "texto": "Oficina de Tasa General de Inmuebles"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Ing. Mosconi 1541"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 4988277"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "3413128554"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: tgi@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Horario: 7:00 a 13:00 Hs."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              },
+              {
+                "tipo": "subtitulo",
+                "texto": "Oficina de Recaudación y Patentamiento"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: J. D. Perón 1549"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 5187706"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Horario: 7:00 a 12:45 Hs."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tgi-impresion/"
           }
         ],
@@ -6666,7 +7597,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:25.764Z"
       }
     },
     {
@@ -6895,12 +7827,24 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Residir en Villa Gobernador Gálvez. Ofrecer indumentaria y/o accesorios en buen estado, aptos para la comercialización. Completar correctamente el formulario de preinscripción.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Residir en Villa Gobernador Gálvez."
+              },
+              {
+                "tipo": "item",
+                "texto": "Ofrecer indumentaria y/o accesorios en buen estado, aptos para la comercialización."
+              },
+              {
+                "tipo": "item",
+                "texto": "Completar correctamente el formulario de preinscripción."
+              }
+            ],
             "items": [
               "Residir en Villa Gobernador Gálvez.",
-              "Ofrecer indumentaria y/o accesorios en buen",
-              "estado, aptos para la comercialización.",
-              "Completar correctamente el formulario de",
-              "preinscripción."
+              "Ofrecer indumentaria y/o accesorios en buen estado, aptos para la comercialización.",
+              "Completar correctamente el formulario de preinscripción."
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/"
           },
@@ -6908,22 +7852,38 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Juan B. Justo 1854",
-              "Teléfono: 5186539",
-              "E-mail: empleo@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan B. Justo 1854"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Teléfono: 5186539"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: empleo@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/"
           }
         ],
@@ -7068,12 +8028,24 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Residir en Villa Gobernador Gálvez. Ofrecer indumentaria y/o accesorios en buen estado, aptos para la comercialización. Completar correctamente el formulario de preinscripción.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Residir en Villa Gobernador Gálvez."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Ofrecer indumentaria y/o accesorios en buen estado, aptos para la comercialización."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Completar correctamente el formulario de preinscripción."
+                }
+              ],
               "items": [
                 "Residir en Villa Gobernador Gálvez.",
-                "Ofrecer indumentaria y/o accesorios en buen",
-                "estado, aptos para la comercialización.",
-                "Completar correctamente el formulario de",
-                "preinscripción."
+                "Ofrecer indumentaria y/o accesorios en buen estado, aptos para la comercialización.",
+                "Completar correctamente el formulario de preinscripción."
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/"
             },
@@ -7081,29 +8053,46 @@
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-              "items": [
-                "money_off El trámite es TOTALMENTE GRATUITO."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Dirección: Juan B. Justo 1854",
-                "Teléfono: 5186539",
-                "E-mail: empleo@vggmunicipalidad.gov.ar",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dirección: Juan B. Justo 1854"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Teléfono: 5186539"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: empleo@vggmunicipalidad.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:27.082Z"
       }
     },
     {
@@ -7121,12 +8110,24 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Residir en Villa Gobernador Gálvez. Tener un emprendimiento productivo o artesanal propio. Completar correctamente el formulario de preinscripción.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Residir en Villa Gobernador Gálvez."
+              },
+              {
+                "tipo": "item",
+                "texto": "Tener un emprendimiento productivo o artesanal propio."
+              },
+              {
+                "tipo": "item",
+                "texto": "Completar correctamente el formulario de preinscripción."
+              }
+            ],
             "items": [
               "Residir en Villa Gobernador Gálvez.",
-              "Tener un emprendimiento productivo o",
-              "artesanal propio.",
-              "Completar correctamente el formulario de",
-              "preinscripción."
+              "Tener un emprendimiento productivo o artesanal propio.",
+              "Completar correctamente el formulario de preinscripción."
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/"
           },
@@ -7134,22 +8135,38 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Juan B. Justo 1854",
-              "Teléfono: 5186539",
-              "E-mail: empleo@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan B. Justo 1854"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Teléfono: 5186539"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: empleo@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/"
           }
         ],
@@ -7294,12 +8311,24 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Residir en Villa Gobernador Gálvez. Tener un emprendimiento productivo o artesanal propio. Completar correctamente el formulario de preinscripción.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Residir en Villa Gobernador Gálvez."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Tener un emprendimiento productivo o artesanal propio."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Completar correctamente el formulario de preinscripción."
+                }
+              ],
               "items": [
                 "Residir en Villa Gobernador Gálvez.",
-                "Tener un emprendimiento productivo o",
-                "artesanal propio.",
-                "Completar correctamente el formulario de",
-                "preinscripción."
+                "Tener un emprendimiento productivo o artesanal propio.",
+                "Completar correctamente el formulario de preinscripción."
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/"
             },
@@ -7307,29 +8336,46 @@
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-              "items": [
-                "money_off El trámite es TOTALMENTE GRATUITO."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Dirección: Juan B. Justo 1854",
-                "Teléfono: 5186539",
-                "E-mail: empleo@vggmunicipalidad.gov.ar",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dirección: Juan B. Justo 1854"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Teléfono: 5186539"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: empleo@vggmunicipalidad.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:28.936Z"
       }
     },
     {
@@ -7347,12 +8393,24 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Residir en Villa Gobernador Gálvez. Contar con producción propia de carácter artesanal o emprendedor. Completar correctamente el formulario de preinscripción.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Residir en Villa Gobernador Gálvez."
+              },
+              {
+                "tipo": "item",
+                "texto": "Contar con producción propia de carácter artesanal o emprendedor."
+              },
+              {
+                "tipo": "item",
+                "texto": "Completar correctamente el formulario de preinscripción."
+              }
+            ],
             "items": [
               "Residir en Villa Gobernador Gálvez.",
-              "Contar con producción propia de carácter",
-              "artesanal o emprendedor.",
-              "Completar correctamente el formulario de",
-              "preinscripción."
+              "Contar con producción propia de carácter artesanal o emprendedor.",
+              "Completar correctamente el formulario de preinscripción."
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/"
           },
@@ -7360,22 +8418,38 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Juan B. Justo 1854",
-              "Teléfono: 5186539",
-              "E-mail: empleo@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan B. Justo 1854"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Teléfono: 5186539"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: empleo@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/"
           }
         ],
@@ -7520,12 +8594,24 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Residir en Villa Gobernador Gálvez. Contar con producción propia de carácter artesanal o emprendedor. Completar correctamente el formulario de preinscripción.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Residir en Villa Gobernador Gálvez."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Contar con producción propia de carácter artesanal o emprendedor."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Completar correctamente el formulario de preinscripción."
+                }
+              ],
               "items": [
                 "Residir en Villa Gobernador Gálvez.",
-                "Contar con producción propia de carácter",
-                "artesanal o emprendedor.",
-                "Completar correctamente el formulario de",
-                "preinscripción."
+                "Contar con producción propia de carácter artesanal o emprendedor.",
+                "Completar correctamente el formulario de preinscripción."
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/"
             },
@@ -7533,29 +8619,46 @@
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-              "items": [
-                "money_off El trámite es TOTALMENTE GRATUITO."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Dirección: Juan B. Justo 1854",
-                "Teléfono: 5186539",
-                "E-mail: empleo@vggmunicipalidad.gov.ar",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Dirección: Juan B. Justo 1854 Teléfono: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dirección: Juan B. Justo 1854"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Teléfono: 5186539"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: empleo@vggmunicipalidad.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:30.829Z"
       }
     },
     {
@@ -7573,31 +8676,51 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Tener experiencia comprobable en la enseñanza de oficios y desear formar parte de nuestras propuestas de capacitación.",
-            "items": [
-              "Tener experiencia comprobable en la enseñanza de oficios y desear formar parte de nuestras propuestas de capacitación."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Tener experiencia comprobable en la enseñanza de oficios y desear formar parte de nuestras propuestas de capacitación."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/"
           },
           {
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Juan B. Justo 1854 Tel.: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Juan B. Justo 1854",
-              "Tel.: 5186539",
-              "E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Juan B. Justo 1854 Tel.: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan B. Justo 1854"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 5186539"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/"
           }
         ],
@@ -7742,38 +8865,59 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Tener experiencia comprobable en la enseñanza de oficios y desear formar parte de nuestras propuestas de capacitación.",
-              "items": [
-                "Tener experiencia comprobable en la enseñanza de oficios y desear formar parte de nuestras propuestas de capacitación."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Tener experiencia comprobable en la enseñanza de oficios y desear formar parte de nuestras propuestas de capacitación."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/"
             },
             {
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-              "items": [
-                "money_off El trámite es TOTALMENTE GRATUITO."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Dirección: Juan B. Justo 1854 Tel.: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Dirección: Juan B. Justo 1854",
-                "Tel.: 5186539",
-                "E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Dirección: Juan B. Justo 1854 Tel.: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dirección: Juan B. Justo 1854"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Tel.: 5186539"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:32.226Z"
       }
     },
     {
@@ -7934,9 +9078,62 @@
           {
             "tipo": "requisitos",
             "titulo": "Requisitos",
-            "texto": "PARA RETIRAR SU VEHÍCULO DEL CORRALÓN TRAER ORIGINAL Y FOTOCOPIAS DE: Liberación del Tribunal de Faltas, válido por 30 días (original). DNI del titular del vehículo (fotocopia frente y dorso). Licencia de conducir del titular (fotocopia frente y dorso). Tarjeta de identificación del vehículo, tarjeta verde (fotocopia). Póliza de seguro y recibo de seguro del mes en curso pago (fotocopia). Último recibo de patente paga con boleta (fotocopia). En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros. En autos: espejos, luces, cinturón de seguridad, chapa patente. EN CASO DE SER AUTORIZADO, YA NO SERÁ NECESARIO EL CARNET DEL TITULAR, PERO SE DEBEN AGREGAR LA SIGUIENTE DOCUMENTACIÓN: DNI del autorizado (fotocopia frente y dorso). Licencia de conducir del habilitado (copia frente y dorso). Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso). 2026 Municipalidad de Villa Gobernador Gálvez",
+            "texto": "PARA RETIRAR SU VEHÍCULO DEL CORRALÓN TRAER ORIGINAL Y FOTOCOPIAS DE: Liberación del Tribunal de Faltas, válido por 30 días (original). DNI del titular del vehículo (fotocopia frente y dorso). Licencia de conducir del titular (fotocopia frente y dorso). Tarjeta de identificación del vehículo, tarjeta verde (fotocopia). Póliza de seguro y recibo de seguro del mes en curso pago (fotocopia). Último recibo de patente paga con boleta (fotocopia). En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros. En autos: espejos, luces, cinturón de seguridad, chapa patente. EN CASO DE SER AUTORIZADO, YA NO SERÁ NECESARIO EL CARNET DEL TITULAR, PERO SE DEBEN AGREGAR LA SIGUIENTE DOCUMENTACIÓN: DNI del autorizado (fotocopia frente y dorso). Licencia de conducir del habilitado (copia frente y dorso). Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso).",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "PARA RETIRAR SU VEHÍCULO DEL CORRALÓN TRAER ORIGINAL Y FOTOCOPIAS DE:"
+              },
+              {
+                "tipo": "item",
+                "texto": "Liberación del Tribunal de Faltas, válido por 30 días (original)."
+              },
+              {
+                "tipo": "item",
+                "texto": "DNI del titular del vehículo (fotocopia frente y dorso)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Licencia de conducir del titular (fotocopia frente y dorso)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Tarjeta de identificación del vehículo, tarjeta verde (fotocopia)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Póliza de seguro y recibo de seguro del mes en curso pago (fotocopia)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Último recibo de patente paga con boleta (fotocopia)."
+              },
+              {
+                "tipo": "item",
+                "texto": "En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros."
+              },
+              {
+                "tipo": "item",
+                "texto": "En autos: espejos, luces, cinturón de seguridad, chapa patente."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "EN CASO DE SER AUTORIZADO, YA NO SERÁ NECESARIO EL CARNET DEL TITULAR, PERO SE DEBEN AGREGAR LA SIGUIENTE DOCUMENTACIÓN:"
+              },
+              {
+                "tipo": "item",
+                "texto": "DNI del autorizado (fotocopia frente y dorso)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Licencia de conducir del habilitado (copia frente y dorso)."
+              },
+              {
+                "tipo": "item",
+                "texto": "Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso)."
+              }
+            ],
             "items": [
-              "PARA RETIRAR SU VEHÍCULO DEL CORRALÓN TRAER ORIGINAL Y FOTOCOPIAS DE:",
               "Liberación del Tribunal de Faltas, válido por 30 días (original).",
               "DNI del titular del vehículo (fotocopia frente y dorso).",
               "Licencia de conducir del titular (fotocopia frente y dorso).",
@@ -7945,11 +9142,9 @@
               "Último recibo de patente paga con boleta (fotocopia).",
               "En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros.",
               "En autos: espejos, luces, cinturón de seguridad, chapa patente.",
-              "EN CASO DE SER AUTORIZADO, YA NO SERÁ NECESARIO EL CARNET DEL TITULAR, PERO SE DEBEN AGREGAR LA SIGUIENTE DOCUMENTACIÓN:",
               "DNI del autorizado (fotocopia frente y dorso).",
               "Licencia de conducir del habilitado (copia frente y dorso).",
-              "Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso).",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+              "Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso)."
             ],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/127/liberacion-de-vehiculosmotocicletas/"
           }
@@ -8086,9 +9281,62 @@
             {
               "tipo": "requisitos",
               "titulo": "Requisitos",
-              "texto": "PARA RETIRAR SU VEHÍCULO DEL CORRALÓN TRAER ORIGINAL Y FOTOCOPIAS DE: Liberación del Tribunal de Faltas, válido por 30 días (original). DNI del titular del vehículo (fotocopia frente y dorso). Licencia de conducir del titular (fotocopia frente y dorso). Tarjeta de identificación del vehículo, tarjeta verde (fotocopia). Póliza de seguro y recibo de seguro del mes en curso pago (fotocopia). Último recibo de patente paga con boleta (fotocopia). En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros. En autos: espejos, luces, cinturón de seguridad, chapa patente. EN CASO DE SER AUTORIZADO, YA NO SERÁ NECESARIO EL CARNET DEL TITULAR, PERO SE DEBEN AGREGAR LA SIGUIENTE DOCUMENTACIÓN: DNI del autorizado (fotocopia frente y dorso). Licencia de conducir del habilitado (copia frente y dorso). Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso). 2026 Municipalidad de Villa Gobernador Gálvez",
+              "texto": "PARA RETIRAR SU VEHÍCULO DEL CORRALÓN TRAER ORIGINAL Y FOTOCOPIAS DE: Liberación del Tribunal de Faltas, válido por 30 días (original). DNI del titular del vehículo (fotocopia frente y dorso). Licencia de conducir del titular (fotocopia frente y dorso). Tarjeta de identificación del vehículo, tarjeta verde (fotocopia). Póliza de seguro y recibo de seguro del mes en curso pago (fotocopia). Último recibo de patente paga con boleta (fotocopia). En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros. En autos: espejos, luces, cinturón de seguridad, chapa patente. EN CASO DE SER AUTORIZADO, YA NO SERÁ NECESARIO EL CARNET DEL TITULAR, PERO SE DEBEN AGREGAR LA SIGUIENTE DOCUMENTACIÓN: DNI del autorizado (fotocopia frente y dorso). Licencia de conducir del habilitado (copia frente y dorso). Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso).",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "PARA RETIRAR SU VEHÍCULO DEL CORRALÓN TRAER ORIGINAL Y FOTOCOPIAS DE:"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Liberación del Tribunal de Faltas, válido por 30 días (original)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "DNI del titular del vehículo (fotocopia frente y dorso)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Licencia de conducir del titular (fotocopia frente y dorso)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Tarjeta de identificación del vehículo, tarjeta verde (fotocopia)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Póliza de seguro y recibo de seguro del mes en curso pago (fotocopia)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Último recibo de patente paga con boleta (fotocopia)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "En autos: espejos, luces, cinturón de seguridad, chapa patente."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "EN CASO DE SER AUTORIZADO, YA NO SERÁ NECESARIO EL CARNET DEL TITULAR, PERO SE DEBEN AGREGAR LA SIGUIENTE DOCUMENTACIÓN:"
+                },
+                {
+                  "tipo": "item",
+                  "texto": "DNI del autorizado (fotocopia frente y dorso)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Licencia de conducir del habilitado (copia frente y dorso)."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso)."
+                }
+              ],
               "items": [
-                "PARA RETIRAR SU VEHÍCULO DEL CORRALÓN TRAER ORIGINAL Y FOTOCOPIAS DE:",
                 "Liberación del Tribunal de Faltas, válido por 30 días (original).",
                 "DNI del titular del vehículo (fotocopia frente y dorso).",
                 "Licencia de conducir del titular (fotocopia frente y dorso).",
@@ -8097,11 +9345,9 @@
                 "Último recibo de patente paga con boleta (fotocopia).",
                 "En motos: casco, dos espejos, chapa patente, caño de escape original, luces, giros.",
                 "En autos: espejos, luces, cinturón de seguridad, chapa patente.",
-                "EN CASO DE SER AUTORIZADO, YA NO SERÁ NECESARIO EL CARNET DEL TITULAR, PERO SE DEBEN AGREGAR LA SIGUIENTE DOCUMENTACIÓN:",
                 "DNI del autorizado (fotocopia frente y dorso).",
                 "Licencia de conducir del habilitado (copia frente y dorso).",
-                "Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso).",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+                "Tarjeta azul física o digital hecha por la aplicación Mi Argentina (copia frente y dorso)."
               ],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/127/liberacion-de-vehiculosmotocicletas/"
             }
@@ -8109,7 +9355,8 @@
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:33.538Z"
       }
     },
     {
@@ -8255,29 +9502,43 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Las instituciones deben estar ubicadas en la ciudad de Villa Gobernador Gálvez y contar con un espacio adecuado. En caso de cancelación hacerlo con 48 horas de anticipación.",
-            "items": [
-              "Las instituciones deben estar ubicadas en la ciudad de Villa Gobernador Gálvez y contar con un espacio adecuado.",
-              "En caso de cancelación hacerlo con 48 horas de anticipación."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Las instituciones deben estar ubicadas en la ciudad de Villa Gobernador Gálvez y contar con un espacio adecuado."
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "En caso de cancelación hacerlo con 48 horas de anticipación."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/"
           },
           {
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Lunes a Viernes de 7:00 a 13:00 horas al número (0341)-317-5432 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Lunes a Viernes de 7:00 a 13:00 horas al número (0341)-317-5432",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Lunes a Viernes de 7:00 a 13:00 horas al número (0341)-317-5432",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Lunes a Viernes de 7:00 a 13:00 horas al número (0341)-317-5432"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/"
           }
         ],
@@ -8414,36 +9675,51 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Las instituciones deben estar ubicadas en la ciudad de Villa Gobernador Gálvez y contar con un espacio adecuado. En caso de cancelación hacerlo con 48 horas de anticipación.",
-              "items": [
-                "Las instituciones deben estar ubicadas en la ciudad de Villa Gobernador Gálvez y contar con un espacio adecuado.",
-                "En caso de cancelación hacerlo con 48 horas de anticipación."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Las instituciones deben estar ubicadas en la ciudad de Villa Gobernador Gálvez y contar con un espacio adecuado."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "En caso de cancelación hacerlo con 48 horas de anticipación."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/"
             },
             {
               "tipo": "costos",
               "titulo": "¿Cuánto cuesta?",
               "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-              "items": [
-                "money_off El trámite es TOTALMENTE GRATUITO."
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/"
             },
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Lunes a Viernes de 7:00 a 13:00 horas al número (0341)-317-5432 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Lunes a Viernes de 7:00 a 13:00 horas al número (0341)-317-5432",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Lunes a Viernes de 7:00 a 13:00 horas al número (0341)-317-5432",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Lunes a Viernes de 7:00 a 13:00 horas al número (0341)-317-5432"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:35.188Z"
       }
     },
     {
@@ -8591,12 +9867,18 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Municipalidad de Villa Gobernador Gálvez",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Municipalidad de Villa Gobernador Gálvez"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/6/asesoramiento-bromatologico/"
           }
         ],
@@ -8762,7 +10044,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:37.652Z"
       }
     },
     {
@@ -9135,13 +10418,22 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Libertad 595 (Esq. 12 De Octubre) Tel.: 0341-4921122 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Libertad 595 (Esq. 12 De Octubre)",
-              "Tel.: 0341-4921122",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Libertad 595 (Esq. 12 De Octubre) Tel.: 0341-4921122 ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Libertad 595 (Esq. 12 De Octubre)"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 0341-4921122"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/122/solicitud-de-uso-salon-club-sportivo-villa-diego/"
           }
         ],
@@ -9275,7 +10567,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:39.076Z"
       }
     },
     {
@@ -9292,13 +10585,22 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Eva Perón 2102 (Esq. Laprida) Tel.: 0341-4923777 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Eva Perón 2102 (Esq. Laprida)",
-              "Tel.: 0341-4923777",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Eva Perón 2102 (Esq. Laprida) Tel.: 0341-4923777 ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Eva Perón 2102 (Esq. Laprida)"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 0341-4923777"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/121/solicitud-de-uso-casa-de-la-cultura/"
           }
         ],
@@ -9432,7 +10734,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:40.674Z"
       }
     },
     {
@@ -9449,13 +10752,22 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Juan Pablo II S/N Tel.: 0341 - 4983637 ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Juan Pablo II S/N",
-              "Tel.: 0341 - 4983637",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Juan Pablo II S/N Tel.: 0341 - 4983637 ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan Pablo II S/N"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 0341 - 4983637"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/120/solicitud-de-uso-del-parque-regional/"
           }
         ],
@@ -9589,7 +10901,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:42.900Z"
       }
     },
     {
@@ -9607,22 +10920,38 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/119/envio-de-curriculum-vitae/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Juan B. Justo 1854 Tel.: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Juan B. Justo 1854",
-              "Tel.: 5186539",
-              "E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Juan B. Justo 1854 Tel.: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan B. Justo 1854"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 5186539"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/119/envio-de-curriculum-vitae/"
           }
         ],
@@ -9756,7 +11085,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:44.909Z"
       }
     },
     {
@@ -9774,22 +11104,38 @@
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
             "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO."
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/118/confeccion-de-curriculum-vitae-en-linea/"
           },
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Dirección: Juan B. Justo 1854 Tel.: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Dirección: Juan B. Justo 1854",
-              "Tel.: 5186539",
-              "E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Dirección: Juan B. Justo 1854 Tel.: 5186539 E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Juan B. Justo 1854"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 5186539"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: empleo@vggmunicipalidad.gov.ar / produccion@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/118/confeccion-de-curriculum-vitae-en-linea/"
           }
         ],
@@ -9923,7 +11269,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:46.939Z"
       }
     },
     {
@@ -9940,11 +11287,14 @@
           {
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
-            "texto": "money_off El trámite es TOTALMENTE GRATUITO. 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO.",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/117/inscripcion-al-club-de-tareas/"
           }
         ],
@@ -10070,7 +11420,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:48.246Z"
       }
     },
     {
@@ -10450,6 +11801,40 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Inspección bromatológica. Condiciones edilicias. Indumentaria obligatoria. Libretas sanitarias. Carnet de manipulador. Condiciones higiénicas-sanitarias. Condiciones de frío. Cuaderno de inspección.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Inspección bromatológica."
+              },
+              {
+                "tipo": "item",
+                "texto": "Condiciones edilicias."
+              },
+              {
+                "tipo": "item",
+                "texto": "Indumentaria obligatoria."
+              },
+              {
+                "tipo": "item",
+                "texto": "Libretas sanitarias."
+              },
+              {
+                "tipo": "item",
+                "texto": "Carnet de manipulador."
+              },
+              {
+                "tipo": "item",
+                "texto": "Condiciones higiénicas-sanitarias."
+              },
+              {
+                "tipo": "item",
+                "texto": "Condiciones de frío."
+              },
+              {
+                "tipo": "item",
+                "texto": "Cuaderno de inspección."
+              }
+            ],
             "items": [
               "Inspección bromatológica.",
               "Condiciones edilicias.",
@@ -10465,12 +11850,18 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Municipalidad de Villa Gobernador Gálvez",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Municipalidad de Villa Gobernador Gálvez"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/15/habilitaciones-bromatologicas-de-comercios-sin-rne/"
           }
         ],
@@ -10639,6 +12030,40 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Inspección bromatológica. Condiciones edilicias. Indumentaria obligatoria. Libretas sanitarias. Carnet de manipulador. Condiciones higiénicas-sanitarias. Condiciones de frío. Cuaderno de inspección.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Inspección bromatológica."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Condiciones edilicias."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Indumentaria obligatoria."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Libretas sanitarias."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Carnet de manipulador."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Condiciones higiénicas-sanitarias."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Condiciones de frío."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Cuaderno de inspección."
+                }
+              ],
               "items": [
                 "Inspección bromatológica.",
                 "Condiciones edilicias.",
@@ -10654,19 +12079,26 @@
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Municipalidad de Villa Gobernador Gálvez",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Municipalidad de Villa Gobernador Gálvez"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/15/habilitaciones-bromatologicas-de-comercios-sin-rne/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:49.592Z"
       }
     },
     {
@@ -10683,11 +12115,14 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Tel.: 5186542 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Tel.: 5186542",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Tel.: 5186542",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 5186542"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/14/inscripcion-al-curso-de-manipulacion-de-alimentos/"
           }
         ],
@@ -10813,7 +12248,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:51.251Z"
       }
     },
     {
@@ -10831,6 +12267,16 @@
             "tipo": "requisitos",
             "titulo": "Requisitos",
             "texto": "Formulario bromatológico de cese. Cuaderno de habilitación bromatológico.",
+            "bloques": [
+              {
+                "tipo": "item",
+                "texto": "Formulario bromatológico de cese."
+              },
+              {
+                "tipo": "item",
+                "texto": "Cuaderno de habilitación bromatológico."
+              }
+            ],
             "items": [
               "Formulario bromatológico de cese.",
               "Cuaderno de habilitación bromatológico."
@@ -10840,12 +12286,18 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Municipalidad de Villa Gobernador Gálvez",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Municipalidad de Villa Gobernador Gálvez"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/11/bajas-bromatologicas-de-comercios-sin-rne/"
           }
         ],
@@ -11006,6 +12458,16 @@
               "tipo": "requisitos",
               "titulo": "Requisitos",
               "texto": "Formulario bromatológico de cese. Cuaderno de habilitación bromatológico.",
+              "bloques": [
+                {
+                  "tipo": "item",
+                  "texto": "Formulario bromatológico de cese."
+                },
+                {
+                  "tipo": "item",
+                  "texto": "Cuaderno de habilitación bromatológico."
+                }
+              ],
               "items": [
                 "Formulario bromatológico de cese.",
                 "Cuaderno de habilitación bromatológico."
@@ -11015,19 +12477,26 @@
             {
               "tipo": "contacto",
               "titulo": "Datos de contacto",
-              "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-              "items": [
-                "Municipalidad de Villa Gobernador Gálvez",
-                "¿Cómo llegar?",
-                "2026 Municipalidad de Villa Gobernador Gálvez"
+              "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar?",
+              "bloques": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Municipalidad de Villa Gobernador Gálvez"
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "¿Cómo llegar?"
+                }
               ],
+              "items": [],
               "fuente": "https://vggmunicipalidad.gov.ar/tramite/11/bajas-bromatologicas-de-comercios-sin-rne/"
             }
           ],
           "destinos": [],
           "confirmacion": "heuristica_con_evidencia",
           "validacion_humana": false
-        }
+        },
+        "revisado_en": "2026-09-26T21:31:54.069Z"
       }
     },
     {
@@ -11044,12 +12513,18 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Municipalidad de Villa Gobernador Gálvez",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Municipalidad de Villa Gobernador Gálvez"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/10/auditorias-a-transporte-de-alimentos/"
           }
         ],
@@ -11199,7 +12674,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:55.435Z"
       }
     },
     {
@@ -11216,12 +12692,18 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Municipalidad de Villa Gobernador Gálvez",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Municipalidad de Villa Gobernador Gálvez"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/9/auditorias-a-comercios-de-venta-de-alimentos-y-productos-domisanitarios-de-la-ciudad/"
           }
         ],
@@ -11371,7 +12853,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:56.762Z"
       }
     },
     {
@@ -11388,15 +12871,30 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Municipalidad de Villa Gobernador Gálvez Dirección: Ing. Mosconi 1541 Tel.: 4988277 E-mail: tgi@vggmunicipalidad.gov.ar ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Municipalidad de Villa Gobernador Gálvez",
-              "Dirección: Ing. Mosconi 1541",
-              "Tel.: 4988277",
-              "E-mail: tgi@vggmunicipalidad.gov.ar",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Municipalidad de Villa Gobernador Gálvez Dirección: Ing. Mosconi 1541 Tel.: 4988277 E-mail: tgi@vggmunicipalidad.gov.ar ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Municipalidad de Villa Gobernador Gálvez"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Dirección: Ing. Mosconi 1541"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "Tel.: 4988277"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "E-mail: tgi@vggmunicipalidad.gov.ar"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/8/tasa-urbana-suburbana-y-especial-impresion-de-boletas-no-vencidas-liquidacion-de-deuda-atrasada/"
           }
         ],
@@ -11538,7 +13036,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:58.080Z"
       }
     },
     {
@@ -11555,12 +13054,18 @@
           {
             "tipo": "contacto",
             "titulo": "Datos de contacto",
-            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar? 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "Municipalidad de Villa Gobernador Gálvez",
-              "¿Cómo llegar?",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "Municipalidad de Villa Gobernador Gálvez ¿Cómo llegar?",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "Municipalidad de Villa Gobernador Gálvez"
+              },
+              {
+                "tipo": "parrafo",
+                "texto": "¿Cómo llegar?"
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/7/auditorias-planificadas-para-establecimientos-elaboradores-rne/"
           }
         ],
@@ -11734,7 +13239,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:31:59.382Z"
       }
     },
     {
@@ -11964,11 +13470,14 @@
           {
             "tipo": "costos",
             "titulo": "¿Cuánto cuesta?",
-            "texto": "money_off El trámite es TOTALMENTE GRATUITO. 2026 Municipalidad de Villa Gobernador Gálvez",
-            "items": [
-              "money_off El trámite es TOTALMENTE GRATUITO.",
-              "2026 Municipalidad de Villa Gobernador Gálvez"
+            "texto": "money_off El trámite es TOTALMENTE GRATUITO.",
+            "bloques": [
+              {
+                "tipo": "parrafo",
+                "texto": "money_off El trámite es TOTALMENTE GRATUITO."
+              }
             ],
+            "items": [],
             "fuente": "https://vggmunicipalidad.gov.ar/tramite/116/inscripcion-al-centro-de-dia-para-adolescentes/"
           }
         ],
@@ -12094,7 +13603,8 @@
             "accion": false
           }
         ],
-        "tramite": null
+        "tramite": null,
+        "revisado_en": "2026-09-26T21:32:00.736Z"
       }
     }
   ],

@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Requisitos completos y propuesta de siguiente salto
+**Hice:** corregí el corte arbitrario de requisitos reportado por Cande/Franco. El extractor respeta elementos HTML completos: las etiquetas inline, saltos de línea y aclaraciones no crean casillas nuevas; categorías y párrafos se muestran sin checkbox. Se conserva el diseño. Refresqué las secciones de 36 páginas de Rosario y 40 de VGG con fecha por ficha, sin alterar la fecha/evidencia del análisis anterior de Bob. El caso real de licencia VGG queda en 22 requisitos completos y 4 categorías. Pasaron 34 pruebas del motor, incluidas regresiones con el HTML oficial y snapshots; compilación/publicación en curso.
+**Quedó a medias:** verificar publicación y navegador público. El botón Abrir de Inicio sigue buscando mapas existentes: generar el mapa de una URL nueva desde ahí es un pendiente independiente, no resuelto en este arreglo. Franco pregunta qué salto de utilidad dar para el evento: propongo un flujo de pruebas de recorridos antes de publicar cambios. Seleccionar trámite → Bob prepara/revisa escenarios desde documentación y código → pruebas reproducibles en navegador → evidencia del punto donde falla → repetir después del arreglo y comparar. Demo inicial sobre Wayfinder/proyecto propio con tres fallos controlados (requisito truncado, enlace roto, destino equivocado); en portales ajenos solo observación pública, sin enviar formularios. Medir resultados y tiempo real, sin inventar ahorro. Es una propuesta, no una función implementada ni un cambio de las decisiones vigentes; Bob mantiene diagnóstico, no aplica arreglos automáticamente.
+**No tocar:** mantengo intactos `crawler.mjs`, `rutas.mjs` y `bob.mjs`. Archivos de esta corrección: módulos municipales, snapshots, tests y `Municipal.tsx`.
+**Preguntas para el otro:** ninguna bloqueante. La consigna guardada pide mejorar testing/mantenimiento y mostrar impacto; considero que este circuito ofrece una demostración más concreta para el evento que ampliar solamente el buscador ciudadano.
+
 ## 2026-09-26 — Astra, de Franco — Posición de trámites publicada y verificada
 **Hice:** publicación `36272687080` exitosa. Comprobé en la web pública, escritorio y móvil: título → formulario URL → «Encontrá tu trámite y avanzá», sin desborde horizontal.
 **Quedó a medias:** nada de este ajuste.

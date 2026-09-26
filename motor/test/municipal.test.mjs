@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import http from 'node:http';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { extractMunicipal, buildCatalog, consultCatalog, municipalities, priorityOf } from '../src/municipal.mjs';
@@ -12,11 +12,49 @@ import { siteId } from '../src/crawler.mjs';
 import { fileURLToPath } from 'node:url';
 
 const ficha = (name, extra = '') => `<main><h1>${name}</h1><h2>Requisitos</h2><div><p>DNI vigente.</p><ul><li>Constancia de domicilio.</li></ul></div><h2>Paso a paso</h2><p>Reservá un turno en el portal.</p>${extra}</main>`;
+
+test('requirements use DOM items, never source newlines or inline formatting', () => {
+  const html = `<main><h1>Licencia</h1><h2>Requisitos</h2>
+    <p>Para las categorías A y B:</p><ul>
+      <li>Fotocopia legible de la\n<strong>LICENCIA</strong> acompañada por la original.</li>
+      <li><p>Certificado y comprobante de pago.</p><br><b>Por\n disposición de Nación,</b> esperá 72hs.</li>
+      <li>Grupo\n Sanguíneo firmado por un bioquímico.</li>
+      <li>Presentá:<ul><li>DNI</li><li>CUIL</li></ul></li>
+    </ul><p>Consultá las condiciones antes de iniciar.</p><h3>Extravío</h3>
+    <ul><li>DNI</li></ul><h2>Contacto</h2><p>Oficina municipal.</p></main>`;
+  const result = extractMunicipal(html, 'https://example.org/licencia').secciones[0];
+  assert.deepEqual(result.items, [
+    'Fotocopia legible de la LICENCIA acompañada por la original.',
+    'Certificado y comprobante de pago. Por disposición de Nación, esperá 72hs.',
+    'Grupo Sanguíneo firmado por un bioquímico.', 'Presentá: DNI CUIL', 'DNI',
+  ]);
+  assert.deepEqual(result.bloques.map(b => b.tipo), ['parrafo', 'item', 'item', 'item', 'item', 'parrafo', 'subtitulo', 'item']);
+  assert.deepEqual(extractMunicipal(html.replace(/\s+/g, ' '), 'https://example.org/licencia').secciones[0], result);
+  assert.ok(!result.texto.includes('Oficina municipal'));
+});
+
+test('actual VGG licence HTML preserves all 22 requirements and their conditions', async () => {
+  const html = await readFile(new URL('./fixtures/vgg-licencia-requisitos.html', import.meta.url), 'utf8');
+  const section = extractMunicipal(html, 'https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/').secciones[0];
+  assert.equal(section.items.length, 22);
+  assert.equal(section.bloques.filter(b => b.tipo === 'parrafo').length, 4);
+  assert.ok(section.items.includes('Fotocopia legible de la LICENCIA acompañada por la original'));
+  assert.equal(section.items.filter(s => s.includes('72hs hábiles')).length, 3);
+  assert.ok(section.items.filter(s => s.includes('Grupo Sanguíneo')).every(s => s.endsWith('(en caso de ser licencia nueva)')));
+  assert.ok(!section.items.some(s => /^(Por|Los|Fotocopia legible de la)$/.test(s)));
+});
 function mapOf(names = ['Primera licencia de conducir', 'Renovación de licencia de conducir']) {
   return { sitio: { url: municipalities.vgg.url, crawleado_en: '2026-09-26T00:00:00Z' },
     ejecucion: { estado: 'parcial', pendientes: 4 },
     paginas: names.map((n, i) => ({ url: `${municipalities.vgg.url}tramite/${i}`, municipal: extractMunicipal(ficha(n, '<a class="btn" href="/gestionar">Iniciar trámite</a>'), `${municipalities.vgg.url}tramite/${i}`) })) };
 }
+
+test('CMS heading wrappers do not drop requirements in following sibling blocks', () => {
+  const html = '<main><h1>Certificado</h1><section><div><div><h2>Requisitos</h2></div></div><div><ul><li>DNI vigente.</li></ul></div></section><p>Fuera de la sección.</p></main>';
+  const result = extractMunicipal(html, 'https://example.org/certificado');
+  assert.deepEqual(result.secciones[0].items, ['DNI vigente.']);
+  assert.equal(result.secciones[0].texto, 'DNI vigente.');
+});
 
 test('municipal extractor confirms evidence without an initial verb; ignores layout and unsafe links', () => {
   const result = extractMunicipal(`<nav><h2>Requisitos</h2>Falso</nav>${ficha('Licencia de conducir', '<a href="javascript:alert(1)">Iniciar</a><a class="btn" href="https://turnos.example.org/">Iniciar trámite</a>')}`, 'https://example.org/ficha');
@@ -138,5 +176,11 @@ test('packaged real demo works without developer data and keeps task evidence fo
   const r = buildCatalog('rosario', rosario);
   assert.equal(consultCatalog(r, { pregunta: 'medio boleto' }).estado, 'aclaracion');
   assert.equal(consultCatalog(r, { pregunta: 'solicitar numeracion oficial' }).estado, 'listo');
-  assert.equal(consultCatalog(buildCatalog('vgg', vgg), { pregunta: 'carnet' }).tramite.nombre, 'Licencia de conducir');
+  const licence = consultCatalog(buildCatalog('vgg', vgg), { pregunta: 'carnet' });
+  assert.equal(licence.tramite.nombre, 'Licencia de conducir');
+  assert.equal(licence.requisitos[0].items.length, 22);
+  assert.equal(licence.requisitos[0].bloques.filter(b => b.tipo === 'parrafo').length, 4);
+  for (const map of [rosario, vgg]) for (const p of map.paginas) for (const section of p.municipal?.secciones || []) {
+    assert.ok(section.bloques?.length, `Unrefreshed section: ${p.url}`);
+  }
 });

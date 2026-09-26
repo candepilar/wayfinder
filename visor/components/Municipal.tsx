@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { api } from "@/lib/motor";
 
-type Section = { tipo: string; titulo: string; texto: string; items: string[]; fuente: string };
+type Section = { tipo: string; titulo: string; texto: string; items: string[]; fuente: string; bloques?: { tipo: "item" | "parrafo" | "subtitulo"; texto: string }[] };
 type Choice = { id: string; nombre: string; url?: string };
 type Contact = { nombre: string; url: string };
 type Catalog = { municipio: string; nombre: string; revisado_en: string; cobertura: { estado: string; pendientes: number }; tramites: (Choice & { requisitos: string })[] };
@@ -96,7 +96,22 @@ export default function Municipal({ municipio, onVolver }: { municipio: string; 
 
 function SectionList({ title, sections, checklist = false }: { title: string; sections?: Section[]; checklist?: boolean }) {
   if (!sections?.length) return <p className="text-sm text-tinta-suave">{title}: no se extrajo una sección específica; revisá la ficha oficial.</p>;
-  return <div className="space-y-4 rounded-xl border border-linea bg-superficie p-5"><h4 className="font-semibold">{title}</h4>{sections.map((s, i) => <div key={i}><p className="mb-3 text-xs text-tinta-suave">{s.titulo}</p>{checklist ? <div className="space-y-3">{(s.items.length ? s.items : [s.texto]).map((text, j) => <label key={j} className="flex items-start gap-3 text-sm leading-relaxed"><input type="checkbox" className="mt-1 shrink-0 accent-[var(--acento)]" /><span>{text}</span></label>)}</div> : <p className="whitespace-pre-line text-sm leading-relaxed text-tinta-media">{s.texto}</p>}<a className="mt-3 inline-block text-xs underline text-tinta-suave" href={s.fuente} target="_blank" rel="noopener noreferrer">Fuente oficial ↗</a></div>)}</div>;
+  return <div className="space-y-4 rounded-xl border border-linea bg-superficie p-5">
+    <h4 className="font-semibold">{title}</h4>
+    {sections.map((s, i) => <div key={i}>
+      <p className="mb-3 text-xs text-tinta-suave">{s.titulo}</p>
+      <div className="space-y-3">
+        {/* Older snapshots have no reliable item boundaries: show their full text. */}
+        {(s.bloques?.length ? s.bloques : [{ tipo: "parrafo", texto: s.texto }]).map((block, j) =>
+          checklist && block.tipo === "item" ?
+            <label key={j} className="flex items-start gap-3 text-sm leading-relaxed"><input type="checkbox" className="mt-1 shrink-0 accent-[var(--acento)]" /><span>{block.texto}</span></label> :
+            block.tipo === "subtitulo" ? <h5 key={j} className="text-sm font-semibold">{block.texto}</h5> :
+            <p key={j} className="text-sm leading-relaxed text-tinta-media">{block.texto}</p>
+        )}
+      </div>
+      <a className="mt-3 inline-block text-xs underline text-tinta-suave" href={s.fuente} target="_blank" rel="noopener noreferrer">Fuente oficial ↗</a>
+    </div>)}
+  </div>;
 }
 
 function Technical({ diagnostic, total }: { diagnostic: Diagnostic | null; total: number }) {

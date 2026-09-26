@@ -40,26 +40,53 @@ export function extractMunicipal(html, url) {
   const nombre = clean(root.find('h1').first().text() || $('h1').first().text());
   const sections = [];
   let current = null;
-  // Walking leaves preserves text across wrappers without copying nested lists twice.
+  // Source whitespace never creates an item. Preserve full DOM list items,
+  // including inline markup, nested lists and their explanatory notes.
+  function flush() {
+    if (!current) return;
+    const texto = clean(current.parts.join(''));
+    if (texto) current.bloques.push({ tipo: 'parrafo', texto });
+    current.parts = [];
+  }
+  function itemText(node) {
+    if (node.type === 'text') return node.data;
+    const text = (node.children || []).map(itemText).join('');
+    return /^(p|li|div|br|tr|ul|ol)$/.test(node.name || '') ? ` ${text} ` : text;
+  }
   function walk(node) {
     if (node.type === 'text') { if (current) current.parts.push(node.data); return; }
     if (/^h[1-6]$/.test(node.name || '')) {
+      flush();
       const titulo = clean($(node).text());
       const tipo = kindOf(titulo);
       const level = Number(node.name.slice(1));
-      if (tipo) { current = { tipo, titulo, level, container: node.parent, parts: [] }; sections.push(current); }
-      else if (current && level > current.level) current.parts.push(`\n${titulo}\n`);
+      if (tipo) {
+        // CMS wrappers around just the heading must not end the section.
+        const container = $(node).closest('section,article,main,[role=main]').get(0) || root.get(0);
+        current = { tipo, titulo, level, container, parts: [], bloques: [] };
+        sections.push(current);
+      }
+      else if (current && level > current.level) current.bloques.push({ tipo: 'subtitulo', texto: titulo });
       else current = null;
       return;
     }
+    if (current && node.name === 'li') {
+      flush();
+      const texto = clean(itemText(node));
+      if (texto) current.bloques.push({ tipo: 'item', texto });
+      return;
+    }
+    const boundary = /^(p|div|br|tr|ul|ol|blockquote)$/.test(node.name || '');
+    if (boundary) flush();
     for (const child of node.children || []) walk(child);
-    if (current && /^(p|li|div|br|tr)$/.test(node.name || '')) current.parts.push('\n');
-    if (current?.container === node) current = null;
+    if (boundary) flush();
+    if (current?.container === node) { flush(); current = null; }
   }
   for (const node of root.toArray()) walk(node);
-  const secciones = sections.map(({ tipo, titulo, parts }) => ({
-    tipo, titulo, texto: clean(parts.join(' ')),
-    items: parts.join(' ').split('\n').map(clean).filter(Boolean), fuente: url,
+  flush();
+  const secciones = sections.map(({ tipo, titulo, bloques }) => ({
+    tipo, titulo, texto: bloques.map(b => b.texto).join(' '), bloques,
+    items: bloques.filter(b => b.tipo === 'item').map(b => b.texto), fuente: url,
   })).filter(s => s.texto);
   const links = root.find('a[href]').map((_i, el) => {
     const a = $(el), href = a.attr('href');
@@ -92,7 +119,7 @@ export function extractMunicipal(html, url) {
 }
 
 export function buildCatalog(municipio, map) {
-  const tramites = map.paginas.flatMap(p => p.municipal?.tramite ? [{ ...p.municipal.tramite, revisado_en: map.sitio.crawleado_en }] : []);
+  const tramites = map.paginas.flatMap(p => p.municipal?.tramite ? [{ ...p.municipal.tramite, revisado_en: p.municipal.revisado_en || map.sitio.crawleado_en }] : []);
   const visited = new Set(map.paginas.map(p => p.url));
   const candidates = new Map();
   const contacts = new Map();

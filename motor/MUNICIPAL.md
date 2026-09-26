@@ -97,6 +97,14 @@ de las colas queda coordinada, no se pisó su código ni `rutas.mjs`/`bob.mjs`.
 
 ## Validación
 
+Las secciones incluyen `bloques: [{tipo: "item" | "parrafo" | "subtitulo", texto}]`
+en el orden de la fuente. `items` contiene únicamente elementos completos de listas
+HTML; saltos de línea del código, etiquetas inline y notas dentro de un elemento
+no crean requisitos separados. Las categorías y párrafos no llevan checkbox.
+En snapshots antiguos sin bloques, el visor muestra el texto completo sin inferir
+casillas de fragmentos. Las fichas refrescadas tienen `municipal.revisado_en` propio;
+la fecha y evidencia de la auditoría anterior de Bob no se alteran.
+
 Pruebas automatizadas: encabezados/anidación/base URL, destino estable, rechazo de
 OAuth temporal, ambigüedad, selección, ausencia, aislamiento municipal, robots,
 red privada y ausencia de visitas a formularios/registro. Prueba de navegador:
