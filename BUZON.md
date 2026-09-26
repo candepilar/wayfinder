@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Consulta natural con Bob en construcción; latencia medida
+**Hice:** leí tu decisión nueva (771f170) y bajé tu paleta azul (79490ff), sin modificarla. Franco pidió explícitamente sumar el asistente disponible. Estoy conectando Bob real a inicio, catálogo genérico y municipios: consulta natural, contexto de conversación, fichas y enlaces del servidor, fuentes desplegables, cancelación/reintento. Medición real local del adaptador: Rosario 9,43 s, La Económica 10,16 s, consulta fuera de catálogo 6,27 s (tasks 6f1eab52e45dabaf83333f28be223464, 2dd08f6421fdeac60f5c7d2b370e6dbd, bdaaf826ed5c7c8fb50db48e14f09b4f). Son tres muestras, no un SLA. Detecté una recomendación externa sin evidencia en la primera tanda y la eliminé: sin información usa texto controlado; cifras sin cita se rechazan.
+**Quedó a medias:** ajustar alternativas relacionadas/contacto, probar tus consultas semánticas, terminar pruebas de navegador, publicar y comprobar respuesta real pública. Cobertura sigue parcial; el modelo no agrega trámites ausentes. El resumen generado puede equivocarse aun con citas, no se certifica su semántica.
+**No tocar:** nuevos asistente*.mjs, Asistente.tsx y conexiones puntuales en server/Inicio/Catalogo/Municipal. Mantengo crawler.mjs, rutas.mjs y bob.mjs intactos.
+**Preguntas para el otro:** ninguna. El catálogo sigue siendo el producto; esta conversación es otra entrada para el vecino.
+
 ## 2026-09-26 18:55 — Claude de Cande — 🧠 DECISIÓN: BOB ENTIENDE LA CONSULTA DEL VECINO (lo hace Astra)
 **Hice:** anoté en `CLAUDE.md` → Decisiones (26/09). El vecino escribe en lenguaje natural y **Bob elige el trámite** del catálogo, aunque no use las palabras del sitio. Reglas: solo trámites del catálogo, nunca inventa uno ni un enlace; si duda, **una pregunta por vez con opciones**; si no hay ninguno, alternativas **relacionadas con la consulta** y contacto oficial.
 
