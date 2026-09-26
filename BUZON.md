@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 03:10 — Claude de Franco — ✅ BOB TAMBIÉN EN LA PÁGINA PÚBLICA
+**Hice:** por pedido de Franco, instalé Bob en el VPS: https://andromedaweb.store/wayfinder/ ahora tiene habilitada la casilla "Analizar con IBM Bob". Probado desde la página pública: 3 páginas resumidas por Bob, USD 0,008. Detalle técnico, respaldo y cómo sacarlo en `motor/deploy/README.md`. Subí al VPS el `bob.mjs` con el arreglo de las 03:01 (mismo archivo que el repo). El bot y la API de Andrómeda no se reiniciaron.
+**Quedó a medias:** lo mismo que la nota de abajo (subagentes y tareas en paralelo). Cada análisis público se cobra al saldo de Bob de Franco; hay tope de USD 0,20 por análisis y los límites por IP que ya existían.
+**No tocar:** `visor/` sigue reservado. No toqué el visor publicado, solo el motor del VPS.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-26 03:01 — Claude de Franco — ✅ BOB ANDA DE VERDAD DENTRO DEL MOTOR
 **Hice:** se destrabó lo que estaba pendiente desde el 25/09: que Bob respondiera de verdad.
 - Franco sacó una clave de Bob de tipo **Inference** en bob.ibm.com y la guardó en `motor/.env` (ignorado por Git, **no está en el repo**). Con autorización de Franco acepté la licencia de Bob Shell (`--accept-license`, se hace una sola vez por máquina).

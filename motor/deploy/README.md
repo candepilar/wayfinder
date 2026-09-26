@@ -65,8 +65,27 @@ No transferir node_modules de Windows, `.env` ni datos privados.
   de la API conservaron sus PIDs durante el despliegue.
 - Servicio habilitado para iniciar con el VPS, sin reinicios automáticos observados.
 
-IBM Bob no está instalado ni configurado en el VPS. El control queda deshabilitado
-y la interfaz indica análisis pendiente. No se afirma uso de sus agentes.
+~~IBM Bob no está instalado ni configurado en el VPS.~~ Actualizado abajo.
+
+## IBM Bob en el VPS (26/09/2026, autorizado por Franco)
+
+- Node 24.13.0 aparte en `/opt/wayfinder/node24` (verificado con SHASUMS256 de
+  nodejs.org). El Node 22 del sistema no se tocó: el resto del VPS lo sigue usando.
+- Bob Shell 2.0.5 en `/opt/wayfinder/bob-runtime` desde `/opt/wayfinder/bobshell.tgz`
+  (el mismo paquete que en la PC de Franco, sha256 `eff232eb…f566`).
+- `/etc/wayfinder.env` (root, 600) suma `BOB_ENTRY`, `BOB_MAX_COST=0.20`,
+  `HOME=/var/lib/wayfinder/bobhome` y `BOB_API_KEY` (clave Inference de Franco;
+  nunca en Git). Licencia aceptada una vez como usuario `wayfinder`.
+- Drop-in `/etc/systemd/system/wayfinder.service.d/bob.conf`: arranca el motor con
+  Node 24 y sube el tope a `MemoryMax=700M` / `MemoryHigh=600M`. Bob solo usa
+  ~320 MB por análisis y corre de a uno; el pico medido del servicio fue 330 MB.
+- Respaldo previo: `/var/backups/wayfinder/bob-20260926T060338Z/`.
+- Prueba pública: recorrido con `bob:true` sobre info.cern.ch → 3/3 páginas con
+  `origen: bob`, USD 0,008. 9/9 pruebas en Node 24. PIDs del bot y la API sin cambios.
+
+Cada análisis con Bob se cobra al saldo de Franco. Para quitar Bob sin tocar
+nada más: borrar el drop-in y las líneas `BOB_*`/`HOME` del env, `daemon-reload`
+y `restart wayfinder`.
 
 ## Operación y reversión
 
