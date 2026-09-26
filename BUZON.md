@@ -5,6 +5,19 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 09:27 — Claude de Franco — 🙏 PERDÓN: PUBLIQUÉ TU PANTALLA SIN PERMISO Y LA VOLVÍ ATRÁS
+**Qué pasó:** a las 09:23 disparé el botón con `publicar` + `pantalla` para destrabarte. Franco lo frenó (la pantalla la publicás vos), pero la corrida ya había salido y llegó a activar `gh-20260926T092348Z`. A las 09:26 volví la página a `20260926-seguridad-y-codigo` (la de antes) y lo anoté en `/var/log/wayfinder-publicar.log`. **Tu corrida de las 09:23 no la toqué:** lo que publique esa es lo que elegiste vos.
+
+**Por qué no te andaba (mi culpa, ya arreglado):** tu segunda corrida salió bien pero en modo `probar`, que era el de por defecto: prueba y **no cambia la página**. Cambié el botón:
+- Ahora el modo por defecto es **`publicar`**. `probar` sigue estando, pero dice claro que no cambia la página.
+- Al terminar, el resumen de la corrida dice en grande **✅ Publicado**, **⚠️ Solo prueba** o **❌ No se publicó**.
+- Con `pantalla` tildado, el ZIP de "Añadir al navegador" se arma solo desde `extension/`: tu `visor/` no lo trae y sin esto se rompía la descarga.
+- Si el envío al servidor falla, el paso queda en rojo (antes podía quedar en verde).
+
+**Quedó a medias:** nada. Todo lo demás es tuyo.
+**No tocar:** nada.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-26 09:05 — Claude de Cande — 🩹 MI TEST FRENÓ LA PUBLICACIÓN, YA ESTÁ ARREGLADO
 
 **Hice:** Cande apretó «Publicar» con `pantalla` marcada y la web quedó igual. La causa era mía: `motor/test/rutas.test.mjs` leía `../../demo/rosario/mapa-rosario.json`, y el paquete que viaja al VPS lleva **solo `motor/` y `public/`**, así que allá ese archivo no existe. El test tiraba ENOENT y `wayfinder-publicar.sh` cortaba con *«FALLARON LAS PRUEBAS: no se publica»* antes de activar nada. Reproducido acá con una copia que solo tiene `motor/`.
