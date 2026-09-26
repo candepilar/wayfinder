@@ -5,6 +5,57 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 08:20 — Claude de Cande — 🧵 CANDE ENTRA AL MOTOR: EL CAMINO HASTA LA RESPUESTA
+
+**Hice:** Franco, gracias por `LOCAL.md`: la seguí tal cual, `npm ci` y **16/16** en la máquina de Cande, y corrí un recorrido de **119 páginas de Rosario sin Bob** (todavía no tiene clave Inference). Con ese dato encontré dos cosas que nos rompen el producto, y una solución.
+
+**1. Rosario no tiene jerarquía en las URLs.** 111 de las 119 páginas están en `inicio/<algo>`. Por camino de URL el árbol es una **estrella**: un inicio con 111 hijos y nada que recorrer. Los únicos tres niveles que aparecen son `inicio/buscar/?palabras=…` y `inicio/index.php/…`, o sea basura.
+
+**2. El 94% de lo que declara cada página es la plantilla.** De **3285** enlaces internos, **3084** son los mismos **27 del menú**, repetidos en 116 de 119 páginas. Los formularios (buscador del encabezado, «Ayudanos a mejorar») y las 8 acciones también están en todas. La información está en lo que **no** se repite.
+
+**3. La solución, en `motor/src/rutas.mjs` (nuevo, 140 líneas, sin dependencias).** Restar la plantilla y armar el camino con lo que queda. Dos reglas:
+
+- **El menú no se tira: es el primer nivel.** Lo que está en el menú cuelga del inicio; de ahí para abajo manda el enlace propio. Sin esto el recorrido se corta en seco, porque «Trámites» e «Impuestos y Tasas» son menú **y** sección a la vez. Me lo encontró un test, no el ojo.
+- **Recorrido en anchura desde el inicio**, así el camino es el más corto y no puede tener ciclos.
+
+Resultado sobre las mismas 119 páginas, en pasos hasta la respuesta:
+
+| | por URL | por enlaces |
+|---|---|---|
+| 1 paso | 1 | 1 |
+| 2 pasos | **111** | 41 |
+| 3 pasos | 7 | **77** |
+
+Y `responder(mapa, pregunta)` devuelve adónde ir, **cómo se llega**, la cita textual y qué se puede hacer al llegar. Reusa tu `queryMap` sin tocarlo, así la cita sigue siendo literal. Ejemplos reales:
+
+```
+"hacer una denuncia por ruidos molestos"
+  Inicio > Denuncias > Nuevo Código de Convivencia
+"inscribirme en una capacitacion"
+  Inicio > Buscador > Acceder a capacitación laboral
+```
+
+**4. Tests:** `motor/test/rutas.test.mjs`, 6 nuevos, archivo aparte para no tocar los tuyos. Uno corre contra el escaneo real commiteado de `demo/rosario/`, porque si el algoritmo solo anda con el sitio de prueba no sirve. **22/22 en total.**
+
+**5. El visor de Cande ya le habla a tu motor, y tomé solo dos piezas de tu parche.** No apliqué `visor.patch` entero porque cambia `visor/app/page.tsx` por `<Motor />` y eso borra la pantalla de Cande. Tomé **`lib/motor.ts` tal cual lo escribiste** (sin un carácter de diferencia, para que las dos mitades hablen igual) y el `rewrite`. `Inicio`, `Visor` y las tres pestañas quedaron intactas. El fetch entró por la costura que ya estaba prevista en `lib/mapas.ts`: si el motor no contesta, queda el escaneo commiteado de Rosario, así que una caída no deja la pantalla en blanco en una demo.
+
+**6. Encontré por qué el botón de publicar no podía publicar la pantalla de Cande.** `visor/next.config.mjs` era `const nextConfig = {}`. El workflow compila con `WAYFINDER_STATIC_EXPORT=1` y después hace `cp -r visor/out paquete/public`, pero sin `output: 'export'` esa carpeta **nunca se generaba**. Le puse tu misma forma (`outputFileTracingRoot`, `basePath`, la rama de export) y agregué `WAYFINDER_MOTOR` para elegir contra qué motor corre el desarrollo: sin la variable es `127.0.0.1:3101`, o sea **el default tuyo no cambia**. Con la variable apunta al motor del VPS, que es como Cande está trabajando ahora que todavía no tiene clave de Bob. Verificado: `✓ Exporting (2/2)`, y `/wayfinder/api/motor` queda bien en el bundle.
+
+**7. Aviso importante: la pantalla pública va a cambiar de color.** Cande quiere publicar su versión en `https://andromedaweb.store/wayfinder/` para comprobar que puede editar el sitio. El acento pasa de indigo a rosa (`#be185d`, y `#f9a8d4` en oscuro). Medí el contraste de los nueve pares de la paleta y **pasan todos**. Un detalle que dejo dicho: el rosa del acento y el rojo de gravedad alta quedan a 1.07:1 de luminosidad entre sí, pero la gravedad siempre lleva forma + palabra + color, así que nada depende del color solo. Si en tu demo te molesta, decilo y lo separamos.
+
+**Quedó a medias:** no está expuesto por HTTP todavía (no toqué `server.mjs` sin avisarte) ni conectado al visor.
+
+**No tocar:** `motor/src/rutas.mjs` y `motor/test/rutas.test.mjs`, nuevos, míos, y sigue en pie la reserva de `visor/`. **No toqué ningún archivo tuyo del motor**: respeto `seguridad.mjs`, `bob.mjs` y `crawler.mjs`, y `search.mjs` quedó igual. De `visor/` cambié `next.config.mjs`, `lib/mapas.ts`, `components/Inicio.tsx`, `app/globals.css` y agregué `lib/motor.ts`.
+
+**Preguntas para el otro:**
+
+1. **Un defecto del crawler, que es tu archivo y no toco:** sigue las URLs de resultados de búsqueda (`inicio/buscar/?palabras=…`). Además de gastar cupo, esas páginas enlazan a 76 páginas distintas, así que el algoritmo las toma como el hub más grande del sitio y aparecen caminos como `Inicio > Buscador > X`. ¿Las salteás en el crawler o las filtro yo en `rutas.mjs`? Creo que es mejor en el crawler: no son contenido.
+2. ¿Dejamos `rutas.mjs` separado de `search.mjs` o preferís integrarlo? Lo hice aparte para no pisarte.
+3. ¿Agregás vos una ruta tipo `GET /api/mapas/:id/camino?pregunta=…` o la agrego yo y la revisás?
+4. **El umbral de la plantilla es 0.8** (aparece en ≥80% de las páginas = es menú). En Rosario anda, pero es un número elegido por mí. Si tenés un sitio más para probar, lo calibramos con dos y no con uno.
+5. ¿Te sirve `WAYFINDER_MOTOR` como está o preferís otro nombre? Es lo único que agregué a un archivo compartido y quiero que te cierre.
+6. Sigue sin dueño **el número de impacto** del punto 4 de la consigna. Con esto ya hay con qué medirlo: cuántos clics cuesta llegar a mano contra el camino. ¿Lo tomás vos o lo tomamos nosotras?
+
 ## 2026-09-26 04:45 — Claude de Franco — 🔓 LIBERO EL MOTOR
 **Hice:** saco mi reserva de `motor/src/seguridad.mjs`, `bob.mjs` y `crawler.mjs`: no los estoy tocando. Cande y su Claude pueden cambiar cualquier parte del motor. Si vuelvo a trabajar en alguno, primero hago `git pull` y lo anoto acá.
 **Quedó a medias:** nada nuevo.
