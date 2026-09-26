@@ -6,8 +6,15 @@ import Arbol from "./Arbol";
 import Buscador from "./Buscador";
 import Detalle from "./Detalle";
 import Mapa from "./Mapa";
+import Revision from "./Revision";
 import { ancestrosDe, armarArbol, buscar, segmentosDe } from "@/lib/arbol";
 import { Nodo, Pagina, WebMap } from "@/lib/tipos";
+
+const ETIQUETA_PESTANA = {
+  arbol: "Árbol",
+  mapa: "Mapa",
+  revision: "Revisión",
+} as const;
 
 export default function Visor({
   mapa,
@@ -21,7 +28,7 @@ export default function Visor({
   const [consulta, setConsulta] = useState("");
   // El árbol es la herramienta para revisar el crawl; el mapa es para entender
   // la forma del sitio de un vistazo. Cada uno hace lo que el otro no puede.
-  const [pestana, setPestana] = useState<"arbol" | "mapa">("arbol");
+  const [pestana, setPestana] = useState<"arbol" | "mapa" | "revision">("arbol");
 
   // Se recalcula solo si cambia el mapa, que en la practica es una vez.
   const { nodos, porClave, porId, home, analizadas } = useMemo(() => {
@@ -64,6 +71,9 @@ export default function Visor({
     setConsulta("");
   }
 
+  const seguridad = mapa.auditoria?.seguridad;
+  const hallazgos = seguridad?.hallazgos.length ?? 0;
+
   const homeElegida = claveSeleccionada === "" && home;
 
   /** Lo que muestra el panel de detalle, en cualquiera de las dos pestañas. */
@@ -97,17 +107,28 @@ export default function Visor({
 
         <div className="flex shrink-0 items-center gap-3">
           <div className="flex rounded-md border border-linea p-0.5">
-            {(["arbol", "mapa"] as const).map((p) => (
+            {(["arbol", "mapa", "revision"] as const).map((p) => (
               <button
                 key={p}
                 onClick={() => setPestana(p)}
-                className={`rounded px-2.5 py-1 text-xs transition-colors ${
+                className={`flex items-center gap-1.5 rounded px-2.5 py-1 text-xs transition-colors ${
                   pestana === p
                     ? "bg-acento-suave font-medium text-tinta"
                     : "text-tinta-media hover:text-tinta"
                 }`}
               >
-                {p === "arbol" ? "Árbol" : "Mapa"}
+                {ETIQUETA_PESTANA[p]}
+
+                {/* El contador solo aparece si hay algo que contar: una pestaña
+                    con "0" al lado invita a entrar a ver nada. */}
+                {p === "revision" && hallazgos > 0 && (
+                  <span
+                    className="rounded-full px-1.5 py-px text-[10px] font-medium"
+                    style={{ background: "var(--alta)", color: "var(--fondo)" }}
+                  >
+                    {hallazgos}
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -164,7 +185,11 @@ export default function Visor({
           )}
         </aside>
 
-        {pestana === "arbol" ? (
+        {pestana === "revision" ? (
+          <main className="min-h-0 flex-1 overflow-y-auto">
+            <Revision seguridad={seguridad} />
+          </main>
+        ) : pestana === "arbol" ? (
           <main className="min-h-0 flex-1 overflow-y-auto">
             <Detalle nodo={nodoDetalle} paginasPorId={porId} />
           </main>

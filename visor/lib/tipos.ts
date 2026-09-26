@@ -55,6 +55,8 @@ export type Sitio = {
 export type WebMap = {
   sitio: Sitio;
   paginas: Pagina[];
+  /** La auditoria tecnica, cuando el motor ya la corrio. */
+  auditoria?: Auditoria;
 };
 
 /**
@@ -72,3 +74,59 @@ export type Nodo = {
   pagina: Pagina | null;
   hijos: Nodo[];
 };
+
+/* ───────────── Auditoría técnica ─────────────
+ *
+ * Esto lo produce el motor de Franco (`motor/src/seguridad.mjs`) y viaja dentro
+ * del mismo WebMap. Los nombres son EXACTAMENTE los que él devuelve: si acá
+ * cambiara alguno, el visor mostraría huecos en silencio.
+ */
+
+export type Severidad = "alta" | "media" | "baja";
+
+export type Categoria =
+  | "cabeceras"
+  | "cookies"
+  | "https"
+  | "scripts"
+  | "formularios"
+  | "exposicion"
+  | "otro";
+
+export type Hallazgo = {
+  titulo: string;
+  severidad: Severidad;
+  categoria: Categoria;
+  /** URLs de las páginas afectadas. */
+  paginas: string[];
+  /** Los ids estables de esas mismas páginas. Los agregó el motor para que el
+   *  visor pueda cruzar un hallazgo con su nodo sin re-normalizar la URL. */
+  paginas_ids?: string[];
+  /** Fragmento textual de la evidencia. Si no aparece tal cual, el motor lo descarta. */
+  evidencia: string;
+  riesgo: string;
+};
+
+/**
+ * Lo que Bob afirmó pero no pudo probar. Se guarda a propósito: mostrar lo que
+ * el modelo NO se animó a sostener es más creíble que la lista de hallazgos.
+ */
+export type Descartado = {
+  titulo: string;
+  cita: string;
+  motivo: string;
+};
+
+export type Seguridad = {
+  estado: string;
+  generado_en?: string;
+  duracion_ms?: number;
+  resumen?: Record<Severidad, number>;
+  hallazgos: Hallazgo[];
+  descartados_por_falta_de_prueba?: Descartado[];
+  evidencia?: { alcance?: string; paginas_revisadas?: number };
+  task_id?: string;
+  coste?: unknown;
+};
+
+export type Auditoria = { seguridad?: Seguridad };

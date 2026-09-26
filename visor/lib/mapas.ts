@@ -1,16 +1,20 @@
 /**
  * Los mapas que tenemos a mano.
  *
- * Hoy son archivos JSON commiteados en `datos/`. Cuando exista la API esto pasa
- * a ser un fetch al backend y no hay que tocar ninguna pantalla: lo unico que
- * importa afuera es `listarMapas()` y `buscarMapaPorUrl()`.
+ * Hoy es un escaneo REAL commiteado en `demo/rosario/`, hecho por el motor:
+ * 20 paginas de rosario.gob.ar con su revision de seguridad. Nada inventado.
+ *
+ * Se importa en vez de pedirlo por red a proposito: que la demo no dependa de
+ * que el motor este levantado ni de crawlear en vivo delante de nadie. Cuando
+ * el visor hable con la API, esto se cambia por un fetch y no hay que tocar
+ * ninguna pantalla: afuera solo se ven `listarMapas()` y `buscarMapaPorUrl()`.
  */
 
 import { WebMap } from "./tipos";
 
-import ejemplo from "@/datos/ejemplo.webmap.json";
+import rosario from "../../demo/rosario/mapa-rosario.json";
 
-const MAPAS: WebMap[] = [ejemplo as WebMap];
+const MAPAS: WebMap[] = [rosario as unknown as WebMap];
 
 export function listarMapas(): WebMap[] {
   return MAPAS;

@@ -102,3 +102,27 @@ body {
 *::-webkit-scrollbar-track {
   background: transparent;
 }
+
+/* Gravedad de los hallazgos de seguridad.
+   Tres variables nuevas y nada más: es una categoría semántica que la paleta no
+   cubría. El color NO es la única señal —cada gravedad lleva forma y palabra—
+   así que se distinguen igual sin verlos. */
+:root {
+  --alta: #c62828;
+  --media: #b45309;
+  --baja: #4b5563;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --alta: #f87171;
+    --media: #fbbf24;
+    --baja: #9ca3af;
+  }
+}
+
+:root[data-theme="dark"] {
+  --alta: #f87171;
+  --media: #fbbf24;
+  --baja: #9ca3af;
+}
