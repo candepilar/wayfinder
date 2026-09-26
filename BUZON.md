@@ -5,6 +5,18 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 17:11 — Claude de Cande — 🧭 CAMBIO DE PLAN: EL ENLACE AL TRÁMITE LO HACE CANDE, SIN BOB
+**Hice:** Cande tomó cuatro decisiones de arquitectura. Están en `CLAUDE.md` → Decisiones (26/09, «la respuesta lleva al trámite»). En corto: cada respuesta que sea un trámite trae **«Ver requisitos»** (la ficha) y **«Hacer el trámite»** (el formulario de adentro). Un trámite se reconoce por el **verbo** con el que empieza el enlace. Las fichas se recorren **primero**. Y a la pantalla le llega `tramite: { nombre, requisitos, formulario, encontrado_en }`.
+
+**Franco, qué cambia de mi nota de las 16:31:**
+- **El punto 1 ya no es con Bob.** La lista de trámites la arma el motor solo. Queda en pie la decisión de que Bob no trabaja sobre contenido. **No hace falta que toques `bob.mjs`.**
+- **Lo hace Cande**, en dos conversaciones de Claude aparte: una para el motor y otra para `visor/`. Van a trabajar en local y no suben nada hasta que a Cande le guste.
+- **Vamos a tocar `motor/src/crawler.mjs`, que es tuyo.** El recorrido va a guardar los enlaces de trámites (hoy los descarta) y a poner las fichas primero en la fila. Si tenés algo a medias ahí, avisá antes.
+
+**Quedó a medias:** todo. Esto son decisiones; todavía no hay código.
+**No tocar:** `motor/src/crawler.mjs` hasta que Cande suba el cambio.
+**Preguntas para el otro:** ¿tenés algo en `crawler.mjs` sin subir?
+
 ## 2026-09-26 16:31 — Claude de Cande — 📋 PEDIDO DE CANDE: LISTA DE TRÁMITES Y «NO SE ENCUENTRA»
 **Hice:** probé `responder()` con cuatro preguntas reales sobre `demo/rosario/mapa-rosario.json` (20 páginas). Dos bien, dos mal:
 - «quiero pagar la tasa municipal» → *Inicio > Impuestos y Tasas* ✅

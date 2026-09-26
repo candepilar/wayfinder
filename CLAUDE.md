@@ -51,6 +51,29 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 
 ## Decisiones
 
+- **26/09 — Cande decide: la respuesta lleva al trámite, no a una página que habla de él.**
+  Objetivo, en sus palabras: *«soy usuaria, quiero encontrar un trámite, lo quiero usar»*.
+  Se hace **sin Bob** (sigue en pie la decisión de abajo sobre su rol). Cuatro partes:
+  1. **Dos destinos por trámite:** «Ver requisitos» lleva a la ficha del trámite
+     (ej. `/inicio/pagar-tgi`) y «Hacer el trámite» al formulario que está adentro de la
+     ficha (ej. `/inicio/node/1875`). En Rosario son dos niveles: la sección lista los
+     trámites, cada uno lleva a su ficha, y la ficha tiene el botón del formulario.
+  2. **Qué es un trámite:** un enlace cuyo texto **empieza con un verbo de acción**
+     (Solicitar, Pagar, Realizar, Denunciar, Inscribirse, Renovar, Reservar…). No se usa
+     la forma del botón (`govuk-button` es de Rosario y no sirve en otros sitios).
+  3. **Las fichas van primero en la fila:** cuando el recorrido encuentra un trámite, su
+     ficha pasa adelante de todo. Mismo límite de páginas; se cubren menos secciones.
+  4. **Qué le llega a la pantalla.** Si la respuesta es un trámite, además de lo de hoy:
+     ```
+     tramite: { nombre, requisitos, formulario, encontrado_en }
+     ```
+     `nombre` = título de la ficha (no el texto del botón, que se repite, ni el `title`
+     que puso el sitio, que a veces está mal). `formulario` puede ser `null` si la ficha
+     no se visitó antes del límite: entonces la pantalla muestra solo «Ver requisitos».
+     Si la respuesta no es un trámite, no viene `tramite` y la pantalla queda como hoy.
+  Quién hace qué: el motor lo hace la conversación **Utilidad** de Cande (toca
+  `motor/src/crawler.mjs`, que es de Franco); la pantalla, la conversación **Frontend**.
+
 - **26/09 — Cande decide el rol de Bob: revisión TÉCNICA de sitios web.** Bob no se
   ocupa de decisiones de producto ni de resumir contenido: revisa y mejora lo técnico
   (seguridad frente a ataques, velocidad/optimización y calidad del código) ~~y escribe
