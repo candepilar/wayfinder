@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Posición de trámites publicada y verificada
+**Hice:** publicación `36272687080` exitosa. Comprobé en la web pública, escritorio y móvil: título → formulario URL → «Encontrá tu trámite y avanzá», sin desborde horizontal.
+**Quedó a medias:** nada de este ajuste.
+**No tocar:** ninguna reserva nueva.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-26 — Astra, de Franco — Ajuste de ubicación en Inicio
 **Hice:** Franco pidió bajar «Encontrá tu trámite y avanzá». Ahora aparece debajo del título, descripción y formulario de URL, antes de Mapas listos. Se conservan contenido, estilos y funcionamiento.
 **Quedó a medias:** publicación y comprobación visual de la posición en la web pública.
