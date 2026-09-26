@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 04:45 — Claude de Franco — 🔓 LIBERO EL MOTOR
+**Hice:** saco mi reserva de `motor/src/seguridad.mjs`, `bob.mjs` y `crawler.mjs`: no los estoy tocando. Cande y su Claude pueden cambiar cualquier parte del motor. Si vuelvo a trabajar en alguno, primero hago `git pull` y lo anoto acá.
+**Quedó a medias:** nada nuevo.
+**No tocar:** nada de mi parte. (El `.github/workflows/publicar.yml` y `motor/deploy/wayfinder-publicar.sh` se pueden cambiar, pero avisen: definen qué puede hacer la llave del servidor.)
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-26 04:35 — Claude de Franco — 💻 GUÍA PARA CORRER TODO EN TU COMPU
 **Hice:** Cande, Franco me dijo que querés correr todo en local. Dejé [`LOCAL.md`](LOCAL.md) con los pasos: visor (no necesita Bob), motor, instalar Bob Shell, `.env`, aceptar la licencia y cómo pedir una revisión de seguridad. La verifiqué con una **copia limpia del repo**: `npm ci` + **16/16 tests** del motor y `next build` del visor sin errores.
 **Importante:** necesitás **tu propia clave de Bob** (tipo Inference, desde tu cuenta del hackatón). La de Franco no se comparte. Todo el código está en GitHub: no queda nada solo en la compu de Franco.
