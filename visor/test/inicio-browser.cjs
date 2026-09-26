@@ -8,6 +8,7 @@ const map = {
   sitio: {url: 'https://qa.example.org/', titulo: 'Sitio de prueba'},
   paginas: [{id: 'home', url: 'https://qa.example.org/', titulo: 'Inicio', texto: 'Contenido de prueba', enlaces: [], formularios: []}],
   ejecucion: {estado: 'parcial', pendientes: 3, errores: [], alcance: 'HTML público.'},
+  catalogo: {version:1,estado:'sin_gestiones_identificadas',sitio:{url:'https://qa.example.org/'},fichas:[],bob:{estado:'completado',fichas_aceptadas:0},calidad:{descartadas:[],advertencias:[]}},
 };
 (async () => {
   const browser = await chromium.launch({headless: true, ...(process.env.PLAYWRIGHT_CHANNEL ? {channel: process.env.PLAYWRIGHT_CHANNEL} : {})});
@@ -24,6 +25,7 @@ const map = {
           starts++;
           assert.equal(req.postDataJSON().url, 'https://qa.example.org/');
           assert.ok(req.postDataJSON().maxPaginas <= 40);
+          assert.equal(req.postDataJSON().catalogo, true);
           if (scenario === 'busy') return reply({error: 'Ya hay un recorrido en curso.'}, 409);
           return reply({id: 'scan-test', estado: 'en_curso'}, 202);
         }
@@ -48,6 +50,7 @@ const map = {
       if (['saved', 'new', 'resume'].includes(scenario)) {
         await page.getByRole('heading', {name: 'Sitio de prueba', exact: true}).waitFor();
         assert.equal(starts, scenario === 'saved' ? 0 : 1);
+        await page.getByText(/Fuente y alcance/).click();
         await page.getByText(/Recorrido parcial/).waitFor();
       } else if (scenario === 'cancel') {
         await page.getByRole('button', {name: 'Cancelar', exact: true}).click();

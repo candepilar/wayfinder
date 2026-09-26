@@ -10,14 +10,15 @@ const transactional = /\/(login|logout|registrar|registrate|registro-usuario|ing
 // and network protection; does not submit forms or visit action destinations.
 export async function crawlMunicipal(input, { maxPages = 40, allowLocal = false, signal, onEvent = () => {} } = {}) {
   if (!Number.isInteger(maxPages) || maxPages < 1 || maxPages > 200) throw new Error('El límite debe estar entre 1 y 200.');
-  const seed = normalizeUrl(input), origin = new URL(seed).origin;
+  const seed = normalizeUrl(input);
+  let origin = new URL(seed).origin;
   const options = { allowLocal, signal, allowedUrl: url => new URL(url).origin === origin };
-  const response = await requestText(`${origin}/robots.txt`, options);
+  const response = await requestText(`${origin}/robots.txt`, { allowLocal, signal });
   if ([401, 403].includes(response.status) || response.status >= 500) throw new Error('No se pudo comprobar robots.txt.');
-  const robots = response.status === 200 ? robotsParser(`${origin}/robots.txt`, response.body) : null;
+  let robots = response.status === 200 ? robotsParser(`${origin}/robots.txt`, response.body) : null;
   const allowed = url => new URL(url).origin === origin && robots?.isAllowed(url, 'WayfinderBot') !== false;
   if (!allowed(seed)) throw new Error('robots.txt no permite la página inicial.');
-  const delay = Math.max(150, (robots?.getCrawlDelay('WayfinderBot') || 0) * 1000);
+  let delay = Math.max(150, (robots?.getCrawlDelay('WayfinderBot') || 0) * 1000);
   if (delay > 60000) throw new Error('Crawl-delay requiere una configuración especial.');
   const queue = [{ url: seed, priority: 100 }], seen = new Set([seed]), pages = [], errors = [], omitted = [];
   let attempted = 0;
@@ -29,7 +30,19 @@ export async function crawlMunicipal(input, { maxPages = 40, allowLocal = false,
     attempted++;
     onEvent({ type: 'leyendo', url, intentadas: attempted });
     try {
-      const r = await requestText(url, { ...options, allowedUrl: allowed });
+      const first = attempted === 1;
+      // The initial address can redirect to its canonical host. Public-network
+      // checks still apply on every redirect; subsequent discovery is same-origin.
+      const r = await requestText(url, { ...options, allowedUrl: first ? undefined : allowed });
+      if (first && new URL(r.url).origin !== origin) {
+        origin = new URL(r.url).origin;
+        const canonicalRobots = await requestText(`${origin}/robots.txt`, options);
+        if ([401,403].includes(canonicalRobots.status) || canonicalRobots.status >= 500) throw new Error('No se pudo verificar robots.txt del destino.');
+        robots = canonicalRobots.status === 200 ? robotsParser(`${origin}/robots.txt`, canonicalRobots.body) : null;
+        if (!allowed(r.url)) throw new Error('robots.txt no permite la página de destino.');
+        delay = Math.max(150, (robots?.getCrawlDelay('WayfinderBot') || 0) * 1000);
+        if (delay > 60000) throw new Error('Crawl-delay requiere una configuración especial.');
+      }
       if (r.status !== 200) throw new Error(`HTTP ${r.status}`);
       if (!/text\/html|application\/xhtml\+xml/i.test(r.headers['content-type'] || '')) throw new Error('No es HTML público.');
       if (pages.some(p => p.url === r.url)) continue;
@@ -67,7 +80,7 @@ export async function crawlMunicipal(input, { maxPages = 40, allowLocal = false,
   }
   const ids = new Map(pages.map(p => [p.url, p.id]));
   for (const page of pages) { page.enlaces = [...new Set(page.links.map(l => ids.get(l)).filter(Boolean))]; delete page.links; }
-  return { sitio: { url: seed, titulo: pages[0]?.titulo || seed, crawleado_en: new Date().toISOString(), paginas_totales: pages.length }, paginas: pages,
+  return { sitio: { url: pages[0]?.url || seed, titulo: pages[0]?.titulo || seed, crawleado_en: new Date().toISOString(), paginas_totales: pages.length }, paginas: pages,
     ejecucion: { estado: queue.length || errors.length || omitted.length ? 'parcial' : 'completado', limite: maxPages, intentadas: attempted,
       pendientes: queue.length, omitidas: omitted.length, exclusiones: omitted, errores: errors, advertencias: [], duracion_ms: Date.now() - started,
       alcance: 'HTML público del mismo origen. Sin sesiones, JavaScript ni acceso a destinos de gestión detectados. Clasificación heurística; requiere revisión humana.' } };

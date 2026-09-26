@@ -10,9 +10,11 @@ import { analyzeWithBob, bobStatus } from './bob.mjs';
 import { auditSecurity } from './seguridad.mjs';
 import { codeRoutes } from './codigo-routes.mjs';
 import { municipalRoutes } from './municipal-routes.mjs';
+import { crawlMunicipal } from './municipal-crawler.mjs';
+import { organizeCatalog } from './catalogo.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1', allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean), maxPagesLimit = Number(process.env.MAX_PAGES || 200), maxMaps = Number(process.env.MAX_MAPS || 100), municipalDemoDir } = {}) {
+export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1', allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean), maxPagesLimit = Number(process.env.MAX_PAGES || 200), maxMaps = Number(process.env.MAX_MAPS || 100), municipalDemoDir, organize = organizeCatalog } = {}) {
   const app = express();
   const store = new Store(path.join(dataDir, 'mapas'));
   const jobs = new Map();
@@ -35,6 +37,13 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
   app.get('/api/salud', (_req,res) => res.json({ estado: 'ok', bob: bobStatus(), trabajos_activos: [...jobs.values()].filter(j => j.estado === 'en_curso').length }));
   app.get('/api/mapas', async (_req,res) => res.json(await store.list()));
   app.get('/api/mapas/:id', async (req,res) => { const map = await store.get(req.params.id); return map ? res.json(map) : res.status(404).json({ error: 'Mapa no encontrado.' }); });
+  app.get('/api/mapas/:id/catalogo', async (req,res) => {
+    const map = await store.get(req.params.id);
+    if (!map) return res.status(404).json({ error: 'Mapa no encontrado.' });
+    if (!map.catalogo) return res.status(404).json({ error: 'Este mapa todavía no tiene un catálogo organizado.' });
+    if (req.query.descargar === '1') res.setHeader('Content-Disposition', `attachment; filename="wayfinder-catalogo-${req.params.id}.json"`);
+    res.json(map.catalogo);
+  });
   app.get('/api/mapas/:id/archivo', async (req,res) => {
     const map = await store.get(req.params.id);
     if (!map) return res.status(404).json({ error: 'Mapa no encontrado.' });
@@ -52,6 +61,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
     try { if (typeof req.body?.url !== 'string' || req.body.url.length > 2048) throw new Error('Ingresá una dirección válida.'); url = normalizeUrl(req.body.url); }
     catch (error) { return res.status(400).json({ error: error.message }); }
     const maxPages = req.body.maxPaginas ?? 40;
+    if (req.body.catalogo !== undefined && typeof req.body.catalogo !== 'boolean') return res.status(400).json({ error: 'catalogo debe ser verdadero o falso.' });
     if (!Number.isInteger(maxPages) || maxPages < 1 || maxPages > maxPagesLimit) return res.status(400).json({ error: `El límite debe estar entre 1 y ${maxPagesLimit} páginas.` });
     if ((req.body.bob || req.body.seguridad) && !bobStatus().disponible) return res.status(409).json({ error: 'Bob Shell todavía no tiene una API key configurada. Podés recorrer el HTML ahora.' });
     if ([...jobs.values()].some(j => j.estado === 'en_curso')) return res.status(409).json({ error: 'Ya hay un recorrido en curso. Esperá o cancelalo.' });
@@ -76,7 +86,8 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
     void (async () => {
       const deadline = setTimeout(() => job.controller.abort(), 600000);
       try {
-        const map = await crawl(url, { maxPages, onEvent: emit, signal: job.controller.signal, allowLocal });
+        const map = await (req.body.catalogo ? crawlMunicipal : crawl)(url, { maxPages, onEvent: emit, signal: job.controller.signal, allowLocal });
+        if (req.body.catalogo) await organize(map, { signal: job.controller.signal, onEvent: emit, workspace: path.join(dataDir, 'bob', `${id}-catalogo`) });
         if (req.body.bob) {
           emit({ type: 'bob_inicio', at: new Date().toISOString() });
           try { await analyzeWithBob(map, { signal: job.controller.signal, onEvent: emit, workspace: path.join(dataDir, 'bob', id) }); }

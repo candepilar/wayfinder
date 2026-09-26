@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Inicio from "@/components/Inicio";
 import Visor from "@/components/Visor";
 import Municipal from "@/components/Municipal";
+import Catalogo from "@/components/Catalogo";
 import { WebMap } from "@/lib/tipos";
 
 /**
@@ -17,6 +18,7 @@ import { WebMap } from "@/lib/tipos";
 export default function Home() {
   const [mapa, setMapa] = useState<WebMap | null>(null);
   const [municipio, setMunicipio] = useState<string | null>(null);
+  const [technical, setTechnical] = useState(false);
   useEffect(() => {
     const read = () => { const id = new URLSearchParams(window.location.search).get('municipio'); setMunicipio(id === 'rosario' || id === 'vgg' ? id : null); };
     read(); window.addEventListener('popstate', read);
@@ -29,6 +31,8 @@ export default function Home() {
   }
   if (municipio) return <Municipal key={municipio} municipio={municipio} onVolver={() => choose(null)} />;
 
-  if (!mapa) return <Inicio onAbrir={setMapa} onMunicipio={choose} />;
+  if (!mapa) return <Inicio onAbrir={m => { setTechnical(false); setMapa(m); }} onMunicipio={choose} />;
+  if (mapa.catalogo && !technical) return <Catalogo mapa={mapa} onVolver={() => setMapa(null)} onMapa={() => setTechnical(true)} />;
+  if (mapa.catalogo) return <Visor mapa={mapa} onVolver={() => setTechnical(false)} />;
   return <Visor mapa={mapa} onVolver={() => setMapa(null)} />;
 }

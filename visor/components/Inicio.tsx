@@ -65,8 +65,8 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
     };
   }, []);
 
-  async function analizar(e: React.FormEvent) {
-    e.preventDefault();
+  async function analizar(e?: React.FormEvent, entrada = url) {
+    e?.preventDefault();
     if (ocupado.current) return;
     ocupado.current = true;
     controller.current?.abort();
@@ -77,12 +77,13 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
       // Resume observation after a network failure without creating a second job.
       if (job) { await seguir(job, task.signal); return; }
       let normalized;
-      try { normalized = validarUrl(url); } catch { throw new Error('Ingresá una dirección válida, por ejemplo https://laeconomica.com.ar/'); }
+      try { normalized = validarUrl(entrada); } catch { throw new Error('Ingresá una dirección válida, por ejemplo https://laeconomica.com.ar/'); }
+      setUrl(normalized);
       setEvents([]);
       const mapa = await buscarMapaPorUrl(normalized, AbortSignal.any([task.signal, AbortSignal.timeout(20000)]));
       if (task.signal.aborted) return;
-      if (mapa) { onAbrir(mapa); return; }
-      const created = await api<{ id: string }>('/recorridos', { url: normalized, maxPaginas }, task.signal);
+      if (mapa?.catalogo && mapa.catalogo.bob.estado !== 'error') { onAbrir(mapa); return; }
+      const created = await api<{ id: string }>('/recorridos', { url: normalized, maxPaginas, catalogo: true }, task.signal);
       if (task.signal.aborted) return;
       setJob(created.id);
       await seguir(created.id, task.signal);
@@ -142,12 +143,12 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
               disabled={!url.trim() || buscando}
               className="shrink-0 rounded-lg bg-acento px-4 py-2 text-sm font-medium text-acento-tinta transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-25"
             >
-              {buscando ? (job ? "Escaneando…" : "Buscando…") : job ? "Reintentar seguimiento" : "Abrir"}
+              {buscando ? (job ? "Organizando…" : "Buscando…") : job ? "Reintentar seguimiento" : "Abrir"}
             </button>
           </div>
         </form>
 
-        <p className="mt-3 px-1 text-xs leading-relaxed text-tinta-suave">Si todavía no hay un mapa, recorremos hasta {maxPaginas} páginas públicas y abrimos el resultado. El recorrido puede ser parcial.</p>
+        <p className="mt-3 px-1 text-xs leading-relaxed text-tinta-suave">Si todavía no hay un catálogo, recorremos hasta {maxPaginas} páginas públicas y organizamos sus gestiones con IBM Bob. Puede tardar unos minutos; la cobertura puede ser parcial.</p>
         {job && <section role="status" aria-live="polite" className="mt-4 rounded-xl border border-linea bg-superficie p-4">
           <div className="flex items-center justify-between gap-3"><p className="text-sm font-medium text-tinta">{buscando ? 'Recorrido en curso' : 'Seguimiento interrumpido'} · {leidas} páginas leídas</p><button type="button" disabled={cancelando} onClick={() => void cancelar()} className="text-xs text-tinta-media underline">{cancelando ? 'Cancelando…' : 'Cancelar'}</button></div>
           <div className="mt-3 space-y-2 text-xs text-tinta-media">{events.slice(-4).map(event => <p className="break-words" key={event.secuencia}>{event.type === 'pagina' ? '✓ ' : ''}{event.titulo || event.mensaje || event.url || event.type.replaceAll('_', ' ')}</p>)}</div>
@@ -180,7 +181,7 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
           <ul className="space-y-2">
             {mapas.map((mapa) => (
               <li key={mapa.sitio.url}>
-                <Tarjeta mapa={mapa} onAbrir={() => onAbrir(mapa)} />
+                <Tarjeta mapa={mapa} onAbrir={() => { if (!ocupado.current) void analizar(undefined, mapa.sitio.url); }} />
               </li>
             ))}
           </ul>

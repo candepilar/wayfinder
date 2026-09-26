@@ -53,6 +53,7 @@ export type Sitio = {
 };
 
 export type WebMap = {
+  catalogo?: import('./catalogo').CatalogoSitio;
   sitio: Sitio;
   paginas: Pagina[];
   ejecucion?: { estado: string; pendientes: number; errores: { url: string; error: string }[]; alcance: string };

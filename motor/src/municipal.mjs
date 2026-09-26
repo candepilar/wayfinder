@@ -25,6 +25,7 @@ export function priorityOf(link) {
   const path = folded(new URL(link.url).pathname);
   return (/\/tramite\//.test(path) ? 10 : 0) + (action.test(text) ? 4 : 0)
     + (/tramites|licencia|registro civil|tgi|numeracion/.test(`${text} ${path}`) ? 3 : 0)
+    + (/servicio|ayuda|envio|devoluc|contact|inscrip|admission|appointment|shipping|return|support/.test(`${text} ${path}`) ? 3 : 0)
     + (/tramites|servicios/.test(folded(link.contexto)) ? 2 : 0);
 }
 
@@ -101,6 +102,29 @@ export function extractMunicipal(html, url) {
     };
   }).get().filter(Boolean);
   const unique = [...new Map(links.map(l => [`${l.texto}\n${l.url}`, l])).values()];
+  // Complete source blocks for a generic evidence-based catalogue. IDs are
+  // assigned later; the model selects blocks instead of rewriting requirements.
+  const fragmentos = [];
+  let loose = [];
+  const flushLoose = () => {
+    const texto = clean(loose.join('')); loose = [];
+    if (texto) fragmentos.push({ tipo: 'parrafo', texto });
+  };
+  function content(node) {
+    if (node.type === 'text') { loose.push(node.data); return; }
+    if (/^(h[1-6]|p|li|dt|dd)$/.test(node.name || '')) {
+      flushLoose();
+      const texto = clean(itemText(node));
+      if (texto) fragmentos.push({ tipo: /^h[1-6]$/.test(node.name) ? 'titulo' : node.name === 'li' ? 'item' : 'parrafo', texto });
+      return;
+    }
+    const boundary = /^(div|section|article|table|tr|br)$/.test(node.name || '');
+    if (boundary) flushLoose();
+    for (const child of node.children || []) content(child);
+    if (boundary) flushLoose();
+  }
+  for (const node of root.toArray()) content(node);
+  flushLoose();
   // A section/index with many links is not an individual procedure just because
   // its navigation mentions requirements. Empty headings do not confirm anything.
   const index = /^(inicio|tramites(?: y servicios)?|servicios|denuncias|gestiones administrativas)$/i.test(folded(nombre));
@@ -110,7 +134,7 @@ export function extractMunicipal(html, url) {
   const destinos = confirmed ? unique.filter(l => l.accion && l.url !== url && !/\.(pdf|docx?)(\?|$)/i.test(l.url)
     && ![...new URL(l.url).searchParams.keys()].some(k => /^(state|nonce|session|token|code)$/i.test(k))
     && !/registrat|registro de usuario|crear cuenta/i.test(folded(l.texto))) : [];
-  return { nombre, secciones, enlaces: unique, tramite: confirmed ? {
+  return { nombre, secciones, fragmentos, enlaces: unique, tramite: confirmed ? {
     id: pageId(url), nombre, requisitos: url,
     formulario: destinos.length === 1 ? destinos[0].url : null,
     encontrado_en: url, secciones, destinos: destinos.map(l => ({ ...l, estado: 'enlazado_no_verificado' })),

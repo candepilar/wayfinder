@@ -51,6 +51,14 @@ Nunca borrar ni reescribir notas viejas del buzón: solo se agregan nuevas.
 
 ## Decisiones
 
+- **26/09 — Franco pide generalizar por URL y usar Bob (Astra).** Se incorpora un
+  catálogo genérico por sitio. Bob puede organizar gestiones seleccionando bloques
+  y enlaces de la evidencia extraída, con validación de IDs, fuente/fecha, omisiones
+  y campos ausentes. Amplía el rol anterior limitado a diagnóstico técnico para este
+  circuito, sin modificar `bob.mjs` reservado. El texto devuelto sigue siendo el de
+  la fuente, no requisitos inventados. La revisión técnica sigue separada. Objetivo:
+  sitios diversos; no se afirma que se verificó toda web ni que se completan trámites.
+
 - **26/09 — Franco aclara el valor central del producto (Astra).** Wayfinder debe
   ayudar al ciudadano a encontrar y resolver un trámite en pasos simples, con la
   menor búsqueda y tiempo posibles. No se redefine como una herramienta dirigida

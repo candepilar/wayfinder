@@ -5,6 +5,18 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Catálogo genérico construido; Bob ejecutado en sitios diferentes
+**Hice:** nueva ruta de entrada por cualquier URL pública, catálogo genérico (`catalogo:true`) sin registro previo de municipio, fichas con fuente y datos ausentes explícitos, búsqueda, descarga JSON y mapa técnico accesible. Bob selecciona IDs de bloques/enlaces reales: el motor conserva texto completo, contexto y orden; rechaza referencias inventadas, conserva requisitos HTML existentes y deduplica destinos. Se mantienen cola/cancelación/robots/red pública y límites. Guía y evidencia en motor/CATALOGO.md. Bob revisó arquitectura con task `e2a2b8027ee9b802d860fa124348c778`. Pruebas reales locales: GOV.UK (5 páginas en inglés, 5 fichas de Bob con enlaces; task `1aac3d08c3be612179d3ab1cdd37cf5a`, costo 0,036698) y La Económica (12 páginas, 4 fichas de Bob; task `4a7cd2b96163a873f816cc4b43e78f47`, costo 0,087884). No se completaron formularios ni se enviaron mensajes.
+**Quedó a medias:** build/publicación y comprobación de navegador público. No se promete compatibilidad universal, exhaustividad, vigencia ni destinos funcionales después del acceso. Se lee HTML público, sin renderizar JS/login/PDF; Bob tiene presupuesto de páginas/bloques y las omisiones son visibles. La semántica sigue requiriendo revisión humana. No hay medición de ahorro aún.
+**No tocar:** durante publicación, módulos de catálogo, conexión en server/Inicio/page y nuevo Catalogo.tsx. No cambié crawler.mjs, rutas.mjs, bob.mjs ni globals.css.
+**Preguntas para el otro:** ninguna bloqueante. El pedido actual de Franco amplía el rol de Bob para organizar fichas con evidencia; lo registré en CLAUDE.md para que no se confunda con su diagnóstico técnico anterior.
+
+## 2026-09-26 — Astra, de Franco — Franco pide motor genérico con Bob
+**Hice:** Franco pide explícitamente que funcione con cualquier web y «usemos a Bob». Estoy generalizando el catálogo por URL/sitio, sin limitarlo a los dos municipios preconfigurados, con fichas y descarga JSON. Invoco a Bob sobre el código para revisar el diseño y sobre evidencia pública para proponer gestiones estructuradas; validaré campos y enlaces contra lo realmente leído. Esto amplía su rol por pedido actual de Franco, sin tocar el adaptador `bob.mjs` reservado. No se promete compatibilidad universal: habrá cobertura, omisiones y ausencia explícitas. Mantengo el foco ciudadano y el diseño de Cande.
+**Quedó a medias:** implementación, pruebas en sitios diferentes, publicación y comprobación externa. El crawler HTML no resuelve por sí solo sitios que dependen de login/JavaScript/PDF; esas limitaciones quedan visibles.
+**No tocar:** nuevos módulos catalogo, componente Catalogo.tsx, conexión en server/Inicio/page y metadatos adicionales del extractor municipal. Respeto crawler.mjs, rutas.mjs y bob.mjs.
+**Preguntas para el otro:** ninguna bloqueante. No agrego extensión ni conversación aclaratoria nueva.
+
 ## 2026-09-26 — Astra, de Franco — Escaneo cerrado y exclusión de acciones publicada
 **Hice:** publicada la exclusión de enlaces GET de carrito/lista de deseos (`677d90d`, Actions `36274063179`, success). Verifiqué externamente que una URL de prueba con `add-to-cart` se rechaza con HTTP 400 antes de iniciar un trabajo; motor saludable, cero trabajos activos. Pasaron 35 pruebas de backend. La pantalla del escaneo ya estaba publicada y verificada: pegar La Económica crea un mapa real y lo abre, con cobertura parcial explícita; 7 escenarios del navegador también pasaron.
 **Quedó a medias:** catálogo descargable y métricas de la propuesta de Cande, detallados en mi respuesta de abajo. No se presentan como implementados.
