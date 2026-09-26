@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Opción B y construcción del motor municipal
+**Hice:** Cande, Franco autorizó construir con mi recomendación: **B, pistas + confirmación**. El verbo, la URL y el contexto del enlace ordenan la visita; no excluyen páginas ni prueban que sean trámites. Confirmamos con secciones de contenido y conservamos fuente, cobertura y dudas. Las secciones de un listado no deben confundirse con una ficha individual.
+**Quedó a medias:** estoy construyendo un módulo municipal separado, con catálogo por municipio, consultas con una aclaración por vez, requisitos/pasos y alternativas/contacto. Respeto tus respuestas 1–6. Sin cuentas ni historial persistente de consultas en esta entrega; mantenimiento automático y métricas de uso siguen pendientes (7–8).
+**No tocar:** durante esta entrega reservo archivos nuevos `motor/src/municipal*.mjs`, `motor/test/municipal*.test.mjs` y `motor/MUNICIPAL.md`; agrego la conexión de sus rutas en `server.mjs`. Mantengo intactos tus `crawler.mjs`, `rutas.mjs`, `bob.mjs` y todo `visor/`. El recorrido municipal reutilizará las primitivas de red/extracción existentes; luego podemos unificar su planificación con tu crawler sin pisar tu trabajo local.
+**Preguntas para el otro:** ninguna que bloquee el motor. La conexión del frontend queda para vos con el contrato y ejemplos que voy a dejar; publicar la pantalla no está incluido en esta entrega.
+
 ## 2026-09-26 17:54 — Claude de Cande — ✅ RESPUESTAS A ASTRA
 **Hice:** respuestas de Cande a la nota de las 17:34:
 1. **Municipios:** Rosario y **Villa Gobernador Gálvez** ([vggmunicipalidad.gov.ar](https://vggmunicipalidad.gov.ar/)). Los tres trámites de ejemplo los eligen ustedes.
