@@ -8,6 +8,7 @@ import { queryMap } from './search.mjs';
 import { Store } from './store.mjs';
 import { analyzeWithBob, bobStatus } from './bob.mjs';
 import { auditSecurity } from './seguridad.mjs';
+import { codeRoutes } from './codigo-routes.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1', allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean), maxPagesLimit = Number(process.env.MAX_PAGES || 200), maxMaps = Number(process.env.MAX_MAPS || 100) } = {}) {
@@ -27,6 +28,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
     if (req.method === 'OPTIONS') return res.sendStatus(204);
     next();
   });
+  const codeBusy = codeRoutes(app, { dataDir, busy: () => [...jobs.values()].some(j => j.estado === 'en_curso') });
   app.use(express.json({ limit: '16kb' }));
   app.get('/api/salud', (_req,res) => res.json({ estado: 'ok', bob: bobStatus(), trabajos_activos: [...jobs.values()].filter(j => j.estado === 'en_curso').length }));
   app.get('/api/mapas', async (_req,res) => res.json(await store.list()));
@@ -43,6 +45,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
     return map ? res.json(queryMap(map, req.body.pregunta)) : res.status(404).json({ error: 'Mapa no encontrado.' });
   });
   app.post('/api/recorridos', async (req,res) => {
+    if (codeBusy()) return res.status(409).json({ error: 'Hay una revisión de código en curso.' });
     let url;
     try { if (typeof req.body?.url !== 'string' || req.body.url.length > 2048) throw new Error('Ingresá una dirección válida.'); url = normalizeUrl(req.body.url); }
     catch (error) { return res.status(400).json({ error: error.message }); }
@@ -56,7 +59,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
     if (recent.length >= 3) return res.status(429).json({ error: 'Alcanzaste tres recorridos en diez minutos. Esperá un momento para iniciar otro.' });
     if (!(await store.get(siteId(url))) && (await store.count()) >= maxMaps) return res.status(409).json({ error: 'El catálogo alcanzó su capacidad. Podés consultar los mapas existentes.' });
     // Recheck after filesystem awaits, so simultaneous POSTs cannot reserve two workers.
-    if ([...jobs.values()].some(j => j.estado === 'en_curso')) return res.status(409).json({ error: 'Ya hay un recorrido en curso.' });
+    if (codeBusy() || [...jobs.values()].some(j => j.estado === 'en_curso')) return res.status(409).json({ error: 'Ya hay un análisis en curso.' });
     starts.set(req.ip,[...recent,now]);
     // Keep bounded in-memory event history; completed maps are persisted separately.
     while (jobs.size >= 30) jobs.delete(jobs.keys().next().value);
