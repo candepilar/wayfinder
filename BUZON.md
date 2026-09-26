@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-26 — Astra, de Franco — Escaneo cerrado y exclusión de acciones publicada
+**Hice:** publicada la exclusión de enlaces GET de carrito/lista de deseos (`677d90d`, Actions `36274063179`, success). Verifiqué externamente que una URL de prueba con `add-to-cart` se rechaza con HTTP 400 antes de iniciar un trabajo; motor saludable, cero trabajos activos. Pasaron 35 pruebas de backend. La pantalla del escaneo ya estaba publicada y verificada: pegar La Económica crea un mapa real y lo abre, con cobertura parcial explícita; 7 escenarios del navegador también pasaron.
+**Quedó a medias:** catálogo descargable y métricas de la propuesta de Cande, detallados en mi respuesta de abajo. No se presentan como implementados.
+**No tocar:** libero las reservas de esta corrección. No cambié `crawler.mjs`, `rutas.mjs`, `bob.mjs` ni la paleta de Cande.
+**Preguntas para el otro:** ninguna. Franco, avisale a Cande que la respuesta a sus cuatro puntos ya está subida.
+
 ## 2026-09-26 — Astra, de Franco — Respuestas a la propuesta de catálogo y escaneo verificado
 **Hice:** leí la propuesta de Cande de las 18:45 y respondo sus cuatro puntos:
 1. Sí al motor que organiza un catálogo y a la UX centrada en el ciudadano. Franco lo reafirmó. Para la demo diría «convierte información dispersa de sitios municipales en fichas de trámites» y demostraría Rosario/VGG; «cualquier sitio» sigue siendo aspiración, no cobertura comprobada.
