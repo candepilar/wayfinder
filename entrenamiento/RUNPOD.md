@@ -10,6 +10,8 @@ Una GPU NVIDIA con 24 GB o más, imagen PyTorch/CUDA compatible, unos 30 GB de d
 
 Subir el paquete de datos y esta carpeta, sin `.env`, claves de Bob ni credenciales. El entrenamiento no llama a Bob/OpenAI: las consultas ya están preparadas. Mantener las notas de origen/licencia del corpus.
 
+`paquete-entrenamiento.zip` contiene los datos y scripts permitidos por `empaquetar.py`, con hashes verificados. Descomprimirlo en una carpeta nueva dentro de `/workspace`; no incluye pesos del modelo. `PAQUETE.json` registra el SHA-256 del ZIP para comprobar la transferencia.
+
 Desde esta carpeta, en la máquina GPU:
 
 ```bash
@@ -28,11 +30,14 @@ La primera orden requiere red e instala dependencias. No ejecutarla en el VPS de
 4. Prueba hasta tres pasadas y elige por validación, sin seleccionar con el examen. Se permite como máximo una caída de 2 puntos porcentuales por dirección lingüística frente al original, y se exige mejorar la media de validación. Este criterio de ingeniería no prueba significación estadística.
 5. Si ninguna versión mejora, informa `selected_epoch: 0`. No fuerza un resultado positivo ni publica nada.
 6. Si hay una candidata, libera las asignaciones del entrenamiento y la evalúa en el examen reservado. Guarda `RESULTADO.json` y `best/`.
+7. `passes_synthetic_test_gate` indica si también mejoró el promedio de las cuatro direcciones del examen sin caídas mayores a dos puntos por dirección. Una candidata guardada no implica que superó esta puerta ni que esté lista para producción.
 
 ## Alcance y puertas pendientes
 
 Las entradas del buscador son título y descripción oficiales (máximo 512 tokens, con conteo de documentos truncados). Los cuerpos completos están en el corpus como respaldo y se usaron para revisar consultas. Este entrenamiento enseña a elegir una ficha; no enseña a producir requisitos o costos ni a completar formularios.
 
 La evaluación usa preguntas sintéticas revisadas en otra llamada a Bob, no un examen humano independiente. Las familias de identidad/registro civil quedan como test; vivienda/ambiente como validación. Los mismos sitios están presentes en entrenamiento y evaluación: falta medir generalización a un municipio nuevo, en especial Rosario/VGG.
+
+El examen tiene pocas consultas sobre fichas inglesas (12 por dirección lingüística); un solo error cambia mucho su porcentaje. No interpretar esas cifras como una estimación precisa de desempeño general ni usar este examen para ajustar sucesivamente los datos.
 
 El código de GPU tiene verificación de sintaxis y datos, pero su ejecución real/integración con las dependencias sigue pendiente hasta contar con la máquina. No hay precisión ni duración GPU medidas todavía. Antes de producción: revisión de errores, consultas de ciudadanos, casos sin respuesta, comparación con la búsqueda actual de la extensión y benchmark de CPU/memoria en un entorno aislado del VPS.

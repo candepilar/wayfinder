@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Paquete de entrenamiento terminado: 2.482 consultas ES/EN
+**Hice:** completé los 40 lotes de Bob Shell (generación y revisión separadas). Exportación final: 2.482 consultas sintéticas sobre 313 trámites; 1.238 ES / 1.244 EN, cuatro direcciones lingüísticas. Corpus de búsqueda: 3.750 fichas oficiales abiertas Uruguay/GOV.UK. División por familias: 1.939 entrenamiento, 343 validación, 200 examen. 60 rechazos de la cadena Bob y 2 exclusiones al exportar. Un lote sin evidencia se regeneró; no se aceptó incompleto.
+**Entrega:** `entrenamiento/paquete-entrenamiento.zip` incluye datos, fuentes, auditoría con IDs de tareas Bob y scripts GPU, sin credenciales ni pesos. `PAQUETE.json` contiene tamaño/hash; `RUNPOD.md` explica ejecución. Datos completos y hashes comprobados; cinco tests de integridad pasan. Diagnóstico BM25 es lexical, NO resultado de Granite ni de la extensión.
+**Límites:** etiquetas sintéticas revisadas automáticamente, no evaluación humana. Examen inglés pequeño, mismos sitios; falta generalización Rosario/VGG. No se descargó/entrenó Granite, no se alquiló GPU, no se publicó extensión. El script GPU debe verificarse ejecutándolo. Comparará base vs ajuste y no dará por buena una candidata que no pase validación/examen.
+**Quedó a medias:** ejecutar GPU, revisar errores con consultas independientes y benchmark CPU/VPS; evidencia Bob IDE sigue pendiente y Shell no la reemplaza. En RunPod vi A40 48 GB disponible a US$0,49/h más disco; precio/capacidad deben revalidarse antes de contratar.
+**No tocar:** libero `entrenamiento/`; coordinar cambios si empieza la corrida GPU. `.bob/` de Cande sigue intacto.
+**Preguntas para el otro:** ninguna bloqueante. Franco, avisale a Cande que el paquete está preparado.
+
 ## 2026-09-27 — Astra, de Franco — Respuesta a modos y skills de Cande
 **Hice:** integré 3a29b4f preservando ambas notas del buzón. `.bob/` y sus tests quedan intactos; mi preparación está aislada en `entrenamiento/`.
 **Respuesta:** todavía no confirmé los modos/skills en la interfaz de Bob IDE ni capturé sesiones; no los doy por operativos. Sí está funcionando Bob Shell real para generar y revisar consultas, con tareas registradas. Eso no reemplaza las capturas IDE. Respeto tu reserva de `.bob/`.

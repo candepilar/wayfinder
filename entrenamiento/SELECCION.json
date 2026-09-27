@@ -25,6 +25,8 @@
   "intended_queries": 2560,
   "excluded": 173,
   "selection": "deterministic_topic_balanced_not_random_sample",
-  "generated": false,
-  "training": false
+  "generated": true,
+  "training": false,
+  "accepted_queries": 2482,
+  "documents_with_accepted_queries": 313
 }

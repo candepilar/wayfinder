@@ -1,73 +1,62 @@
 {
-  "complete": false,
+  "complete": true,
   "sources_in_retrieval_corpus": 3750,
   "batches_expected": 40,
-  "batches_reviewed": 4,
-  "missing_batches": [
-    "en-002",
-    "es-002",
-    "en-003",
-    "es-003",
-    "en-004",
-    "es-004",
-    "en-005",
-    "es-005",
-    "en-006",
-    "es-006",
-    "en-007",
-    "es-007",
-    "en-008",
-    "es-008",
-    "en-009",
-    "es-009",
-    "en-010",
-    "es-010",
-    "en-011",
-    "es-011",
-    "en-012",
-    "es-012",
-    "en-013",
-    "es-013",
-    "en-014",
-    "es-014",
-    "en-015",
-    "es-015",
-    "en-016",
-    "es-016",
-    "en-017",
-    "es-017",
-    "en-018",
-    "es-018",
-    "en-019",
-    "es-019"
-  ],
-  "rejected_in_bob_pipeline": 11,
-  "discarded_in_export": 0,
-  "examples": 245,
+  "batches_reviewed": 40,
+  "missing_batches": [],
+  "rejected_in_bob_pipeline": 60,
+  "discarded_in_export": 2,
+  "examples": 2482,
+  "documents_with_queries": 313,
   "splits": {
-    "train": 205,
-    "test": 40,
-    "validation": 0
+    "train": 1939,
+    "test": 200,
+    "validation": 343
   },
   "query_languages": {
-    "es": 122,
-    "en": 123
+    "es": 1238,
+    "en": 1244
   },
   "language_directions": {
-    "es->en": 60,
-    "en->en": 60,
-    "es->es": 62,
-    "en->es": 63
+    "es->en": 612,
+    "en->en": 614,
+    "es->es": 626,
+    "en->es": 630
   },
   "families": {
     "train": [
       "gb:business",
       "gb:driving",
-      "uy:business"
+      "gb:education",
+      "gb:employment",
+      "gb:health",
+      "gb:immigration",
+      "gb:legal",
+      "gb:other",
+      "gb:pensions",
+      "gb:tax",
+      "uy:business",
+      "uy:driving",
+      "uy:education",
+      "uy:employment",
+      "uy:health",
+      "uy:immigration",
+      "uy:legal",
+      "uy:other",
+      "uy:pensions",
+      "uy:tax"
     ],
     "test": [
       "gb:civil",
-      "uy:civil"
+      "gb:identity",
+      "uy:civil",
+      "uy:identity"
+    ],
+    "validation": [
+      "gb:environment",
+      "gb:housing",
+      "uy:environment",
+      "uy:housing"
     ]
   },
   "tasks": [
@@ -98,16 +87,277 @@
       "review_task": "aed99449d48ded64a643b5e0de78a648",
       "generation_cost": 0.02943,
       "review_cost": 0.036006
+    },
+    {
+      "id": "en-002",
+      "generation_task": "cb9b80a640876e2d69e2701092c5dd10",
+      "review_task": "cd0e2f15292bb3f20c7158970c7d65cd",
+      "generation_cost": 0.024816,
+      "review_cost": 0.030786
+    },
+    {
+      "id": "es-002",
+      "generation_task": "ac5b8ea3e132d2a3d53a539fd94b935c",
+      "review_task": "1e64f917f01ac63226a88d6ddfdb8afa",
+      "generation_cost": 0.026098,
+      "review_cost": 0.032038
+    },
+    {
+      "id": "en-003",
+      "generation_task": "b498de76122c4873f8ddea6c1417f8f4",
+      "review_task": "9dcff0438f9ee6d39a65c2c525d06b4f",
+      "generation_cost": 0.019836,
+      "review_cost": 0.026462
+    },
+    {
+      "id": "es-003",
+      "generation_task": "7d8c5fffee9d4f55dcd7dd1b5da21a4f",
+      "review_task": "8cbdf1dc88200adfee1d687f7eb291a2",
+      "generation_cost": 0.029156,
+      "review_cost": 0.035572
+    },
+    {
+      "id": "en-004",
+      "generation_task": "421f15448627c05de2bbded1d862ffe0",
+      "review_task": "66b9d4c3e114be0bf5134e784f860cbd",
+      "generation_cost": 0.021662,
+      "review_cost": 0.030168
+    },
+    {
+      "id": "es-004",
+      "generation_task": "18ca6ec7a8c17856943090691229dc1a",
+      "review_task": "6bc963cf02eac53bfad642e36479e17d",
+      "generation_cost": 0.02722,
+      "review_cost": 0.034256
+    },
+    {
+      "id": "en-005",
+      "generation_task": "eb43d32de37530e3c44b825a3cd1ce4b",
+      "review_task": "7ca309b41b6a193244cf297beb99f86a",
+      "generation_cost": 0.021832,
+      "review_cost": 0.028054
+    },
+    {
+      "id": "es-005",
+      "generation_task": "1ccf13e83c235689bc0650f9226c3260",
+      "review_task": "f265236c71398027b25a4c978de033ae",
+      "generation_cost": 0.026158,
+      "review_cost": 0.039692
+    },
+    {
+      "id": "en-006",
+      "generation_task": "c27241609863cbe5fdf686b53235e498",
+      "review_task": "78080df5652f2d481a98bb54bfd2b89d",
+      "generation_cost": 0.02275,
+      "review_cost": 0.028874
+    },
+    {
+      "id": "es-006",
+      "generation_task": "dc9bfcd756832a76b7134ac56c293753",
+      "review_task": "27361277ad705f866c3f08522b66cf0c",
+      "generation_cost": 0.0235,
+      "review_cost": 0.029302
+    },
+    {
+      "id": "en-007",
+      "generation_task": "5373c733b32a631e1ce963837b5e1d12",
+      "review_task": "c050a89792f2f03ec2a2ede9a28b3009",
+      "generation_cost": 0.021094,
+      "review_cost": 0.025088
+    },
+    {
+      "id": "es-007",
+      "generation_task": "593fd1835944bc26b6f1a8b6d8b5327f",
+      "review_task": "88de98ce441c373e3faaa491edce29a4",
+      "generation_cost": 0.02432,
+      "review_cost": 0.03033
+    },
+    {
+      "id": "en-008",
+      "generation_task": "aff0ca7c3036b91280773d6492f166e5",
+      "review_task": "aaff7808a0bfe36605a64e577c5d5809",
+      "generation_cost": 0.020602,
+      "review_cost": 0.026386
+    },
+    {
+      "id": "es-008",
+      "generation_task": "5247de016033cef1fefd3e95e83dd57f",
+      "review_task": "da897989baaaa385461101324197d129",
+      "generation_cost": 0.0278,
+      "review_cost": 0.034064
+    },
+    {
+      "id": "en-009",
+      "generation_task": "bc6408b361074dce30aea2e7cb9e2608",
+      "review_task": "a7d49a4ca58734e2b266560c926635ff",
+      "generation_cost": 0.020124,
+      "review_cost": 0.025754
+    },
+    {
+      "id": "es-009",
+      "generation_task": "09d506aded9ad3f7b93aca2f64cc00f9",
+      "review_task": "46d485b576a26aaa29be4dcdce7131e5",
+      "generation_cost": 0.025964,
+      "review_cost": 0.031904
+    },
+    {
+      "id": "en-010",
+      "generation_task": "791181f3ea2fe688f3566f6b52b92b2e",
+      "review_task": "345bbfc5a6728a4738044b1cb2b9b1f4",
+      "generation_cost": 0.023074,
+      "review_cost": 0.037524
+    },
+    {
+      "id": "es-010",
+      "generation_task": "2e95a8040335ba7ba22aedf28cf59361",
+      "review_task": "8ddec4c9851118bf184a7010231a8d6f",
+      "generation_cost": 0.028026,
+      "review_cost": 0.03453
+    },
+    {
+      "id": "en-011",
+      "generation_task": "134d01488635df9af58b1aa08743a962",
+      "review_task": "87b4f61dd09f940ca0210210cfe1fe67",
+      "generation_cost": 0.023294,
+      "review_cost": 0.027326
+    },
+    {
+      "id": "es-011",
+      "generation_task": "9087db8dbeedf99c97ef89e6c33219f4",
+      "review_task": "048381a13b161114d5c90a1068cbe047",
+      "generation_cost": 0.027396,
+      "review_cost": 0.033238
+    },
+    {
+      "id": "en-012",
+      "generation_task": "7ea011ea106e3619e3e32ea408b4a4ab",
+      "review_task": "81ff8b5262c46a7ddd219784fb177288",
+      "generation_cost": 0.022228,
+      "review_cost": 0.023712
+    },
+    {
+      "id": "es-012",
+      "generation_task": "bbc30b87766fb338f8a81e468ae2db45",
+      "review_task": "60b27a7713ade552e71ab5c66b51acda",
+      "generation_cost": 0.033524,
+      "review_cost": 0.038728
+    },
+    {
+      "id": "en-013",
+      "generation_task": "c4617d2f72bd034bf1504a0aef671c42",
+      "review_task": "b43547896769e661be4fa8b046232f00",
+      "generation_cost": 0.021028,
+      "review_cost": 0.027142
+    },
+    {
+      "id": "es-013",
+      "generation_task": "77a5968af1eb937b78e3e377841a8465",
+      "review_task": "1a025d16e6d2a95e51557d15db673597",
+      "generation_cost": 0.029074,
+      "review_cost": 0.03429
+    },
+    {
+      "id": "en-014",
+      "generation_task": "13b92fe17e4691d0ddfb17a310440eea",
+      "review_task": "84b5a8bc0ec131afd126ff92b81ac488",
+      "generation_cost": 0.020488,
+      "review_cost": 0.026158
+    },
+    {
+      "id": "es-014",
+      "generation_task": "873deb91c97b4d486e6c6a27bb63ad54",
+      "review_task": "9ea03e79c3fb9f25ada48c0103dcdf8f",
+      "generation_cost": 0.029342,
+      "review_cost": 0.037474
+    },
+    {
+      "id": "en-015",
+      "generation_task": "c0b625abaa38c9ddcb1c28be3c3c260e",
+      "review_task": "6699c8039f310d627a38f7b43b9a5731",
+      "generation_cost": 0.022044,
+      "review_cost": 0.027692
+    },
+    {
+      "id": "es-015",
+      "generation_task": "7c00bd01a2b7a2a2d3952783934f7730",
+      "review_task": "405d9a96e03c380a0b94c8dda02e10c7",
+      "generation_cost": 0.026122,
+      "review_cost": 0.03197
+    },
+    {
+      "id": "en-016",
+      "generation_task": "9441e4851ab14bdc41037921ed497a18",
+      "review_task": "33f8df74f44250aa9c66396fd62eb559",
+      "generation_cost": 0.020262,
+      "review_cost": 0.025696
+    },
+    {
+      "id": "es-016",
+      "generation_task": "95abe18607a24bb75c1693fd55731143",
+      "review_task": "cc7e8598019b5057d49197b9e588732d",
+      "generation_cost": 0.03015,
+      "review_cost": 0.036526
+    },
+    {
+      "id": "en-017",
+      "generation_task": "edf8de191f1a5ce353bb947efe89ea3f",
+      "review_task": "13819d89eb4d53797b88b94b59a68f3a",
+      "generation_cost": 0.019156,
+      "review_cost": 0.025014
+    },
+    {
+      "id": "es-017",
+      "generation_task": "68fe3ac37db0b2cee68608904bfd8609",
+      "review_task": "913dbb23efce2aefeff60991bafc5802",
+      "generation_cost": 0.022734,
+      "review_cost": 0.028492
+    },
+    {
+      "id": "en-018",
+      "generation_task": "f1537e33bbc5dafb0d7497335e560ba8",
+      "review_task": "2faa3322ccbd031f6914356d06c06292",
+      "generation_cost": 0.02159,
+      "review_cost": 0.027674
+    },
+    {
+      "id": "es-018",
+      "generation_task": "eac92cb749da65bc14dc4242f2d8d93d",
+      "review_task": "edf3d28c41bf97c101414ca0da40c0c2",
+      "generation_cost": 0.026506,
+      "review_cost": 0.032424
+    },
+    {
+      "id": "en-019",
+      "generation_task": "1fe9f6913df350aed1983014fb1408f2",
+      "review_task": "2de8677bbe9c8af976d227d981ccaa68",
+      "generation_cost": 0.020946,
+      "review_cost": 0.02786
+    },
+    {
+      "id": "es-019",
+      "generation_task": "536144bf12d32d3aebd67de7e7e7f1eb",
+      "review_task": "899a39210a4edbf8584ac5a8600d0ba5",
+      "generation_cost": 0.029144,
+      "review_cost": 0.035824
     }
   ],
   "quality_status": "synthetic_auto_reviewed_not_human_gold",
-  "evaluation_limit": "Held-out topic families on the same source sites; not independent human or unseen-site validation.",
+  "evaluation_limit": "Heuristic topic-family split on the same source sites; not independent human or unseen-site validation. Semantic overlap between distinct topic labels may remain.",
   "model_trained": false,
-  "discarded": [],
+  "discarded": [
+    {
+      "id": "f111a033f6c7c2d816f38cb1",
+      "reason": "assistant_spot_review: asks about consequence/fine rather than finding or taking an administrative step; not human review"
+    },
+    {
+      "id": "3da027271e0ce4796b5c440f",
+      "reason": "local_procedure_without_locality_in_query"
+    }
+  ],
   "files_sha256": {
-    "corpus.jsonl": "23e8c4d6de75e615c57d18d46cee8cb28952600cebd3e2e32180cecbeb67522c",
-    "test.jsonl": "589218cb9f74d4dc23be0789f5e504171e47541e7385952e1b8e830cc626f3a8",
-    "train.jsonl": "8f11ccd9d061003b9d16280207bb0412050b6a3ec9b005ae83d65a38dc30317a",
-    "validation.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    "corpus.jsonl": "ac9847fe4f3a5d1800ec286bcd4265bddf1eb1bdcc138b689b0e1e01d6c41af5",
+    "test.jsonl": "aa619f2b549c1c10166c5a850b4b9a2fe72e1bfb1b0371b66d3f5118c8272a83",
+    "train.jsonl": "9e74b83de8944178a0f36b1255129601f2f4a988d9a194a02d452807183e6e6f",
+    "validation.jsonl": "d6bb9ff8739a07b50898ed789963133e3820ff8dbc751a8d2c3e72f0a51f69f2"
   }
 }

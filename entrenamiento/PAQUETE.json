@@ -1,0 +1,8 @@
+{
+  "file": "paquete-entrenamiento.zip",
+  "bytes": 2555097,
+  "sha256": "ba267ae28eff360099f48a3707f3d84834dc1752ca1451945ffb995ff5145026",
+  "files": 53,
+  "examples": 2482,
+  "model_weights_included": false
+}

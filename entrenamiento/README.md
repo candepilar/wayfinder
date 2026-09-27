@@ -1,12 +1,14 @@
 # Wayfinder: búsqueda bilingüe de trámites
 
-Estado: recopilación ampliada terminada y generación/revisión de consultas con Bob en curso. No hay un modelo entrenado, descargado ni conectado a producción.
+Estado: recopilación y 40 lotes de generación/revisión completados. Paquete final: **2.482 consultas** (1.238 ES, 1.244 EN) sobre **313 trámites**, con **3.750 fichas oficiales** en el corpus de búsqueda. División: 1.939 entrenamiento, 343 validación y 200 examen. Se excluyeron 60 consultas en la cadena Bob y 2 en la exportación/revisión puntual. No hay un modelo entrenado, descargado ni conectado a producción.
+
+Entrega: `paquete-entrenamiento.zip`, verificable con `PAQUETE.json`. Ejecutar según `RUNPOD.md`. El ZIP incluye fuentes, etiquetas y auditoría; no pesos ni credenciales.
 
 ## Ampliación del 27/09
 
 Se recopilaron **3.802 registros oficiales**: 3.512 del catálogo abierto AGESIC/Uruguay, 51 snapshots municipales argentinos y 239 fichas inglesas del índice GOV.UK. La Content API permitió recuperar cuerpo completo de 238 de las 239 fichas inglesas; el restante no tiene cuerpo suficiente. Se conserva la fecha de cada fuente y los errores en `FUENTES-RECOPILADAS.json`.
 
-Para las consultas sintéticas se seleccionaron **320 trámites** (160 por idioma fuente, 14 áreas) y se ejecuta Bob Shell sin herramientas para producir hasta 8 consultas por ficha, cuatro ES y cuatro EN. Una segunda llamada revisa pertinencia y confusiones; se exigen IDs existentes y evidencia literal. Las respuestas conservan IDs de tareas Bob y rechazos. Esta revisión automática del mismo proveedor **no es validación humana ni prueba de precisión de Granite**.
+Para las consultas sintéticas se seleccionaron **320 trámites** (160 por idioma fuente, 14 áreas) y se ejecutó Bob Shell sin herramientas para producir hasta 8 consultas por ficha, cuatro ES y cuatro EN. Una segunda llamada revisa pertinencia y confusiones; se exigen IDs existentes y evidencia literal. Las respuestas conservan IDs de tareas Bob y rechazos. Esta revisión automática del mismo proveedor **no es validación humana ni prueba de precisión de Granite**.
 
 Fuentes nuevas: [Catálogo de trámites y servicios del Estado, AGESIC](https://catalogodatos.gub.uy/dataset/agesic-guia-de-tramites), bajo Licencia de Datos Abiertos – Uruguay (permite adaptación y traducción con atribución). Se seleccionaron campos y normalizaron HTML/espacios; no se usaron datos de ciudadanos. [GOV.UK Content API](https://www.gov.uk/help/reuse-govuk-content), OGL v3.0 excepto indicación contraria. MIRACL y WebFAQ continúan excluidos.
 
@@ -38,7 +40,7 @@ python entrenamiento/revisar.py
 
 `semillas.json` contiene diez pares de preguntas español/inglés: 20 consultas de desarrollo, con destino correcto y uno que no corresponde. `EJEMPLOS.md` permite revisarlas con enlaces. `revisar.py` verifica referencias, jurisdicciones, duplicados y caracteres corruptos; no certifica calidad semántica.
 
-`datos/` no se sube a Git: contiene corpus candidato, respuesta original de la API, ejemplos y conteos. `INFORME.json` registra el resultado estructural compartible. Ningún registro se habilita para entrenar automáticamente.
+`datos/` permanece fuera de Git como directorio de trabajo. El paquete ZIP se construye con una lista explícita de archivos y permite entregar corpus, particiones y auditoría sin credenciales. `DATOS-PREPARADOS.json` es el informe ampliado vigente; `INFORME.json` corresponde únicamente a la muestra inicial de 20 consultas.
 
 ## Fuentes y procedencia
 
@@ -60,13 +62,10 @@ python entrenamiento/revisar.py
 
 ## Próximas etapas concretas
 
-El corpus inicial es una selección candidata, no una base completa ni 290 ejemplos revisados. Los 20 ejemplos abren la revisión del formato; no bastan para entrenar el producto.
-
-- Completar fichas y cobertura española de más organismos con reutilización permitida; balancear familias de trámites y ambos idiomas.
-- Revisar fuente y emparejamiento de cada ejemplo aceptado; registrar correcciones y quién revisó. Construir un examen independiente del desarrollo, con búsquedas reales voluntarias sin información personal.
-- Comenzar con 2.000 ejemplos específicos revisados y ampliar según fallos y cobertura. La cantidad es un punto de comparación, no un techo ni garantía; comparar curvas de 500/1.000/2.000 y siguientes lotes.
-- Preparar entrenamiento reproducible (versiones, semilla, parámetros, hashes y evaluación) y ejecutarlo con 1–3 pasadas iniciales; seleccionar por validación, nunca por el examen final.
-- Exportar la mejor versión solamente si mejora sin una regresión material en alguno de los idiomas. Conservar original y mecanismo de retorno.
+- Ejecutar `entrenar.py` en la GPU: medir Granite original, ajustar hasta tres pasadas, elegir con validación y contrastar en el examen reservado.
+- Revisar los errores y crear un examen independiente con consultas de ciudadanos; ampliar datos según los fallos, no según una cantidad arbitraria.
+- Medir generalización en Rosario/VGG, casos ambiguos y sin respuesta. Este corpus internacional enseña relaciones lingüísticas; no reemplaza el catálogo del municipio del usuario.
+- Exportar solamente una candidata que supere el original y probar latencia/memoria en un entorno aislado antes de integrar la extensión.
 
 ## Infraestructura y Bob
 

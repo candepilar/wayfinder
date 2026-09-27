@@ -9,6 +9,9 @@ import unicodedata
 from preparar import digest, write_json
 
 HERE=Path(__file__).resolve().parent
+UY_PLACES=['artigas','canelones','cerro largo','colonia','durazno','flores','florida','lavalleja',
+           'maldonado','montevideo','paysandu','rio negro','rivera','rocha','salto','san jose',
+           'soriano','tacuarembo','treinta y tres']
 
 def normalized(text):
     text=''.join(c for c in unicodedata.normalize('NFKD',text.casefold()) if not unicodedata.combining(c))
@@ -38,15 +41,22 @@ def build(allow_partial=False):
         tasks.append({k:result.get(k) for k in ['id','generation_task','review_task','generation_cost','review_cost']})
     if missing and not allow_partial:raise ValueError(f'Missing or stale batches: {missing}')
     counts=collections.Counter((r['jurisdiction'],normalized(r['query'])) for r in accepted)
+    exclusions_path=HERE/'EXCLUSIONES-REVISION.json'
+    exclusions={r['id']:r['reason'] for r in json.loads(exclusions_path.read_text(encoding='utf-8'))} if exclusions_path.exists() else {}
     sets=collections.defaultdict(list);discarded=[]
     for row in accepted:
         d=docs[row['document_id']]
+        if row['id'] in exclusions:
+            discarded.append({'id':row['id'],'reason':exclusions[row['id']]});continue
         if counts[(row['jurisdiction'],normalized(row['query']))]>1:
             discarded.append({'id':row['id'],'reason':'duplicate_or_ambiguous_query'});continue
         if row['evidence'] not in d['text']:
             discarded.append({'id':row['id'],'reason':'evidence_not_in_full_source'});continue
         if any(marker in row['query'] for marker in ['\ufffd','Ã','Â¿','Â¡']):
             discarded.append({'id':row['id'],'reason':'suspected_encoding_error'});continue
+        places=[p for p in UY_PLACES if re.search(r'\b'+p+r'\b',normalized(d['title']))] if d['jurisdiction']=='uy' else []
+        if places and not any(re.search(r'\b'+p+r'\b',normalized(row['query'])) for p in places):
+            discarded.append({'id':row['id'],'reason':'local_procedure_without_locality_in_query'});continue
         row={**row,'url':d['url'],'source_sha256':d['source_sha256'],'family_id':d['family_id'],
              'topic':d['topic'],'split':partition(d),'label_quality':'synthetic_auto_reviewed_not_human_gold'}
         sets[row['split']].append(row)
