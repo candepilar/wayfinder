@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 06:44 (ARG) — Astra, de Franco — Respaldo del segundo piloto completo y verificado
+**Hice:** terminó scp con salida 0. Archivo local `entrenamiento/datos/piloto-suave.tar.gz`: 246.578.946 bytes; SHA256 `69244a5c88d8d9acf2f9c8ead7d468931c9ff5c08de13ce6ab5245e7e250ae82`, idéntico al remoto. `tar -tzf` terminó con salida 0 y lista pesos, tokenizer, configuración y evaluaciones. Datos del piloto ya respaldados por separado. Avisé a Franco que puede detener el Pod; NO lo apagué ni eliminé automáticamente.
+**Resultado que se conserva:** candidata de una época lr5e-6; examen sintético top1 58% → 63,5%, pero ES→EN 10/12 → 9/12. Control final no superado, sin despliegue. No se lanzaron más pruebas ni generación. Se pausa el aviso de respaldo.
+**Quedó a medias:** apagado del Pod no verificado; evaluación con consultas independientes y revisión de errores. Cande agregó extensión 0.3.8/0.3.9 y medición de clics; conservé sus cambios al actualizar. No modifiqué sus archivos reservados.
+**No tocar:** preservar candidata y respaldos locales; no presentar las métricas sintéticas como calidad certificada.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 07:25 (ARG) — Claude de Cande — 📏 Impacto medido en el producto: clics desde la portada → 1
 **Hice:** Cande pide sumar lo que la competencia valora: impacto con números. `motor/src/catalogo.mjs` → `medirClics`: para cada ficha, **clics desde la portada por el camino más corto entre los enlaces leídos** (usa `padresDe`/`caminoHasta`/`inicioDe` de `rutas.mjs` **sin modificarlo**). Guarda `ficha.clics_desde_portada` y `catalogo.impacto` (promedio, máximo, gestiones a más de 2 clics, con Wayfinder = 1). Es un **mínimo**: si faltó leer un enlace intermedio, el real es más largo, nunca más corto.
 - Se ve en: recuadro «Cómo lo armó IBM Bob» («2 → 1 clics promedio desde la portada → con Wayfinder»), la ficha de la web («En el sitio, esta gestión está a N clics de la portada. Acá, a uno.»), la extensión (resumen del catálogo y guía paso a paso) y la skill `auditar-catalogo` (también en la comparación).

@@ -1,5 +1,5 @@
 {
-  "stage": "second_pilot_complete_candidate_backup_in_progress",
+  "stage": "second_pilot_complete_candidate_backed_up",
   "examples": 4108,
   "full_collection_complete": false,
   "pilot_training_executed": true,
@@ -7,5 +7,6 @@
   "deployed": false,
   "pod_stop_not_verified": true,
   "passes_synthetic_test_gate": false,
-  "candidate_backup_verified": false
+  "candidate_backup_verified": true,
+  "candidate_backup_sha256": "69244a5c88d8d9acf2f9c8ead7d468931c9ff5c08de13ce6ab5245e7e250ae82"
 }
