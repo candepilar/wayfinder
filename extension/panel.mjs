@@ -1,4 +1,4 @@
-import { buscar, buscarEnlaces, objetivoEn, pasoActual, sitioDe, tramiteDe } from './guia.mjs';
+import { buscar, buscarEnlaces, objetivoEn, pasoActual, recordarEnCurso, sitioDe, textoCompartir, textoLeer, tramiteDe } from './guia.mjs';
 import { destination, publicPage, enteredPage, tabMessage } from './url.mjs';
 import { guiaDeCatalogo, motor } from './catalogo.mjs';
 import { accesosVisibles } from './pagina.mjs';
@@ -64,6 +64,18 @@ function vistaSinSitio(tab) {
   ];
 }
 
+async function seccionEnCurso(excepto) {
+  const lista = ((await guardado.leer('en-curso')) || []).filter(x => x?.id && x.id !== excepto);
+  if (!lista.length) return null;
+  const caja = el('section', { class: 'bloque en-curso' }, el('h2', {}, 'Seguí donde quedaste'),
+    el('ul', { class: 'lista' }, lista.slice(0, 3).map(x => el('li', { class: 'fila-en-curso' },
+      el('button', { class: 'resultado', onclick: () => pestana.ir(x.ficha) }, x.nombre, el('small', {}, ` · paso ${x.paso} de ${x.pasos} · ${x.sitio}`)),
+      el('button', { class: 'enlace', 'aria-label': `Quitar ${x.nombre} de la lista`, onclick: async () => {
+        await guardado.escribir('en-curso', ((await guardado.leer('en-curso')) || []).filter(y => y.id !== x.id)); pintar();
+      } }, 'Quitar')))));
+  return caja;
+}
+
 function resumenBob(bob) {
   if (!bob || !['completado', 'parcial'].includes(bob.estado) || !bob.tareas?.length) return null;
   const s = bob.duracion_ms ? ` en ${Math.round(bob.duracion_ms / 1000)} s` : '';
@@ -99,6 +111,8 @@ function vistaBuscar(sitio, tab) {
 async function vistaTramite(sitio, t, tab) {
   $sitio.textContent = sitio.dinamico ? sitio.nombre : `Municipalidad de ${sitio.nombre}`;
   const actual = pasoActual(t, tab.url);
+  await guardado.escribir('en-curso', recordarEnCurso(await guardado.leer('en-curso'),
+    { id: t.id, nombre: t.nombre, ficha: t.ficha, sitio: sitio.dinamico ? sitio.nombre : `Municipalidad de ${sitio.nombre}`, paso: actual + 1, pasos: t.pasos.length, fecha: new Date().toISOString() }));
   let marcados = (await guardado.leer(`marcados:${t.id}`)) || [];
   const objetivos = objetivoEn(t, tab.url);
 
@@ -141,9 +155,26 @@ async function vistaTramite(sitio, t, tab) {
     return el('li', { class: `paso ${estado}` }, el('span', { class: 'numero' }, estado === 'hecho' ? '✓' : String(i + 1)), cuerpo);
   }));
 
+  // Escuchar (voz del navegador, nada sale de la compu) y mandar por WhatsApp.
+  const escuchar = el('button', { class: 'boton secundario', 'aria-pressed': 'false', onclick: () => {
+    const voz = globalThis.speechSynthesis;
+    if (!voz) { escuchar.textContent = 'Tu navegador no puede leer en voz alta'; return; }
+    if (voz.speaking) { voz.cancel(); return; }
+    const u = new SpeechSynthesisUtterance(textoLeer(t, actual));
+    u.lang = 'es-AR'; u.rate = 0.95;
+    u.voice = voz.getVoices().find(v => v.lang === 'es-AR') || voz.getVoices().find(v => v.lang?.startsWith('es')) || null;
+    u.onstart = () => { escuchar.textContent = '■ Detener'; escuchar.setAttribute('aria-pressed', 'true'); };
+    u.onend = u.onerror = () => { escuchar.textContent = '🔊 Escuchar'; escuchar.setAttribute('aria-pressed', 'false'); };
+    voz.speak(u);
+  } }, '🔊 Escuchar');
+  const whatsapp = el('a', { class: 'boton secundario', target: '_blank', rel: 'noopener',
+    href: `https://wa.me/?text=${encodeURIComponent(textoCompartir(t, actual, marcados))}`,
+    onclick: e => { e.currentTarget.href = `https://wa.me/?text=${encodeURIComponent(textoCompartir(t, actual, marcados))}`; } }, 'Enviar por WhatsApp');
+
   return [
     el('div', {}, el('h1', {}, t.nombre),
-      el('p', { class: 'fuente' }, 'Según la ', el('a', { href: t.fuente, target: '_blank', rel: 'noopener' }, 'ficha oficial'))),
+      el('p', { class: 'fuente' }, 'Según la ', el('a', { href: t.fuente, target: '_blank', rel: 'noopener' }, 'ficha oficial')),
+      el('div', { class: 'acciones' }, escuchar, whatsapp)),
     el('section', {}, el('h2', {}, `Pasos · ${t.pasos.length}`), pasos),
     antes,
     costos,
@@ -218,8 +249,10 @@ async function pintar() {
     const caja = herramientas(tab, publica, sitio?.dinamico, mismaPagina, !sitio || !!encontrado);
     vista.push(encontrado ? el('details', { class: 'bloque' }, el('summary', {}, 'Buscar otra cosa en esta página'), caja) : caja);
   }
+  if (!encontrado) { const enCurso = await seccionEnCurso(); if (enCurso) vista.splice(Math.min(2, vista.length), 0, enCurso); }
   if (estaRevision !== revision) return;
   cerrarChat(); preguntarABob = null;
+  if (!encontrado) globalThis.speechSynthesis?.cancel();
   if (publica) {
     const chat = chatBob({ el, publica, ir: url => pestana.ir(url),
       buscarLocal: q => sitio ? buscar(sitio, q, 3).map(t => ({ nombre: t.nombre, url: t.ficha })) : [] });

@@ -95,3 +95,33 @@ export function buscarEnlaces(enlaces, consulta, limite = 8) {
     .sort((a, b) => b.puntos - a.puntos || a.i - b.i)
     .slice(0, limite).map(x => x.e);
 }
+
+// Texto para mandar el trámite por WhatsApp (lo arma el panel, no se envía solo).
+// Solo lo que ya está en la ficha: nombre, lo que piden, el paso actual y la fuente.
+export function textoCompartir(tramite, actual = 0, marcados = []) {
+  const corto = s => { const t = String(s).replace(/\s+/g, ' ').trim(); return t.length > 200 ? `${t.slice(0, 197)}…` : t; };
+  const paso = tramite.pasos[actual];
+  return [
+    `*${tramite.nombre}*`,
+    ...(tramite.antes.length ? ['', 'Qué necesitás:', ...tramite.antes.slice(0, 8).map((r, i) => `${marcados.includes(i) ? '✓' : '•'} ${corto(r)}`)] : []),
+    ...(paso ? ['', `Paso ${actual + 1} de ${tramite.pasos.length}: ${corto(paso.titulo)}`] : []),
+    '', `Info oficial: ${tramite.fuente}`,
+    '(Armado con Wayfinder. Revisá condiciones y vigencia en la fuente.)',
+  ].join('\n');
+}
+
+// Texto para escuchar: sin enlaces ni símbolos, en el orden en que se necesita.
+export function textoLeer(tramite, actual = 0) {
+  const paso = tramite.pasos[actual];
+  const limpio = s => String(s).replace(/https?:\/\/\S+/g, '').replace(/\s+/g, ' ').trim();
+  return [
+    `${limpio(tramite.nombre)}.`,
+    ...(tramite.antes.length ? [`Qué necesitás: ${tramite.antes.slice(0, 8).map(limpio).join('. ')}.`] : []),
+    ...(paso ? [`Ahora, paso ${actual + 1} de ${tramite.pasos.length}: ${limpio(paso.titulo)}. ${limpio(paso.detalle || '')}`] : []),
+  ].join(' ');
+}
+
+// «Seguí donde quedaste»: los últimos trámites abiertos, el más reciente primero.
+export function recordarEnCurso(lista, item, maximo = 5) {
+  return [item, ...(Array.isArray(lista) ? lista : []).filter(x => x && x.id !== item.id)].slice(0, maximo);
+}

@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {publicPage,destination,enteredPage,tabMessage} from './url.mjs';
-import {buscar,buscarEnlaces,coincide,objetivoEn,pasoActual,raices,sitioDe,tramiteDe} from './guia.mjs';
+import {buscar,buscarEnlaces,coincide,objetivoEn,pasoActual,raices,recordarEnCurso,sitioDe,textoCompartir,textoLeer,tramiteDe} from './guia.mjs';
 import {readFile} from 'node:fs/promises';
 import {guiaDeCatalogo} from './catalogo.mjs';
 
@@ -105,4 +105,19 @@ test('buscar enlaces con palabras cotidianas, por raíz y sin palabras vacías',
  assert.deepEqual(t('quiero'),e.slice(0,8).map(x=>x.texto)); // solo palabras vacías: lista priorizada
  assert.deepEqual(t('pasaporte'),[]);
  assert.deepEqual(raices('Quiero DEVOLVER'),['devol']);
+});
+test('compartir por WhatsApp y escuchar usan solo lo que dice la ficha',()=>{
+ const t={nombre:'Pagar TGI',fuente:'https://www.rosario.gob.ar/inicio/pagar-tgi',antes:['DNI del titular','Número de cuenta '.repeat(20)],costos:[],pasos:[{titulo:'Abrí la ficha oficial',detalle:'x'},{titulo:'Elegí cómo hacerlo',detalle:'Ver https://siat.rosario.gob.ar/x'}]};
+ const w=textoCompartir(t,1,[0]);
+ assert.match(w,/^\*Pagar TGI\*/);assert.match(w,/✓ DNI del titular/);assert.match(w,/• Número de cuenta/);
+ assert.match(w,/Paso 2 de 2: Elegí cómo hacerlo/);assert.match(w,/Info oficial: https:\/\/www\.rosario\.gob\.ar\/inicio\/pagar-tgi/);
+ assert.ok(w.split('\n').every(l=>l.length<=210));
+ const l=textoLeer(t,1);
+ assert.doesNotMatch(l,/https?:/);assert.match(l,/^Pagar TGI\. Qué necesitás: DNI del titular\./);assert.match(l,/paso 2 de 2: Elegí cómo hacerlo/);
+ assert.equal(textoLeer({...t,antes:[]},0),'Pagar TGI. Ahora, paso 1 de 2: Abrí la ficha oficial. x');
+});
+test('seguí donde quedaste: el más reciente primero, sin repetidos y con tope',()=>{
+ let l=[];for(const id of ['a','b','c','a','d','e','f'])l=recordarEnCurso(l,{id,paso:1});
+ assert.deepEqual(l.map(x=>x.id),['f','e','d','a','c']);
+ assert.deepEqual(recordarEnCurso(null,{id:'x'}).map(x=>x.id),['x']);
 });

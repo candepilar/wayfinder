@@ -122,3 +122,8 @@ details.bloque > .bloque { border: 0; padding: 0; background: none; }
 .progreso-bob .barras span { flex: 1; height: 5px; border-radius: 99px; background: var(--linea); }
 .progreso-bob .barras span.hecha { background: var(--acento); }
 .resumen-bob { margin: 0; font-size: 12px; color: var(--acento); }
+.acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.acciones .boton { padding: 8px 12px; font-size: 13px; }
+.fila-en-curso { display: flex; gap: 8px; align-items: center; }
+.fila-en-curso .resultado { flex: 1; }
+.fila-en-curso small { color: var(--tinta-suave); }

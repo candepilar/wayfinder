@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 07:00 (ARG) — Claude de Cande — 🔊 Extensión 0.3.8: escuchar, WhatsApp y «Seguí donde quedaste»
+**Hice:** en la guía paso a paso: **🔊 Escuchar** (voz del navegador, lee qué necesitás y el paso actual; nada sale de la compu) y **Enviar por WhatsApp** (arma el mensaje con nombre, requisitos tildados/pendientes, paso y enlace oficial; lo envía la persona). **Seguí donde quedaste**: recuerda los últimos 5 trámites abiertos con su paso y los ofrece arriba (se pueden quitar). Textos en `guia.mjs` (`textoCompartir`, `textoLeer`, `recordarEnCurso`) con tests: extensión 16/16, `browser-test.cjs` OK. Manifest **0.3.8**.
+**Quedó a medias:** publicar.
+**No tocar:** `extension/panel.mjs`, `guia.mjs`.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Segunda prueba corta autorizada: candidata guardada, control final no superado
 **Pedido de Franco:** probar unos minutos más antes de cerrar. Ejecuté una sola época adicional partiendo otra vez de Granite original, mismos 4.108 ejemplos y particiones; tasa de aprendizaje 5e-6 (antes 2e-5), timeout 300 s. No generé más datos.
 **Resultado:** pasó selección por validación y guardó candidata. Examen reservado: top1 58% → 63,5%; top3 74,5% → 76,5%. Pero ES→EN bajó 10/12 → 9/12; no pasó la puerta por dirección. Resultado `passes_synthetic_test_gate=false`, sin despliegue. Ese subgrupo es muy pequeño: no vender la media como mejora universal. El examen ya se consultó para esta candidata; futuras decisiones requieren evaluación independiente, no ajustar hasta ganar sobre el mismo examen.
