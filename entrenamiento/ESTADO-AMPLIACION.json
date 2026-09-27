@@ -1,7 +1,9 @@
 {
-  "stage": "waiting_for_generation_and_review",
-  "updated_at": "2026-09-27T08:50:02.498782+00:00",
+  "stage": "stopped_local_for_remote_preparation",
+  "updated_at": "2026-09-27T08:58:19.014844+00:00",
+  "completed_batches": 62,
+  "accepted_before_final_export": 3889,
   "model_trained": false,
   "deployed": false,
-  "batches_expected": 454
+  "note": "Franco requested remote GPU preparation and is considering an open local generator instead of Bob calls. Completed batches preserved; no remote job started."
 }

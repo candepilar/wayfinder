@@ -9,7 +9,7 @@ type Turn = { pregunta: string; respuesta: Answer };
 type Site = { id: string; nombre: string; url: string };
 const button = 'rounded-lg border border-linea bg-superficie px-3 py-2 text-sm text-tinta hover:border-acento-borde disabled:opacity-50';
 
-export default function Asistente({ contexto, nombre, onFicha }: { contexto?: string; nombre?: string; onFicha?: (id: string) => void }) {
+export default function Asistente({ contexto, nombre, onFicha, buscarLocal }: { contexto?: string; nombre?: string; onFicha?: (id: string) => void; buscarLocal?: (consulta: string) => { id: string; nombre: string }[] }) {
   const id = useId();
   const [sites, setSites] = useState<Site[]>([]);
   const [selected, setSelected] = useState(contexto || '');
@@ -62,6 +62,8 @@ export default function Asistente({ contexto, nombre, onFicha }: { contexto?: st
       if (controller.current === task) { controller.current = null; setPending(''); input.current?.focus(); }
     }
   }
+  // Mientras Bob piensa (10–15 s), lo que ya coincide en el catálogo local.
+  const mientras = pending && buscarLocal ? (() => { try { return buscarLocal(pending).slice(0, 3); } catch { return []; } })() : [];
   const suggestions = turns.length ? turns.at(-1)!.respuesta.sugerencias : ['¿Qué puedo hacer en este sitio?', 'Necesito encontrar una gestión'];
   return <section aria-label="Asistente Bob" className="mt-7 overflow-hidden rounded-2xl border border-acento-borde bg-superficie shadow-panel">
     <div className="flex flex-wrap items-start justify-between gap-3 bg-acento-suave p-5">
@@ -80,7 +82,8 @@ export default function Asistente({ contexto, nombre, onFicha }: { contexto?: st
             <p className="mt-3 text-[11px] leading-relaxed text-tinta-suave">Respuesta generada con IBM Bob. Lectura del sitio: {new Date(turn.respuesta.alcance.lectura).toLocaleDateString('es-AR')}. Verificá condiciones y vigencia en la fuente.{Boolean(turn.respuesta.alcance.bloques_omitidos || turn.respuesta.alcance.fichas_omitidas) && ' Parte del catálogo quedó fuera de esta consulta.'}</p>
           </div>
         </div>)}
-        {pending && <div><p className="ml-6 rounded-xl bg-acento-suave p-3 text-sm text-tinta">{pending}</p><p role="status" className="mt-3 text-sm text-tinta-media">{elapsed < 12 ? 'Bob está consultando el catálogo…' : 'Bob sigue preparando la orientación. Puede tardar hasta un minuto…'}</p></div>}
+        {pending && <div><p className="ml-6 rounded-xl bg-acento-suave p-3 text-sm text-tinta">{pending}</p><p role="status" className="mt-3 text-sm text-tinta-media">{elapsed < 12 ? 'Bob está consultando el catálogo…' : 'Bob sigue preparando la orientación. Puede tardar hasta un minuto…'}</p>
+          {mientras.length > 0 && <div className="mt-3 rounded-xl border border-dashed border-linea p-4"><p className="text-xs text-tinta-media">Mientras Bob responde, esto coincide con lo que escribiste:</p><div className="mt-2 flex flex-wrap gap-2">{mientras.map(f => onFicha ? <button key={f.id} className={button} onClick={() => onFicha(f.id)}>{f.nombre}</button> : <span key={f.id} className="rounded-lg border border-linea px-3 py-2 text-sm">{f.nombre}</span>)}</div></div>}</div>}
         {error && <p role="alert" className="rounded-lg border border-linea p-3 text-sm text-tinta">{error}</p>}
       </div>
       {selected && !pending && <div className="my-4 flex flex-wrap gap-2">{suggestions.map(s => <button key={s} className={`${button} text-left`} onClick={() => void ask(s)}>{s} →</button>)}</div>}

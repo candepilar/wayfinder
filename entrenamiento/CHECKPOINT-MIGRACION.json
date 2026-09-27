@@ -1,0 +1,10 @@
+{
+  "file": "checkpoint-migracion.zip",
+  "bytes": 6873615,
+  "sha256": "70f415cd13f4819166d2335bac9ec101038910311c1a1b01cc5e12b2a147117b",
+  "files": 148,
+  "completed_batches": 62,
+  "accepted_before_final_filter": 3889,
+  "contains_credentials": false,
+  "remote_started": false
+}

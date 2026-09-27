@@ -5,12 +5,29 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 05:58 Argentina — Astra, de Franco — Preparación local detenida; cambio a GPU
+**Pedido nuevo de Franco:** sacar el proceso de su PC y explorar generación de ejemplos sin llamadas a Bob, ejecutando un modelo abierto en RunPod.
+**Hice:** detuve generador, finalizador y sus procesos hijos; preservé 62 lotes completos, 3.889 consultas aceptadas antes del filtro final. Pausé el aviso automático local para no emitir un falso avance. Preparé un checkpoint sin credenciales para transferirlo cuando esté la conexión SSH. Ningún proceso remoto está iniciado.
+**Alternativa:** usar un modelo generativo abierto en GPU para producir/revisar los ejemplos y luego liberar esa memoria para entrenar Granite embedding 97M. La GPU sí trabaja en esa alternativa; mover el mismo cliente de Bob a RunPod no acelera por sí solo las llamadas al servicio. Comparar primero una muestra de calidad/velocidad; no prometer menos tiempo ni igualdad de calidad antes de medir. Bob IDE se mantiene para desarrollo, auditoría, pruebas y evidencia del concurso.
+**Quedó a medias:** datos de conexión RunPod, elegir/probar generador local y continuar solo después en la máquina remota. El registro anterior de cuatro horas y los procesos activos es histórico; ya no describe una ejecución en curso.
+**No tocar:** preservar checkpoint y lotes completos. No reiniciar la generación en la PC.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-27 05:55 Argentina — Astra, de Franco — Registro de preparación y aviso antes de GPU
 **Hice:** a pedido de Franco documenté lo ejecutado y lo pendiente para la entrega en `entrenamiento/EVIDENCIA-PREPARACION.md`. Verifiqué los dos procesos locales activos (generador Bob Shell y finalizador). Corte 08:55 UTC: 55/454 lotes revisados, 3.442 consultas aceptadas antes del filtro final, 62 rechazos. No confundir con el ZIP inicial de 2.482, que sigue siendo el último paquete completo.
 **Aviso:** configuré una comprobación cada 10 minutos en esta tarea, silenciosa mientras avance; avisará al finalizar y pasar estado/manifiesto/hashes/check-data o si hay un problema. Estimación inicial restante ~4 horas (orientativa 3–5), no plazo garantizado. Franco mantiene la PC/Codex activos y esperará ese aviso para preparar GPU/SSH.
 **Quedó a medias:** completar preparación ampliada; después descargar Granite y ejecutar entrenamiento en GPU. No se alquiló ni entrenó nada. Evidencia de Bob IDE sigue pendiente.
 **No tocar:** generación y datos en curso. Documento disponible para incorporar al relato del proyecto; separar resultados reales de propuestas.
 **Preguntas para el otro:** ninguna nueva.
+
+## 2026-09-27 09:55 — Claude de Cande — 🔎 Web: búsqueda en lenguaje natural y fichas mientras Bob piensa
+**Hice:** lo mismo que la extensión, ahora en la página de Wayfinder (`visor/`):
+- `visor/lib/buscar.ts`: búsqueda por **raíz de palabra sin palabras vacías** (misma regla que `extension/guia.mjs`), pesando nombre > consultas cotidianas de Bob > requisitos/pasos. El buscador del catálogo (`Catalogo.tsx`) pasó de «cada palabra tal cual» a entender frases: «quiero afiliarme a la biblioteca» o «carnet de socio» (vía `consultas`) encuentran la ficha.
+- `Asistente.tsx`: prop opcional `buscarLocal`. En el catálogo, **mientras Bob responde** se muestran hasta 3 fichas que coinciden, clickeables («Ver ficha»). Inicio y municipios sin cambios.
+- Pruebas: `tsc` OK, **build estático como CI OK**, `catalogo-browser`, `asistente-browser` e `inicio-browser` OK. `catalogo-browser.cjs` suma búsqueda natural y fichas mientras Bob piensa.
+**Quedó a medias:** publicar con «pantalla» tildado.
+**No tocar:** `visor/components/Asistente.tsx`, `Catalogo.tsx`, `visor/lib/buscar.ts` hasta publicar. Paleta sin cambios.
+**Preguntas para el otro:** ninguna.
 
 ## 2026-09-27 — Astra, de Franco — TODOS los trámites utilizables, Transformer y Bob IDE
 **Pedido de Franco/Cande:** entrenar búsqueda de trámites en general, no limitar a licencias; usar Bob IDE de forma central y ampliar fuentes, priorizando calidad.
