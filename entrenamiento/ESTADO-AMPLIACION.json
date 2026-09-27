@@ -1,13 +1,9 @@
 {
-  "stage": "running_on_runpod",
-  "updated_at": "2026-09-27T09:12:22.629645+00:00",
-  "completed_batches": 62,
-  "accepted_before_final_export": 3889,
-  "model_trained": false,
+  "stage": "stopped_cost_limited_pilot_complete_backed_up",
+  "examples": 4108,
+  "full_collection_complete": false,
+  "pilot_training_executed": true,
+  "candidate_saved": false,
   "deployed": false,
-  "note": "Local preparation stopped. Remote generation/review active, then verified export and embedding training. Current remote status is ESTADO-GPU.json; this is a historical handoff snapshot.",
-  "remote_started": true,
-  "gpu": "NVIDIA A100-SXM4-80GB",
-  "generator_model": "ibm-granite/granite-4.1-8b",
-  "generator_revision": "1504002f650e656a0a3789d99574df12e3e94ed0"
+  "pod_stop_not_verified": true
 }

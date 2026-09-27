@@ -1,0 +1,49 @@
+{
+  "model": "ibm-granite/granite-embedding-97m-multilingual-r2",
+  "revision": "835ad14087e140460703cf0fae09f97d469d65c2",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "seed": 42,
+  "peak_vram_allocated_gib": 4.6200971603393555,
+  "peak_vram_reserved_gib": 4.982421875,
+  "epochs": 1,
+  "batch_size": 16,
+  "learning_rate": 2e-05,
+  "max_seq_length": 512,
+  "documents_truncated": 41,
+  "model_input": "official title and description; body used for query review only",
+  "selected_epoch": 0,
+  "candidate_saved": false,
+  "deployed": false,
+  "passes_synthetic_test_gate": false,
+  "baseline_test": {
+    "n": 200,
+    "top1": 0.58,
+    "top3": 0.745
+  },
+  "selected_test": null,
+  "dataset_sha256": {
+    "train.jsonl": "1e1c000420668fb0f9c7afaa16e3ab12859e8f30bf234a6529fb2e84270365af",
+    "validation.jsonl": "86499b047cbb177de616d980e14a0d8acbb0b89ec314bb0bd71b1d81b32c9493",
+    "test.jsonl": "bf09a779b45132cf8200be559747b9c266359321d0a703531a50cf1152750200",
+    "corpus.jsonl": "4582a7f9c3248efc60698e593463013c8bc310b6a231ab0e06c98e23e8671b95"
+  },
+  "labels": "synthetic, automatically reviewed, not human gold",
+  "versions": {
+    "torch": "2.8.0+cu128",
+    "sentence-transformers": "5.1.1",
+    "transformers": "4.56.2"
+  },
+  "next": "Independent citizen queries and VPS latency/memory benchmark required before claiming production quality.",
+  "validation_before": {
+    "n": 343,
+    "top1": 0.7813411078717201,
+    "top3": 0.9067055393586005
+  },
+  "validation_after": {
+    "n": 343,
+    "top1": 0.8104956268221575,
+    "top3": 0.9416909620991254
+  },
+  "scope": "cost_limited_pilot_4108_queries_3565_train_343_validation_200_test",
+  "backup_sha256": "0e4d17610c2c936976218a048af315f3b1d171563b0583bf0ebff3bef4603d97"
+}

@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Recorte por costo: piloto REAL terminado y respaldado
+**Pedido de Franco:** no sostener la A100 durante horas. Detuve generación larga y entrenamiento automático extenso; preservé 4.108 consultas revisadas de 521 fichas, corpus de búsqueda 3.750. La ampliación completa NO terminó.
+**Hice:** un piloto acotado a los 66 lotes completos, una sola época, límite de proceso 900 s. Ejecución total aproximada 55 s (09:19:41–09:20:35 UTC), mucho menor que mi estimación anterior. 3.565 train / 343 validación / 200 examen. Pico VRAM asignada 4,62 GiB. Código `piloto_acotado.py`, evidencia `RESULTADO-PILOTO.json`.
+**Resultado:** acierto top1 validación 78,13% → 81,05%, top3 90,67% → 94,17%. Pero inglés→inglés cayó 94,94% → 91,14%, excediendo nuestra tolerancia de 2 puntos. El modelo ajustado NO pasó selección: selected_epoch=0, candidate_saved=false. El examen final del candidato NO se ejecutó porque falló validación; no presentar false del test gate como resultado de un examen realizado. El original dio 58% top1 en el examen sintético. No hay despliegue ni mejora general certificada.
+**Respaldo:** datos y logs descargados a la PC; ZIP del resultado SHA256 `0e4d17610c2c936976218a048af315f3b1d171563b0583bf0ebff3bef4603d97`, coincide con RunPod. Pausé automatización tras verificar. La GPU queda sin trabajo: apagar el Pod corta cómputo facturado; detener scripts no equivale a apagarlo. No alquilar ni reiniciar nada sin considerar la prioridad de costo de Franco.
+**Quedó a medias:** calibrar rechazo, revisar errores y probar consultas independientes. No fabricar un modelo ganador por haber entrenado. Mantener Granite original hasta que una candidata pase los controles.
+**No tocar:** ninguna reserva nueva; preservar resultados.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Respuesta a memoria del VPS
 **Respuesta a Cande:** medido ahora por SSH: 1 vCPU, 1.967 MiB RAM total, 903 MiB disponibles y 1.148 MiB de swap ya usada. Es un VPS compartido con otros servicios. No asumir capacidad para seis procesos Bob: probaría `BOB_PARALELO=2` inicialmente y mediría RSS/latencia/swap antes de subir a 3. No cambié configuración ni publiqué tus cambios. Tu demo usa Bob de prueba; mantengo esa distinción.
 **Hice:** integré tus cambios de catálogo/asistente/visor preservando reservas. La preparación y futura corrida de Granite van en RunPod, no en este VPS.
