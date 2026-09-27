@@ -1,5 +1,7 @@
 import { buscar, objetivoEn, pasoActual, sitioDe, tramiteDe } from './guia.mjs';
-import { destination } from './url.mjs';
+import { destination, publicPage } from './url.mjs';
+import { guiaDeCatalogo, motor } from './catalogo.mjs';
+import { accesosVisibles } from './pagina.mjs';
 
 const rutas = await (await fetch(new URL('./rutas.json', import.meta.url))).json();
 const $contenido = document.getElementById('contenido');
@@ -19,8 +21,12 @@ const pestana = {
     const { id } = await this.actual();
     if (id != null) await chrome.tabs.update(id, { url });
   },
-  resaltar(id, objetivos) {
-    if (enExtension && id != null) chrome.tabs.sendMessage(id, { tipo: 'wayfinder-resaltar', objetivos }).catch(() => {});
+  async resaltar(id, objetivos) {
+    if (!enExtension || id == null) return { marcados: 0 };
+    try {
+      await chrome.scripting.executeScript({ target: { tabId: id }, files: ['resaltar.js'] });
+      return await chrome.tabs.sendMessage(id, { tipo: 'wayfinder-resaltar', objetivos });
+    } catch { return { marcados: 0 }; }
   },
 };
 const guardado = {
@@ -40,19 +46,20 @@ function el(tag, props = {}, ...hijos) {
 }
 
 function vistaSinSitio() {
-  $sitio.textContent = 'Abrí el sitio de tu municipio';
+  $sitio.textContent = 'Tu guía en la web';
   return [
     el('h1', {}, 'Te llevo paso a paso en tu trámite'),
-    el('p', { class: 'vacio' }, 'Por ahora funciono en estos municipios:'),
+    el('p', { class: 'vacio' }, 'Abrí una página pública y tocá el ícono de Wayfinder en esa pestaña para habilitar la guía. Las páginas internas del navegador no admiten extensiones.'),
+    el('h2', {}, 'Guías municipales disponibles'),
     el('ul', { class: 'lista' }, rutas.sitios.map(s =>
       el('li', {}, el('button', { class: 'resultado', onclick: () => pestana.ir(s.portada) }, s.nombre)))),
   ];
 }
 
 function vistaBuscar(sitio, tab) {
-  $sitio.textContent = `Municipalidad de ${sitio.nombre}`;
+  $sitio.textContent = sitio.dinamico ? sitio.nombre : `Municipalidad de ${sitio.nombre}`;
   const lista = el('ul', { class: 'lista' });
-  const input = el('input', { type: 'search', placeholder: 'Ej.: pagar la TGI', 'aria-label': 'Qué trámite necesitás hacer' });
+  const input = el('input', { type: 'search', placeholder: sitio.dinamico ? 'Ej.: envíos, turnos, devoluciones' : 'Ej.: pagar la TGI', 'aria-label': 'Qué gestión necesitás hacer' });
   const pintar = () => {
     const encontrados = input.value.trim() ? buscar(sitio, input.value) : sitio.tramites.slice(0, 5);
     lista.replaceChildren(...(encontrados.length
@@ -64,23 +71,25 @@ function vistaBuscar(sitio, tab) {
   let mapa = null;
   try { mapa = destination(tab.url); } catch { /* página no pública: sin enlace al mapa */ }
   return [
-    el('h1', {}, '¿Qué trámite necesitás hacer?'),
+    el('h1', {}, '¿Qué necesitás hacer?'),
     el('div', { class: 'buscador' }, input),
-    el('div', {}, el('h2', {}, input.value ? 'Resultados' : 'Algunos trámites'), lista),
-    mapa && el('a', { class: 'enlace', href: mapa, target: '_blank', rel: 'noopener' }, 'Ver el mapa completo del sitio en Wayfinder'),
+    el('div', {}, el('h2', {}, 'Gestiones del catálogo'), lista),
+    sitio.dinamico && el('p', { class: 'vacio' }, `${sitio.tramites.length} gestiones encontradas · cobertura parcial. ${sitio.tramites.length ? 'Revisá las condiciones en su fuente.' : 'El HTML leído no permitió identificar gestiones. Podés buscar los accesos de la página abierta abajo.'}`),
+    mapa && el('a', { class: 'enlace', href: mapa, target: '_blank', rel: 'noopener' }, 'Abrir catálogo y mapa en Wayfinder'),
   ];
 }
 
 async function vistaTramite(sitio, t, tab) {
-  $sitio.textContent = `Municipalidad de ${sitio.nombre}`;
+  $sitio.textContent = sitio.dinamico ? sitio.nombre : `Municipalidad de ${sitio.nombre}`;
   const actual = pasoActual(t, tab.url);
-  const marcados = (await guardado.leer(`marcados:${t.id}`)) || [];
+  let marcados = (await guardado.leer(`marcados:${t.id}`)) || [];
   const objetivos = objetivoEn(t, tab.url);
 
   const lista = () => el('ul', { class: 'lista' }, t.antes.map((texto, i) => el('li', {}, el('label', { class: 'check' },
     el('input', { type: 'checkbox', checked: marcados.includes(i), onchange: e => {
       const set = new Set(marcados); e.target.checked ? set.add(i) : set.delete(i);
-      guardado.escribir(`marcados:${t.id}`, [...set]);
+      marcados = [...set];
+      guardado.escribir(`marcados:${t.id}`, marcados);
     } }), el('span', {}, texto)))));
   // Si cada camino ya dice qué pide, los requisitos generales de la ficha pasan
   // a segundo plano: suelen ser de casos particulares (ej. convenios de deuda).
@@ -102,18 +111,20 @@ async function vistaTramite(sitio, t, tab) {
     if (estado === 'actual') {
       if (p.url) cuerpo.append(el('button', { class: 'boton ancho', onclick: () => pestana.ir(p.url) }, 'Llevame a la ficha'));
       const enLaPagina = p.opciones?.some(o => objetivos.some(x => x.url === o.url));
-      if (enLaPagina) cuerpo.append(el('p', { class: 'detalle' }, 'Te lo marqué en la página.'));
+      if (enLaPagina) {
+        const marca = el('p', { class: 'detalle' }, 'Buscando el enlace en la página…');
+        cuerpo.append(marca);
+        pestana.resaltar(tab.id, objetivos).then(r => { marca.textContent = r?.marcados ? 'Te lo marqué en la página.' : 'Podés usar el acceso de abajo. Si querés marcarlo, tocá el ícono de Wayfinder en esta pestaña.'; });
+      }
       for (const o of p.opciones || []) {
         cuerpo.append(el('div', { class: 'opcion' },
           el('button', { class: 'boton ancho', onclick: () => pestana.ir(o.url) }, o.texto, el('small', {}, `Te lleva a ${o.sitio}`)),
-          o.necesitas ? el('p', { class: 'necesitas' }, el('strong', {}, 'Vas a necesitar: '), o.necesitas.texto, ' ',
+          o.necesitas ? el('p', { class: 'necesitas' }, el('strong', {}, 'Referencia de otra ficha; confirmá si aplica a tu caso: '), o.necesitas.texto, ' ',
             el('a', { href: o.necesitas.fuente, target: '_blank', rel: 'noopener', title: `Ficha «${o.necesitas.ficha}»` }, 'Fuente')) : null));
       }
     }
     return el('li', { class: `paso ${estado}` }, el('span', { class: 'numero' }, estado === 'hecho' ? '✓' : String(i + 1)), cuerpo);
   }));
-
-  pestana.resaltar(tab.id, objetivos);
 
   return [
     el('div', {}, el('h1', {}, t.nombre),
@@ -126,17 +137,126 @@ async function vistaTramite(sitio, t, tab) {
   ];
 }
 
+let revision = 0;
+let sondeo;
 async function pintar() {
+  const estaRevision = ++revision;
+  clearTimeout(sondeo);
   const tab = await pestana.actual();
-  const encontrado = tramiteDe(rutas, tab.url);
-  const sitio = encontrado?.sitio || sitioDe(rutas, tab.url);
+  const cache = (await guardado.leer('catalogos')) || [];
+  const todas = { sitios: [...rutas.sitios, ...cache] };
+  const encontrado = tramiteDe(todas, tab.url);
+  const sitio = encontrado?.sitio || sitioDe(todas, tab.url);
   const vista = encontrado ? await vistaTramite(encontrado.sitio, encontrado.tramite, tab)
     : sitio ? vistaBuscar(sitio, tab) : vistaSinSitio();
+  let publica = null;
+  try { publica = publicPage(tab.url); } catch { /* restricted or not granted */ }
+  if (publica && !sitio) {
+    $sitio.textContent = new URL(publica).hostname;
+    vista.splice(0, vista.length, el('h1', {}, '¿Qué necesitás hacer en este sitio?'),
+      el('p', { class: 'vacio' }, 'Encontrá un acceso de la página abierta o pedile al motor que organice la información pública con Bob.'));
+  }
+  if (publica) vista.push(herramientas(tab, publica, sitio?.dinamico));
+  if (estaRevision !== revision) return;
   $contenido.replaceChildren(...vista.filter(Boolean));
+  if (publica) {
+    const pendiente = await guardado.leer(`recorrido:${new URL(publica).origin}`);
+    if (pendiente && estaRevision === revision) seguir(pendiente, publica, estaRevision);
+  }
+}
+
+function herramientas(tab, publica, actualizar = false) {
+  const caja = el('section', { class: 'bloque' });
+  const estado = el('p', { class: 'vacio', id: 'motor-estado', role: 'status' });
+  const visibles = el('div', {});
+  const leer = el('button', { class: 'boton ancho', onclick: async () => {
+    leer.disabled = true;
+    try {
+      if (!enExtension) throw Error('Esta función necesita la extensión instalada.');
+      const actual = await pestana.actual();
+      if (actual.id !== tab.id || actual.url !== tab.url) throw Error('Cambió la página. Volvé a abrir la guía.');
+      const [resultado] = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: accesosVisibles });
+      const enlaces = resultado?.result?.enlaces || [];
+      const lista = el('ul', { class: 'lista' });
+      const input = el('input', { type: 'search', placeholder: 'Ej.: ayuda, envíos, sucursales', 'aria-label': 'Buscar acceso en la página' });
+      const mostrar = () => {
+        const consulta = input.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        const items = enlaces.filter(e => e.texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(consulta)).slice(0, 20);
+        lista.replaceChildren(...items.map(o => el('li', {}, el('div', { class: 'opcion' },
+          el('button', { class: 'resultado', onclick: () => pestana.ir(o.url) }, o.texto, el('small', {}, ` · ${o.sitio}`)),
+          el('button', { class: 'enlace', onclick: async e => {
+            const r = await pestana.resaltar(tab.id, [o]);
+            e.target.textContent = r?.marcados ? 'Marcado en la página' : 'El enlace cambió; volvé a leer la página';
+          } }, 'Mostrar dónde está')))));
+        if (!items.length) lista.append(el('li', { class: 'vacio' }, 'No encontré ese acceso visible. Podés abrir un menú del sitio y volver a buscar.'));
+      };
+      input.addEventListener('input', mostrar); mostrar();
+      visibles.replaceChildren(el('p', { class: 'vacio' }, `${enlaces.length} accesos detectados en esta página (máximo 120). No son requisitos ni gestiones verificadas.`), el('div', { class: 'buscador' }, input), lista);
+    } catch (error) {
+      visibles.replaceChildren(el('p', { class: 'vacio' }, `${error.message} Tocá el ícono de Wayfinder en la pestaña que querés usar y reintentá.`));
+    } finally { leer.disabled = false; }
+  } }, 'Buscar accesos de esta página');
+  const analizar = el('button', { class: 'boton secundario ancho', id: 'motor-iniciar', onclick: async () => {
+    analizar.disabled = true;
+    const estaRevision = revision;
+    estado.textContent = 'Buscando un catálogo disponible…';
+    try {
+      const previo = await motor(`/extension/catalogo?url=${encodeURIComponent(publica)}`);
+      if (previo.catalogo && !actualizar) { await guardarCatalogo(previo); if (revision === estaRevision) await pintar(); return; }
+      const job = await motor('/recorridos', { url: publica, catalogo: true, maxPaginas: 20 });
+      await guardado.escribir(`recorrido:${new URL(publica).origin}`, job.id);
+      if (revision === estaRevision) seguir(job.id, publica, estaRevision);
+    } catch (error) { if (revision === estaRevision) { estado.textContent = error.message; analizar.disabled = false; } }
+  } }, actualizar ? 'Volver a recorrer con Bob' : 'Consultar catálogo con Bob');
+  caja.append(el('h2', {}, 'Tu próximo paso'), leer,
+    el('p', { class: 'fuente' }, 'Los nombres y enlaces visibles se procesan solo en tu navegador. No se envían a Bob ni se guardan. No completamos formularios.'), visibles,
+    analizar, el('p', { class: 'fuente' }, `Al consultar, enviamos esta dirección al motor: ${publica}. Lee contenido público sin tu sesión y respeta robots.txt. Algunos sitios necesitan JavaScript o acceso privado y no pueden organizarse.`), estado,
+    el('a', { class: 'enlace', href: destination(publica), target: '_blank', rel: 'noopener' }, 'Hablar con Bob / abrir Wayfinder'));
+  return caja;
+}
+
+async function guardarCatalogo({ catalogo, mapaId }) {
+  const sitio = guiaDeCatalogo(catalogo, mapaId);
+  const cache = (await guardado.leer('catalogos')) || [];
+  await guardado.escribir('catalogos', [sitio, ...cache.filter(s => s.nombre !== sitio.nombre)].slice(0, 8));
+}
+async function seguir(id, publica, estaRevision) {
+  if (revision !== estaRevision) return;
+  const estado = document.getElementById('motor-estado');
+  const iniciar = document.getElementById('motor-iniciar');
+  if (!estado || !iniciar) return;
+  iniciar.disabled = true;
+  try {
+    const job = await motor(`/recorridos/${encodeURIComponent(id)}`);
+    if (revision !== estaRevision) return;
+    if (job.estado === 'completado') {
+      const catalogo = await motor(`/mapas/${job.mapaId}/catalogo`);
+      await guardarCatalogo({ catalogo, mapaId: job.mapaId });
+      await guardado.escribir(`recorrido:${new URL(publica).origin}`, null);
+      if (revision === estaRevision) await pintar();
+    } else if (job.estado === 'en_curso') {
+      const ultimo = job.eventos?.at(-1);
+      estado.replaceChildren(el('span', {}, ultimo?.mensaje || `Leyendo información pública${ultimo?.leidas ? ` · ${ultimo.leidas} páginas` : '…'}`),
+        el('button', { class: 'enlace', onclick: async e => {
+          e.target.disabled = true;
+          try { await motor(`/recorridos/${id}/cancelar`, {}); estado.textContent = 'Cancelando…'; }
+          catch (error) { estado.textContent = error.message; }
+        } }, 'Cancelar recorrido'));
+      sondeo = setTimeout(() => seguir(id, publica, estaRevision), 1800);
+    } else {
+      await guardado.escribir(`recorrido:${new URL(publica).origin}`, null);
+      estado.textContent = job.error || 'Recorrido cancelado.'; iniciar.disabled = false;
+    }
+  } catch (error) {
+    if (revision !== estaRevision) return;
+    estado.replaceChildren(el('span', {}, error.message), el('button', { class: 'enlace', onclick: () => seguir(id, publica, estaRevision) }, 'Reintentar estado'),
+      el('button', { class: 'enlace', onclick: async () => { await guardado.escribir(`recorrido:${new URL(publica).origin}`, null); pintar(); } }, 'Cerrar seguimiento'));
+  }
 }
 
 await pintar();
 if (enExtension) {
   chrome.tabs.onActivated.addListener(pintar);
-  chrome.tabs.onUpdated.addListener((_, cambio) => { if (cambio.status === 'complete' || cambio.url) pintar(); });
+  chrome.tabs.onUpdated.addListener(async (id, cambio) => { if ((cambio.status === 'complete' || cambio.url) && (await pestana.actual()).id === id) pintar(); });
+  chrome.runtime.onMessage.addListener(m => { if (m?.tipo === 'wayfinder-activado') pintar(); });
 }

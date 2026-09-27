@@ -1,6 +1,8 @@
 // Corre dentro de las páginas del municipio. Solo marca el enlace que el panel
 // indica como próximo paso: no lee formularios ni datos de la persona.
 (() => {
+  if (globalThis.__wayfinderResaltar) return;
+  globalThis.__wayfinderResaltar = true;
   const CLASE = 'wayfinder-objetivo';
   const estilo = document.createElement('style');
   estilo.textContent = `
@@ -47,7 +49,12 @@
       primero ||= enlace;
     });
     primero?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return { marcados: enlaces.length };
   }
 
-  chrome.runtime.onMessage.addListener(m => { if (m?.tipo === 'wayfinder-resaltar') resaltar(m.objetivos); });
+  chrome.runtime.onMessage.addListener((m, _sender, reply) => {
+    if (m?.tipo !== 'wayfinder-resaltar') return;
+    resaltar(m.objetivos).then(reply, () => reply({ marcados: 0 }));
+    return true;
+  });
 })();

@@ -13,6 +13,7 @@ import { municipalRoutes } from './municipal-routes.mjs';
 import { crawlMunicipal } from './municipal-crawler.mjs';
 import { organizeCatalog } from './catalogo.mjs';
 import { assistantRoutes } from './asistente-routes.mjs';
+import { extensionRequest, extensionRoutes } from './extension-routes.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.join(root, 'data'), allowLocal = process.env.WAYFINDER_ALLOW_LOCAL === '1', allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean), maxPagesLimit = Number(process.env.MAX_PAGES || 200), maxMaps = Number(process.env.MAX_MAPS || 100), municipalDemoDir, organize = organizeCatalog } = {}) {
@@ -24,7 +25,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
   app.set('trust proxy', 'loopback');
   app.use((req, res, next) => {
     const origin = req.headers.origin;
-    if (origin && !allowedOrigins.includes(origin) && !/^http:\/\/(localhost|127\.0\.0\.1):(3001|3101)$/.test(origin)) return res.status(403).json({ error: 'Origen no permitido.' });
+    if (origin && !allowedOrigins.includes(origin) && !/^http:\/\/(localhost|127\.0\.0\.1):(3001|3101)$/.test(origin) && !extensionRequest(req)) return res.status(403).json({ error: 'Origen no permitido.' });
     if (origin) { res.setHeader('Access-Control-Allow-Origin', origin); res.setHeader('Vary', 'Origin'); }
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -37,6 +38,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
   app.use(express.json({ limit: '16kb' }));
   assistantBusy = assistantRoutes(app, { dataDir, store, demoDir: municipalDemoDir, busy: () => codeBusy() || [...jobs.values()].some(j => j.estado === 'en_curso') });
   municipalRoutes(app, { dataDir, demoDir: municipalDemoDir });
+  extensionRoutes(app, store);
   app.get('/api/salud', (_req,res) => res.json({ estado: 'ok', bob: bobStatus(), trabajos_activos: [...jobs.values()].filter(j => j.estado === 'en_curso').length }));
   app.get('/api/mapas', async (_req,res) => res.json(await store.list()));
   app.get('/api/mapas/:id', async (req,res) => { const map = await store.get(req.params.id); return map ? res.json(map) : res.status(404).json({ error: 'Mapa no encontrado.' }); });

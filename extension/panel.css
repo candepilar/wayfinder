@@ -83,3 +83,7 @@ details ul { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: var(--
 .necesitas { margin: 6px 2px 0; font-size: 12px; line-height: 1.45; color: var(--tinta-media); }
 .necesitas strong { color: var(--tinta); font-weight: 600; }
 .necesitas a { color: var(--acento); font-size: 11px; }
+button:disabled { opacity: .6; cursor: wait; }
+.cuerpo, .opcion, .fuente { min-width: 0; overflow-wrap: anywhere; }
+#motor-estado { margin-block: 10px; display: grid; gap: 8px; }
+.bloque > div > .buscador { margin-block: 12px; }

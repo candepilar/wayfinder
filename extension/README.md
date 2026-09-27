@@ -1,42 +1,68 @@
-# Wayfinder para el navegador · 0.2.0
+# Wayfinder para el navegador · 0.3.0
 
-Extensión Manifest V3 para Chrome, Brave y Edge (116 o más nuevo). Al tocar su
-ícono se abre un panel al costado que **te lleva paso a paso en un trámite** del
-municipio, con la información oficial ordenada por el motor de Wayfinder:
+Panel lateral para Chrome, Brave y Edge 116+. Mantiene las guías de Rosario/VGG,
+y permite trabajar con otras páginas públicas sin una lista fija de municipios.
 
-- Sabe en qué trámite y en qué paso estás por la página que tenés abierta.
-- En la página oficial marca el enlace del paso siguiente (y abre el desplegable
-  si está escondido).
-- Para cada forma de hacerlo, dice qué vas a necesitar, cruzando las fichas del
-  mismo sitio y citando la fuente.
-- No lee formularios, cookies ni datos de la persona, y no completa nada.
+1. Abrí el sitio y tocá el ícono de Wayfinder en esa pestaña.
+2. **Buscar accesos de esta página** lee los nombres/enlaces visibles del DOM ya
+   renderizado, incluidos los generados con JavaScript. Podés buscar por texto,
+   marcar un enlace y abrirlo. Esto no confirma requisitos ni completa gestiones.
+3. **Consultar catálogo con Bob** envía la dirección mostrada (sin query/hash)
+   al motor. Recupera un catálogo disponible o inicia un recorrido público con
+   progreso, cancelación y recuperación al reabrir el panel. El botón de volver
+   a recorrer permite actualizar un catálogo guardado.
+4. Las fichas conservan condiciones completas y fuente; no se inventan destinos.
+   Las condiciones tomadas de otra ficha municipal se rotulan como referencias
+   que requieren confirmar si aplican. El resaltado se confirma solo si ocurrió.
 
-Sitios: Rosario (36 trámites) y Villa Gobernador Gálvez (15).
+## Alcance y datos
 
-## De dónde salen los datos
+`activeTab` da acceso temporal al tocar el ícono. Al cambiar a otro dominio,
+volvé a tocarlo. No se solicitan permisos generales sobre todas las webs.
+Se mantienen permisos municipales existentes y se agrega el dominio de la API.
+No funciona en páginas internas del navegador, frames ajenos, Shadow DOM cerrado
+ni con controles sin enlace HTML. Para un menú oculto, abrilo y volvé a buscar.
 
-`rutas.json` se genera desde el catálogo municipal del motor
-(`motor/src/municipal-demo/`). Después de actualizar el catálogo:
+Los enlaces/textos de la página abierta se procesan localmente, sin enviarse a
+Bob ni persistirse. Se excluyen formularios, enlaces ocultos y varios parámetros
+de sesión/acciones. No se leen valores de formularios, cookies ni contraseñas;
+no se envían solicitudes del usuario. Una etiqueta visible puede contener datos
+personales: se conserva solo en memoria del panel, no se promete clasificar toda PII.
 
-```bash
-node extension/generar-rutas.mjs
-```
+El catálogo público se guarda en almacenamiento local (hasta ocho sitios).
+El motor no recibe la sesión del navegador, respeta robots y límites de red/cola.
+Su lectura HTML no ejecuta JavaScript: Coto es un ejemplo de catálogo sin evidencia
+suficiente, aunque la extensión sí puede encontrar accesos de su página renderizada.
+Una ficha puede estar desactualizada o incompleta. Abrir un destino no prueba que
+la gestión terminó. No se promete compatibilidad con cualquier web.
 
-## Instalación de prueba
+La API es pública y tiene límites de frecuencia/capacidad; el Origin de una extensión
+no es autenticación. Solo se permiten desde extensiones las rutas públicas de
+catálogo y recorridos, nunca las de revisión de código. No hay secretos en el paquete.
 
-1. Descomprimí el ZIP en una carpeta que vayas a conservar.
-2. Abrí chrome://extensions (Brave: brave://extensions; Edge: edge://extensions).
-3. Activá Modo desarrollador y elegí Cargar descomprimida.
-4. Seleccioná la carpeta que contiene manifest.json.
-5. Fijá Wayfinder desde el menú de extensiones. Abrí www.rosario.gob.ar y tocá su ícono.
+## Instalación / actualización de prueba
 
+Descomprimí el ZIP, abrí `chrome://extensions` (o `brave://extensions` /
+`edge://extensions`), activá Modo desarrollador y elegí Cargar descomprimida.
+Seleccioná la carpeta que contiene `manifest.json` y fijá el ícono.
+Si actualizaste la misma carpeta, tocá **Recargar** en la tarjeta de Wayfinder;
+el navegador puede pedir habilitar los nuevos permisos. Conservá la carpeta.
 Todavía no está publicada en Chrome Web Store.
 
-## Probar
+## Pruebas
 
-```bash
+```sh
 node --test extension/test.mjs
+cd motor && npm test
+# Requiere Playwright instalado o PLAYWRIGHT_MODULE apuntando al módulo:
+node extension/browser-test.cjs
+# LIVE=1 agrega prueba anónima contra Coto; PLAYWRIGHT_CHANNEL=msedge es opcional.
 ```
 
-El panel también se puede mirar sin instalarlo: serví la carpeta con cualquier
-servidor estático y abrí `panel.html?url=https://www.rosario.gob.ar/inicio/pagar-tgi`.
+La prueba de navegador usa DOM real con un puente controlado de las APIs Chrome;
+no certifica permisos ni instalación nativa. La prueba pública no usa una sesión
+del usuario ni envía formularios. El panel estático permite previsualización con
+`panel.html?url=https://example.org/`, pero la lectura de otra pestaña requiere extensión.
+
+Las rutas municipales siguen generándose con `node extension/generar-rutas.mjs`.
+No se alteró el catálogo municipal empaquetado ni los módulos reservados de Cande.

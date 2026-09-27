@@ -55,7 +55,7 @@ export function catalogDocuments(map, existing = [], { maxPages = 20, maxChars =
     }
     const links = (p.municipal?.enlaces || []).filter(l => stable(l.url) && l.texto && l.url !== p.url).slice(0, 60)
       .map((l, i) => ({ id: `l${i}`, texto: l.texto, url: l.url }));
-    if (blocks.length) documents.push({ id: p.id, url: p.url, bloques: blocks, enlaces: links });
+    if (blocks.some(b => b.tipo !== 'titulo')) documents.push({ id: p.id, url: p.url, bloques: blocks, enlaces: links });
   }
   return { documents, paginas_omitidas: candidates.length - documents.length, bloques_omitidos: omittedBlocks };
 }

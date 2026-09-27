@@ -2,6 +2,22 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {publicPage,destination} from './url.mjs';
 import {buscar,coincide,objetivoEn,pasoActual,sitioDe,tramiteDe} from './guia.mjs';
 import {readFile} from 'node:fs/promises';
+import {guiaDeCatalogo} from './catalogo.mjs';
+
+test('dynamic catalog retains whole conditions, only sourced URLs and honest missing destinations',()=>{
+ const c={sitio:{url:'https://library.example.org/',crawleado_en:'2026-09-27'},fichas:[{id:'join',nombre:'Membership',fuente:'https://library.example.org/join',requisitos:[{texto:'For residents only: bring a current identity document.'}],pasos:[],costo:[],destinos:[{texto:'Apply',url:'https://library.example.org/apply'},{texto:'Bad',url:'javascript:alert(1)'}]}]};
+ const s=guiaDeCatalogo(c,'abc');
+ assert.equal(s.tramites[0].antes[0],c.fichas[0].requisitos[0].texto);
+ assert.equal(s.tramites[0].pasos[1].opciones.length,1);
+ assert.equal(sitioDe({sitios:[s]},'https://library.example.org/help'),s);
+ assert.equal(pasoActual(s.tramites[0],'https://library.example.org/apply'),2);
+ c.fichas[0].destinos=[];
+ const t=guiaDeCatalogo(c,'abc').tramites[0];
+ assert.equal(t.pasos.length,2); assert.match(t.pasos[1].detalle,/no encontró/);
+ assert.throws(()=>guiaDeCatalogo({sitio:{url:'file:///private'}},'abc'));
+ c.fichas[0].destinos=[{url:'https://library.example.org/auth?token=secret'},{url:'http://127.0.0.1/private'},{url:'https://library.example.org/help?topic=join',texto:'Help'}];
+ assert.deepEqual(guiaDeCatalogo(c,'abc').tramites[0].pasos[1].opciones.map(o=>o.url),['https://library.example.org/help?topic=join']);
+});
 test('only public web URLs; strips query and fragment',()=>{
  assert.equal(publicPage('https://example.com/path?token=private#secret'),'https://example.com/path');
  for(const u of ['chrome://extensions','file:///secret','https://u:p@example.com','http://127.0.0.1/','http://localhost/','http://a.local/','http://[::1]/'])assert.throws(()=>publicPage(u));

@@ -41,6 +41,9 @@ jobs:
           npm ci --no-audit --no-fund
           npm test
 
+      - name: Pruebas de la extensión
+        run: node --test extension/test.mjs
+
       - name: Armar la pantalla
         if: ${{ inputs.pantalla }}
         working-directory: visor
@@ -61,7 +64,7 @@ jobs:
             cp -r visor/out paquete/public
             # La descarga "Añadir al navegador" se arma siempre desde extension/.
             mkdir -p paquete/public/extension
-            (cd extension && zip -qr ../paquete/public/extension/wayfinder-extension.zip . -x test.mjs)
+            (cd extension && zip -qr ../paquete/public/extension/wayfinder-extension.zip . -x test.mjs browser-test.cjs)
           fi
           tar -czf paquete.tgz -C paquete .
           ls -la paquete.tgz

@@ -1,14 +1,17 @@
 {
   "manifest_version": 3,
   "name": "Wayfinder — Te guía en tu trámite",
-  "version": "0.2.0",
-  "description": "Te lleva paso a paso en los trámites de tu municipio, con la información oficial ordenada por Wayfinder.",
+  "version": "0.3.0",
+  "description": "Encontrá gestiones y accesos en la página abierta, con catálogos públicos organizados por Bob y guía paso a paso.",
   "minimum_chrome_version": "116",
   "permissions": [
     "sidePanel",
-    "storage"
+    "storage",
+    "activeTab",
+    "scripting"
   ],
   "host_permissions": [
+    "https://andromedaweb.store/*",
     "https://www.rosario.gob.ar/*",
     "https://siat.rosario.gob.ar/*",
     "https://auth.afip.gob.ar/*",

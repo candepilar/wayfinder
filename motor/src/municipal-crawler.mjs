@@ -2,6 +2,7 @@ import robotsParser from 'robots-parser';
 import { requestText, normalizeUrl } from './network.mjs';
 import { extractPage } from './crawler.mjs';
 import { extractMunicipal, priorityOf } from './municipal.mjs';
+import { navigationLinks, missingContent } from './discovery.mjs';
 
 const asset = /\.(pdf|zip|gz|jpe?g|png|gif|svg|webp|mp[34]|docx?|xlsx?|css|js|xml|json)(\?|$)/i;
 const transactional = /\/(login|logout|registrar|registrate|registro-usuario|ingreso|auth|form|formularios)(\/|$)/i;
@@ -51,7 +52,7 @@ export async function crawlMunicipal(input, { maxPages = 40, allowLocal = false,
       p.municipal = extractMunicipal(r.body, r.url);
       pages.push(p);
       // Rich links first; remaining ordinary links still enter the queue.
-      const rich = p.municipal.enlaces;
+      const rich = [...p.municipal.enlaces, ...navigationLinks(r.body, r.url)];
       const indexed = new Map(rich.map(l => [l.url, l]));
       // extractPage does not honor <base>; the municipal extractor does. Avoid
       // reintroducing incorrectly resolved relative links via the old extractor.
@@ -79,9 +80,12 @@ export async function crawlMunicipal(input, { maxPages = 40, allowLocal = false,
     });
   }
   const ids = new Map(pages.map(p => [p.url, p.id]));
+  const unavailable = missingContent(pages);
   for (const page of pages) { page.enlaces = [...new Set(page.links.map(l => ids.get(l)).filter(Boolean))]; delete page.links; }
   return { sitio: { url: pages[0]?.url || seed, titulo: pages[0]?.titulo || seed, crawleado_en: new Date().toISOString(), paginas_totales: pages.length }, paginas: pages,
-    ejecucion: { estado: queue.length || errors.length || omitted.length ? 'parcial' : 'completado', limite: maxPages, intentadas: attempted,
-      pendientes: queue.length, omitidas: omitted.length, exclusiones: omitted, errores: errors, advertencias: [], duracion_ms: Date.now() - started,
+    ejecucion: { estado: queue.length || errors.length || omitted.length || unavailable.length ? 'parcial' : 'completado', limite: maxPages, intentadas: attempted,
+      pendientes: queue.length, omitidas: omitted.length, exclusiones: omitted, errores: errors,
+      sin_contenido_util: unavailable,
+      advertencias: unavailable.length ? ['Hay páginas sin contenido útil en el HTML público. Pueden depender de JavaScript o restringir la lectura; el recorrido no equivale a cobertura completa. Usá los accesos visibles de la extensión en la página abierta.'] : [], duracion_ms: Date.now() - started,
       alcance: 'HTML público del mismo origen. Sin sesiones, JavaScript ni acceso a destinos de gestión detectados. Clasificación heurística; requiere revisión humana.' } };
 }
