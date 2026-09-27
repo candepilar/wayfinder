@@ -1,0 +1,43 @@
+{
+  "status": "prepared_not_trained",
+  "pairs": 10,
+  "contrast_queries": 40,
+  "languages": {
+    "es": 20,
+    "en": 20
+  },
+  "source_documents": 20,
+  "clarification_cases_separate": 20,
+  "heldout_overlap": 0,
+  "training_input_hashes": {
+    "corpus": "4582a7f9c3248efc60698e593463013c8bc310b6a231ab0e06c98e23e8671b95",
+    "train": "1e1c000420668fb0f9c7afaa16e3ab12859e8f30bf234a6529fb2e84270365af",
+    "validation": "86499b047cbb177de616d980e14a0d8acbb0b89ec314bb0bd71b1d81b32c9493",
+    "test": "bf09a779b45132cf8200be559747b9c266359321d0a703531a50cf1152750200"
+  },
+  "files_sha256": {
+    "aclaraciones.jsonl": "0cc02be62b99b5eb99fa19f83b79b72baaabae9561452b3aa577f5b190a32561",
+    "train-contrastes.jsonl": "1fff7f2d0e8c9e3e0412a56566b73264341ef37af41fbe5dd52af33fbdd8b28a"
+  },
+  "quarantined_pairs": [
+    {
+      "documents": [
+        "792df83fc8a11ce70842",
+        "65c2adea04c99a204940"
+      ],
+      "reason": "Fishery modification description also describes obtaining authorisation; insufficient distinct context."
+    },
+    {
+      "documents": [
+        "24c6cff4b5909fd0ddb9",
+        "0feb39e64bbf15e49f3b"
+      ],
+      "reason": "Retired and disabled categories can overlap; avoid claiming mutual exclusion without eligibility review."
+    }
+  ],
+  "limits": [
+    "Assistant-authored; not human-reviewed or citizen traffic.",
+    "Negative is less suitable for this explicit query, not globally irrelevant.",
+    "No inference, new training, live legal verification or improvement claim."
+  ]
+}

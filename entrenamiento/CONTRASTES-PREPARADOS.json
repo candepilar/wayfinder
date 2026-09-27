@@ -1,0 +1,24 @@
+{
+  "status": "prepared_not_trained",
+  "package": "datos\\experimento-contrastes-v1.zip",
+  "bytes": 2473725,
+  "sha256": "2c6551a48d1461ed4ad7d0959a3a647d2d2d58fe9199bce05ade478347b6ccb5",
+  "files_sha256": {
+    "datos/paquete/corpus.jsonl": "4582a7f9c3248efc60698e593463013c8bc310b6a231ab0e06c98e23e8671b95",
+    "datos/paquete/train.jsonl": "1e1c000420668fb0f9c7afaa16e3ab12859e8f30bf234a6529fb2e84270365af",
+    "datos/paquete/validation.jsonl": "86499b047cbb177de616d980e14a0d8acbb0b89ec314bb0bd71b1d81b32c9493",
+    "datos/paquete/test.jsonl": "bf09a779b45132cf8200be559747b9c266359321d0a703531a50cf1152750200",
+    "datos/paquete/manifest.json": "dcce3ea8222a4143fa81de3c181d8e686a2a90cad33eaead769daa5ce6f55a2a",
+    "entrenar.py": "702028507c3acd1dbe80732c75220e5b984b1703522685ccaf9e366647b423fc",
+    "contrastes.py": "876a49b49b8e0a08e354df97c3c9d012c2cdf046423cd1de949212073423a099",
+    "requirements-gpu.txt": "b7f60e7bdc1dbe8e9d0ed34361eac164829bbb551a77684092eda3e280576afe",
+    "evaluacion-v2/manifest.json": "ef3d31eb947fd55acfff1ed46f4c324a74d77c95f8a83acd4b78aa546e7942b1",
+    "contrastes-v1/train-contrastes.jsonl": "1fff7f2d0e8c9e3e0412a56566b73264341ef37af41fbe5dd52af33fbdd8b28a",
+    "contrastes-v1/aclaraciones.jsonl": "0cc02be62b99b5eb99fa19f83b79b72baaabae9561452b3aa577f5b190a32561",
+    "contrastes-v1/manifest.json": "e81a20ad526f42b1b1ad666b240c40fd98a5ef3164298970eebdb1e65284ca33",
+    "contrastes-v1/README.md": "71822a6c290e6508f239c15f382ccb32005fedbab5a6cb460bce91fd3c40fffc"
+  },
+  "contrast_queries": 40,
+  "gpu_integration_tested": false,
+  "model_weights_included": false
+}

@@ -17,6 +17,7 @@ def main():
               'README.md', 'FUENTES-RECOPILADAS.json', 'DATOS-PREPARADOS.json', 'SELECCION.json',
               'EXCLUSIONES-REVISION.json']]
     files.append(reserved)
+    files.append(HERE/'contrastes.py')
     # Only final generation/review records, never Bob workdirs or credentials.
     files += [HERE / 'datos/bob' / (task['id'] + '.json') for task in manifest['tasks']]
     files += [HERE / name for name in ['COBERTURA-AMPLIADA.json', 'BOB-IDE-ENTRENAMIENTO.md'] if (HERE / name).exists()]

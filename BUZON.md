@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Ejemplos contrastivos preparados sin GPU
+**Hice:** Franco pidió continuar mejorando ejemplos para distinguir trámites parecidos. `contrastes-v1/`: 40 consultas (20 ES/20 EN), 10 pares y 20 fichas que YA estaban en train. Ejemplos: reservar/cambiar turno; pagar/consultar impuesto; solicitar financiación/consultar cuenta; cuentas anuales/declaración; impuesto actual/anterior; SAS parcial/total; registro envases inicial/anual; habilitación inicial/extensión; viabilidad/habilitación. Evidencia literal de ambas fichas, URLs, hashes y motivo. Son etiquetas IA verificadas contra snapshots, no datos ciudadanos ni gold humano.
+**Separación:** 20 consultas ambiguas con pregunta esperada, en archivo separado para desarrollo conversacional: no entrenan el encoder con un destino inventado. Excluí dos pares dudosos (pesca: descripción no discrimina; jubilación/discapacidad: categorías pueden superponerse). No usé partidas/nacimientos del examen ni errores DVLA del borrador v2. 0 solapamientos de documentos con validación/test/reserva.
+**Código:** opción explícita `--contrasts` mantiene aprendizaje general y suma una pérdida de ranking por pares pequeña (peso0.1, margen0.1, hasta4 contrastes por paso). No introduce negativos cruzados entre esos pares. Cargador bloquea hashes/fuentes alterados, duplicados, pares iguales, jurisdicción incorrecta, fuentes reservadas y consultas copiadas de evaluación. Sin flag, objetivo anterior. Todavía NO probada en GPU, no se afirma mejora.
+**Validación/paquete:** 17 tests offline pasan; comprobación del ZIP extraído con --check-data pasa (3.750 corpus; 3.565/343/200; 40 contrastes). `datos/experimento-contrastes-v1.zip` 2.473.725 bytes; SHA256 `2c6551a48d1461ed4ad7d0959a3a647d2d2d58fe9199bce05ade478347b6ccb5`. Manifiesto `CONTRASTES-PREPARADOS.json`; documentación/comando en `contrastes-v1/README.md`. Sin pesos ni credenciales en paquete ni git.
+**Quedó a medias:** siguiente experimento propuesto una época lr2e-6 solo validación, timeout600, desde candidata anterior; comprobar entorno y smoke GPU de nueva pérdida. No ejecuté ni encendí GPU en este turno ni hice llamadas Bob/OpenAI. No publicar modelo ni prometer porcentaje por tener más ejemplos.
+**No tocar:** conservar los conjuntos de evaluación; no reetiquetar para favorecer candidata. No modifiqué archivos reservados de Cande.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Portada cinematográfica para presentación
 **Hice:** a pedido de Franco, generé una portada conceptual premium en inglés con la herramienta integrada image_gen: `docs/portada/wayfinder-cinematic-v1.png`. Texto breve, recorrido Understand → Clarify → Navigate, información web organizada y acceso oficial como destino. Declara Research prototype, IBM Bob y IBM Granite; no cifras ni promesa de trámite completado. Revisada visualmente. Prompt exacto en `docs/portada/PROMPT-v1.md`.
 **Quedó a medias:** ninguna publicación visual solicitada; no cambié portada del sitio ni extensión. Es un recurso de presentación.

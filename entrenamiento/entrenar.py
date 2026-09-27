@@ -68,6 +68,7 @@ def main():
     parser.add_argument('--initial-model',type=Path,help='Continue a saved candidate; preserve original checkpoint')
     parser.add_argument('--validation-only',action='store_true',help='Select on development validation; never evaluate test')
     parser.add_argument('--reference-validation',type=Path,help='Also protect directions against original baseline metrics')
+    parser.add_argument('--contrasts',type=Path,help='Optional source-checked training query/positive/negative directory')
     parser.add_argument('--check-data',action='store_true')
     args=parser.parse_args()
     if not 0<args.learning_rate<=1e-3:parser.error('learning-rate must be positive and <= 0.001')
@@ -75,9 +76,14 @@ def main():
     reserved_path=Path(__file__).resolve().parent/'evaluacion-v2/manifest.json'
     if not reserved_path.exists():
         raise ValueError('Missing reserved evaluation manifest; copy evaluacion-v2 with training code')
-    check_reserved(splits,set(json.loads(reserved_path.read_text(encoding='utf-8'))['reserved_document_ids']))
+    reserved_ids=set(json.loads(reserved_path.read_text(encoding='utf-8'))['reserved_document_ids'])
+    check_reserved(splits,reserved_ids)
+    contrasts=[];contrast_hash=None
+    if args.contrasts:
+        from contrastes import load_contrasts
+        contrasts,contrast_hash=load_contrasts(args.contrasts,corpus,splits,reserved_ids)
     if args.check_data:
-        print(json.dumps({'checks':'passed','corpus':len(corpus),'splits':{s:len(v) for s,v in splits.items()},'synthetic':True}));return
+        print(json.dumps({'checks':'passed','corpus':len(corpus),'splits':{s:len(v) for s,v in splits.items()},'contrasts':len(contrasts),'synthetic':True}));return
     if args.output.exists():raise ValueError('Use a fresh output directory to preserve prior experiments')
     import torch
     from sentence_transformers import SentenceTransformer,losses
@@ -126,12 +132,27 @@ def main():
     best_path=args.output/'best'
     for epoch in range(1,args.epochs+1):
         model.train();losses_seen=[]
-        for batch in batches(splits['train'],args.batch_size,random.Random(42+epoch)):
+        contrast_order=list(contrasts);random.Random(142+epoch).shuffle(contrast_order)
+        for step,batch in enumerate(batches(splits['train'],args.batch_size,random.Random(42+epoch))):
             optimizer.zero_grad(set_to_none=True)
             features=[]
             for values in [[r['query'] for r in batch],[document_text(corpus[r['document_id']]) for r in batch]]:
                 features.append({k:v.to('cuda') for k,v in model.tokenize(values).items()})
-            value=loss(features,None);value.backward()
+            value=loss(features,None)
+            if contrast_order:
+                # Retain the general retrieval objective. Add a small explicit
+                # pairwise margin, with no in-batch negatives across these pairs.
+                chosen=[contrast_order[(step*4+j)%len(contrast_order)] for j in range(min(4,len(contrast_order)))]
+                vectors=[]
+                for contrast_texts in [[r['query'] for r in chosen],
+                              [document_text(corpus[r['document_id']]) for r in chosen],
+                              [document_text(corpus[r['negative_document_id']]) for r in chosen]]:
+                    tokens={k:v.to('cuda') for k,v in model.tokenize(contrast_texts).items()}
+                    vectors.append(torch.nn.functional.normalize(model(tokens)['sentence_embedding'],p=2,dim=1))
+                query,positive,negative=vectors
+                margin=torch.relu(0.1+(query*negative).sum(1)-(query*positive).sum(1)).mean()
+                value=value+0.1*margin
+            value.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(),1.0);optimizer.step()
             losses_seen.append(float(value.detach().cpu()))
         validation=evaluate(splits['validation'],f'epoch-{epoch}-validation')
@@ -159,6 +180,8 @@ def main():
         'epochs':args.epochs,'batch_size':args.batch_size,'learning_rate':args.learning_rate,'max_seq_length':512,
         'initial_model':str(args.initial_model) if args.initial_model else MODEL,'initial_weights_sha256':initial_weights_sha256,
         'validation_only':args.validation_only,'test_evaluated':not args.validation_only,
+        'contrast_queries':len(contrasts),'contrast_sha256':contrast_hash,
+        'contrast_margin':0.1 if contrasts else None,'contrast_weight':0.1 if contrasts else None,
         'baseline_validation':baseline_validation['all'],'selected_validation':best_validation['all'],
         'baseline_validation_directions':baseline_validation['directions'],'selected_validation_directions':best_validation['directions'],
         'documents_truncated':truncations,'model_input':'official title and description; body used for query review only',
