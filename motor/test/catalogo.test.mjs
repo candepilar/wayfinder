@@ -110,3 +110,42 @@ test('any-site API crawl persists and downloads the catalogue, without submittin
   assert.equal((await downloaded.json()).fichas[0].nombre,'Afiliación');
   assert.ok(!requested.includes('/enviar'));
 });
+
+function mapOfMany(n) {
+  const paginas = Array.from({ length: n }, (_, i) => {
+    const u = `https://library.example.org/service-${i}`;
+    const html = `<main><h1>Service ${i}</h1><p>Bring your card to request service ${i}.</p><a href="/apply-${i}">Apply ${i}</a></main>`;
+    const p = extractPage(html, u); p.municipal = extractMunicipal(html, u); return p;
+  });
+  return { sitio: { url: 'https://library.example.org/', titulo: 'Library', crawleado_en: '2026-09-27T00:00:00Z' }, paginas, ejecucion: { estado: 'parcial', pendientes: 0, errores: [], alcance: 'HTML' } };
+}
+const answerAll = prompt => JSON.parse(prompt.slice(prompt.indexOf('DOCUMENTOS: ') + 12)).map(d => ({ pagina_id: d.id, tipo: 'servicio', titulo_id: 'b0', evidencia_ids: ['b1'], requisitos_ids: [], pasos_ids: [], costo_ids: [], donde_se_hace_ids: [], destino_ids: [] }));
+
+test('Bob organizes batches as bounded parallel tasks and covers every page sent', async () => {
+  const map = mapOfMany(12), events = [];
+  let activas = 0, maximo = 0, llamadas = 0;
+  await organizeCatalog(map, { tamanoLote: 3, paralelo: 2, onEvent: e => events.push(e), run: async prompt => {
+    llamadas++; activas++; maximo = Math.max(maximo, activas);
+    await new Promise(r => setTimeout(r, 20)); activas--;
+    return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: answerAll(prompt) }), stats: { task_id: `t${llamadas}`, session_costs: 0.01 } };
+  } });
+  assert.equal(llamadas, 4); assert.equal(maximo, 2);
+  assert.equal(map.catalogo.fichas.length, 12);
+  assert.equal(map.catalogo.bob.estado, 'completado');
+  assert.equal(map.catalogo.bob.tareas.length, 4); assert.equal(map.catalogo.bob.tareas_paralelas, 2);
+  assert.equal(map.catalogo.bob.coste, 0.04);
+  assert.match(events[0].mensaje, /12 páginas en 4 tareas, 2 a la vez/);
+  assert.equal(events.filter(e => e.type === 'catalogo_bob_lote').length, 4);
+});
+
+test('a failed Bob batch keeps the fiches of the other batches and is reported as partial', async () => {
+  const map = mapOfMany(6);
+  await organizeCatalog(map, { tamanoLote: 3, paralelo: 2, run: async prompt => {
+    if (prompt.includes('service-0')) throw Error('timeout');
+    return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: answerAll(prompt) }) };
+  } });
+  assert.equal(map.catalogo.fichas.length, 3);
+  assert.equal(map.catalogo.bob.estado, 'parcial');
+  assert.deepEqual(map.catalogo.bob.tareas.map(t => t.estado), ['error', 'completado']);
+  assert.match(map.catalogo.calidad.advertencias.join(' '), /1 de 2 tareas de Bob fallaron; sus 3 páginas/);
+});
