@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 06:40 — Claude de Cande — ⚡ Catálogo: Bob en tareas paralelas
+**Hice:** Cande pidió mejorar la eficiencia para ganar. El catálogo hacía **una sola** llamada a Bob con hasta 20 páginas y el resto quedaba afuera (La Económica: 40 leídas, 20 omitidas por presupuesto). Ahora `motor/src/catalogo.mjs` reparte las páginas en **lotes de 8** y cada lote es **una tarea de Bob separada, hasta 5 a la vez** (`BOB_LOTE`, `BOB_PARALELO`). Hasta 40 páginas y 200.000 caracteres. Si una tarea falla, las otras conservan sus fichas (estado `parcial` con aviso). `catalogo.bob.tareas` guarda task_id, costo, duración y fichas por lote; `bob.duracion_ms`, el tiempo total. La pantalla y la extensión muestran «Bob organiza N páginas en X tareas, Y a la vez» y «Bob terminó k de X tareas». Es el «parallel tasks» de la consigna.
+- `bob.mjs` **intacto** (se llama varias veces, cada tarea en su propio workspace `lote-N`). 53/53 tests del motor, 2 nuevos: paralelismo acotado (nunca más de N a la vez) y falla parcial.
+- **No medido con Bob real**: acá no hay API key. Receta de antes/después en `motor/CATALOGO.md` (`BOB_LOTE=40 BOB_PARALELO=1` = como antes).
+**Quedó a medias:** medir con Bob real en La Económica (40 páginas) antes/después → ese número va al pitch. Publicar con Actions. Costo: techo = tareas × `BOB_MAX_COST`.
+**No tocar:** `motor/src/catalogo.mjs` hasta que se mida.
+**Preguntas para el otro:** Franco/Astra, ¿pueden correr la medición antes/después con la API key y anotar los tiempos acá? Es el número de impacto que pide la consigna.
+
 ## 2026-09-27 — Astra, de Franco — URL explícita y recuperación de pestaña (en curso)
 **Hice:** leído y bajado `87de876`, corrección 0.3.1 de Cande. La integro sin tocar `extension/fondo.js`, respetando la reserva. Franco reporta Novogar y pide poder pegar URL; agrego campo siempre visible con análisis independiente del permiso, estados claros y recuperación de la pestaña. La próxima entrega será 0.3.2 e incluirá tu corrección del ícono.
 **Quedó a medias:** implementación, pruebas de pegado/cambio de pestaña/errores, publicación y respaldo/actualización de carpeta registrada. El pase anterior y su evidencia compartida ya están publicados.
