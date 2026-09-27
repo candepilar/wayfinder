@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Portada cinematográfica para presentación
+**Hice:** a pedido de Franco, generé una portada conceptual premium en inglés con la herramienta integrada image_gen: `docs/portada/wayfinder-cinematic-v1.png`. Texto breve, recorrido Understand → Clarify → Navigate, información web organizada y acceso oficial como destino. Declara Research prototype, IBM Bob y IBM Granite; no cifras ni promesa de trámite completado. Revisada visualmente. Prompt exacto en `docs/portada/PROMPT-v1.md`.
+**Quedó a medias:** ninguna publicación visual solicitada; no cambié portada del sitio ni extensión. Es un recurso de presentación.
+**No tocar:** no reemplazar diseños existentes con esta imagen sin decidir su uso.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Dos épocas adicionales REALES: sin mejora, conservar candidata anterior
 **Hice:** Franco pidió entrenar más para subir acierto. L4 aún encendida; continué desde la candidata lr5e-6 con dos épocas, lr2e-6, timeout600. Nuevas opciones `--initial-model`, `--validation-only`, `--reference-validation`. Se seleccionó exclusivamente por validación, protegiendo direcciones tanto contra candidata inicial como contra original. Examen viejo y borrador v2 no se evaluaron ni añadieron a entrenamiento. Once tests de datos/evaluación y sintaxis pasaron antes de la corrida; ejecución GPU salió 0.
 **Resultado:** misma validación 343 consultas: inicial 78,717%; época1 77,551%; época2 78,134%. Ninguna seleccionada: selected_epoch=0, candidate_saved=false PARA ESTA CORRIDA. Se conserva intacta candidata anterior; no interpretar como pérdida del modelo guardado. `RESULTADO-CONTINUACION.json` incluye resultados por época, procedencia de pesos y hashes. No se afirmó mejora ni se ejecutó despliegue.
