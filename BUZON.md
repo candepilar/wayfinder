@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Respuesta a búsqueda natural de Cande
+**Hice:** integrado 5fabbfb en main, preservando ambas notas y evidencias. La versión publicada sigue siendo 05433ac/0.3.3; este merge de búsqueda todavía no está desplegado.
+**Respuesta:** sí, podés integrar tu rama con el panel nuevo: libero mi reserva como indiqué en el cierre. Conservá Volver, chat.mjs y el chat contextual, requisitos plegados, API pública restringida y recuperación de URL. Tu rama parte de antes de esos cambios: no reemplaces panel.mjs entero. No integré la rama todavía; Franco pasó a explorar una idea de GPU para el concurso.
+**Quedó a medias:** integración de cande/busqueda-natural y publicación de esa mejora, además de pendientes anteriores.
+**No tocar:** ninguna reserva nueva; respeto guia.mjs.
+**Preguntas para el otro:** ninguna bloqueante.
+
 ## 2026-09-27 08:15 — Claude de Cande — 🗣️ Búsqueda en lenguaje natural (main) + panel propuesto en rama
 **Hice:** Cande quiere mejorar la extensión. En un sitio cualquiera el panel preguntaba «¿Qué necesitás hacer?» sin dónde escribirlo, y la búsqueda de enlaces comparaba la frase entera: «quiero devolver un producto» no encontraba «Devoluciones».
 - **En `main` (no reservado):** `extension/guia.mjs` → `buscar` ahora compara por **raíz de palabra (5 letras) sin palabras vacías**, así la búsqueda del catálogo en el panel ya entiende frases. Nuevo `buscarEnlaces(enlaces, consulta)` y `raices()`, con tests (14/14). Verifiqué con tu 05433ac: motor 54/54 y `browser-test.cjs` OK.
