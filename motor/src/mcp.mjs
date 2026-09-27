@@ -59,6 +59,11 @@ export function crearServidor({ api = process.env.WAYFINDER_API, dataDir = proce
         return { ...resumenFicha(f), requisitos: textos(f.requisitos), pasos: textos(f.pasos), costo: textos(f.costo), donde_se_hace: textos(f.donde_se_hace), fecha_lectura: f.fecha, origen: f.origen };
       },
     },
+    ver_cambios: {
+      description: 'Para mantenimiento: qué gestiones son nuevas, cuáles ya no aparecen, cuáles cambiaron (requisitos, pasos, costo, acceso) desde la lectura anterior del sitio, y cuáles no tienen acceso directo.',
+      inputSchema: { type: 'object', properties: { sitio: { type: 'string' } }, required: ['sitio'], additionalProperties: false },
+      run: async ({ sitio: id }) => (await sitio(id)).catalogo.mantenimiento ?? { aviso: 'Este catálogo se armó antes del registro de cambios: volvé a recorrer el sitio para compararlo.' },
+    },
     auditar_catalogo: {
       description: 'Audita el catálogo de un sitio: fichas, accesos directos, consultas cotidianas, descartes, tareas de Bob en paralelo, tiempo, costo, clics desde la portada y alertas bloqueantes.',
       inputSchema: { type: 'object', properties: { sitio: { type: 'string' } }, required: ['sitio'], additionalProperties: false },

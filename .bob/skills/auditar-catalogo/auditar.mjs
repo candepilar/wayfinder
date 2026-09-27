@@ -35,6 +35,7 @@ export function auditar(entrada) {
     },
     descartadas_por_validacion: (q.descartadas || []).length,
     impacto: c.impacto ?? null,
+    mantenimiento: c.mantenimiento ? { primera_lectura: c.mantenimiento.primera_lectura, desde: c.mantenimiento.desde, nuevas: c.mantenimiento.nuevas.length, quitadas: c.mantenimiento.quitadas.length, modificadas: c.mantenimiento.modificadas.length, sin_acceso: c.mantenimiento.sin_acceso.length } : null,
     bob: { estado: bob.estado ?? null, tareas: tareas.length || (bob.task_id ? 1 : 0), paralelas: bob.tareas_paralelas ?? (bob.task_id ? 1 : null),
       tareas_fallidas: tareas.filter(t => t.estado === 'error').length, duracion_s: bob.duracion_ms != null ? Math.round(bob.duracion_ms / 100) / 10 : null,
       coste: bob.coste ?? null, task_ids: tareas.length ? tareas.map(t => t.task_id).filter(Boolean) : [bob.task_id].filter(Boolean) },

@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { extractMunicipal } from '../src/municipal.mjs';
 import { extractPage } from '../src/crawler.mjs';
-import { catalogFromHtml, catalogDocuments, acceptBobCatalog, organizeCatalog } from '../src/catalogo.mjs';
+import { catalogFromHtml, catalogDocuments, acceptBobCatalog, organizeCatalog, compararCatalogos } from '../src/catalogo.mjs';
 import { createApp } from '../src/server.mjs';
 
 const url = 'https://library.example.org/join';
@@ -198,4 +198,17 @@ test('impact: clicks from the home page to each fiche by the shortest link path,
   const ficha = map.catalogo.fichas.find(f => f.nombre === 'Sanidad animal');
   assert.equal(ficha.clics_desde_portada, 3);
   assert.deepEqual([map.catalogo.impacto.clics_promedio_portada, map.catalogo.impacto.clics_con_wayfinder, map.catalogo.impacto.gestiones_a_mas_de_2_clics], [3, 1, 1]);
+});
+
+test('maintenance: what changed on the site since the previous reading, by source page and literal text', () => {
+  const f = (nombre, fuente, extra = {}) => ({ nombre, fuente, requisitos: [{ texto: 'DNI.' }], pasos: [], costo: [], donde_se_hace: [], destinos: [{ url: 'https://m.org/iniciar/' + nombre.toLowerCase() }], ...extra });
+  const antes = { sitio: { crawleado_en: '2026-09-20' }, fichas: [f('Poda', 'https://m.org/poda'), f('Tasa', 'https://m.org/tasa'), f('Licencia', 'https://m.org/licencia')] };
+  const ahora = { fichas: [f('Poda', 'https://m.org/poda/'), f('Tasa', 'https://m.org/tasa', { requisitos: [{ texto: 'DNI.' }, { texto: 'Boleta  anterior.' }], destinos: [] }), f('Becas', 'https://m.org/becas')] };
+  const c = compararCatalogos(antes, ahora);
+  assert.equal(c.desde, '2026-09-20'); assert.equal(c.sin_cambios, 1);
+  assert.deepEqual(c.nuevas.map(x => x.nombre), ['Becas']); assert.deepEqual(c.quitadas.map(x => x.nombre), ['Licencia']);
+  assert.deepEqual(c.modificadas.map(x => [x.nombre, x.cambios.map(y => y.campo)]), [['Tasa', ['requisitos', 'acceso']]]);
+  assert.deepEqual(c.modificadas[0].cambios[0].agregados, ['Boleta anterior.']);
+  assert.deepEqual(c.sin_acceso.map(x => x.nombre), ['Tasa']);
+  assert.equal(compararCatalogos(null, ahora).primera_lectura, true);
 });

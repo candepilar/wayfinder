@@ -11,7 +11,7 @@ import { auditSecurity } from './seguridad.mjs';
 import { codeRoutes } from './codigo-routes.mjs';
 import { municipalRoutes } from './municipal-routes.mjs';
 import { crawlMunicipal } from './municipal-crawler.mjs';
-import { organizeCatalog } from './catalogo.mjs';
+import { compararCatalogos, organizeCatalog } from './catalogo.mjs';
 import { assistantRoutes } from './asistente-routes.mjs';
 import { extensionRequest, extensionRoutes } from './extension-routes.mjs';
 
@@ -107,6 +107,8 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
         }
         if (job.controller.signal.aborted) throw new Error('Recorrido cancelado.');
         job.mapaId = siteId(url);
+        // Antes de pisar la lectura anterior, se registra qué cambió en el sitio.
+        if (map.catalogo) map.catalogo.mantenimiento = compararCatalogos((await store.get(job.mapaId))?.catalogo, map.catalogo);
         await store.save(job.mapaId, map);
         job.estado = 'completado';
         emit({ type: 'completado', mapaId: job.mapaId, paginas: map.paginas.length, at: new Date().toISOString() });

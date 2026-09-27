@@ -5,7 +5,7 @@
       "args": ["motor/src/mcp.mjs"],
       "env": { "WAYFINDER_API": "https://andromedaweb.store/wayfinder/api/motor" },
       "disabled": false,
-      "alwaysAllow": ["listar_sitios", "buscar_gestion", "ver_ficha", "auditar_catalogo"]
+      "alwaysAllow": ["listar_sitios", "buscar_gestion", "ver_ficha", "ver_cambios", "auditar_catalogo"]
     }
   }
 }

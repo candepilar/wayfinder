@@ -140,6 +140,37 @@ export function medirClics(map, catalog) {
     nota: 'Camino más corto por los enlaces leídos desde la portada; es un mínimo. Con Wayfinder: buscar y elegir.' };
 }
 
+// Mantenimiento: qué cambió en el sitio desde la lectura anterior del mismo
+// catálogo. Compara por la página fuente de cada ficha y por el texto literal de
+// sus campos; no interpreta: si el sitio cambió una coma, figura como cambio.
+export function compararCatalogos(anterior, actual) {
+  const clave = f => String(f?.fuente || '').replace(/[#?].*$/, '').replace(/\/+$/, '');
+  const textos = v => (v || []).map(b => String(b.texto).replace(/\s+/g, ' ').trim()).filter(Boolean);
+  const campos = { requisitos: f => textos(f.requisitos), pasos: f => textos(f.pasos), costo: f => textos(f.costo), donde_se_hace: f => textos(f.donde_se_hace), acceso: f => (f.destinos || []).map(d => d.url) };
+  const resumen = f => ({ nombre: f.nombre, fuente: f.fuente });
+  const sinAcceso = (actual?.fichas || []).filter(f => !(f.destinos || []).length).map(resumen);
+  if (!anterior?.fichas) return { primera_lectura: true, desde: null, nuevas: [], quitadas: [], modificadas: [], sin_acceso: sinAcceso, sin_cambios: 0 };
+  const antes = new Map(anterior.fichas.map(f => [clave(f), f]));
+  const ahora = new Map((actual.fichas || []).map(f => [clave(f), f]));
+  const modificadas = [];
+  let sinCambios = 0;
+  for (const [k, f] of ahora) {
+    const previa = antes.get(k);
+    if (!previa) continue;
+    const cambios = Object.entries(campos).flatMap(([campo, leer]) => {
+      const a = new Set(leer(previa)), b = new Set(leer(f));
+      const agregados = [...b].filter(x => !a.has(x)), quitados = [...a].filter(x => !b.has(x));
+      return agregados.length || quitados.length ? [{ campo, agregados: agregados.slice(0, 5), quitados: quitados.slice(0, 5) }] : [];
+    });
+    if (f.nombre !== previa.nombre) cambios.unshift({ campo: 'nombre', agregados: [f.nombre], quitados: [previa.nombre] });
+    if (cambios.length) modificadas.push({ ...resumen(f), cambios }); else sinCambios++;
+  }
+  return { primera_lectura: false, desde: anterior.sitio?.crawleado_en ?? null,
+    nuevas: [...ahora].filter(([k]) => !antes.has(k)).map(([, f]) => resumen(f)),
+    quitadas: [...antes].filter(([k]) => !ahora.has(k)).map(([, f]) => resumen(f)),
+    modificadas, sin_acceso: sinAcceso, sin_cambios: sinCambios };
+}
+
 const entero = (valor, porDefecto, min, max) => { const n = Number(valor); return Number.isInteger(n) && n >= min && n <= max ? n : porDefecto; };
 
 // Pages are split into batches and each batch is a separate Bob task. Batches

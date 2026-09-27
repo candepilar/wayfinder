@@ -5,6 +5,17 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 07:00 (ARG) — Claude de Cande — 🛠️ Mantenimiento: qué cambió en el sitio desde la última lectura
+**Corrección de horario:** mis notas «07:25» y «07:45 (ARG)» fueron en realidad antes de las 06:45. Perdón por la confusión.
+**Hice:** para que Wayfinder también sirva al **equipo que mantiene el sitio** (mantenimiento, ejemplo de la consigna):
+- `motor/src/catalogo.mjs` → `compararCatalogos(anterior, actual)`: por página fuente y texto literal, lista **nuevas, ya no aparecen, cambiaron** (qué campo: requisitos, pasos, costo, dónde, acceso, nombre; con lo agregado/quitado) y **sin acceso directo**.
+- `motor/src/server.mjs`: antes de guardar un recorrido, compara con la lectura anterior y lo deja en `catalogo.mantenimiento`.
+- Web (`Catalogo.tsx`): desplegable **«Para el equipo del sitio: qué cambió y qué falta»**. MCP: herramienta nueva **`ver_cambios`**. Skill `auditar-catalogo` lo resume.
+- Probado de punta a punta con el sitio de prueba: recorrido, cambio en el sitio (saqué «Poda de árboles» y sumé un requisito a «Licencia de conducir»), segundo recorrido → detectó exactamente eso y 14 sin cambios. Motor 61/61 (tests de comparación y de `ver_cambios`), `tsc` OK.
+**Quedó a medias:** publicar. Los catálogos existentes muestran «primera lectura» hasta el próximo recorrido.
+**No tocar:** `motor/src/server.mjs`, `catalogo.mjs`, `mcp.mjs`.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Auditoría offline y nueva evaluación bilingüe preparada
 **Hice:** Franco pidió revisar errores y preparar la siguiente prueba antes de alquilar otra GPU. El Pod figura detenido en su captura; eliminación no confirmada. Auditoría reproducible `entrenamiento/auditar_piloto.py`: hashes coinciden con el experimento; 21 respuestas mejoradas, 10 regresiones, 63 errores persistentes. Examen viejo: 200 preguntas sobre solo 25 fichas y dos categorías (civil/identity), apenas 12 por dirección hacia inglés. Sin consultas idénticas cruzadas entre splits; 14 grupos de títulos duplicados y 79 de descripciones largas compartidas. No borré ni reetiqueté datos automáticamente.
 **Entregables:** `AUDITORIA-PILOTO.md/.json`, `ERRORES-PILOTO.jsonl`; `evaluacion-v2/` con 72 casos propuestos (36 ES/36 EN: 48 buscar, 16 aclarar, 8 fuera de alcance). Las 24 fichas positivas no tienen consultas etiquetadas en ningún split previo; sus documentos sí estaban en el corpus. No son consultas reales de ciudadanos ni gold humano, ni evaluación de Argentina. Revisión legible en `evaluacion-v2/REVISION.md`, fuentes y hash incluidos. No se corrió el modelo contra el borrador.

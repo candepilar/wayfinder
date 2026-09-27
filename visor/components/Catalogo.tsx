@@ -54,6 +54,7 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
         <div className="mt-5 grid gap-4 md:grid-cols-2">{results.map(f => <button key={f.id} onClick={() => setSelected(f)} className="rounded-xl border border-linea bg-superficie p-5 text-left shadow-panel hover:border-acento-borde"><h2 className="font-semibold">{f.nombre}</h2><p className="mt-3 text-sm text-tinta-media">Ver indicaciones y cómo continuar →</p></button>)}</div>
         {!results.length && <div className="mt-5 rounded-xl border border-linea bg-superficie p-5"><h2 className="font-medium">{catalog.fichas.length ? 'No encontramos coincidencias en este catálogo' : 'Todavía no identificamos gestiones con evidencia suficiente'}</h2><p className="mt-2 text-sm text-tinta-media">Eso no significa que no existan. Podés consultar el sitio o explorar el mapa de las páginas leídas.</p><a className="mt-3 inline-block text-sm underline" href={mapa.sitio.url} target="_blank" rel="noopener noreferrer">Ir al sitio de origen ↗</a></div>}
       </>}
+      {catalog.mantenimiento && <Mantenimiento m={catalog.mantenimiento} />}
       <details className="mt-10 rounded-xl border border-linea p-4 text-xs text-tinta-media">
         <summary className="cursor-pointer">Fuente y alcance · {mapa.paginas.length} páginas leídas · {catalog.fichas.length} fichas</summary>
         <p className="mt-3">Recorrido {mapa.ejecucion?.estado || 'de alcance limitado'}; {mapa.ejecucion?.pendientes || 0} enlaces pendientes. Lectura de HTML público; páginas que necesitan sesión, JavaScript o documentos adjuntos pueden quedar fuera.</p>
@@ -100,6 +101,23 @@ function ComoLoArmoBob({ catalog, leidas }: { catalog: CatalogoSitio; leidas: nu
       <span className="w-44 shrink-0 text-right">{t.estado === 'error' ? 'falló · sus páginas quedan afuera' : `${t.paginas} págs · ${segundos(t.duracion_ms) ?? '?'} s · ${t.fichas_aceptadas ?? 0} ${t.fichas_aceptadas === 1 ? 'gestión' : 'gestiones'}`}</span>
     </li>)}</ul>}
     <p className="mt-3 text-[11px] leading-relaxed text-tinta-suave">Bob solo elige bloques y enlaces que existen en las páginas leídas; el texto es el del sitio. Lo que no tiene evidencia se descarta.</p>
+  </details>;
+}
+
+const CAMPO: Record<string, string> = { nombre: 'nombre', requisitos: 'requisitos', pasos: 'pasos', costo: 'costo', donde_se_hace: 'dónde se hace', acceso: 'acceso' };
+// Para quien mantiene el sitio: qué cambió desde la lectura anterior y qué falta.
+function Mantenimiento({ m }: { m: NonNullable<CatalogoSitio['mantenimiento']> }) {
+  const lista = (titulo: string, items: { nombre: string; fuente: string; detalle?: string }[]) => items.length > 0 && <div className="mt-3"><p className="font-medium text-tinta">{titulo} · {items.length}</p><ul className="mt-1 space-y-1">{items.slice(0, 12).map(x => <li key={x.fuente}><a className="underline" href={x.fuente} target="_blank" rel="noopener noreferrer">{x.nombre}</a>{x.detalle && <span> — {x.detalle}</span>}</li>)}</ul></div>;
+  const cifras: [number, string][] = m.primera_lectura ? [[m.sin_acceso.length, 'sin acceso directo']] : [[m.nuevas.length, 'nuevas'], [m.quitadas.length, 'ya no aparecen'], [m.modificadas.length, 'cambiaron'], [m.sin_acceso.length, 'sin acceso directo']];
+  return <details className="mt-10 rounded-xl border border-linea bg-superficie p-4 text-sm text-tinta-media">
+    <summary className="cursor-pointer font-medium text-tinta">Para el equipo del sitio: qué cambió y qué falta</summary>
+    <p className="mt-3 text-xs">{m.primera_lectura ? 'Primera lectura de este sitio: la próxima vez que se recorra vas a ver qué cambió.' : `Comparado con la lectura del ${new Date(m.desde!).toLocaleString('es-AR')}. ${m.sin_cambios} gestiones sin cambios.`}</p>
+    <div className="mt-3 flex flex-wrap gap-2">{cifras.map(([n, t]) => <span key={t} className="rounded-full border border-linea px-3 py-1 text-xs"><strong className="text-tinta">{n}</strong> {t}</span>)}</div>
+    {lista('Nuevas', m.nuevas)}
+    {lista('Ya no aparecen', m.quitadas)}
+    {lista('Cambiaron', m.modificadas.map(x => ({ ...x, detalle: x.cambios.map(c => CAMPO[c.campo] || c.campo).join(', ') })))}
+    {lista('Sin acceso directo identificado', m.sin_acceso)}
+    <p className="mt-3 text-[11px]">Se compara el texto literal de cada ficha. Una gestión «sin acceso directo» puede tenerlo en el sitio pero no con un enlace que se pueda leer.</p>
   </details>;
 }
 

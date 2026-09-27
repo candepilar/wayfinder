@@ -26,7 +26,7 @@ test('Bob can use Wayfinder as an MCP server: list, search in everyday words, re
   const init = await call('initialize', { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'test', version: '1' } });
   assert.equal(init.result.serverInfo.name, 'wayfinder');
   child.stdin.write(JSON.stringify({ jsonrpc: '2.0', method: 'notifications/initialized' }) + '\n');
-  assert.deepEqual((await call('tools/list')).result.tools.map(x => x.name), ['listar_sitios', 'buscar_gestion', 'ver_ficha', 'auditar_catalogo']);
+  assert.deepEqual((await call('tools/list')).result.tools.map(x => x.name), ['listar_sitios', 'buscar_gestion', 'ver_ficha', 'ver_cambios', 'auditar_catalogo']);
   const sitios = (await tool('listar_sitios', {})).data;
   assert.deepEqual([sitios[0].sitio, sitios[0].fichas, sitios[0].bob], ['0123456789abcdef0123', 2, 'completado']);
   const encontradas = (await tool('buscar_gestion', { sitio: 'muni.example.org', consulta: 'se me escapó un perro abandonado' })).data;
@@ -35,6 +35,7 @@ test('Bob can use Wayfinder as an MCP server: list, search in everyday words, re
   const completa = (await tool('ver_ficha', { sitio: 'muni.example.org', ficha_id: 'p1' })).data;
   assert.deepEqual(completa.requisitos, ['Libreta sanitaria.']); assert.equal(completa.accesos[0].url, 'https://muni.example.org/turno');
   assert.equal((await tool('auditar_catalogo', { sitio: 'muni.example.org' })).data.fichas.total, 2);
+  assert.match((await tool('ver_cambios', { sitio: 'muni.example.org' })).data.aviso, /volvé a recorrer/);
   assert.match((await tool('ver_ficha', { sitio: 'otro.example.org', ficha_id: 'x' })).data, /No hay catálogo/);
   assert.equal((await call('tools/call', { name: 'borrar_todo', arguments: {} })).error.code, -32602);
 });
