@@ -65,6 +65,9 @@ def main():
     parser.add_argument('--epochs',type=int,default=3,choices=[1,2,3])
     parser.add_argument('--batch-size',type=int,default=16)
     parser.add_argument('--learning-rate',type=float,default=2e-5)
+    parser.add_argument('--initial-model',type=Path,help='Continue a saved candidate; preserve original checkpoint')
+    parser.add_argument('--validation-only',action='store_true',help='Select on development validation; never evaluate test')
+    parser.add_argument('--reference-validation',type=Path,help='Also protect directions against original baseline metrics')
     parser.add_argument('--check-data',action='store_true')
     args=parser.parse_args()
     if not 0<args.learning_rate<=1e-3:parser.error('learning-rate must be positive and <= 0.001')
@@ -81,7 +84,10 @@ def main():
     if not torch.cuda.is_available():raise RuntimeError('Run training on the GPU machine, not the production VPS')
     args.output.mkdir(parents=True)
     random.seed(42);torch.manual_seed(42);torch.cuda.manual_seed_all(42)
-    model=SentenceTransformer(MODEL,revision=REVISION,device='cuda',trust_remote_code=False)
+    if args.initial_model and not args.initial_model.is_dir():raise ValueError('Initial candidate directory missing')
+    initial_weights_sha256=hashlib.sha256((args.initial_model/'model.safetensors').read_bytes()).hexdigest() if args.initial_model else None
+    model=SentenceTransformer(str(args.initial_model) if args.initial_model else MODEL,
+        **({} if args.initial_model else {'revision':REVISION}),device='cuda',trust_remote_code=False)
     model.max_seq_length=512
     ids=list(corpus);texts=[document_text(corpus[i]) for i in ids]
     id_index={i:n for n,i in enumerate(ids)}
@@ -110,7 +116,9 @@ def main():
         print(json.dumps({k:v for k,v in result.items() if k!='records'}),flush=True)
         return result
     baseline_validation=evaluate(splits['validation'],'baseline-validation')
-    baseline_test=evaluate(splits['test'],'baseline-test')
+    baseline_test=None if args.validation_only else evaluate(splits['test'],'baseline-test')
+    reference_validation=json.loads(args.reference_validation.read_text(encoding='utf-8')) if args.reference_validation else baseline_validation
+    if reference_validation['directions'].keys()!=baseline_validation['directions'].keys():raise ValueError('Reference language directions differ')
     best_macro=sum(v['top1'] for v in baseline_validation['directions'].values())/len(baseline_validation['directions'])
     best_epoch=0;best_validation=baseline_validation
     loss=losses.MultipleNegativesRankingLoss(model)
@@ -130,17 +138,17 @@ def main():
         macro=sum(v['top1'] for v in validation['directions'].values())/len(validation['directions'])
         # Select only with validation. No direction can drop >2 percentage points
         # relative to baseline; this is an engineering gate, not statistical proof.
-        no_regression=all(v['top1']>=baseline_validation['directions'][k]['top1']-0.02 for k,v in validation['directions'].items())
+        no_regression=all(v['top1']>=max(baseline_validation['directions'][k]['top1'],reference_validation['directions'][k]['top1'])-0.02 for k,v in validation['directions'].items())
         if macro>best_macro and no_regression:
             best_macro=macro;best_epoch=epoch;best_validation=validation;model.save_pretrained(str(best_path))
         print(json.dumps({'epoch':epoch,'mean_training_loss':sum(losses_seen)/len(losses_seen),'selected':best_epoch}),flush=True)
     final_test=None
-    if best_epoch:
+    if best_epoch and not args.validation_only:
         # Release training allocations before loading the selected model.
         del optimizer,loss,model;torch.cuda.empty_cache()
         model=SentenceTransformer(str(best_path),device='cuda');model.max_seq_length=512
         final_test=evaluate(splits['test'],'selected-test')
-    test_gate=False
+    test_gate=None if args.validation_only else False
     if final_test:
         original_macro=sum(v['top1'] for v in baseline_test['directions'].values())/len(baseline_test['directions'])
         candidate_macro=sum(v['top1'] for v in final_test['directions'].values())/len(final_test['directions'])
@@ -149,10 +157,14 @@ def main():
         'peak_vram_allocated_gib':torch.cuda.max_memory_allocated()/1024**3,
         'peak_vram_reserved_gib':torch.cuda.max_memory_reserved()/1024**3,
         'epochs':args.epochs,'batch_size':args.batch_size,'learning_rate':args.learning_rate,'max_seq_length':512,
+        'initial_model':str(args.initial_model) if args.initial_model else MODEL,'initial_weights_sha256':initial_weights_sha256,
+        'validation_only':args.validation_only,'test_evaluated':not args.validation_only,
+        'baseline_validation':baseline_validation['all'],'selected_validation':best_validation['all'],
+        'baseline_validation_directions':baseline_validation['directions'],'selected_validation_directions':best_validation['directions'],
         'documents_truncated':truncations,'model_input':'official title and description; body used for query review only',
         'selected_epoch':best_epoch,'candidate_saved':bool(best_epoch),'deployed':False,
         'passes_synthetic_test_gate':test_gate,
-        'baseline_test':baseline_test['all'],'selected_test':final_test['all'] if final_test else None,
+        'baseline_test':baseline_test['all'] if baseline_test else None,'selected_test':final_test['all'] if final_test else None,
         'dataset_sha256':manifest['files_sha256'],'labels':'synthetic, automatically reviewed, not human gold',
         'versions':{p:importlib.metadata.version(p) for p in ['torch','sentence-transformers','transformers']},
         'next':'Independent citizen queries and VPS latency/memory benchmark required before claiming production quality.'}

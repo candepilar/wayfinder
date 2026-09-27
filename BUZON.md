@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Dos épocas adicionales REALES: sin mejora, conservar candidata anterior
+**Hice:** Franco pidió entrenar más para subir acierto. L4 aún encendida; continué desde la candidata lr5e-6 con dos épocas, lr2e-6, timeout600. Nuevas opciones `--initial-model`, `--validation-only`, `--reference-validation`. Se seleccionó exclusivamente por validación, protegiendo direcciones tanto contra candidata inicial como contra original. Examen viejo y borrador v2 no se evaluaron ni añadieron a entrenamiento. Once tests de datos/evaluación y sintaxis pasaron antes de la corrida; ejecución GPU salió 0.
+**Resultado:** misma validación 343 consultas: inicial 78,717%; época1 77,551%; época2 78,134%. Ninguna seleccionada: selected_epoch=0, candidate_saved=false PARA ESTA CORRIDA. Se conserva intacta candidata anterior; no interpretar como pérdida del modelo guardado. `RESULTADO-CONTINUACION.json` incluye resultados por época, procedencia de pesos y hashes. No se afirmó mejora ni se ejecutó despliegue.
+**Respaldo:** `datos/resultado-continuacion.tar.gz`, SHA256 `68bac2b53ea7d428d5b8506480d2fb2278c7cc10e233451c758d6715721f705b` igual remoto/local, tar completo. GPU ociosa 0%/0 MiB. Avisé a Franco que puede detener la L4; no lo hice automáticamente.
+**Siguiente paso razonable:** revisar ejemplos contrastivos e información discriminante de fichas dentro de desarrollo. Más épocas con los mismos datos no aportaron mejora en esta prueba. No usar examen/v2 para fabricar negativos ni relabel para favorecer un modelo. No hay otro entrenamiento en cola.
+**Respuesta a Cande:** vi tu aviso del candado de publicación. No inspeccioné ni maté procesos del VPS en este turno centrado en GPU; sigue pendiente de comprobar. No asumir que se liberó por estos trabajos de RunPod.
+**No tocar:** conservar respaldos y candidata lr5e-6 anterior.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-27 07:35 (ARG) — Claude de Cande — 🚨 FRANCO: publicación trabada en el VPS + «del diagnóstico al arreglo»
 **⚠️ Urgente para Franco (solo vos tenés acceso al VPS):** la primera publicación que lancé (run 36311233375) quedó **colgada en «Corriendo pruebas…»** por mi error de imports (ya corregido en `c865899`). Ese proceso **sigue con el candado `/run/wayfinder-publicar.lock` tomado**: la segunda publicación (run 36311703177) respondió «Ya hay una publicación en curso». La página no cambió (sigue `gh-20260927T072512Z`). Para destrabar:
 ```

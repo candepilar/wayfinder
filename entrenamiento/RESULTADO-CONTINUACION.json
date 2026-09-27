@@ -1,0 +1,105 @@
+{
+  "model": "ibm-granite/granite-embedding-97m-multilingual-r2",
+  "revision": "835ad14087e140460703cf0fae09f97d469d65c2",
+  "gpu": "NVIDIA L4",
+  "seed": 42,
+  "peak_vram_allocated_gib": 4.621333122253418,
+  "peak_vram_reserved_gib": 5.25,
+  "epochs": 2,
+  "batch_size": 16,
+  "learning_rate": 2e-06,
+  "max_seq_length": 512,
+  "initial_model": "/workspace/comparacion/modelo-lr5e6/best",
+  "initial_weights_sha256": "3d8f443ab23c0957e2e1362bdf13bc188367b516bc4c6b77d54d15941ce56c44",
+  "validation_only": true,
+  "test_evaluated": false,
+  "baseline_validation": {
+    "n": 343,
+    "top1": 0.7871720116618076,
+    "top3": 0.9329446064139941
+  },
+  "selected_validation": {
+    "n": 343,
+    "top1": 0.7871720116618076,
+    "top3": 0.9329446064139941
+  },
+  "baseline_validation_directions": {
+    "en->en": {
+      "n": 79,
+      "top1": 0.9367088607594937,
+      "top3": 1.0
+    },
+    "en->es": {
+      "n": 92,
+      "top1": 0.6739130434782609,
+      "top3": 0.9021739130434783
+    },
+    "es->en": {
+      "n": 80,
+      "top1": 0.85,
+      "top3": 0.9625
+    },
+    "es->es": {
+      "n": 92,
+      "top1": 0.717391304347826,
+      "top3": 0.8804347826086957
+    }
+  },
+  "selected_validation_directions": {
+    "en->en": {
+      "n": 79,
+      "top1": 0.9367088607594937,
+      "top3": 1.0
+    },
+    "en->es": {
+      "n": 92,
+      "top1": 0.6739130434782609,
+      "top3": 0.9021739130434783
+    },
+    "es->en": {
+      "n": 80,
+      "top1": 0.85,
+      "top3": 0.9625
+    },
+    "es->es": {
+      "n": 92,
+      "top1": 0.717391304347826,
+      "top3": 0.8804347826086957
+    }
+  },
+  "documents_truncated": 41,
+  "model_input": "official title and description; body used for query review only",
+  "selected_epoch": 0,
+  "candidate_saved": false,
+  "deployed": false,
+  "passes_synthetic_test_gate": null,
+  "baseline_test": null,
+  "selected_test": null,
+  "dataset_sha256": {
+    "train.jsonl": "1e1c000420668fb0f9c7afaa16e3ab12859e8f30bf234a6529fb2e84270365af",
+    "validation.jsonl": "86499b047cbb177de616d980e14a0d8acbb0b89ec314bb0bd71b1d81b32c9493",
+    "test.jsonl": "bf09a779b45132cf8200be559747b9c266359321d0a703531a50cf1152750200",
+    "corpus.jsonl": "4582a7f9c3248efc60698e593463013c8bc310b6a231ab0e06c98e23e8671b95"
+  },
+  "labels": "synthetic, automatically reviewed, not human gold",
+  "versions": {
+    "torch": "2.8.0+cu128",
+    "sentence-transformers": "5.1.1",
+    "transformers": "4.56.2"
+  },
+  "next": "Independent citizen queries and VPS latency/memory benchmark required before claiming production quality.",
+  "epochs_measured": {
+    "1": {
+      "n": 343,
+      "top1": 0.7755102040816326,
+      "top3": 0.9358600583090378
+    },
+    "2": {
+      "n": 343,
+      "top1": 0.7813411078717201,
+      "top3": 0.9387755102040817
+    }
+  },
+  "backup_sha256": "68bac2b53ea7d428d5b8506480d2fb2278c7cc10e233451c758d6715721f705b",
+  "retained_model": "previous model-lr5e6 candidate; no new checkpoint selected"
+}
