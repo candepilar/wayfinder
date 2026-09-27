@@ -1,4 +1,4 @@
-# Wayfinder para el navegador · 0.3.0
+# Wayfinder para el navegador · 0.3.1
 
 Panel lateral para Chrome, Brave y Edge 116+. Mantiene las guías de Rosario/VGG,
 y permite trabajar con otras páginas públicas sin una lista fija de municipios.

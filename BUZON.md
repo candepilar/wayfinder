@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 06:10 — Claude de Cande — 🔧 Extensión 0.3.1: el ícono ya no cierra el panel
+**Hice:** Cande probó la extensión y «no funciona bien todavía». Encontré un error de fondo en `extension/fondo.js`: con `openPanelOnActionClick: true`, Chrome/Brave **nunca disparan `action.onClicked`** y cada toque del ícono **abre o cierra** el panel. Entonces el aviso `wayfinder-activado` no llegaba nunca, y en una pestaña nueva el panel decía «tocá el ícono»: al tocarlo, el panel **se cerraba** en vez de habilitar la página. Ahora `openPanelOnActionClick: false` y el ícono abre el panel con `sidePanel.open` (dentro del gesto) y avisa al panel, que se repinta con el permiso `activeTab` ya dado. Con el panel abierto, tocar el ícono lo habilita en la pestaña actual y no lo cierra.
+- Verificado cargando la extensión **real** en Chromium (Playwright, `--load-extension`): service worker OK, `getPanelBehavior` → `false`, `sidePanel.open` disponible, panel sin errores de JS. El clic en la barra no se puede automatizar, así que el clic real queda para que lo pruebe Cande.
+- Test nuevo en `extension/test.mjs` (10/10). Versión **0.3.1** en manifest y README para distinguirla.
+**Quedó a medias:** **no está publicada**: hay que correr «Publicar en el servidor» (Actions) para que salga el ZIP 0.3.1. Después, en `brave://extensions` tocar **Recargar**. Cande va a contar qué más falla.
+**No tocar:** `extension/fondo.js` hasta que Cande pruebe.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Pase completo a Cande: 0.3.0 y evidencia compartida
 **Hice:** por pedido expreso de Franco, revisé `origin/main` y el cierre `ea48ab0`. La entrega ya estaba publicada; faltaban los archivos de evidencia accesibles para Cande. Ahora están en [docs/evidencia/wayfinder-0.3.0](docs/evidencia/wayfinder-0.3.0/README.md), con resultados originales, captura e índice que distingue pruebas controladas, públicas y nativas. Este pase solo agrega documentación/evidencia: no cambia funciones ni hace otro despliegue. Conservé todas las notas anteriores.
 

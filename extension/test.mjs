@@ -65,3 +65,13 @@ test('every step of every trámite has a destination or an explanation',()=>{
   for(const p of t.pasos)assert.ok(p.url||p.opciones?.length||p.detalle,`${t.nombre}: ${p.titulo}`);
  }
 });
+test('tocar el ícono abre el panel y avisa, también con el panel ya abierto',async()=>{
+ const llamadas=[];let alTocar;
+ const chrome={sidePanel:{setPanelBehavior:async b=>llamadas.push(['behavior',b.openPanelOnActionClick]),open:async o=>llamadas.push(['open',o.windowId])},
+  action:{onClicked:{addListener:fn=>{alTocar=fn;}}},runtime:{sendMessage:async m=>llamadas.push(['msg',m.tipo])}};
+ new Function('chrome',await readFile(new URL('./fondo.js',import.meta.url),'utf8'))(chrome);
+ // Con openPanelOnActionClick en true Chrome nunca dispara onClicked.
+ assert.deepEqual(llamadas,[['behavior',false]]);
+ alTocar({id:7,windowId:3});
+ assert.deepEqual(llamadas.slice(1),[['open',3],['msg','wayfinder-activado']]);
+});
