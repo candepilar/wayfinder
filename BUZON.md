@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 07:45 (ARG) — Claude de Cande — 🔌 Conector MCP de Wayfinder para Bob
+**Hice:** lo que el ganador anterior usó y nos faltaba: un **conector MCP**. `motor/src/mcp.mjs` es un servidor MCP por stdio (JSON-RPC, sin dependencias nuevas) con 4 herramientas de **solo lectura**: `listar_sitios`, `buscar_gestion` (palabras cotidianas, misma búsqueda por raíz + consultas de Bob), `ver_ficha` (texto literal con fuente y accesos) y `auditar_catalogo` (usa la skill). Datos: el motor publicado (`WAYFINDER_API`) o los mapas locales. No inicia recorridos ni llama a Bob.
+- Registrado en `.bob/mcp.json` (apunta al motor publicado). Los modos 🧭 y 🗺️ suman el grupo `mcp` y lo usan (comparar sitios / probar 3 consultas cotidianas). `.bob/README.md`: fila nueva y **Captura 5** con una llamada MCP.
+- Test `motor/test/mcp.test.mjs` que habla con el proceso como un cliente MCP (initialize, tools/list, las 4 herramientas, errores). Motor 60/60. Probado también contra el catálogo real de mi demo local.
+**Ojo:** el formato de `.bob/mcp.json` es el habitual (`mcpServers`), no pude confirmarlo en la doc de Bob (bloqueada desde mi sesión). Verificar en Bob IDE que aparezca «wayfinder» con sus 4 herramientas; si no, avisen y lo ajusto.
+**Quedó a medias:** verificar en Bob IDE; publicar.
+**No tocar:** `motor/src/mcp.mjs`, `.bob/`.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 06:44 (ARG) — Astra, de Franco — Respaldo del segundo piloto completo y verificado
 **Hice:** terminó scp con salida 0. Archivo local `entrenamiento/datos/piloto-suave.tar.gz`: 246.578.946 bytes; SHA256 `69244a5c88d8d9acf2f9c8ead7d468931c9ff5c08de13ce6ab5245e7e250ae82`, idéntico al remoto. `tar -tzf` terminó con salida 0 y lista pesos, tokenizer, configuración y evaluaciones. Datos del piloto ya respaldados por separado. Avisé a Franco que puede detener el Pod; NO lo apagué ni eliminé automáticamente.
 **Resultado que se conserva:** candidata de una época lr5e-6; examen sintético top1 58% → 63,5%, pero ES→EN 10/12 → 9/12. Control final no superado, sin despliegue. No se lanzaron más pruebas ni generación. Se pausa el aviso de respaldo.

@@ -11,6 +11,8 @@ Lo que Bob hace en este proyecto, con funciones propias de Bob:
 | Arma y audita un catálogo | 🗺️ Cartógrafo + skill `auditar-catalogo` | modo propio + skill + subagente explore |
 | Revisión técnica pasiva | 🔎 Revisor técnico | modo propio + subagentes |
 | Mide antes/después | skill `medir-impacto` | skill |
+| Catálogos como herramientas para cualquier agente | `.bob/mcp.json` → `motor/src/mcp.mjs` (listar_sitios, buscar_gestion, ver_ficha, auditar_catalogo) | conector MCP |
+| Impacto verificable por gestión | `catalogo.impacto`: clics desde la portada → 1 con Wayfinder | lectura de documentos + grafo de enlaces |
 
 Reglas del proyecto para Bob: `.bob/rules/wayfinder.md`.
 
@@ -27,6 +29,10 @@ Reglas del proyecto para Bob: `.bob/rules/wayfinder.md`.
 4. Modo 🔎 **Revisor técnico**, pedido:
    > Revisá motor/src/catalogo.mjs y motor/src/asistente.mjs.
    **Captura 4:** hallazgos con cita, severidad y riesgo (sin parches).
-5. Exportá el resumen de cada tarea (task summary) a `bob_sessions/`.
+5. En cualquier modo con MCP, pedido:
+   > Con el conector wayfinder, buscá «encontré un perro abandonado» en los sitios
+   > disponibles y decime a cuántos clics de la portada está.
+   **Captura 5:** la llamada a la herramienta MCP y su resultado.
+6. Exportá el resumen de cada tarea (task summary) a `bob_sessions/`.
 
 No se fabrican capturas: si algo falla, capturá el error y anotalo en `BUZON.md`.
