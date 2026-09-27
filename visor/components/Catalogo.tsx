@@ -4,16 +4,15 @@ import { useMemo, useState } from 'react';
 import { WebMap } from '@/lib/tipos';
 import { Ficha, Fragmento } from '@/lib/catalogo';
 import Asistente from './Asistente';
+import { buscarFichas } from '@/lib/buscar';
 const button = 'rounded-lg border border-linea bg-superficie px-4 py-2 text-sm text-tinta hover:border-acento-borde';
-const fold = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
 export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onVolver: () => void; onMapa: () => void }) {
   const catalog = mapa.catalogo!;
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<Ficha | null>(null);
   const results = useMemo(() => {
-    const terms = fold(query).split(/\s+/).filter(Boolean);
-    return catalog.fichas.filter(f => terms.every(t => fold([f.nombre, ...(f.consultas || []), ...f.requisitos.map(b => b.texto), ...f.pasos.map(b => b.texto)].join(' ')).includes(t)));
+    return buscarFichas(catalog.fichas, query);
   }, [catalog, query]);
   function descargar() {
     const url = URL.createObjectURL(new Blob([JSON.stringify(catalog, null, 2)], { type: 'application/json' }));
@@ -29,7 +28,7 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
       <p className="text-xs uppercase tracking-widest text-acento">Gestiones del sitio</p>
       <h1 className="mt-2 text-3xl font-semibold">{mapa.sitio.titulo || new URL(mapa.sitio.url).hostname}</h1>
       <p className="mt-3 max-w-2xl text-tinta-media">Encontrá lo que necesitás hacer, revisá las indicaciones y continuá en el sitio de origen.</p>
-      <Asistente contexto={`sitio:${mapa.sitio.url}`} nombre={mapa.sitio.titulo || mapa.sitio.url} onFicha={id => { setSelected(catalog.fichas.find(f => f.id === id) || null); setTimeout(() => document.getElementById('ficha-gestion')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0); }} />
+      <Asistente contexto={`sitio:${mapa.sitio.url}`} buscarLocal={q => buscarFichas(catalog.fichas, q, 3).map(f => ({ id: f.id, nombre: f.nombre }))} nombre={mapa.sitio.titulo || mapa.sitio.url} onFicha={id => { setSelected(catalog.fichas.find(f => f.id === id) || null); setTimeout(() => document.getElementById('ficha-gestion')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0); }} />
       {selected ? <>
         <button className={`${button} mt-6`} onClick={() => setSelected(null)}>← Volver a las gestiones</button>
         <article id="ficha-gestion" className="mt-6 space-y-5">

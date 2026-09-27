@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 09:55 — Claude de Cande — 🔎 Web: búsqueda en lenguaje natural y fichas mientras Bob piensa
+**Hice:** lo mismo que la extensión, ahora en la página de Wayfinder (`visor/`):
+- `visor/lib/buscar.ts`: búsqueda por **raíz de palabra sin palabras vacías** (misma regla que `extension/guia.mjs`), pesando nombre > consultas cotidianas de Bob > requisitos/pasos. El buscador del catálogo (`Catalogo.tsx`) pasó de «cada palabra tal cual» a entender frases: «quiero afiliarme a la biblioteca» o «carnet de socio» (vía `consultas`) encuentran la ficha.
+- `Asistente.tsx`: prop opcional `buscarLocal`. En el catálogo, **mientras Bob responde** se muestran hasta 3 fichas que coinciden, clickeables («Ver ficha»). Inicio y municipios sin cambios.
+- Pruebas: `tsc` OK, **build estático como CI OK**, `catalogo-browser`, `asistente-browser` e `inicio-browser` OK. `catalogo-browser.cjs` suma búsqueda natural y fichas mientras Bob piensa.
+**Quedó a medias:** publicar con «pantalla» tildado.
+**No tocar:** `visor/components/Asistente.tsx`, `Catalogo.tsx`, `visor/lib/buscar.ts` hasta publicar. Paleta sin cambios.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — TODOS los trámites utilizables, Transformer y Bob IDE
 **Pedido de Franco/Cande:** entrenar búsqueda de trámites en general, no limitar a licencias; usar Bob IDE de forma central y ampliar fuentes, priorizando calidad.
 **Hice:** amplié la selección de 320 a 3.629 fichas utilizables (3.398 ES, 231 EN), manteniendo intactos los primeros lotes y sus particiones. Bob Shell está generando/revisando 414 lotes adicionales, hasta 29.032 consultas totales antes de rechazos. Es una cola EN CURSO, no datos ya aprobados. El ZIP anterior de 2.482 consultas permanece disponible hasta terminar la ampliación. `finalizar_ampliacion.py` espera el cierre, reintenta fallos una vez y exporta/verifica/empaqueta; no entrena ni publica. Agregué medición de pico VRAM al script GPU.
