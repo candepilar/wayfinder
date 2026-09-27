@@ -1,0 +1,135 @@
+{
+  "model": "ibm-granite/granite-embedding-97m-multilingual-r2",
+  "revision": "835ad14087e140460703cf0fae09f97d469d65c2",
+  "gpu": "NVIDIA RTX PRO 4000 Blackwell",
+  "seed": 42,
+  "peak_vram_allocated_gib": 6.062982082366943,
+  "peak_vram_reserved_gib": 6.76171875,
+  "epochs": 1,
+  "batch_size": 16,
+  "learning_rate": 2e-06,
+  "max_seq_length": 512,
+  "initial_model": "/workspace/contrastes/modelo-lr5e6/best",
+  "initial_weights_sha256": "3d8f443ab23c0957e2e1362bdf13bc188367b516bc4c6b77d54d15941ce56c44",
+  "validation_only": true,
+  "test_evaluated": false,
+  "contrast_queries": 40,
+  "contrast_sha256": "1fff7f2d0e8c9e3e0412a56566b73264341ef37af41fbe5dd52af33fbdd8b28a",
+  "contrast_margin": 0.1,
+  "contrast_weight": 0.1,
+  "baseline_validation": {
+    "n": 343,
+    "top1": 0.7871720116618076,
+    "top3": 0.9329446064139941
+  },
+  "selected_validation": {
+    "n": 343,
+    "top1": 0.7871720116618076,
+    "top3": 0.9329446064139941
+  },
+  "baseline_validation_directions": {
+    "en->en": {
+      "n": 79,
+      "top1": 0.9367088607594937,
+      "top3": 1.0
+    },
+    "en->es": {
+      "n": 92,
+      "top1": 0.6739130434782609,
+      "top3": 0.9021739130434783
+    },
+    "es->en": {
+      "n": 80,
+      "top1": 0.85,
+      "top3": 0.9625
+    },
+    "es->es": {
+      "n": 92,
+      "top1": 0.717391304347826,
+      "top3": 0.8804347826086957
+    }
+  },
+  "selected_validation_directions": {
+    "en->en": {
+      "n": 79,
+      "top1": 0.9367088607594937,
+      "top3": 1.0
+    },
+    "en->es": {
+      "n": 92,
+      "top1": 0.6739130434782609,
+      "top3": 0.9021739130434783
+    },
+    "es->en": {
+      "n": 80,
+      "top1": 0.85,
+      "top3": 0.9625
+    },
+    "es->es": {
+      "n": 92,
+      "top1": 0.717391304347826,
+      "top3": 0.8804347826086957
+    }
+  },
+  "documents_truncated": 41,
+  "model_input": "official title and description; body used for query review only",
+  "selected_epoch": 0,
+  "candidate_saved": false,
+  "deployed": false,
+  "passes_synthetic_test_gate": null,
+  "baseline_test": null,
+  "selected_test": null,
+  "dataset_sha256": {
+    "train.jsonl": "1e1c000420668fb0f9c7afaa16e3ab12859e8f30bf234a6529fb2e84270365af",
+    "validation.jsonl": "86499b047cbb177de616d980e14a0d8acbb0b89ec314bb0bd71b1d81b32c9493",
+    "test.jsonl": "bf09a779b45132cf8200be559747b9c266359321d0a703531a50cf1152750200",
+    "corpus.jsonl": "4582a7f9c3248efc60698e593463013c8bc310b6a231ab0e06c98e23e8671b95"
+  },
+  "labels": "synthetic, automatically reviewed, not human gold",
+  "versions": {
+    "torch": "2.8.0+cu128",
+    "sentence-transformers": "5.1.1",
+    "transformers": "4.56.2"
+  },
+  "next": "Independent citizen queries and VPS latency/memory benchmark required before claiming production quality.",
+  "epoch_results": [
+    {
+      "name": "epoch-1-validation",
+      "all": {
+        "n": 343,
+        "top1": 0.7813411078717201,
+        "top3": 0.9358600583090378
+      },
+      "directions": {
+        "en->en": {
+          "n": 79,
+          "top1": 0.9240506329113924,
+          "top3": 1.0
+        },
+        "en->es": {
+          "n": 92,
+          "top1": 0.6521739130434783,
+          "top3": 0.9130434782608695
+        },
+        "es->en": {
+          "n": 80,
+          "top1": 0.8625,
+          "top3": 0.95
+        },
+        "es->es": {
+          "n": 92,
+          "top1": 0.717391304347826,
+          "top3": 0.8913043478260869
+        }
+      },
+      "seconds": 3.007500499486923,
+      "limitation": "Synthetic single-positive labels, country-filtered corpus, held-out topics on known source sites."
+    }
+  ],
+  "backup": {
+    "file": "datos/resultado-contrastes-v1.tar.gz",
+    "sha256": "ab785b2ffeb5256b45a713db01ce34aaeeec125f72c4b30e5225ee03fb5a3b53",
+    "bytes": 45732,
+    "local_hash_and_tar_verified": true
+  }
+}

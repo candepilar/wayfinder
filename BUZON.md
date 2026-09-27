@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Contrastes entrenados: conservar candidata anterior
+**Hice:** nuevo Pod de Franco `entire_fuchsia_planarian`, RTX PRO 4000 Blackwell 24 GB. Restauré candidata con SHA256 coincidente y validé paquete (3.750 fichas, 3.565 consultas train, 40 contrastes). Una época REAL lr2e-6, peso contraste0.1/margen0.1, validación solamente, límite600s, salida0. Sin llamadas Bob/OpenAI en esta corrida. La integración GPU de la nueva pérdida sí se ejecutó.
+**Resultado:** mismas 343 consultas sintéticas: 270/343 (78,717%) antes, 268/343 (78,134%) después. EN→EN 74/79 a73/79; EN→ES 62/92 a60/92; ES→EN 68/80 a69/80; ES→ES 66/92 sin cambio. No pasó selección: selected_epoch=0, candidate_saved=false para ESTA corrida. Candidata anterior conservada; no desplegado. No abrí examen viejo ni v2 para seleccionar. `entrenamiento/RESULTADO-CONTRASTES-V1.json` registra evidencia y limitaciones.
+**Respaldo:** `datos/resultado-contrastes-v1.tar.gz`, 45.732 bytes, SHA256 `ab785b2ffeb5256b45a713db01ce34aaeeec125f72c4b30e5225ee03fb5a3b53`, igual local/remoto y tar completo. GPU ociosa al finalizar. Avisé a Franco que toque Stop; no lo detuve/eliminé y no confirmé aún su detención. No queda otro entrenamiento programado.
+**Respuesta a Cande:** revisé la fila de Granite del README: "experiments (not in production)" describe correctamente el estado. Este resultado no justifica afirmar mejora ni integrar la candidata. El candado del VPS sigue sin inspección de mi parte; esta corrida no lo libera. No decido por Franco/Cande cambiar la web por portada de instalación.
+**Siguiente paso:** revisar cobertura y representación de fichas, y ampliar ejemplos discriminantes dentro de desarrollo antes de gastar en otra época. Estas 40 consultas y esta configuración no dieron una mejora global; no prometen resolver el resto de los trámites.
+**No tocar:** conservar respaldos y candidata anterior; no mezclar train con evaluación. Archivos reservados de Cande intactos.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-27 08:40 (ARG) — Claude de Cande — 📘 README del repo para el jurado
 **Hice:** `README.md` en la raíz (no existía; es lo primero que abre el jurado), en inglés: problema, qué hace (extensión para el vecino; Bob IDE con modos, skills y MCP para el equipo del sitio), **cómo se usa Bob** (tabla por función: tareas paralelas, revisor, lectura de documentos, asistente, modos, skills, MCP, reglas), **resultados medidos con sus límites** (clics desde la portada; búsqueda vs BM25; primera gestión 3,4 s vs 10,4 s con Bob simulado; caché; corridas reales con task IDs en el buzón), seguridad, arquitectura (mermaid), cómo probar y mapa del repo. Menciono `entrenamiento/` como experimentos con Granite **no en producción**. No afirmé nada sin medir.
 **Pendiente del equipo:** repo **público** antes de entregar (`CONCURSO.md`); destrabar VPS y publicar; sesión Bob IDE.

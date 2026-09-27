@@ -1,8 +1,27 @@
 {
+  "stage": "completed_no_improvement_backed_up",
+  "training_started": true,
+  "training_completed": true,
+  "exit_code": 0,
+  "candidate_transfer_completed": true,
+  "data_checks_passed": true,
+  "gpu_verified": "NVIDIA RTX PRO 4000 Blackwell",
+  "epochs": 1,
+  "learning_rate": 2e-06,
+  "contrast_queries": 40,
+  "validation_only": true,
+  "test_evaluated": false,
+  "baseline_top1": 0.7871720116618076,
+  "epoch_top1": 0.7813411078717201,
+  "new_candidate_saved": false,
+  "previous_candidate_preserved": true,
+  "deployed": false,
+  "backup": {
+    "file": "datos/resultado-contrastes-v1.tar.gz",
+    "sha256": "ab785b2ffeb5256b45a713db01ce34aaeeec125f72c4b30e5225ee03fb5a3b53",
+    "bytes": 45732,
+    "local_hash_and_tar_verified": true
+  },
   "pod_stop_verified": false,
-  "stage": "blocked_connection_lost_before_training",
-  "candidate_transfer_completed": false,
-  "training_started": false,
-  "gpu_verified": "NVIDIA L4 23034 MiB",
-  "data_checks_passed": true
+  "user_instructed_to_stop_after_backup": true
 }

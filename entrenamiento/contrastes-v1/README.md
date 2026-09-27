@@ -1,6 +1,9 @@
 # Distinguir trámites parecidos
 
-Estado: datos preparados y controles offline aprobados; todavía no entrenados.
+Estado: experimento GPU ejecutado y respaldado el 27/09/2026. Una época con
+40 contrastes no mejoró la validación: 78,717% a 78,134% (270 a 268 aciertos
+sobre 343). No se guardó una candidata nueva; se conserva la anterior.
+Detalle: `../RESULTADO-CONTRASTES-V1.json`. No desplegado.
 Autor y revisión de fuentes: Astra (IA). No son consultas ciudadanas ni validación
 humana; no se verificó vigencia legal en línea. Son consultas para encontrar fichas,
 no respuestas sobre requisitos, precios o plazos.
