@@ -13,7 +13,7 @@ export function chatBob({ el, publica, ir, buscarLocal = () => [] }) {
   const status = el('p', { class: 'vacio', role: 'status' });
   // Mientras Bob piensa (10–15 s), lo que ya coincide en el catálogo local.
   const mientras = el('div', { class: 'chat-mientras', hidden: true });
-  const input = el('textarea', { id: 'bob-pregunta', rows: 2, maxlength: 1000, placeholder: 'Ej.: quiero renovar mi carnet', 'aria-label': 'Tu mensaje para Bob' });
+  const input = el('textarea', { id: 'bob-pregunta', rows: 2, maxlength: 1000, placeholder: 'Contale con tus palabras qué necesitás', 'aria-label': 'Tu mensaje para Bob' });
   input.value = session.draft;
   input.addEventListener('input', () => { session.draft = input.value; });
   const send = el('button', { type: 'submit', class: 'boton' }, 'Enviar');
@@ -86,9 +86,11 @@ export function chatBob({ el, publica, ir, buscarLocal = () => [] }) {
   }
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); void ask(); } });
   const node = el('section', { class: 'bloque chat-bob', 'aria-label': 'Asistente Bob' },
-    el('div', { class: 'chat-titulo' }, el('label', { for: 'bob-pregunta' }, '¿Qué necesitás hacer?'), reset),
+    el('div', { class: 'chat-titulo' }, el('label', { for: 'bob-pregunta' }, '¿No lo encontrás? Preguntale a Bob'), reset),
     log, mientras, el('form', { onsubmit: e => { e.preventDefault(); void ask(); } }, input,
       el('div', { class: 'chat-acciones' }, el('span', { class: 'fuente' }, 'Bob · guía con IA'), cancel, send)), status);
   render();
-  return { node, dispose() { disposed = true; task?.abort(); } };
+  return { node, dispose() { disposed = true; task?.abort(); },
+    // Desde el buscador: manda a Bob lo que la búsqueda instantánea no encontró.
+    preguntar(texto) { if (task || !texto?.trim()) return; input.value = texto.trim(); session.draft = input.value; node.scrollIntoView({ block: 'nearest' }); void ask(); } };
 }
