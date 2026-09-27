@@ -35,6 +35,8 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
         <button className={`${button} mt-6`} onClick={() => setSelected(null)}>← Volver a las gestiones</button>
         <article id="ficha-gestion" className="mt-6 space-y-5">
           <h2 className="text-2xl font-semibold">{selected.nombre}</h2>
+          {selected.verificacion?.estado === 'confirmada' && <p className="text-sm text-acento">✓ Verificada por una segunda revisión de IBM Bob contra la página oficial.</p>}
+          {selected.verificacion?.estado === 'dudosa' && <p className="rounded-lg border border-linea bg-superficie p-3 text-sm text-tinta">Bob marcó esta ficha para revisar: {selected.verificacion.motivo} Confirmá en la página oficial.</p>}
           <div className="rounded-xl border border-acento-borde bg-acento-suave p-5">
             <div className="flex flex-wrap gap-3">{selected.destinos.map(d => <a key={d.url} href={d.url} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-acento px-4 py-3 text-sm font-medium text-acento-tinta">{d.texto} ↗</a>)}</div>
             {!selected.destinos.length && <p className="text-sm">No identificamos un acceso directo inequívoco. Consultá la página de origen para continuar.</p>}
@@ -52,10 +54,10 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
         <label htmlFor="buscar-gestion" className="mt-7 block text-sm font-medium">¿Qué necesitás hacer?</label>
         <input id="buscar-gestion" value={query} onChange={e => setQuery(e.target.value)} placeholder="Buscá una gestión o servicio" className="mt-2 w-full rounded-xl border border-linea bg-superficie px-4 py-3 text-sm outline-none focus:border-acento-borde" />
         <p role="status" className="mt-3 text-xs text-tinta-suave">{results.length} gestiones encontradas en el catálogo</p>
-        <div className="mt-5 grid gap-4 md:grid-cols-2">{results.map(f => <button key={f.id} onClick={() => setSelected(f)} className="rounded-xl border border-linea bg-superficie p-5 text-left shadow-panel hover:border-acento-borde"><h2 className="font-semibold">{f.nombre}</h2><p className="mt-3 text-sm text-tinta-media">Ver indicaciones y cómo continuar →</p></button>)}</div>
+        <div className="mt-5 grid gap-4 md:grid-cols-2">{results.map(f => <button key={f.id} onClick={() => setSelected(f)} className="rounded-xl border border-linea bg-superficie p-5 text-left shadow-panel hover:border-acento-borde"><h2 className="font-semibold">{f.nombre}</h2>{f.verificacion && <p className="mt-1 text-xs text-tinta-media">{f.verificacion.estado === 'confirmada' ? '✓ Verificada por Bob' : 'Para revisar'}</p>}<p className="mt-3 text-sm text-tinta-media">Ver indicaciones y cómo continuar →</p></button>)}</div>
         {!results.length && <div className="mt-5 rounded-xl border border-linea bg-superficie p-5"><h2 className="font-medium">{catalog.fichas.length ? 'No encontramos coincidencias en este catálogo' : 'Todavía no identificamos gestiones con evidencia suficiente'}</h2><p className="mt-2 text-sm text-tinta-media">Eso no significa que no existan. Podés consultar el sitio o explorar el mapa de las páginas leídas.</p><a className="mt-3 inline-block text-sm underline" href={mapa.sitio.url} target="_blank" rel="noopener noreferrer">Ir al sitio de origen ↗</a></div>}
       </>}
-      <Mantenimiento m={catalog.mantenimiento} sitio={mapa.sitio.url} fichas={catalog.fichas.length} />
+      <Mantenimiento m={catalog.mantenimiento} sitio={mapa.sitio.url} fichas={catalog.fichas.length} dudosas={catalog.fichas.filter(f => f.verificacion?.estado === 'dudosa').map(f => ({ nombre: f.nombre, fuente: f.fuente, detalle: f.verificacion?.motivo }))} />
       <details className="mt-10 rounded-xl border border-linea p-4 text-xs text-tinta-media">
         <summary className="cursor-pointer">Fuente y alcance · {mapa.paginas.length} páginas leídas · {catalog.fichas.length} fichas</summary>
         <p className="mt-3">Recorrido {mapa.ejecucion?.estado || 'de alcance limitado'}; {mapa.ejecucion?.pendientes || 0} enlaces pendientes. Lectura de HTML público; páginas que necesitan sesión, JavaScript o documentos adjuntos pueden quedar fuera.</p>
@@ -92,6 +94,7 @@ function ComoLoArmoBob({ catalog, leidas }: { catalog: CatalogoSitio; leidas: nu
     [catalog.fichas.length, 'gestiones con fuente'],
     ...(catalog.impacto ? [[`${String(catalog.impacto.clics_promedio_portada).replace('.', ',')} → 1`, 'clics promedio desde la portada → con Wayfinder'] as [string, string]] : []),
     ...(descartadas ? [[descartadas, 'descartadas por falta de evidencia'] as [number, string]] : []),
+    ...(catalog.calidad.revision_bob?.tareas ? [[`${catalog.calidad.revision_bob.confirmadas}/${catalog.calidad.revision_bob.confirmadas + catalog.calidad.revision_bob.dudosas}`, 'confirmadas por una segunda revisión de Bob'] as [string, string]] : []),
   ];
   return <details className="mt-5 rounded-xl border border-linea bg-superficie p-4" open={tareas.length > 1}>
     <summary className="cursor-pointer text-sm font-medium text-tinta">Cómo lo armó IBM Bob</summary>
@@ -107,7 +110,7 @@ function ComoLoArmoBob({ catalog, leidas }: { catalog: CatalogoSitio; leidas: nu
 
 const CAMPO: Record<string, string> = { nombre: 'nombre', requisitos: 'requisitos', pasos: 'pasos', costo: 'costo', donde_se_hace: 'dónde se hace', acceso: 'acceso' };
 // Para quien mantiene el sitio: qué cambió desde la lectura anterior y qué falta.
-function Mantenimiento({ m, sitio, fichas }: { m?: CatalogoSitio['mantenimiento']; sitio: string; fichas: number }) {
+function Mantenimiento({ m, sitio, fichas, dudosas = [] }: { m?: CatalogoSitio['mantenimiento']; sitio: string; fichas: number; dudosas?: { nombre: string; fuente: string; detalle?: string }[] }) {
   const descarga = (formato: string) => `${API_BASE}/exportar?url=${encodeURIComponent(sitio)}&formato=${formato}`;
   const arreglo = fichas > 0 && <div className="mt-3 rounded-lg border border-acento-borde bg-acento-suave p-4">
     <p className="font-medium text-tinta">Del diagnóstico al arreglo</p>
@@ -126,6 +129,7 @@ function Mantenimiento({ m, sitio, fichas }: { m?: CatalogoSitio['mantenimiento'
     {lista('Ya no aparecen', m.quitadas)}
     {lista('Cambiaron', m.modificadas.map(x => ({ ...x, detalle: x.cambios.map(c => CAMPO[c.campo] || c.campo).join(', ') })))}
     {lista('Sin acceso directo identificado', m.sin_acceso)}
+    {lista('Bob las marcó para revisar', dudosas)}
     <p className="mt-3 text-[11px]">Se compara el texto literal de cada ficha. Una gestión «sin acceso directo» puede tenerlo en el sitio pero no con un enlace que se pueda leer.</p>
   </details>;
 }
