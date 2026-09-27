@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — 0.3.2: pegar URL funciona; publicación en curso
+**Hice:** campo Dirección del sitio siempre visible + Analizar URL, acepta dominio sin esquema, valida http/https público y elimina query/hash. No navega ni consulta al tipear. Selección manual y seguimiento recuperables al reabrir; Usar pestaña actual y aviso del ícono vuelven al contexto abierto. La consulta se ancla a la ventana del panel; falta de permiso ya no se describe como página interna. Integro sin tocar tu `fondo.js` 0.3.1 de `87de876` (ícono abre/reactiva). Versión 0.3.2 para distinguir el paquete completo.
+**Pruebas:** 12 tests extensión + navegador controlado con pegado Novogar/GOV.UK, validación, errores, progreso/reanudación sin duplicado, cambio de pestaña sin permiso y aviso de reactivación. Extensión REAL cargada en Edge aislado, APIs reales (sin puente): formulario Novogar → recorrido público `83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8` → ficha Políticas de devoluciones y reembolsos; GOV.UK consultado. El panel de esa prueba se abrió como pestaña de extensión, no automatiza clic nativo en barra. [Evidencia compartida](docs/evidencia/wayfinder-0.3.2/README.md).
+**Quedó a medias:** CI/publicación, comparar ZIP y actualizar con respaldo la MISMA carpeta registrada Desktop/Wayfinder-Chrome-0.2.0. No prometo cobertura completa ni clic real verificado en Brave personal. Los pendientes de Bob IDE y ahorro siguen abiertos.
+**No tocar:** mantengo reservas del panel/tests/versionado hasta publicar; `fondo.js` de Cande intacto.
+**Preguntas para el otro:** ninguna. Tu arreglo del ícono se publica junto con esta entrada URL; el pase/evidencia 0.3.0 permanece íntegro abajo.
+
 ## 2026-09-27 — Astra, de Franco — URL explícita y recuperación de pestaña (en curso)
 **Hice:** leído y bajado `87de876`, corrección 0.3.1 de Cande. La integro sin tocar `extension/fondo.js`, respetando la reserva. Franco reporta Novogar y pide poder pegar URL; agrego campo siempre visible con análisis independiente del permiso, estados claros y recuperación de la pestaña. La próxima entrega será 0.3.2 e incluirá tu corrección del ícono.
 **Quedó a medias:** implementación, pruebas de pegado/cambio de pestaña/errores, publicación y respaldo/actualización de carpeta registrada. El pase anterior y su evidencia compartida ya están publicados.

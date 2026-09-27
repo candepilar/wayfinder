@@ -87,3 +87,10 @@ button:disabled { opacity: .6; cursor: wait; }
 .cuerpo, .opcion, .fuente { min-width: 0; overflow-wrap: anywhere; }
 #motor-estado { margin-block: 10px; display: grid; gap: 8px; }
 .bloque > div > .buscador { margin-block: 12px; }
+.entrada-url { padding: 14px 16px; border-bottom: 1px solid var(--linea); }
+.entrada-url label { display: block; font-weight: 600; margin-bottom: 6px; }
+.entrada-url .buscador { flex-wrap: wrap; }
+.entrada-url input { flex-basis: 170px; }
+.entrada-url button[type=submit] { flex-grow: 1; }
+.entrada-url [role=alert]:empty { display: none; }
+.entrada-url [role=alert] { margin-block: 8px; }

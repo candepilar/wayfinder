@@ -1,0 +1,160 @@
+{
+  "environment": "real unpacked extension in isolated headless Edge; panel in extension tab, not native toolbar click",
+  "version": "0.3.2",
+  "panel": {
+    "openPanelOnActionClick": false
+  },
+  "cases": [
+    {
+      "input": "novogar.com.ar",
+      "header": "novogar.com.ar",
+      "message": "",
+      "results": [
+        "Políticas de devoluciones y reembolsos"
+      ],
+      "empty": [
+        "1 gestiones encontradas · cobertura parcial. Revisá las condiciones en su fuente."
+      ],
+      "requests": [
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/extension/catalogo?url=https%3A%2F%2Fnovogar.com.ar%2F",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos",
+          "method": "POST",
+          "body": {
+            "url": "https://novogar.com.ar/",
+            "catalogo": true,
+            "maxPaginas": 20
+          }
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/recorridos/83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8",
+          "method": "GET",
+          "body": null
+        },
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/mapas/10797c850b575d0cba6e/catalogo",
+          "method": "GET",
+          "body": null
+        }
+      ]
+    },
+    {
+      "input": "https://www.gov.uk/renew-driving-licence",
+      "header": "www.gov.uk",
+      "message": "",
+      "results": [],
+      "empty": [],
+      "requests": [
+        {
+          "url": "https://andromedaweb.store/wayfinder/api/motor/extension/catalogo?url=https%3A%2F%2Fwww.gov.uk%2Frenew-driving-licence",
+          "method": "GET",
+          "body": null
+        }
+      ]
+    }
+  ]
+}

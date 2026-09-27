@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {publicPage,destination} from './url.mjs';
+import {publicPage,destination,enteredPage,tabMessage} from './url.mjs';
 import {buscar,coincide,objetivoEn,pasoActual,sitioDe,tramiteDe} from './guia.mjs';
 import {readFile} from 'node:fs/promises';
 import {guiaDeCatalogo} from './catalogo.mjs';
@@ -21,6 +21,16 @@ test('dynamic catalog retains whole conditions, only sourced URLs and honest mis
 test('only public web URLs; strips query and fragment',()=>{
  assert.equal(publicPage('https://example.com/path?token=private#secret'),'https://example.com/path');
  for(const u of ['chrome://extensions','file:///secret','https://u:p@example.com','http://127.0.0.1/','http://localhost/','http://a.local/','http://[::1]/'])assert.throws(()=>publicPage(u));
+});
+
+test('typed URL accepts a bare domain and never forwards private query or unsafe schemes',()=>{
+ assert.equal(enteredPage(' novogar.com.ar '),'https://novogar.com.ar/');
+ assert.equal(enteredPage('https://www.gov.uk/renew-driving-licence?token=secret#private'),'https://www.gov.uk/renew-driving-licence');
+ for(const u of ['', 'a b.com','chrome://extensions','file:///secret','javascript:alert(1)','data:text/html,x','http://localhost/','http://127.0.0.1/','http://a.local/','https://u:p@example.org','http://0x7f000001/'])assert.throws(()=>enteredPage(u),u);
+});
+test('unknown tab permissions are distinct from known internal pages',()=>{
+ assert.match(tabMessage(''),/no tengo permiso/);assert.ok(!tabMessage('').includes('interna'));
+ assert.match(tabMessage('brave://extensions'),/interna/);assert.equal(tabMessage('https://novogar.com.ar/'),null);
 });
 test('handoff goes only to Wayfinder and does not start a job',()=>{
  const u=new URL(destination('https://example.com/a?x=y'));assert.equal(u.origin,'https://andromedaweb.store');assert.equal(u.pathname,'/wayfinder/');assert.equal(u.searchParams.get('sitio'),'https://example.com/a');assert.deepEqual([...u.searchParams.keys()],['sitio']);

@@ -1,5 +1,5 @@
 import { buscar, objetivoEn, pasoActual, sitioDe, tramiteDe } from './guia.mjs';
-import { destination, publicPage } from './url.mjs';
+import { destination, publicPage, enteredPage, tabMessage } from './url.mjs';
 import { guiaDeCatalogo, motor } from './catalogo.mjs';
 import { accesosVisibles } from './pagina.mjs';
 
@@ -13,7 +13,13 @@ const enExtension = typeof chrome !== 'undefined' && !!chrome.tabs;
 const pestana = {
   async actual() {
     if (!enExtension) return { id: null, url: new URLSearchParams(location.search).get('url') || '' };
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    let query = { active: true, currentWindow: true };
+    // Anchor the side panel to its own browser window, not another last-focused
+    // window. Reading tab identity still respects activeTab/host permissions.
+    if (chrome.windows?.getCurrent) {
+      try { query = { active: true, windowId: (await chrome.windows.getCurrent()).id }; } catch {}
+    }
+    const [tab] = await chrome.tabs.query(query);
     return { id: tab?.id ?? null, url: tab?.url || '' };
   },
   async ir(url) {
@@ -45,11 +51,11 @@ function el(tag, props = {}, ...hijos) {
   return n;
 }
 
-function vistaSinSitio() {
+function vistaSinSitio(tab) {
   $sitio.textContent = 'Tu guía en la web';
   return [
     el('h1', {}, 'Te llevo paso a paso en tu trámite'),
-    el('p', { class: 'vacio' }, 'Abrí una página pública y tocá el ícono de Wayfinder en esa pestaña para habilitar la guía. Las páginas internas del navegador no admiten extensiones.'),
+    el('p', { class: 'vacio' }, tabMessage(tab.url)),
     el('h2', {}, 'Guías municipales disponibles'),
     el('ul', { class: 'lista' }, rutas.sitios.map(s =>
       el('li', {}, el('button', { class: 'resultado', onclick: () => pestana.ir(s.portada) }, s.nombre)))),
@@ -139,24 +145,62 @@ async function vistaTramite(sitio, t, tab) {
 
 let revision = 0;
 let sondeo;
+let elegida = null;
+try { const previa = await guardado.leer('url-elegida'); if (previa) elegida = publicPage(previa); } catch {}
+const entrada = el('input', { id: 'url-sitio', type: 'text', inputmode: 'url', autocomplete: 'url', spellcheck: 'false', placeholder: 'Ej.: novogar.com.ar', 'aria-describedby': 'url-ayuda url-error' });
+entrada.value = elegida || '';
+const errorUrl = el('p', { id: 'url-error', class: 'vacio', role: 'alert' });
+const enviarUrl = el('button', { type: 'submit', class: 'boton' }, 'Analizar URL');
+const formularioUrl = el('form', { class: 'entrada-url', onsubmit: async e => {
+  e.preventDefault(); errorUrl.textContent = '';
+  let url;
+  try { url = enteredPage(entrada.value); }
+  catch (error) { errorUrl.textContent = error.message; entrada.focus(); return; }
+  enviarUrl.disabled = true;
+  try {
+    elegida = url; entrada.value = url;
+    await guardado.escribir('url-elegida', url);
+    await pintar();
+    if (elegida === url) document.getElementById('motor-iniciar')?.click();
+  } catch { errorUrl.textContent = 'No pude preparar la consulta. Reintentá.'; }
+  finally { enviarUrl.disabled = false; }
+} }, el('label', { for: 'url-sitio' }, 'Dirección del sitio'),
+  el('div', { class: 'buscador' }, entrada, enviarUrl),
+  el('p', { id: 'url-ayuda', class: 'fuente' }, 'Pegá una URL para consultar el catálogo sin permiso sobre la pestaña. Solo se envía al tocar Analizar URL, sin parámetros ni fragmentos.'),
+  errorUrl,
+  el('button', { type: 'button', class: 'enlace', onclick: usarPestana }, 'Usar pestaña actual'));
+$contenido.before(formularioUrl);
+async function usarPestana() {
+  elegida = null; errorUrl.textContent = '';
+  await guardado.escribir('url-elegida', null);
+  const actual = await pestana.actual();
+  try { entrada.value = publicPage(actual.url); } catch { entrada.value = ''; }
+  await pintar();
+}
 async function pintar() {
   const estaRevision = ++revision;
   clearTimeout(sondeo);
   const tab = await pestana.actual();
+  const contexto = elegida ? { id: null, url: elegida } : tab;
   const cache = (await guardado.leer('catalogos')) || [];
   const todas = { sitios: [...rutas.sitios, ...cache] };
-  const encontrado = tramiteDe(todas, tab.url);
-  const sitio = encontrado?.sitio || sitioDe(todas, tab.url);
-  const vista = encontrado ? await vistaTramite(encontrado.sitio, encontrado.tramite, tab)
-    : sitio ? vistaBuscar(sitio, tab) : vistaSinSitio();
+  const encontrado = tramiteDe(todas, contexto.url);
+  const sitio = encontrado?.sitio || sitioDe(todas, contexto.url);
+  const vista = encontrado ? await vistaTramite(encontrado.sitio, encontrado.tramite, contexto)
+    : sitio ? vistaBuscar(sitio, contexto) : vistaSinSitio(tab);
   let publica = null;
-  try { publica = publicPage(tab.url); } catch { /* restricted or not granted */ }
+  try { publica = publicPage(contexto.url); } catch { /* restricted or not granted */ }
   if (publica && !sitio) {
     $sitio.textContent = new URL(publica).hostname;
     vista.splice(0, vista.length, el('h1', {}, '¿Qué necesitás hacer en este sitio?'),
       el('p', { class: 'vacio' }, 'Encontrá un acceso de la página abierta o pedile al motor que organice la información pública con Bob.'));
   }
-  if (publica) vista.push(herramientas(tab, publica, sitio?.dinamico));
+  if (publica) {
+    if (elegida) vista.unshift(el('p', { class: 'fuente' }, `Consultando la dirección ingresada: ${publica}`));
+    let mismaPagina = false;
+    try { mismaPagina = publicPage(tab.url) === publica; } catch {}
+    vista.push(herramientas(tab, publica, sitio?.dinamico, mismaPagina));
+  }
   if (estaRevision !== revision) return;
   $contenido.replaceChildren(...vista.filter(Boolean));
   if (publica) {
@@ -165,7 +209,7 @@ async function pintar() {
   }
 }
 
-function herramientas(tab, publica, actualizar = false) {
+function herramientas(tab, publica, actualizar = false, mismaPagina = true) {
   const caja = el('section', { class: 'bloque' });
   const estado = el('p', { class: 'vacio', id: 'motor-estado', role: 'status' });
   const visibles = el('div', {});
@@ -208,8 +252,12 @@ function herramientas(tab, publica, actualizar = false) {
       if (revision === estaRevision) seguir(job.id, publica, estaRevision);
     } catch (error) { if (revision === estaRevision) { estado.textContent = error.message; analizar.disabled = false; } }
   } }, actualizar ? 'Volver a recorrer con Bob' : 'Consultar catálogo con Bob');
-  caja.append(el('h2', {}, 'Tu próximo paso'), leer,
-    el('p', { class: 'fuente' }, 'Los nombres y enlaces visibles se procesan solo en tu navegador. No se envían a Bob ni se guardan. No completamos formularios.'), visibles,
+  caja.append(el('h2', {}, 'Tu próximo paso'), ...(mismaPagina ? [leer,
+    el('p', { class: 'fuente' }, 'Los nombres y enlaces visibles se procesan solo en tu navegador. No se envían a Bob ni se guardan. No completamos formularios.'), visibles] : [
+    el('p', { class: 'vacio' }, 'Podés consultar este catálogo sin abrir el sitio. Para buscar o marcar enlaces en su página, abrilo y tocá allí el ícono de Wayfinder.'),
+    el('button', { class: 'boton secundario ancho', onclick: async () => {
+      elegida = null; await guardado.escribir('url-elegida', null); await pestana.ir(publica); await pintar();
+    } }, 'Abrir sitio en esta pestaña')]),
     analizar, el('p', { class: 'fuente' }, `Al consultar, enviamos esta dirección al motor: ${publica}. Lee contenido público sin tu sesión y respeta robots.txt. Algunos sitios necesitan JavaScript o acceso privado y no pueden organizarse.`), estado,
     el('a', { class: 'enlace', href: destination(publica), target: '_blank', rel: 'noopener' }, 'Hablar con Bob / abrir Wayfinder'));
   return caja;
@@ -258,5 +306,9 @@ await pintar();
 if (enExtension) {
   chrome.tabs.onActivated.addListener(pintar);
   chrome.tabs.onUpdated.addListener(async (id, cambio) => { if ((cambio.status === 'complete' || cambio.url) && (await pestana.actual()).id === id) pintar(); });
-  chrome.runtime.onMessage.addListener(m => { if (m?.tipo === 'wayfinder-activado') pintar(); });
+  chrome.runtime.onMessage.addListener(m => {
+    if (m?.tipo === 'wayfinder-activado') {
+      void usarPestana();
+    }
+  });
 }

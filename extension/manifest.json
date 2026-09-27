@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Wayfinder — Te guía en tu trámite",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Encontrá gestiones y accesos en la página abierta, con catálogos públicos organizados por Bob y guía paso a paso.",
   "minimum_chrome_version": "116",
   "permissions": [

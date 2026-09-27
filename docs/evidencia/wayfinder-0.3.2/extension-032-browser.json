@@ -1,0 +1,38 @@
+[
+  {
+    "case": "controlled browser",
+    "passed": [
+      "JS links",
+      "local filtering",
+      "accent search",
+      "actual highlight receipt",
+      "scan/progress/catalog",
+      "cache reload",
+      "permission denied",
+      "cancel",
+      "busy/retry",
+      "mobile no overflow"
+    ],
+    "starts": 3,
+    "polls": 4
+  },
+  {
+    "case": "manual URLs / tab switch",
+    "passed": [
+      "URL always visible",
+      "permission not internal",
+      "own window query",
+      "unsafe URL rejected",
+      "no typing network or navigation",
+      "Novogar and GOV.UK pasted",
+      "progress/resume without duplicate",
+      "results without tab permission",
+      "activation clears manual context",
+      "mobile no overflow"
+    ],
+    "sentUrls": [
+      "https://novogar.com.ar/",
+      "https://www.gov.uk/renew-driving-licence"
+    ]
+  }
+]

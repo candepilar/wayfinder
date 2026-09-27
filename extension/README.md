@@ -1,7 +1,28 @@
-# Wayfinder para el navegador · 0.3.1
+# Wayfinder para el navegador · 0.3.2
 
 Panel lateral para Chrome, Brave y Edge 116+. Mantiene las guías de Rosario/VGG,
 y permite trabajar con otras páginas públicas sin una lista fija de municipios.
+
+## Pegar una dirección (0.3.2)
+
+El campo **Dirección del sitio** está siempre visible. Pegá `novogar.com.ar` o
+una URL http/https y tocá **Analizar URL**. Consulta el catálogo o inicia un
+recorrido sin necesitar acceso a la pestaña actual. Escribir no envía solicitudes
+ni abre páginas; al confirmar se quitan parámetros/fragmentos. Se rechazan
+esquemas ejecutables, credenciales, archivos y nombres/direcciones locales;
+el motor vuelve a comprobar la red pública en cada acceso y redirección.
+
+**Usar pestaña actual** vuelve al sitio abierto. Si el navegador todavía no
+expone su dirección, el panel explica que falta permiso, sin llamarla página
+interna. Para leer/resaltar accesos, abrí el sitio y tocá el ícono de Wayfinder.
+Se integra sin modificar la corrección 0.3.1 de Cande: el ícono abre el panel
+con `sidePanel.open` y vuelve a activarlo en lugar de cerrarlo. La consulta de
+pestaña se vincula a la ventana del panel; no se agregan permisos globales.
+
+La URL elegida explícitamente se guarda localmente (ya sin query/hash) para
+recuperar el seguimiento al reabrir el panel. Al usar la pestaña actual se borra
+esa selección. Si cambiás de sitio durante un recorrido, este puede seguir en
+el motor: volvé a su dirección para ver el estado o cancelarlo.
 
 1. Abrí el sitio y tocá el ícono de Wayfinder en esa pestaña.
 2. **Buscar accesos de esta página** lee los nombres/enlaces visibles del DOM ya

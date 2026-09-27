@@ -1,0 +1,90 @@
+{
+  "checkedAt": "2026-09-27T05:57:47.3824390Z",
+  "mapaId": "10797c850b575d0cba6e",
+  "site": {
+    "url": "https://novogar.com.ar/",
+    "titulo": "Novogar",
+    "crawleado_en": "2026-09-27T05:55:37.847Z",
+    "paginas_totales": 20
+  },
+  "bob": {
+    "estado": "completado",
+    "generado_en": "2026-09-27T05:55:49.831Z",
+    "task_id": "f8f2a407b570e2e77e87e6da226d325e",
+    "coste": 0.041428,
+    "fichas_aceptadas": 1
+  },
+  "fiches": [
+    {
+      "name": "Políticas de devoluciones y reembolsos",
+      "source": "https://novogar.com.ar/tienda/politicas-de-devoluciones-y-reembolsos",
+      "destinations": 1
+    }
+  ],
+  "coverage": {
+    "estado": "parcial",
+    "limite": 20,
+    "intentadas": 20,
+    "pendientes": 120,
+    "omitidas": 13,
+    "exclusiones": [
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=4510",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/User/register",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/Item/Result?Filters=77%2C%7C1106%7C",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=1961",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=3129",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=3721",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/Item/Result?Filters=77%2C%7C1108%7C",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=4554",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=2157",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=852",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=4581",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=4569",
+        "motivo": "robots, nofollow o destino de gestión"
+      },
+      {
+        "url": "https://novogar.com.ar/list/Add/Compare?itemId=2389",
+        "motivo": "robots, nofollow o destino de gestión"
+      }
+    ],
+    "errores": [],
+    "sin_contenido_util": [],
+    "advertencias": [],
+    "duracion_ms": 30986,
+    "alcance": "HTML público del mismo origen. Sin sesiones, JavaScript ni acceso a destinos de gestión detectados. Clasificación heurística; requiere revisión humana."
+  }
+}
