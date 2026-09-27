@@ -5,8 +5,12 @@
   "pilot_training_executed": true,
   "candidate_saved": true,
   "deployed": false,
-  "pod_stop_not_verified": true,
+  "pod_stop_not_verified": false,
   "passes_synthetic_test_gate": false,
   "candidate_backup_verified": true,
-  "candidate_backup_sha256": "69244a5c88d8d9acf2f9c8ead7d468931c9ff5c08de13ce6ab5245e7e250ae82"
+  "candidate_backup_sha256": "69244a5c88d8d9acf2f9c8ead7d468931c9ff5c08de13ce6ab5245e7e250ae82",
+  "pod_stop_evidence": "User screenshot shows Not running and Start button after verified backup",
+  "pod_termination_verified": false,
+  "offline_audit_completed": true,
+  "evaluation_v2_status": "72 assistant-authored cases pending human review; no inference run"
 }

@@ -1,6 +1,14 @@
 # Bob IDE: auditar y mantener el buscador de trámites
 
-Estado: guion preparado; no es evidencia de una sesión ejecutada. Bob Shell ya generó/revisó el primer conjunto. Granite todavía no fue entrenado.
+Estado actualizado: dos pilotos Granite ejecutados y respaldados; candidata no aprobada para producción. Este guion NO es evidencia de una sesión Bob IDE ejecutada. Bob Shell sí generó/revisó parte del conjunto.
+
+## Revisión concreta después del piloto
+
+Abrir una tarea de Bob IDE con este pedido, sin encender GPU:
+
+> Auditá entrenamiento/AUDITORIA-PILOTO.md, AUDITORIA-PILOTO.json, ERRORES-PILOTO.jsonl y evaluacion-v2/. Revisá las confusiones entre pedir una partida e inscribir un hecho, variantes de ciudadanía y país/municipio. Verificá que los 24 documentos reservados no entren en train ni validation y que evaluar_casos.py no acepte rutas inventadas, de otro país ni casos pendientes como evaluación aprobada. Ejecutá python -m unittest discover -s entrenamiento -p 'test_*.py'. No llames servicios, no descargues modelos, no alquiles GPU, no publiques y no cambies etiquetas para hacer ganar al candidato. Entregá hallazgos y propuestas; una revisión por IA no se registra como revisión humana. No toques .bob/ ni motor/ ni visor/ ni extension/.
+
+Capturar la tarea y su consumo real según las instrucciones de evidencia de abajo. Aún no se confirma ejecución de esta revisión.
 
 ## Trabajo real para el concurso
 

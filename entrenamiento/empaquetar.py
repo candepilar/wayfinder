@@ -3,17 +3,20 @@ import hashlib
 import json
 from pathlib import Path
 import zipfile
-from entrenar import load_data
+from entrenar import load_data, check_reserved
 
 HERE = Path(__file__).resolve().parent
 
 def main():
-    _, _, manifest = load_data(HERE / 'datos/paquete')
+    _, splits, manifest = load_data(HERE / 'datos/paquete')
+    reserved = HERE / 'evaluacion-v2/manifest.json'
+    check_reserved(splits, set(json.loads(reserved.read_text(encoding='utf-8'))['reserved_document_ids']))
     files = [HERE / 'datos/paquete' / name for name in
              ['corpus.jsonl', 'train.jsonl', 'validation.jsonl', 'test.jsonl', 'manifest.json']]
     files += [HERE / name for name in ['entrenar.py', 'requirements-gpu.txt', 'RUNPOD.md',
               'README.md', 'FUENTES-RECOPILADAS.json', 'DATOS-PREPARADOS.json', 'SELECCION.json',
               'EXCLUSIONES-REVISION.json']]
+    files.append(reserved)
     # Only final generation/review records, never Bob workdirs or credentials.
     files += [HERE / 'datos/bob' / (task['id'] + '.json') for task in manifest['tasks']]
     files += [HERE / name for name in ['COBERTURA-AMPLIADA.json', 'BOB-IDE-ENTRENAMIENTO.md'] if (HERE / name).exists()]

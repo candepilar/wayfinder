@@ -1,0 +1,63 @@
+{
+  "status": "draft_pending_human_not_scored",
+  "cases": 72,
+  "cases_sha256": "700d64ff49c08b26a0cbb5678d9e91606daebf1581f1576cdb5693008c40c56c",
+  "languages": {
+    "es": 36,
+    "en": 36
+  },
+  "actions": {
+    "retrieve": 48,
+    "clarify": 16,
+    "not_found": 8
+  },
+  "retrieval_directions": {
+    "es->en": 12,
+    "en->en": 12,
+    "es->es": 12,
+    "en->es": 12
+  },
+  "reserved_document_ids": [
+    "d1bcddb574cc3bb2c084",
+    "bc1e8a9e3fd5f4596a67",
+    "7d67ce58707c8c1dd98a",
+    "b5ca22fef80f3a0ea096",
+    "5c5fda0f2dc65e597869",
+    "7cab27b921d5677053af",
+    "758d8fd99f12b51c02d5",
+    "d536987ff36eece83897",
+    "dfb04846b8d2813aef76",
+    "b25467c6b20605509f39",
+    "04a29322eea154785bcd",
+    "cd4b100a10b965e113ba",
+    "5ddd1d79f15733828d34",
+    "4c9206d5b7ed5c6551ff",
+    "54a3273fa68127edc21d",
+    "8a46091166343d096f7a",
+    "f6d22659a46b8df39d97",
+    "3a1a3e42a1f1f05c814f",
+    "e9ce2e87c5851f210689",
+    "235b10258f1890f860c1",
+    "06bfb874dd84de238367",
+    "2bdce8ed3c6984c37745",
+    "ceb08b051675f2838912",
+    "b9241c29fcfa0ca0a358"
+  ],
+  "pilot_dataset_sha256": {
+    "corpus": "4582a7f9c3248efc60698e593463013c8bc310b6a231ab0e06c98e23e8671b95",
+    "train": "1e1c000420668fb0f9c7afaa16e3ab12859e8f30bf234a6529fb2e84270365af",
+    "validation": "86499b047cbb177de616d980e14a0d8acbb0b89ec314bb0bd71b1d81b32c9493",
+    "test": "bf09a779b45132cf8200be559747b9c266359321d0a703531a50cf1152750200"
+  },
+  "labels_previously_unseen": true,
+  "source_sites_previously_unseen": false,
+  "human_reviewed": false,
+  "model_evaluated": false,
+  "limitations": [
+    "Assistant-authored, not real citizen traffic or independent human gold.",
+    "Documents were retrieval corpus candidates in pilot; no labelled pilot examples.",
+    "Only UK and Uruguay; no proof for Argentine municipalities.",
+    "Translation pairs are correlated; count 36 paired scenarios, not 72 independent people.",
+    "Offline source snapshots, not current legal requirements or verified live links."
+  ]
+}

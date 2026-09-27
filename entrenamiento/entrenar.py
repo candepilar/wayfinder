@@ -41,6 +41,11 @@ def load_data(folder):
 def document_text(doc):
     return f"Jurisdiction: {doc['jurisdiction']}\n{doc['title']}\n{doc.get('description','')}"
 
+def check_reserved(splits, reserved_ids):
+    for split in ['train', 'validation']:
+        if any(r['document_id'] in reserved_ids for r in splits[split]):
+            raise ValueError('Reserved evaluation documents entered '+split)
+
 def batches(examples,size,rng):
     groups=collections.defaultdict(list)
     for row in examples:groups[row['document_id']].append(row)
@@ -64,6 +69,10 @@ def main():
     args=parser.parse_args()
     if not 0<args.learning_rate<=1e-3:parser.error('learning-rate must be positive and <= 0.001')
     corpus,splits,manifest=load_data(args.data)
+    reserved_path=Path(__file__).resolve().parent/'evaluacion-v2/manifest.json'
+    if not reserved_path.exists():
+        raise ValueError('Missing reserved evaluation manifest; copy evaluacion-v2 with training code')
+    check_reserved(splits,set(json.loads(reserved_path.read_text(encoding='utf-8'))['reserved_document_ids']))
     if args.check_data:
         print(json.dumps({'checks':'passed','corpus':len(corpus),'splits':{s:len(v) for s,v in splits.items()},'synthetic':True}));return
     if args.output.exists():raise ValueError('Use a fresh output directory to preserve prior experiments')

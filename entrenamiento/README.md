@@ -1,5 +1,20 @@
 # Wayfinder: búsqueda bilingüe de trámites
 
+## Estado actual — 27/09, después de los dos pilotos
+
+Dos pruebas cortas GPU ejecutadas con 4.108 consultas sintéticas (3.565 train,
+343 validación, 200 examen). Hay candidata respaldada, pero no pasó el control
+final por idioma y no está desplegada. Generación larga detenida por costo;
+Franco confirmó detener el Pod con captura «Not running». No encender otra GPU
+hasta preparar el próximo experimento. La terminación/eliminación no se verificó.
+
+Ver `AUDITORIA-PILOTO.md`: revisión offline de errores y sesgos, borrador bilingüe
+de 72 casos en `evaluacion-v2/` pendiente de revisión humana y evaluador preparado.
+No se ejecutó inferencia nueva. Los ZIP iniciales y los apartados históricos de
+abajo conservan sus cifras de aquella etapa; no son el estado actual del modelo.
+
+## Antecedentes: paquete inicial y ampliación
+
 Paquete inicial completado (antes de la ampliación a todas las fuentes): **2.482 consultas** (1.238 ES, 1.244 EN) sobre **313 trámites**, con **3.750 fichas oficiales** en el corpus de búsqueda. División: 1.939 entrenamiento, 343 validación y 200 examen. Se excluyeron 60 consultas en la cadena Bob y 2 en la exportación/revisión puntual. No hay un modelo entrenado, descargado ni conectado a producción.
 
 Entrega: `paquete-entrenamiento.zip`, verificable con `PAQUETE.json`. Ejecutar según `RUNPOD.md`. El ZIP incluye fuentes, etiquetas y auditoría; no pesos ni credenciales.
