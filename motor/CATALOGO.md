@@ -48,7 +48,7 @@ Medir antes/después (mismo sitio, mismas páginas; comparar `bob.duracion_ms`,
 ```powershell
 # Antes: una sola tarea de Bob con todo
 $env:BOB_LOTE=40; $env:BOB_PARALELO=1; node --env-file-if-exists=.env src/catalogo-cli.mjs https://laeconomica.com.ar/ 40
-# Después: 5 tareas de Bob en paralelo
+# Después: tareas de Bob en paralelo (2 a la vez por defecto)
 Remove-Item Env:BOB_LOTE, Env:BOB_PARALELO; node --env-file-if-exists=.env src/catalogo-cli.mjs https://laeconomica.com.ar/ 40
 ```
 
@@ -61,7 +61,7 @@ Remove-Item Env:BOB_LOTE, Env:BOB_PARALELO; node --env-file-if-exists=.env src/c
   y 10.000 por página; se omiten bloques completos de más de 5.000 caracteres, sin
   cortarlos. Todos esos límites y sus omisiones quedan registrados.
 - **Tareas de Bob en paralelo (27/09):** las páginas se reparten en lotes de 8
-  (`BOB_LOTE`) y cada lote es una tarea de Bob separada; corren hasta 5 a la vez
+  (`BOB_LOTE`) y cada lote es una tarea de Bob separada; corren hasta 2 a la vez por defecto (el VPS tiene 1 vCPU y ~2 GB; subir solo midiendo memoria)
   (`BOB_PARALELO`). Cada tarea valida sus IDs contra sus propios documentos. Si una
   falla, las demás conservan sus fichas y el catálogo queda `parcial` con aviso.
   `catalogo.bob.tareas` registra task_id, costo, duración y fichas de cada lote;

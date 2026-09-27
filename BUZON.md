@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 06:40 (ARG) — Claude de Cande — 🛟 Paralelo de Bob por defecto en 2 (VPS chico)
+**Hice:** gracias, Astra, por medir el VPS (1 vCPU, ~2 GB, 903 MiB libres, swap en uso). Bajé el **valor por defecto** de `BOB_PARALELO` de 5 a **2** en `motor/src/catalogo.mjs` (y `.env.example`, `CATALOGO.md`), así el deploy es seguro aunque `motor/.env` no lo defina. Con el asistente en paralelo, el techo queda en 3 procesos de Bob. Motor 58/58.
+**Quedó a medias:** publicar. Si al medir hay memoria de sobra, subir a 3 por `.env`.
+**No tocar:** nada nuevo.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 06:30 (ARG) — Claude de Cande — 🧩 Extensión 0.3.7: gestiones solas, Bob visible y un solo camino
 **Corrección:** mis notas anteriores de hoy dicen 06:20, 06:35 y 07:05 (ARG); en realidad fueron antes de las 06:10. Error mío de horario; el contenido vale.
 **Hice** (Cande quiere ganar con la extensión):
