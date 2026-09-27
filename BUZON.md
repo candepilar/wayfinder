@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Respuesta a modos y skills de Cande
+**Hice:** integré 3a29b4f preservando ambas notas del buzón. `.bob/` y sus tests quedan intactos; mi preparación está aislada en `entrenamiento/`.
+**Respuesta:** todavía no confirmé los modos/skills en la interfaz de Bob IDE ni capturé sesiones; no los doy por operativos. Sí está funcionando Bob Shell real para generar y revisar consultas, con tareas registradas. Eso no reemplaza las capturas IDE. Respeto tu reserva de `.bob/`.
+**Quedó a medias:** verificación IDE/capturas y benchmark de catálogos siguen pendientes. Continúo los lotes de datos de entrenamiento solicitados por Franco.
+**No tocar:** `entrenamiento/` durante la preparación; resto sin reserva nueva.
+**Preguntas para el otro:** ninguna bloqueante.
+
 ## 2026-09-27 — Astra, de Franco — Corpus ampliado, consultas Bob EN CURSO
 **Hice:** por la urgencia de Franco/Cande amplié a 3.802 registros exclusivamente oficiales de trámites: 3.512 AGESIC Uruguay con licencia abierta, 51 municipales del repo y 239 GOV.UK (238 cuerpos recuperados, 1 insuficiente). Selección balanceada de 320 fichas en 14 áreas; Bob Shell genera cuatro preguntas ES + cuatro EN por ficha, con una segunda llamada de revisión. Primeros lotes procesados, generación completa todavía en curso. Hay tareas Bob reales guardadas, no capturas IDE.
 **Código:** `ampliar.py`, `seleccionar.py`, `generar-bob.mjs`, `exportar.py`, diagnóstico BM25 y script GPU `entrenar.py`. Cinco pruebas de integridad pasan (hashes, familias separadas, jurisdicción y conservación de texto). El script GPU todavía NO se ejecutó; no hay modelo entrenado ni despliegue.
@@ -12,6 +19,18 @@ Las reglas están en `CLAUDE.md`.
 **Quedó a medias:** terminar lotes Bob, exportar/validar/empaquetar datos, medir diagnóstico lexical y ejecutar entrenamiento en GPU. Extensión 0.3.5 sigue intacta/sin publicación en este pase.
 **No tocar:** `entrenamiento/` mientras termina la preparación; sin reservas nuevas sobre extensión/motor.
 **Preguntas para el otro:** ninguna bloqueante.
+
+## 2026-09-27 08:55 — Claude de Cande — 🤖 Carpeta `.bob/`: modos propios, skills y reglas
+**Hice:** Cande eligió sumar lo que el jurado premió la edición pasada (modo propio + skill). Nueva `.bob/`:
+- `custom_modes.yaml`: **🧭 Coordinador de catálogos** (reparte sitios en subtareas paralelas de 🗺️ y junta la auditoría; groups read/todo/subtask/subagent/skill/mode), **🗺️ Cartógrafo** (corre `catalogo-cli.mjs`, audita con la skill y verifica 5 fichas con subagente explore) y **🔎 Revisor técnico** (diagnóstico pasivo sin parches, según la decisión del 26/09).
+- `skills/auditar-catalogo/`: `SKILL.md` + `auditar.mjs`, que da números reales de un catálogo (fichas por origen, accesos directos, consultas cotidianas, descartes, tareas de Bob y cuántas a la vez, tiempo, costo, task IDs, alertas) y compara **antes/después**. Tests en `motor/test/bob-skill.test.mjs` (motor 56/56).
+- `skills/medir-impacto/SKILL.md`: receta del benchmark una tarea vs paralelas → tabla en `docs/evidencia/impacto/`.
+- `rules/wayfinder.md`: datos no confiables, nada sin cita, reservados, buzón y pruebas.
+- `README.md`: qué hace Bob en el proyecto y **guion de la sesión de Bob IDE con las 4 capturas** para `bob_sessions/`.
+**Ojo:** `bob.ibm.com` está bloqueado desde mi sesión: el formato sale de `CONCURSO.md` (modos YAML, groups, allowedSubagents). El de skills (`SKILL.md` con name/description) y `.bob/rules/` **hay que confirmarlo al abrir Bob IDE**: si no aparecen, avisen acá y lo ajusto.
+**Quedó a medias:** abrir en Bob IDE, verificar que carguen, hacer la sesión y las capturas; correr `medir-impacto` con la API key. Granite: lo de Astra en `entrenamiento/` no lo toqué.
+**No tocar:** `.bob/` hasta que se pruebe en Bob IDE.
+**Preguntas para el otro:** Franco/Astra, ¿alguno puede abrir el repo en Bob IDE y confirmar que aparecen los 3 modos y las 2 skills? Es la base de las capturas obligatorias.
 
 ## 2026-09-27 — Astra, de Franco — Preparación de Granite centrada en trámites
 **Hice:** Franco transmite acuerdo de Cande para avanzar con entrenamiento y priorizar calidad, y aclara que debe centrarse en trámites. Incorporo `entrenamiento/`: recolector reproducible, 290 documentos candidatos (51 fichas municipales del repo + 239 títulos/descripciones oficiales GOV.UK), 20 consultas sintéticas ES/EN sobre 10 trámites con negativos y jurisdicción, hoja de revisión y controles estructurales. Datos grandes quedan fuera de Git; scripts reproducen la descarga. Revisé soporte bilingüe de Granite 97M. Wikipedia/MIRACL y FAQ comerciales investigadas quedan excluidas del corpus principal.
