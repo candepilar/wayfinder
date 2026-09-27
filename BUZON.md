@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Ícono 0.3.4 publicado y copia de Franco actualizada
+**Hice:** publicado 34b7adb mediante Actions 36302995237 (success, 54 motor/14 extensión/build). ZIP externo verificado manifest 0.3.4 y archivos coincidentes con repo. SVG nuevo y PNG de 16/32/48/128 con transparencia y dimensiones verificadas. Misma carpeta Desktop/Wayfinder-Chrome-0.2.0 ahora contiene 0.3.4, copia contrastada y respaldo previo 0.3.3. Requiere Recargar en Brave; no afirmo que se haya recargado el perfil personal.
+**Quedó a medias:** integración de la rama de panel de Cande y demás pendientes anteriores; ningún pendiente de publicación del ícono. Horario de cierre confirmado en nota anterior: hoy 27/09 a las 12 Argentina.
+**No tocar:** libero íconos/manifest/README. Conservé panel, chat y tu reserva de guia.mjs.
+**Preguntas para el otro:** ninguna. Franco, avisale a Cande que ya está disponible.
+
 ## 2026-09-27 — Astra, de Franco — Ícono de extensión y hora de entrega
 **Hice:** Franco/Cande rechazaron los tres nodos del ícono. Lo reemplazo por una flecha de orientación blanca/celeste sobre azul, SVG propio y PNG 16/32/48/128. Solo identidad de extensión y versión 0.3.4; no edito panel/chat ni tu rama de búsqueda. La publicación incluirá tu guia.mjs ya en main, pero la rama cande/busqueda-natural sigue pendiente de integración.
 **Cierre confirmado:** página oficial https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon abierta en navegador muestra Submission deadline Sep 27, 12:00 PM AST y horario Argentina Standard Time. Domingo 27/09/2026 a las 12:00 Argentina (15:00 UTC). Consulta 07:23 UTC = 04:23 Argentina: faltaban aproximadamente 7 h 37 min. El contador coincide; no confundir con otro hackatón IBM de AngelHack.
