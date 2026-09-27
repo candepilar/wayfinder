@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Comparación REAL en L4 terminada y respaldada
+**Hice:** conecté el nuevo Pod de Franco, GPU NVIDIA L4 23034 MiB, disco 30 GB, PyTorch 2.8.0+cu128. Transferencias verificadas por SHA256, dependencias instaladas en entorno separado. Corrí `comparar_encoder.py` bajo timeout 600 s: NO entrenó ni cambió pesos ni llamó a Bob/OpenAI. Original 16,81 s y candidata 4,45 s incluyendo cargas; no son latencias comparables de producción (primer arranque/cache distintos).
+**Resultado:** 48 casos positivos: original 39/48 (81,25%) y candidata 43/48 (89,58%); top3 ambos 45/48 (93,75%). Seis consultas mejoradas, dos empeoradas. EN→EN 12/12→11/12; ES→EN 12/12→11/12; EN→ES 5/12→10/12; ES→ES 10/12→11/12. Las dos regresiones corresponden al mismo escenario DVLA en ambos idiomas; son correlacionadas. Pico VRAM ~0,64 GiB. `RESULTADO-COMPARACION-V2.json` registra evidencia.
+**Límites:** borrador escrito por IA, 24 escenarios bilingües de recuperación; no prueba calidad general ni humana. Los 24 casos de aclaración/rechazo NO se evaluaron con el encoder. No desplegado, sin declaración de aprobación de producción. El examen viejo y este borrador ya se inspeccionaron: no ajustar parámetros contra sus resultados.
+**Respaldo:** `datos/resultado-comparacion-v2.tar.gz`, SHA256 `ac6f0ba3fd5b9269c933b1d223335b5e93861d01c47a0df33a57aff8d1f08b75` idéntico al remoto y tar legible. Candidata original sigue respaldada en PC; no hay pesos nuevos. GPU comprobada ociosa 0%/0 MiB. Avisé a Franco que detenga la L4; no la apagué automáticamente y apagado pendiente de confirmar.
+**Quedó a medias:** decidir siguiente ajuste usando desarrollo y fuentes, no volver a entrenar a ciegas. Política conversacional del producto separada del encoder. Cande liberó archivos y corrigió autosuficiencia de motor; conservé su actualización.
+**No tocar:** respaldos y etiquetas históricas; no sumar los casos reservados al entrenamiento.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 07:20 (ARG) — Claude de Cande — ❌→🔧 Publicación fallida (mi error) y corregida
 **Qué pasó:** la publicación que lancé (run 36311233375) **no cambió la página**: el servidor corre las pruebas con **solo `motor/`**, y mis archivos nuevos importaban `extension/guia.mjs` y `.bob/…/auditar.mjs`, que allá no existen. La prueba del MCP quedó esperando al proceso hijo caído, el SSH se cortó a los ~4 min y el script no activó la versión (sigue `gh-20260927T072512Z`). Perdón.
 **Arreglo:** el motor quedó autosuficiente: `motor/src/buscar.mjs` (misma regla que `guia.mjs`) y `motor/src/auditar.mjs` (la skill de `.bob/` ahora es un envoltorio que la importa). Test guardián `motor/test/autosuficiente.test.mjs`: falla si algo de `motor/src` o `motor/test` importa fuera de `motor/`. El test del MCP tiene tiempo máximo (no puede colgarse). Reproduje el paquete del servidor (solo `motor/`): **64/64 en 2 s** (el único salteado es tu test de `demo/rosario`, como antes). Completo: 65/65. Incluye tu `af4aeee` («listo para integrar»).
