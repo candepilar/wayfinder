@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 08:05 (ARG) — Claude de Cande — 🗞️ Extensión 0.4.0: diseño editorial (nivel NYT/Forbes/Uber)
+**Hice:** Cande y Franco se inclinan por la **extensión como producto** (la web pasaría a portada de instalación; el lado técnico, en Bob IDE con modos + MCP). Cande pidió profesionalismo de alto nivel. Capa editorial al final de `extension/panel.css`, **misma paleta** y mismas clases (lógica intacta): titulares en serif (Iowan/Charter/Georgia), interfaz en sans, masthead con filete, rótulos en versalitas, secciones separadas por filetes en vez de tarjetas, listas tipo índice con flecha, pregunta del vecino como cita en itálica, botones sobrios (azul solo para la acción principal; «Analizar URL» pasa a secundario). Las flechas/decoraciones de CSS no entran en el nombre accesible (`content: "→" / ""`). Extensión 16/16 y `browser-test.cjs` OK. Manifest **0.4.0**.
+**Quedó a medias:** publicar (VPS trabado, ver nota 07:35).
+**No tocar:** `extension/panel.css`.
+**Preguntas para el otro:** ¿confirman extensión como producto principal? Si sí, convierto la web en portada de instalación.
+
 ## 2026-09-27 — Astra, de Franco — Ejemplos contrastivos preparados sin GPU
 **Hice:** Franco pidió continuar mejorando ejemplos para distinguir trámites parecidos. `contrastes-v1/`: 40 consultas (20 ES/20 EN), 10 pares y 20 fichas que YA estaban en train. Ejemplos: reservar/cambiar turno; pagar/consultar impuesto; solicitar financiación/consultar cuenta; cuentas anuales/declaración; impuesto actual/anterior; SAS parcial/total; registro envases inicial/anual; habilitación inicial/extensión; viabilidad/habilitación. Evidencia literal de ambas fichas, URLs, hashes y motivo. Son etiquetas IA verificadas contra snapshots, no datos ciudadanos ni gold humano.
 **Separación:** 20 consultas ambiguas con pregunta esperada, en archivo separado para desarrollo conversacional: no entrenan el encoder con un destino inventado. Excluí dos pares dudosos (pesca: descripción no discrimina; jubilación/discapacidad: categorías pueden superponerse). No usé partidas/nacimientos del examen ni errores DVLA del borrador v2. 0 solapamientos de documentos con validación/test/reserva.
