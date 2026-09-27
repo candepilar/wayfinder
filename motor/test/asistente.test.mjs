@@ -35,6 +35,46 @@ test('Bob receives bounded conversation as untrusted data and failures never bec
   await assert.rejects(answerWithBob(catalog,'hola',[],{run: async()=>({type:'result',status:'success',last_message:'No JSON'})}));
 });
 
+test('clarification asks one question without premature destination links or extra claims', () => {
+  const context = assistantContext(catalog, 'necesito un documento');
+  const response = validateAnswer({...valid, estado:'aclaracion',
+    mensaje:'Tenés que pagar. ¿Qué documento necesitás? ¿Dónde vivís?',
+    sugerencias:['Quiero una copia','¿Dónde vivís?','https://invented.example']}, context);
+  assert.equal(response.mensaje,'¿Qué documento necesitás?');
+  assert.deepEqual(response.fichas,[]); assert.deepEqual(response.evidencia,[]);
+  assert.deepEqual(response.sugerencias,['Quiero una copia']);
+  const unsupported = validateAnswer({...valid, estado:'aclaracion',mensaje:'¿Ya pagaste 999 pesos?'},context);
+  assert.equal(unsupported.mensaje,'¿Qué gestión necesitás hacer?');
+  assert.deepEqual(unsupported.sugerencias,[]);
+});
+
+test('generic certificate request asks immediately, then keeps context for a short follow-up', async () => {
+  const c = structuredClone(catalog);
+  c.fichas = ['Partida de nacimiento','Partida de matrimonio','Partida de defunción'].map((nombre,i) =>
+    ({...structuredClone(catalog.fichas[0]), id:`partida-${i}`, nombre, requisitos:[]}));
+  let calls=0;
+  const first=await answerWithBob(c,'Necesito una partida',[],{run:async()=>{calls++;throw Error('Must not call Bob');}});
+  assert.equal(calls,0); assert.equal(first.estado,'aclaracion');
+  assert.equal(first.mensaje,'¿Qué tipo de partida necesitás?');
+  assert.equal(first.sugerencias.length,3); assert.deepEqual(first.fichas,[]);
+  const history=[{rol:'user',texto:'Necesito una partida'},{rol:'assistant',texto:first.mensaje}];
+  const second=await answerWithBob(c,'De nacimiento',history,{run:async prompt=>{
+    calls++; assert.match(prompt,/Necesito una partida/); assert.match(prompt,/De nacimiento/);
+    return {type:'result',status:'success',last_message:JSON.stringify({...valid,
+      mensaje:'Acá está la ficha de la partida de nacimiento.',evidencia_ids:['f0:nombre']})};
+  }});
+  assert.equal(calls,1); assert.equal(second.estado,'orientacion');
+  assert.equal(second.fichas[0].nombre,'Partida de nacimiento');
+});
+
+test('specific intent and a single catalogue option are not intercepted by generic clarification', async () => {
+  let calls=0;
+  const run=async()=>{calls++;return {type:'result',status:'success',last_message:JSON.stringify(valid)};};
+  await answerWithBob(catalog,'Necesito una partida',[],{run});
+  await answerWithBob(catalog,'Necesito una partida de nacimiento',[],{run});
+  assert.equal(calls,2);
+});
+
 async function fixture(t, options={}) {
   const directory=await mkdtemp(path.join(os.tmpdir(),'assistant-test-')), store=new Store(path.join(directory,'mapas'));
   await store.save('0123456789abcdef0123',{sitio:catalog.sitio,catalogo:catalog,paginas:[]});
@@ -94,7 +134,10 @@ test('a repeated question on the same catalogue is answered instantly without ca
   // A cached answer does not wait for Bob to finish another task.
   const slow=await fixture(t,{run:async()=>{calls++;if(calls>3)await new Promise(r=>release=r);return {mensaje:'ok'};}});
   assert.equal((await slow.post({pregunta:'rápida'})).status,200);
-  const pending=slow.post({pregunta:'lenta'}); while(!slow.busy())await new Promise(r=>setTimeout(r,5));
-  assert.equal((await slow.post({pregunta:'rapida'})).status,200);
-  release(); assert.equal((await pending).status,200);
+  // The response can arrive before the route finishes its async workspace cleanup.
+  while(slow.busy())await new Promise(r=>setTimeout(r,5));
+  const pending=slow.post({pregunta:'lenta'}); while(!release)await new Promise(r=>setTimeout(r,5));
+  try { assert.equal((await slow.post({pregunta:'rapida'})).status,200); }
+  finally { release(); }
+  assert.equal((await pending).status,200);
 });

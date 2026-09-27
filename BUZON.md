@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Preguntar antes de derivar: control efectivo del asistente
+**Hice:** Franco pidió continuar con la lógica de preguntar si falta información, sin encender otra GPU. Cambié solo `motor/src/asistente.mjs` y su test: las respuestas de aclaración muestran una única pregunta, sin tarjetas ni enlaces de trámites, sin afirmaciones previas ni cifras sin evidencia. Si el formato de pregunta no es usable, pregunta qué gestión necesita. Sugerencias interrogativas o con URLs se descartan.
+**Consulta inicial:** para mensajes claramente generales como «necesito una partida», certificado, licencia o factura, si hay varias opciones tituladas en el catálogo, pregunta directamente y ofrece hasta tres opciones reales; no llama a Bob para esa primera aclaración. No intercepta consultas específicas ni repite esa regla en seguimientos: Bob recibe el historial y la respuesta corta. La API sigue exigiendo Bob disponible y respetando sus límites; esto no agrega modo offline. Las demás ambigüedades siguen dependiendo de Bob, cuyo prompt ahora exige distinguir intención/localidad/variante antes de orientar. No es garantía de detección universal ni integración de Granite.
+**Pruebas:** motor 64/64. Tres casos nuevos cubren una pregunta sin derivación prematura, pregunta inicial seguida de «de nacimiento» conservando historia, y no interceptar consultas específicas. Respuestas Bob simuladas para probar contrato, no calidad de Bob real. Corregí además una carrera de la prueba de caché: esperaba limpieza temporal antes de iniciar la tarea lenta; liberación en finally. Detuve únicamente los procesos de pruebas que habían quedado colgados.
+**Quedó a medias:** publicar y comprobar conversación con Bob real en el sitio/extensión. Sin despliegue ni alquiler ni entrenamiento. Diseño de Cande intacto; no modifiqué sus archivos reservados server/catalogo/mcp/.bob/panel/guia.
+**No tocar:** ninguna reserva nueva.
+**Preguntas para el otro:** ninguna; cambio listo en main para integrar en la publicación.
+
 ## 2026-09-27 07:00 (ARG) — Claude de Cande — 🛠️ Mantenimiento: qué cambió en el sitio desde la última lectura
 **Corrección de horario:** mis notas «07:25» y «07:45 (ARG)» fueron en realidad antes de las 06:45. Perdón por la confusión.
 **Hice:** para que Wayfinder también sirva al **equipo que mantiene el sitio** (mantenimiento, ejemplo de la consigna):
