@@ -159,3 +159,20 @@ test('Bob everyday phrasings are kept as search keys and unsafe ones are dropped
     consultas: ['encontré un perro abandonado', 'Encontré un perro abandonado', 'vacunar a mi gato', 'escribí a info@muni.gob.ar', 'ver https://x.org', 'x'.repeat(81), 42, 'castrar a mi perra', 'a', 'b', 'c', 'd'] }] }) }) });
   assert.deepEqual(map.catalogo.fichas[0].consultas, ['encontré un perro abandonado', 'vacunar a mi gato', 'castrar a mi perra']);
 });
+
+test('a fiche fully extracted from HTML still goes to Bob, keeps its fields and gains everyday phrasings', async () => {
+  const map = mapOf('<main><h1>Sanidad Animal</h1><h2>Requisitos</h2><ul><li>Libreta sanitaria.</li></ul><a class="btn" href="/turno">Iniciar trámite</a></main>');
+  const html = catalogFromHtml(map).fichas[0];
+  assert.ok(html.destinos.length, 'fixture must be a complete HTML fiche');
+  let sent = 0;
+  await organizeCatalog(map, { run: async prompt => {
+    const docs = JSON.parse(prompt.slice(prompt.indexOf('DOCUMENTOS: ') + 12)); sent = docs.length;
+    return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: [{ ...proposal(docs[0]), evidencia_ids: ['b2'], requisitos_ids: [], costo_ids: [], destino_ids: [], consultas: ['encontré un perro abandonado'] }] }) };
+  } });
+  assert.equal(sent, 1);
+  const f = map.catalogo.fichas[0];
+  assert.equal(f.origen, 'html+bob');
+  assert.deepEqual(f.requisitos, html.requisitos); assert.deepEqual(f.destinos, html.destinos);
+  assert.deepEqual(f.consultas, ['encontré un perro abandonado']);
+  assert.equal(map.catalogo.bob.estado, 'completado');
+});

@@ -91,7 +91,7 @@ function ComoLoArmoBob({ catalog, leidas }: { catalog: CatalogoSitio; leidas: nu
   ];
   return <details className="mt-5 rounded-xl border border-linea bg-superficie p-4" open={tareas.length > 1}>
     <summary className="cursor-pointer text-sm font-medium text-tinta">Cómo lo armó IBM Bob</summary>
-    <dl className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-5">{datos.map(([valor, texto]) => <div key={texto}><dt className="sr-only">{texto}</dt><dd className="text-xl font-semibold text-tinta">{valor}</dd><dd className="text-xs leading-snug text-tinta-media">{texto}</dd></div>)}</dl>
+    <dl className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-5">{datos.map(([valor, texto]) => <div key={texto} className="flex flex-col-reverse"><dt className="text-xs leading-snug text-tinta-media">{texto}</dt><dd className="text-xl font-semibold text-tinta">{valor}</dd></div>)}</dl>
     {tareas.length > 1 && <ul className="mt-4 space-y-1.5" aria-label="Tareas de Bob en paralelo">{tareas.map(t => <li key={t.lote} className="flex items-center gap-2 text-xs text-tinta-media">
       <span className="w-16 shrink-0">Tarea {t.lote}</span>
       <span className="h-2 flex-1 overflow-hidden rounded-full bg-linea"><span className={`block h-full rounded-full ${t.estado === 'error' ? 'bg-tinta-suave' : 'bg-acento'}`} style={{ width: `${bob.duracion_ms && t.duracion_ms ? Math.max(8, Math.round(100 * t.duracion_ms / bob.duracion_ms)) : 100}%` }} /></span>

@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 07:05 (ARG) — Claude de Cande — 🧪 Demo probada de punta a punta + Bob ahora trabaja también en sitios bien armados
+**Hice:** levanté motor + visor reales con un sitio municipal de prueba (16 trámites) y un **Bob de mentira** que habla el formato stream-json de Bob Shell (solo en mi scratchpad, no en el repo). Recorrí la demo con un navegador automático.
+- **Bug encontrado y arreglado (`motor/src/catalogo.mjs`):** si el HTML ya daba la ficha completa, esa página **no se le mandaba a Bob**. En un sitio bien estructurado Bob quedaba en `sin_documentos`: no aparecía en la demo y las fichas no tenían `consultas`. Ahora Bob recibe también esas páginas; la mezcla existente conserva requisitos/destinos del HTML y Bob agrega consultas y completa vacíos (`origen: html+bob`). Test nuevo; motor 58/58.
+- **Resultado de la demo local (Bob de prueba, tiempos de ese Bob, no del real):** barra «IBM Bob · k de 4 tareas en paralelo» a los 3,5 s; catálogo en 7 s con 15 gestiones hechas por **4 tareas paralelas**; «encontré un perro abandonado» → Sanidad animal; «quiero sacar el registro» → Licencia de conducir; fichas visibles **63 ms** después de preguntar; **misma pregunta de otro visitante: 3378 ms → 107 ms** (caché).
+- Visor: el recuadro de Bob leía cada etiqueta dos veces con lector de pantalla; corregido. Pruebas del visor OK.
+**Quedó a medias:** publicar (motor + pantalla) y repetir con Bob real.
+**No tocar:** `motor/src/catalogo.mjs`.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 06:35 (ARG) — Claude de Cande — 🔓 El asistente ya no se bloquea mientras se arma un catálogo
 **Hice:** en `motor/src/server.mjs`, el asistente (una llamada corta de Bob) ahora puede correr **mientras hay un recorrido/catálogo en curso**, y un recorrido puede empezar aunque alguien esté preguntando. Antes, armar un catálogo (minutos) dejaba a **todos** con «Bob está atendiendo otra tarea», y una pregunta impedía empezar un recorrido: en una demo en vivo es lo primero que falla. Se mantiene: una consulta de asistente a la vez, un recorrido a la vez y la **revisión de código exclusiva** con todo. Techo de procesos de Bob simultáneos: 5 del catálogo + 1 del asistente. `ASISTENTE.md` actualizado. Motor 57/57.
 **Quedó a medias:** publicar. Si el VPS se queda corto de memoria con 6 procesos, bajar `BOB_PARALELO` en `motor/.env` (no hace falta cambiar código).
