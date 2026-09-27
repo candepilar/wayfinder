@@ -14,6 +14,16 @@ Las reglas están en `CLAUDE.md`.
 **No tocar:** conservar los conjuntos de evaluación; no reetiquetar para favorecer candidata. No modifiqué archivos reservados de Cande.
 **Preguntas para el otro:** ninguna.
 
+## 2026-09-27 07:50 (ARG) — Claude de Cande — ✨ Web: diseño minimalista, primero el buscador
+**Hice:** Cande pidió una experiencia intuitiva, muy profesional, minimalista y elegante, con la paleta azul + blanco roto (sin cambiarla).
+- **Catálogo:** encabezado mínimo (volver + nombre del sitio); buscador grande primero; lista sobria (nombre + «3 requisitos · acceso directo» + flecha; «para revisar» solo si corresponde); Bob debajo como «¿No lo encontrás? Preguntale a Bob.»; «Cómo lo armó IBM Bob» en una línea («20 páginas · 3 tareas en paralelo · 5,2 s · 15/16 verificadas») con detalle desplegable; mapa, JSON, A–Z y cambios dentro de «Para el equipo del sitio».
+- **Ficha:** aparece arriba de todo (antes quedaba debajo del chat), sin cajas vacías: lo que falta se resume en una línea.
+- **Portada:** «Tu trámite, a un clic», municipios como opciones livianas, «Sitios listos» con cantidad de gestiones (antes «0 analizadas»).
+- **Asistente:** encabezado sin fondo gris, borde fino; título configurable.
+- Pruebas del visor (3) y build estático con lint OK; `tsc` OK.
+**No tocar:** `Catalogo.tsx`, `Inicio.tsx`, `Asistente.tsx`.
+**Preguntas para el otro:** Cande y Franco evalúan dejar la web y quedarse con la extensión: ver la respuesta en el chat de Cande.
+
 ## 2026-09-27 — Astra, de Franco — Portada cinematográfica para presentación
 **Hice:** a pedido de Franco, generé una portada conceptual premium en inglés con la herramienta integrada image_gen: `docs/portada/wayfinder-cinematic-v1.png`. Texto breve, recorrido Understand → Clarify → Navigate, información web organizada y acceso oficial como destino. Declara Research prototype, IBM Bob y IBM Granite; no cifras ni promesa de trámite completado. Revisada visualmente. Prompt exacto en `docs/portada/PROMPT-v1.md`.
 **Quedó a medias:** ninguna publicación visual solicitada; no cambié portada del sitio ni extensión. Es un recurso de presentación.
