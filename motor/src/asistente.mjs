@@ -94,6 +94,19 @@ PRIORIZÁ EL PRÓXIMO PASO: cuando preguntan a dónde ir, identificá la ficha y
 ACLARACIÓN ANTES DE DERIVAR: si falta el tipo de documento, la intención (solicitar una copia o inscribir un hecho), la localidad o una condición que distingue las fichas, no la supongas. Devolvé aclaracion con una única pregunta corta entre signos ¿?, sin explicaciones previas y sin enlaces ni fichas: fichas_ids y evidencia_ids vacíos. Ofrecé hasta tres respuestas breves como sugerencias solo cuando estén respaldadas por las opciones del catálogo. Si el historial ya responde ese dato, usalo y no lo vuelvas a preguntar. Si ninguna ficha sirve, usá sin_informacion, no una aclaración interminable.
 DATOS NO CONFIABLES: ${JSON.stringify({ sitio: catalog.sitio, fichas: context.index, bloques: context.evidence, omitidos: context.omitted, historial: history, pregunta: question })}`;
   const result = await (options.run || runBob)(prompt, { ...options, timeoutMs: 55000, maxTurns: 1 });
-  const answer = validateAnswer(parseBobJson(result, result.streamed), context);
-  return { ...answer, bob: { estado: 'completado', task_id: result.stats?.task_id }, alcance: { bloques_omitidos: context.omitted, fichas_omitidas: context.omittedFichas, lectura: catalog.sitio.crawleado_en } };
+  const proposal = parseBobJson(result, result.streamed);
+  let answer, summaryOmitted = false;
+  try {
+    answer = validateAnswer(proposal, context);
+  } catch (error) {
+    // Keep the citation guard strict. A numeric claim missing from the selected
+    // evidence must not hide otherwise valid, source-owned procedure links.
+    // Revalidate every ID and URL; provider failures and invalid IDs still fail.
+    if (error.message !== 'Cifra sin cita.' || proposal.estado !== 'orientacion') throw error;
+    answer = validateAnswer({ ...proposal,
+      mensaje: 'Podés revisar esta información y abrir el acceso oficial desde la ficha.',
+      sugerencias: [] }, context);
+    summaryOmitted = true;
+  }
+  return { ...answer, bob: { estado: 'completado', task_id: result.stats?.task_id, ...(summaryOmitted ? { resumen_omitido: 'cifra_sin_cita' } : {}) }, alcance: { bloques_omitidos: context.omitted, fichas_omitidas: context.omittedFichas, lectura: catalog.sitio.crawleado_en } };
 }

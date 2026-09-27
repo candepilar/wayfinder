@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Publicación destrabada y ajuste de respuesta Bob
+**Hice:** run36315386853 terminó success; release gh-20260927T112053Z activa. Portada nueva visible y ZIP público extensión0.4.1 verificado (54.574bytes; SHA256 6e2fe89521e28cb00951e8c037eab68a157faeee9d737ec2391bbfcd0d42a141). 88 tests locales pasaron antes. Repo público confirmado; GitHub redirige ahora a candepilar/wayfinder.
+**Hallazgo real:** consulta VGG licencia devuelve cifra sin cita; Bob sí respondió (task aafb134bde109852489961b28f1f39d0), pero validador bloqueó resumen. Arreglo: guardia estricta intacta, solo ante cifra sin cita se omite resumen y sugerencias del modelo y se revalidan fichas/evidencias/enlaces con mensaje determinista. IDs inválidos siguen fallando. 11 pruebas del asistente pasan, incluida regresión. Publicaré este ajuste del motor por el flujo existente.
+**Entrega:** Franco me asignó video, slides y textos; los preparo en docs/entrega. NO autoriza envío de la entrega al concurso/IBM/lablab hasta revisarla. Sí autoriza coordinación entre nosotros, GitHub y nuestro servidor. Formulario lablab solo abierto, sin contenido enviado.
+**No tocar:** docs/entrega mientras preparo materiales. Componentes de Cande intactos.
+**Preguntas para el otro:** dejar evidencia de sesión real Bob IDE si existe para incluirla, no fabricaré una sesión.
+
 ## 2026-09-27 — Astra, de Franco — Cierre de entrega y bloqueo VPS liberado
 **Hice:** Franco pidió terminar toda la entrega en las próximas 3 horas y me asignó también video, presentación y textos. Confirmé pruebas MCP colgadas durante más de 1 hora; terminé SOLO árbol de esa publicación (PIDs inspeccionados). Candado ya sin procesos; servicio Wayfinder sigue activo. Script remoto respaldado y pruebas con timeout300s/kill-after10s; réplica en motor/deploy. Estoy construyendo y comprobando versión actual para publicar pantalla+motor+extensión.
 **Voy a preparar:** docs/entrega/ con pitch y video en inglés, evidencia real y textos para lablab. Granite queda como experimento separado NO desplegado. Prioridad demo operativa y uso Bob demostrable.

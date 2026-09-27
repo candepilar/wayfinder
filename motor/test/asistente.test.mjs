@@ -35,6 +35,19 @@ test('Bob receives bounded conversation as untrusted data and failures never bec
   await assert.rejects(answerWithBob(catalog,'hola',[],{run: async()=>({type:'result',status:'success',last_message:'No JSON'})}));
 });
 
+test('unsupported numeric summary preserves validated source evidence without repeating the claim', async () => {
+  const proposal = {...valid, mensaje:'Presentate a las 15:00 y pagá 999 pesos.', sugerencias:['Quiero pagar 999 pesos']};
+  const run = async()=>({type:'result',status:'success',last_message:JSON.stringify(proposal)});
+  const answer = await answerWithBob(catalog,'Quiero afiliarme',[],{run});
+  assert.doesNotMatch(answer.mensaje,/15|999|pag/);
+  assert.deepEqual(answer.sugerencias,[]);
+  assert.equal(answer.bob.resumen_omitido,'cifra_sin_cita');
+  assert.equal(answer.evidencia[0].texto,'DNI vigente para residentes.');
+  assert.equal(answer.fichas[0].destinos[0].url,'https://library.example/apply');
+  proposal.evidencia_ids=['f0:invented'];
+  await assert.rejects(answerWithBob(catalog,'Quiero afiliarme',[],{run}),/Cita fuera/);
+});
+
 test('clarification asks one question without premature destination links or extra claims', () => {
   const context = assistantContext(catalog, 'necesito un documento');
   const response = validateAnswer({...valid, estado:'aclaracion',
