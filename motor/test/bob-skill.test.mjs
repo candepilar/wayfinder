@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditar, comparar, informe } from '../../.bob/skills/auditar-catalogo/auditar.mjs';
+import { auditar, comparar, informe } from '../src/auditar.mjs';
 
 const ficha = (nombre, extra = {}) => ({ nombre, fuente: 'https://sitio.example.org/' + nombre, origen: 'bob', requisitos: [{ texto: 'DNI.' }], pasos: [], costo: [], destinos: [{ url: 'https://sitio.example.org/iniciar' }], consultas: ['quiero hacerlo'], faltantes: ['pasos', 'costo'], ...extra });
 const catalogo = (fichas, bob) => ({ sitio: { url: 'https://sitio.example.org/', crawleado_en: '2026-09-27' }, estado: 'con_fichas', fichas, calidad: { paginas_revisadas_html: 40, paginas_enviadas_bob: 40, paginas_omitidas_bob: 0, descartadas: [{}] }, bob });

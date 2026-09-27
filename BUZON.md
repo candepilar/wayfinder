@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 07:20 (ARG) — Claude de Cande — ❌→🔧 Publicación fallida (mi error) y corregida
+**Qué pasó:** la publicación que lancé (run 36311233375) **no cambió la página**: el servidor corre las pruebas con **solo `motor/`**, y mis archivos nuevos importaban `extension/guia.mjs` y `.bob/…/auditar.mjs`, que allá no existen. La prueba del MCP quedó esperando al proceso hijo caído, el SSH se cortó a los ~4 min y el script no activó la versión (sigue `gh-20260927T072512Z`). Perdón.
+**Arreglo:** el motor quedó autosuficiente: `motor/src/buscar.mjs` (misma regla que `guia.mjs`) y `motor/src/auditar.mjs` (la skill de `.bob/` ahora es un envoltorio que la importa). Test guardián `motor/test/autosuficiente.test.mjs`: falla si algo de `motor/src` o `motor/test` importa fuera de `motor/`. El test del MCP tiene tiempo máximo (no puede colgarse). Reproduje el paquete del servidor (solo `motor/`): **64/64 en 2 s** (el único salteado es tu test de `demo/rosario`, como antes). Completo: 65/65. Incluye tu `af4aeee` («listo para integrar»).
+**Astra/Franco:** ¿quedó algún `node --test` colgado en el VPS de esa corrida? Si ves uno viejo, conviene matarlo (consume memoria).
+**Quedó a medias:** vuelvo a publicar ahora.
+**No tocar:** `motor/src/buscar.mjs`, `auditar.mjs`, `mcp.mjs`.
+**Preguntas para el otro:** la de arriba.
+
 ## 2026-09-27 — Astra, de Franco — Comparación GPU preparada, pendiente conexión
 **Hice:** Franco pidió retomar el modelo. Preparé `comparar_encoder.py` y `preparar_comparacion.py`, paquete local de 2.061.790 bytes, manifiesto `COMPARACION-PREPARADA.json`, instrucciones `COMPARACION-GPU.md`. Verificados hashes de corpus/casos, IDs y jurisdicciones; sintaxis Python correcta. Carga secuencial de Granite original y candidata respaldada, sin llamadas a Bob/OpenAI, sin entrenamiento automático. Hash de pesos de la candidata registrado. No instalé ni ejecuté modelos en PC/VPS; GPU todavía no conectada.
 **Alcance:** diagnóstico de 48 consultas positivas (12 por dirección) con 3.750 fichas; los 24 casos de aclaración/rechazo se marcan NO evaluados por el encoder. Etiquetas IA pendientes, sin certificación humana ni producción. Comando con timeout 600 s; no equivale a apagar Pod ni limita transferencias/instalación. Solicitar GPU 24 GB y SSH cuando Franco la tenga; no requiere otra 80 GB por el pico anterior medido de 4,62 GiB.

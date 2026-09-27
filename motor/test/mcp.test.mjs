@@ -12,7 +12,7 @@ const ficha = { id: 'p1', nombre: 'Sanidad animal', fuente: 'https://muni.exampl
 const catalogo = { sitio: { url: 'https://muni.example.org/', crawleado_en: '2026-09-27' }, estado: 'con_fichas', fichas: [ficha, { ...ficha, id: 'p2', nombre: 'Pagar la tasa de inmuebles', consultas: [], fuente: 'https://muni.example.org/tasa' }],
   bob: { estado: 'completado', tareas: [{ task_id: 't1' }], tareas_paralelas: 2 }, calidad: { descartadas: [] } };
 
-test('Bob can use Wayfinder as an MCP server: list, search in everyday words, read a fiche, audit', async t => {
+test('Bob can use Wayfinder as an MCP server: list, search in everyday words, read a fiche, audit', { timeout: 20000 }, async t => {
   const dir = await mkdtemp(path.join(os.tmpdir(), 'mcp-')); t.after(() => rm(dir, { recursive: true, force: true }));
   await new Store(path.join(dir, 'mapas')).save('0123456789abcdef0123', { sitio: catalogo.sitio, paginas: [], catalogo });
   const child = spawn(process.execPath, [fileURLToPath(new URL('../src/mcp.mjs', import.meta.url))], { env: { ...process.env, WAYFINDER_DATA_DIR: dir, WAYFINDER_API: '' }, stdio: ['pipe', 'pipe', 'inherit'] });

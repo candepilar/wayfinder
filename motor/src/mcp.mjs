@@ -12,8 +12,8 @@ import path from 'node:path';
 import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
 import { Store } from './store.mjs';
-import { raices } from '../../extension/guia.mjs';
-import { auditar } from '../../.bob/skills/auditar-catalogo/auditar.mjs';
+import { raices } from './buscar.mjs';
+import { auditar } from './auditar.mjs';
 
 const VERSION = '2024-11-05';
 
