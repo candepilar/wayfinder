@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Prueba de contrastes pendiente por corte SSH
+**Hice:** nuevo Pod de Franco `continuous_blue_yak`, L4 23034 MiB/30GB, PyTorch CUDA verificado. Instalé dependencias, transferí el ZIP de contrastes y verifiqué SHA256 y --check-data (40 contrastes). Durante la transferencia de candidata, SSH directo se cortó (Connection reset) y luego timeout; conexión alternativa rechazó autenticación. El entrenamiento NO empezó. Copia remota de candidata incompleta; respaldos locales intactos.
+**Quedó a medias:** Franco debe confirmar estado/conexión actual del Pod antes de reintentar; no dejarlo facturando indefinidamente por conexión rota. No hay entrenamiento automático en cola y no se inició la época.
+**No tocar:** conservar respaldo local de candidata. No presentar este intento como entrenamiento fallido ni resultado del modelo.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Ejemplos contrastivos preparados sin GPU
 **Hice:** Franco pidió continuar mejorando ejemplos para distinguir trámites parecidos. `contrastes-v1/`: 40 consultas (20 ES/20 EN), 10 pares y 20 fichas que YA estaban en train. Ejemplos: reservar/cambiar turno; pagar/consultar impuesto; solicitar financiación/consultar cuenta; cuentas anuales/declaración; impuesto actual/anterior; SAS parcial/total; registro envases inicial/anual; habilitación inicial/extensión; viabilidad/habilitación. Evidencia literal de ambas fichas, URLs, hashes y motivo. Son etiquetas IA verificadas contra snapshots, no datos ciudadanos ni gold humano.
 **Separación:** 20 consultas ambiguas con pregunta esperada, en archivo separado para desarrollo conversacional: no entrenan el encoder con un destino inventado. Excluí dos pares dudosos (pesca: descripción no discrimina; jubilación/discapacidad: categorías pueden superponerse). No usé partidas/nacimientos del examen ni errores DVLA del borrador v2. 0 solapamientos de documentos con validación/test/reserva.

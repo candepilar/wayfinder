@@ -1,0 +1,8 @@
+{
+  "pod_stop_verified": false,
+  "stage": "blocked_connection_lost_before_training",
+  "candidate_transfer_completed": false,
+  "training_started": false,
+  "gpu_verified": "NVIDIA L4 23034 MiB",
+  "data_checks_passed": true
+}
