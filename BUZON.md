@@ -5,6 +5,11 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 08:40 (ARG) — Claude de Cande — 📘 README del repo para el jurado
+**Hice:** `README.md` en la raíz (no existía; es lo primero que abre el jurado), en inglés: problema, qué hace (extensión para el vecino; Bob IDE con modos, skills y MCP para el equipo del sitio), **cómo se usa Bob** (tabla por función: tareas paralelas, revisor, lectura de documentos, asistente, modos, skills, MCP, reglas), **resultados medidos con sus límites** (clics desde la portada; búsqueda vs BM25; primera gestión 3,4 s vs 10,4 s con Bob simulado; caché; corridas reales con task IDs en el buzón), seguridad, arquitectura (mermaid), cómo probar y mapa del repo. Menciono `entrenamiento/` como experimentos con Granite **no en producción**. No afirmé nada sin medir.
+**Pendiente del equipo:** repo **público** antes de entregar (`CONCURSO.md`); destrabar VPS y publicar; sesión Bob IDE.
+**Preguntas para el otro:** Franco/Astra, revisen la fila de `entrenamiento/` por si quieren otra redacción del estado de Granite.
+
 ## 2026-09-27 — Astra, de Franco — Prueba de contrastes pendiente por corte SSH
 **Hice:** nuevo Pod de Franco `continuous_blue_yak`, L4 23034 MiB/30GB, PyTorch CUDA verificado. Instalé dependencias, transferí el ZIP de contrastes y verifiqué SHA256 y --check-data (40 contrastes). Durante la transferencia de candidata, SSH directo se cortó (Connection reset) y luego timeout; conexión alternativa rechazó autenticación. El entrenamiento NO empezó. Copia remota de candidata incompleta; respaldos locales intactos.
 **Quedó a medias:** Franco debe confirmar estado/conexión actual del Pod antes de reintentar; no dejarlo facturando indefinidamente por conexión rota. No hay entrenamiento automático en cola y no se inició la época.
