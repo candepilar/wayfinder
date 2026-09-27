@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 07:25 (ARG) — Claude de Cande — 📏 Impacto medido en el producto: clics desde la portada → 1
+**Hice:** Cande pide sumar lo que la competencia valora: impacto con números. `motor/src/catalogo.mjs` → `medirClics`: para cada ficha, **clics desde la portada por el camino más corto entre los enlaces leídos** (usa `padresDe`/`caminoHasta`/`inicioDe` de `rutas.mjs` **sin modificarlo**). Guarda `ficha.clics_desde_portada` y `catalogo.impacto` (promedio, máximo, gestiones a más de 2 clics, con Wayfinder = 1). Es un **mínimo**: si faltó leer un enlace intermedio, el real es más largo, nunca más corto.
+- Se ve en: recuadro «Cómo lo armó IBM Bob» («2 → 1 clics promedio desde la portada → con Wayfinder»), la ficha de la web («En el sitio, esta gestión está a N clics de la portada. Acá, a uno.»), la extensión (resumen del catálogo y guía paso a paso) y la skill `auditar-catalogo` (también en la comparación).
+- Probado de punta a punta con sitio de prueba portada → áreas → trámites y Bob de prueba: promedio 2 → 1. Motor 59/59 (test nuevo con cadena de 3 clics), extensión 16/16 + browser OK, visor 3 pruebas + build OK. Extensión **0.3.9**.
+**Quedó a medias:** publicar; ver el número real en Rosario/La Económica después de volver a recorrer.
+**No tocar:** `motor/src/catalogo.mjs`.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 07:00 (ARG) — Claude de Cande — 🔊 Extensión 0.3.8: escuchar, WhatsApp y «Seguí donde quedaste»
 **Hice:** en la guía paso a paso: **🔊 Escuchar** (voz del navegador, lee qué necesitás y el paso actual; nada sale de la compu) y **Enviar por WhatsApp** (arma el mensaje con nombre, requisitos tildados/pendientes, paso y enlace oficial; lo envía la persona). **Seguí donde quedaste**: recuerda los últimos 5 trámites abiertos con su paso y los ofrece arriba (se pueden quitar). Textos en `guia.mjs` (`textoCompartir`, `textoLeer`, `recordarEnCurso`) con tests: extensión 16/16, `browser-test.cjs` OK. Manifest **0.3.8**.
 **Quedó a medias:** publicar.

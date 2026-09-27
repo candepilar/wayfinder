@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { normalizeUrl } from './network.mjs';
 import { runBob, parseBobJson } from './bob.mjs';
+import { caminoHasta, inicioDe, padresDe } from './rutas.mjs';
 
 const fields = ['requisitos', 'pasos', 'costo', 'donde_se_hace'];
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
@@ -115,6 +116,30 @@ export function acceptBobCatalog(payload, documents, map) {
   return { accepted, rejected };
 }
 
+// Impacto verificable: cuántos clics hay desde la portada hasta cada gestión,
+// por el camino más corto entre los enlaces leídos (rutas.mjs). Con Wayfinder la
+// gestión está a un clic (buscar y elegir). Es un mínimo: si el recorrido no leyó
+// algún enlace intermedio, el camino real puede ser más largo, nunca más corto.
+export function medirClics(map, catalog) {
+  const paginas = map.paginas || [];
+  if (!paginas.length || !catalog.fichas.length) return null;
+  const padres = padresDe(paginas), inicio = inicioDe(paginas, map.sitio);
+  const ids = new Set(paginas.map(p => p.id));
+  const medidas = [];
+  for (const ficha of catalog.fichas) {
+    if (!ids.has(ficha.id) || ficha.id === inicio?.id) continue;
+    const clics = caminoHasta(paginas, ficha.id, padres).length - 1;
+    if (clics < 1) continue;
+    ficha.clics_desde_portada = clics;
+    medidas.push(clics);
+  }
+  if (!medidas.length) return null;
+  const promedio = medidas.reduce((a, b) => a + b, 0) / medidas.length;
+  return { fichas_medidas: medidas.length, clics_promedio_portada: Math.round(promedio * 10) / 10, clics_maximo_portada: Math.max(...medidas),
+    clics_con_wayfinder: 1, gestiones_a_mas_de_2_clics: medidas.filter(c => c > 2).length,
+    nota: 'Camino más corto por los enlaces leídos desde la portada; es un mínimo. Con Wayfinder: buscar y elegir.' };
+}
+
 const entero = (valor, porDefecto, min, max) => { const n = Number(valor); return Number.isInteger(n) && n >= min && n <= max ? n : porDefecto; };
 
 // Pages are split into batches and each batch is a separate Bob task. Batches
@@ -153,6 +178,7 @@ export async function organizeCatalog(map, { workspace, signal, onEvent = () => 
   if (!input.documents.length) {
     catalog.bob = { estado: 'sin_documentos', motivo: 'No hay páginas adicionales con evidencia para Bob.' };
     catalog.estado = catalog.fichas.length ? 'con_fichas' : 'sin_gestiones_identificadas';
+    catalog.impacto = medirClics(map, catalog);
     map.catalogo = catalog; return catalog;
   }
   const grupos = lotes(input.documents, tamanoLote);
@@ -201,6 +227,7 @@ export async function organizeCatalog(map, { workspace, signal, onEvent = () => 
       fichas_aceptadas: accepted.length, tareas_paralelas: simultaneas, duracion_ms: Date.now() - inicio, tareas };
   }
   catalog.estado = catalog.fichas.length ? 'con_fichas' : 'sin_gestiones_identificadas';
+  catalog.impacto = medirClics(map, catalog);
   map.catalogo = catalog;
   onEvent({ type: 'catalogo_completado', mensaje: `${catalog.fichas.length} fichas organizadas; cobertura limitada al recorrido.`, fichas: catalog.fichas.length });
   return catalog;

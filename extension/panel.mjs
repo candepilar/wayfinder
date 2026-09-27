@@ -76,11 +76,12 @@ async function seccionEnCurso(excepto) {
   return caja;
 }
 
-function resumenBob(bob) {
+function resumenBob(bob, impacto) {
   if (!bob || !['completado', 'parcial'].includes(bob.estado) || !bob.tareas?.length) return null;
   const s = bob.duracion_ms ? ` en ${Math.round(bob.duracion_ms / 1000)} s` : '';
   const paginas = bob.tareas.reduce((n, t) => n + (t.paginas || 0), 0);
-  return el('p', { class: 'resumen-bob' }, `Organizado por IBM Bob: ${paginas} páginas en ${bob.tareas.length} ${bob.tareas.length === 1 ? 'tarea' : 'tareas en paralelo'}${s}.`);
+  const clics = impacto?.clics_promedio_portada > 1 ? ` En el sitio, sus gestiones están en promedio a ${String(impacto.clics_promedio_portada).replace('.', ',')} clics de la portada; acá, a uno.` : '';
+  return el('p', { class: 'resumen-bob' }, `Organizado por IBM Bob: ${paginas} páginas en ${bob.tareas.length} ${bob.tareas.length === 1 ? 'tarea' : 'tareas en paralelo'}${s}.${clics}`);
 }
 
 function vistaBuscar(sitio, tab) {
@@ -102,7 +103,7 @@ function vistaBuscar(sitio, tab) {
     el('h1', {}, '¿Qué necesitás hacer?'),
     el('div', { class: 'buscador' }, input),
     el('div', {}, el('h2', {}, 'Gestiones del catálogo'), lista),
-    sitio.dinamico && resumenBob(sitio.bob),
+    sitio.dinamico && resumenBob(sitio.bob, sitio.impacto),
     sitio.dinamico && el('p', { class: 'vacio' }, sitio.tramites.length ? `${sitio.tramites.length === 1 ? '1 gestión encontrada' : `${sitio.tramites.length} gestiones encontradas`}. Puede haber más en el sitio.` : 'Todavía no encontré gestiones. Probá buscar los accesos de esta página.'),
     mapa && el('a', { class: 'enlace', href: mapa, target: '_blank', rel: 'noopener' }, 'Abrir catálogo y mapa en Wayfinder'),
   ];
@@ -174,6 +175,7 @@ async function vistaTramite(sitio, t, tab) {
   return [
     el('div', {}, el('h1', {}, t.nombre),
       el('p', { class: 'fuente' }, 'Según la ', el('a', { href: t.fuente, target: '_blank', rel: 'noopener' }, 'ficha oficial')),
+      t.clics > 1 ? el('p', { class: 'resumen-bob' }, `En el sitio está a ${t.clics} clics de la portada. Acá, a uno.`) : null,
       el('div', { class: 'acciones' }, escuchar, whatsapp)),
     el('section', {}, el('h2', {}, `Pasos · ${t.pasos.length}`), pasos),
     antes,

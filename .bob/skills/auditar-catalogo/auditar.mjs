@@ -34,6 +34,7 @@ export function auditar(entrada) {
       faltantes,
     },
     descartadas_por_validacion: (q.descartadas || []).length,
+    impacto: c.impacto ?? null,
     bob: { estado: bob.estado ?? null, tareas: tareas.length || (bob.task_id ? 1 : 0), paralelas: bob.tareas_paralelas ?? (bob.task_id ? 1 : null),
       tareas_fallidas: tareas.filter(t => t.estado === 'error').length, duracion_s: bob.duracion_ms != null ? Math.round(bob.duracion_ms / 100) / 10 : null,
       coste: bob.coste ?? null, task_ids: tareas.length ? tareas.map(t => t.task_id).filter(Boolean) : [bob.task_id].filter(Boolean) },
@@ -52,6 +53,7 @@ export function comparar(a, b) {
     ['Fichas con consultas cotidianas', a.fichas.con_consultas, b.fichas.con_consultas],
     ['Descartadas por validación', a.descartadas_por_validacion, b.descartadas_por_validacion],
     ['Costo reportado', a.bob.coste, b.bob.coste],
+    ['Clics promedio desde la portada (con Wayfinder: 1)', a.impacto?.clics_promedio_portada, b.impacto?.clics_promedio_portada],
   ];
   return filas.map(([k, x, y]) => ({ medida: k, antes: x ?? '—', despues: y ?? '—' }));
 }
@@ -69,6 +71,7 @@ export function informe(r) {
       ['Bob: estado · tareas (a la vez) · fallidas', `${r.bob.estado ?? '—'} · ${r.bob.tareas} (${r.bob.paralelas ?? '—'}) · ${r.bob.tareas_fallidas}`],
       ['Bob: tiempo (s) · costo', `${r.bob.duracion_s ?? '—'} · ${r.bob.coste ?? '—'}`],
       ['Task IDs', r.bob.task_ids.join(', ') || '—'],
+      ['Clics desde la portada: promedio / máximo / gestiones a más de 2 (con Wayfinder: 1)', r.impacto ? `${r.impacto.clics_promedio_portada} / ${r.impacto.clics_maximo_portada} / ${r.impacto.gestiones_a_mas_de_2_clics}` : '—'],
     ]), '',
     `Faltantes más comunes: ${Object.entries(x.faltantes).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} (${v})`).join(', ') || 'ninguno'}`,
     r.alertas.length ? `\n**Alertas (${r.alertas.length}):**\n${r.alertas.map(a => `- ${a}`).join('\n')}` : '\nSin alertas de fuente, destinos ni consultas.',

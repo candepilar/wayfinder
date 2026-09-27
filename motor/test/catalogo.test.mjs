@@ -176,3 +176,26 @@ test('a fiche fully extracted from HTML still goes to Bob, keeps its fields and 
   assert.deepEqual(f.consultas, ['encontré un perro abandonado']);
   assert.equal(map.catalogo.bob.estado, 'completado');
 });
+
+test('impact: clicks from the home page to each fiche by the shortest link path, and 1 with Wayfinder', async () => {
+  const page = (u, html) => { const p = extractPage(html, u); p.municipal = extractMunicipal(html, u); return p; };
+  const base = 'https://muni.example.org';
+  const paginas = [
+    page(base + '/', '<main><h1>Inicio</h1><a href="/servicios">Servicios</a></main>'),
+    page(base + '/servicios', '<main><h1>Servicios</h1><a href="/servicios/animales">Animales</a></main>'),
+    page(base + '/servicios/animales', '<main><h1>Animales</h1><a href="/servicios/animales/sanidad">Sanidad animal</a></main>'),
+    page(base + '/servicios/animales/sanidad', '<main><h1>Sanidad animal</h1><p>Vacunación gratuita para perros y gatos.</p><a class="btn" href="/turno">Iniciar trámite</a></main>'),
+  ];
+  // Como municipal-crawler.mjs al terminar: los enlaces pasan a ids de página.
+  const ids = new Map(paginas.map(p => [p.url, p.id]));
+  for (const p of paginas) p.enlaces = [...new Set(p.links.map(l => ids.get(l)).filter(Boolean))];
+  const map = { sitio: { url: base + '/', crawleado_en: '2026-09-27' }, paginas, ejecucion: {} };
+  await organizeCatalog(map, { run: async prompt => {
+    const docs = JSON.parse(prompt.slice(prompt.indexOf('DOCUMENTOS: ') + 12));
+    const d = docs.find(x => x.url.endsWith('/sanidad'));
+    return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: [{ pagina_id: d.id, tipo: 'servicio', titulo_id: 'b0', evidencia_ids: ['b1'], requisitos_ids: [], pasos_ids: [], costo_ids: [], donde_se_hace_ids: [], destino_ids: [] }] }) };
+  } });
+  const ficha = map.catalogo.fichas.find(f => f.nombre === 'Sanidad animal');
+  assert.equal(ficha.clics_desde_portada, 3);
+  assert.deepEqual([map.catalogo.impacto.clics_promedio_portada, map.catalogo.impacto.clics_con_wayfinder, map.catalogo.impacto.gestiones_a_mas_de_2_clics], [3, 1, 1]);
+});
