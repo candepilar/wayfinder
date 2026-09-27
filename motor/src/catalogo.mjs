@@ -161,7 +161,9 @@ export async function organizeCatalog(map, { workspace, signal, onEvent = () => 
   let terminados = 0;
   const resultados = await enParalelo(grupos, simultaneas, async (documentos, i) => {
     const t0 = Date.now();
-    const result = await run(catalogPrompt(documentos), { workspace: workspace && path.join(workspace, `lote-${i + 1}`), signal, onEvent, timeoutMs: 180000 });
+    // Bob's per-line stream events are not forwarded: with several parallel tasks
+    // they flood the job log that clients poll. Progress comes from batch events.
+    const result = await run(catalogPrompt(documentos), { workspace: workspace && path.join(workspace, `lote-${i + 1}`), signal, onEvent: e => { if (e?.type !== 'bob_evento') onEvent(e); }, timeoutMs: 180000 });
     const aceptadas = acceptBobCatalog(parseBobJson(result, result.streamed), documentos, map);
     terminados++;
     onEvent({ type: 'catalogo_bob_lote', mensaje: `Bob terminó ${terminados} de ${grupos.length} tareas · ${aceptadas.accepted.length} fichas en este lote.`, lote: i + 1, lotes: grupos.length });

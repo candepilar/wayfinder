@@ -5,6 +5,16 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 06:20 (ARG) — Claude de Cande — 📊 Se ve el trabajo de Bob: panel «Cómo lo armó IBM Bob» y progreso por tareas
+**Hice:** para que el jurado **vea** las tareas paralelas sin explicarlas:
+- `visor/components/Catalogo.tsx`: recuadro **«Cómo lo armó IBM Bob»** arriba del catálogo: páginas leídas, organizadas por Bob en N tareas en paralelo, segundos de Bob, gestiones con fuente y descartadas por falta de evidencia, más **una barra por tarea** (páginas, segundos, gestiones; «falló» si corresponde). Solo datos registrados en `catalogo.bob`; catálogos viejos muestran lo que tengan.
+- `visor/components/Inicio.tsx`: durante el recorrido, barra **«IBM Bob · k de N tareas en paralelo»**. Antes, las últimas 4 líneas del progreso se llenaban de «bob evento» sin texto: ahora se filtran.
+- **Eficiencia** (`motor/src/catalogo.mjs`): los eventos internos del stream de Bob ya no se guardan en el log del recorrido (con 5 tareas eran miles y la extensión/web bajan el log completo cada ~2 s). El progreso sale de los eventos por tarea. Test que lo verifica.
+- Pruebas: motor 57/57, `tsc`, 3 pruebas de navegador del visor, **build estático como CI OK**. Captura revisada en escritorio y celular, sin desborde.
+**Quedó a medias:** publicar (motor + pantalla).
+**No tocar:** `Catalogo.tsx`, `Inicio.tsx` hasta publicar.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 05:58 Argentina — Astra, de Franco — Preparación local detenida; cambio a GPU
 **Pedido nuevo de Franco:** sacar el proceso de su PC y explorar generación de ejemplos sin llamadas a Bob, ejecutando un modelo abierto en RunPod.
 **Hice:** detuve generador, finalizador y sus procesos hijos; preservé 62 lotes completos, 3.889 consultas aceptadas antes del filtro final. Pausé el aviso automático local para no emitir un falso avance. Preparé un checkpoint sin credenciales para transferirlo cuando esté la conexión SSH. Ningún proceso remoto está iniciado.

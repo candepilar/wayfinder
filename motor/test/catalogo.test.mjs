@@ -124,7 +124,8 @@ const answerAll = prompt => JSON.parse(prompt.slice(prompt.indexOf('DOCUMENTOS: 
 test('Bob organizes batches as bounded parallel tasks and covers every page sent', async () => {
   const map = mapOfMany(12), events = [];
   let activas = 0, maximo = 0, llamadas = 0;
-  await organizeCatalog(map, { tamanoLote: 3, paralelo: 2, onEvent: e => events.push(e), run: async prompt => {
+  await organizeCatalog(map, { tamanoLote: 3, paralelo: 2, onEvent: e => events.push(e), run: async (prompt, opts) => {
+    for (let k = 0; k < 50; k++) opts.onEvent({ type: 'bob_evento', evento: 'message' });
     llamadas++; activas++; maximo = Math.max(maximo, activas);
     await new Promise(r => setTimeout(r, 20)); activas--;
     return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: answerAll(prompt) }), stats: { task_id: `t${llamadas}`, session_costs: 0.01 } };
@@ -136,6 +137,7 @@ test('Bob organizes batches as bounded parallel tasks and covers every page sent
   assert.equal(map.catalogo.bob.coste, 0.04);
   assert.match(events[0].mensaje, /12 páginas en 4 tareas, 2 a la vez/);
   assert.equal(events.filter(e => e.type === 'catalogo_bob_lote').length, 4);
+  assert.equal(events.filter(e => e.type === 'bob_evento').length, 0); // 200 stream events not flooding the job log
 });
 
 test('a failed Bob batch keeps the fiches of the other batches and is reported as partial', async () => {

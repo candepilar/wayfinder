@@ -18,7 +18,7 @@ export type MapaReal = WebMap & {
 };
 
 export type Guardado = { id: string; mapa: MapaReal };
-export type Evento = { secuencia: number; type: string; url?: string; titulo?: string; leidas?: number; mensaje?: string; mapaId?: string };
+export type Evento = { secuencia: number; type: string; url?: string; titulo?: string; leidas?: number; mensaje?: string; mapaId?: string; lote?: number; lotes?: number; paralelo?: number; paginas?: number };
 export type Respuesta = { respuesta: string; fuentes: { id: string; titulo: string; url: string; extracto: string }[] };
 
 export async function api<T>(route: string, body?: unknown, signal?: AbortSignal): Promise<T> {
