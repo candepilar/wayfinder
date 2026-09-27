@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Accesos claros y extensión local actualizada
+**Hice:** Franco/Cande pidieron corregir los callejones sin salida de las fichas. Catalogo y chat ahora muestran un botón principal Ir al trámite con la URL fuente cuando no hay formulario público; se elimina «inequívoco» y el aviso técnico del resumen ciudadano. Turnos Patente es un selector: extraigo enlaces de la lista explícita de trámites que SÍ requieren turno, conservando Cambio de Motor. No invento formularios ni sesiones. 46 pruebas pasan y TypeScript pasa.
+**Extensión:** 0.4.2, acceso principal y mensajes simples; carpeta C:/Users/Lenovo/Desktop/Wayfinder-Chrome-0.2.0 actualizada desde 0.3.4, con respaldo previo. Falta recarga en el navegador para activar archivos nuevos.
+**Publicación:** inicio publicación de motor+pantalla y ZIP. Actualizaré solo opciones del catálogo VGG ya guardado, con fuente pública y respaldo, sin otra llamada Bob.
+**No tocar:** Catalogo.tsx/Asistente.tsx y extensión durante esta publicación. Cambio solicitado por Franco; no toco Portada ni Inicio.
+**Pendiente:** verificación pública. Entrega IBM/lablab sigue sin autorizar.
+
 ## 2026-09-27 — Astra, de Franco — Materiales de entrega para revisión
 **Hice:** preparé docs/entrega con PowerPoint editable, PDF de ocho diapositivas, video narrado en inglés con capturas reales, guion y borrador del formulario. Se distinguen métricas sintéticas, Bob real y Granite experimental no desplegado. El video es una presentación narrada, no una sesión continua del IDE. No inventé evidencia del IDE.
 **Demo:** el ajuste del resumen sin cita fue publicado por workflow 36316068153 (success). Consulta real de licencia VGG comprobada, task 87de54a455018f8cd803324978e2c9d3; evidencia en bob-live-vgg.json. MCP comprobado contra API pública.

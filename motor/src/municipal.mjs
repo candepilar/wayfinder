@@ -102,6 +102,25 @@ export function extractMunicipal(html, url) {
     };
   }).get().filter(Boolean);
   const unique = [...new Map(links.map(l => [`${l.texto}\n${l.url}`, l])).values()];
+  // Some appointment pages are routers: the citizen must choose a procedure.
+  // Preserve links from explicitly labelled appointment lists, including the
+  // qualifier in the list item (e.g. "Modificaciones (Cambio de Motor)").
+  const opciones = [];
+  root.find('ul,ol').each((_i, el) => {
+    const list = $(el), parent = list.parent();
+    const prefix = clean(parent.contents().toArray().slice(0, parent.contents().toArray().indexOf(el)).map(n => $(n).text()).join(' ')) || clean(parent.prev().text());
+    const label = folded(prefix);
+    if (prefix.length > 240 || !/requieren.{0,35}(turno|cita)|require.{0,35}appointment/.test(label)
+      || /\bno\b|\bnot\b/.test(label)) return;
+    list.children('li').each((_j, li) => {
+      const anchors = $(li).find('a[href]');
+      if (anchors.length !== 1) return;
+      const link = anchors.first(), target = safe(link.attr('href'), base);
+      if (!target || new URL(target).origin !== new URL(url).origin || target === url) return;
+      if ([...new URL(target).searchParams.keys()].some(k => /token|nonce|session|password|secret|^(state|code)$/i.test(k))) return;
+      opciones.push({ texto: clean($(li).text()), url: target, fuente: url, grupo: prefix });
+    });
+  });
   // Complete source blocks for a generic evidence-based catalogue. IDs are
   // assigned later; the model selects blocks instead of rewriting requirements.
   const fragmentos = [];
@@ -134,7 +153,7 @@ export function extractMunicipal(html, url) {
   const destinos = confirmed ? unique.filter(l => l.accion && l.url !== url && !/\.(pdf|docx?)(\?|$)/i.test(l.url)
     && ![...new URL(l.url).searchParams.keys()].some(k => /^(state|nonce|session|token|code)$/i.test(k))
     && !/registrat|registro de usuario|crear cuenta/i.test(folded(l.texto))) : [];
-  return { nombre, secciones, fragmentos, enlaces: unique, tramite: confirmed ? {
+  return { nombre, secciones, fragmentos, enlaces: unique, opciones, tramite: confirmed ? {
     id: pageId(url), nombre, requisitos: url,
     formulario: destinos.length === 1 ? destinos[0].url : null,
     encontrado_en: url, secciones, destinos: destinos.map(l => ({ ...l, estado: 'enlazado_no_verificado' })),

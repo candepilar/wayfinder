@@ -17,7 +17,7 @@ export function guiaDeCatalogo(catalogo, mapaId) {
     hosts: [new URL(portada).hostname], dinamico: true, fecha: catalogo.sitio.crawleado_en,
     cobertura: catalogo.cobertura, bob: catalogo.bob, impacto: catalogo.impacto || null,
     tramites: (catalogo.fichas || []).filter(f => urlPublica(f.fuente)).map(f => {
-      const opciones = (f.destinos || []).filter(d => urlPublica(d.url)).map(d => ({
+      const opciones = [...(f.destinos || []), ...(f.opciones || [])].filter(d => urlPublica(d.url)).map(d => ({
         texto: d.texto || 'Abrir acceso', url: d.url, sitio: new URL(d.url).hostname, desde: f.fuente,
       }));
       return { id: `${mapaId}:${f.id}`, nombre: f.nombre, ficha: f.fuente, fuente: f.fuente,
@@ -27,7 +27,7 @@ export function guiaDeCatalogo(catalogo, mapaId) {
         pasos: [
           { titulo: 'Consultá la información del sitio', detalle: 'Revisá las condiciones que correspondan a tu caso.', url: f.fuente },
           { titulo: opciones.length ? 'Elegí el acceso' : 'Seguí las indicaciones de la página',
-            detalle: textos(f.pasos).join('\n') || (opciones.length ? 'Estos enlaces aparecen en la fuente. Su disponibilidad se confirma al abrirlos.' : 'El recorrido no encontró un acceso directo. No inventamos un paso adicional.'), opciones },
+            detalle: textos(f.pasos).join('\n') || 'Continuá en la página del trámite. El sitio puede pedirte iniciar sesión.', opciones },
           ...(opciones.length ? [{ titulo: 'Continuá en el sitio', detalle: 'Llegaste al acceso. Wayfinder no verifica ni realiza el envío del trámite.' }] : []),
         ] };
     }),

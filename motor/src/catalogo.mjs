@@ -31,6 +31,7 @@ export function catalogFromHtml(map) {
       fecha: p.municipal.revisado_en || map.sitio.crawleado_en, origen: 'html',
       requisitos: values('requisitos'), pasos: values('pasos'), costo: values('costos'), donde_se_hace: values('contacto'),
       destinos: t.destinos.filter(l => stable(l.url)).map(l => destination(l, p.url)),
+      opciones: p.municipal?.opciones || [],
       evidencia: t.secciones.filter(s => ['requisitos', 'pasos', 'costos'].includes(s.tipo)).map(s => quoted(s.titulo, p.url)),
     })];
   });
@@ -111,6 +112,7 @@ export function acceptBobCatalog(payload, documents, map) {
       entry[key] = doc.bloques.filter(b => chosen.has(b.id)).map(b => ({ ...quoted(b.texto, doc.url), tipo: b.tipo }));
     }
     entry.destinos = [...new Set(item.destino_ids)].map(id => destination(linkMap.get(id), doc.url));
+    entry.opciones = map.paginas.find(p => p.id === doc.id)?.municipal?.opciones || [];
     accepted.push(finish(entry)); used.add(doc.id);
   }
   return { accepted, rejected };

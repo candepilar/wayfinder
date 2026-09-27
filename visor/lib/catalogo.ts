@@ -5,6 +5,7 @@ export type Ficha = {
   destinos: { texto: string; url: string; fuente: string; estado: string }[];
   formulario: string | null; faltantes: string[]; validacion_humana: boolean;
   consultas?: string[]; clics_desde_portada?: number;
+  opciones?: { texto: string; url: string; fuente: string; grupo?: string }[];
   verificacion?: { estado: 'confirmada' | 'dudosa'; motivo?: string };
 };
 export type RefFicha = { nombre: string; fuente: string };

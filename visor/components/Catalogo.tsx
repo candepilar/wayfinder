@@ -36,13 +36,14 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
           <p className="text-xs font-medium uppercase tracking-[0.14em] text-acento">Gestión</p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight">{selected.nombre}</h1>
           {selected.verificacion?.estado === 'confirmada' && <p className="mt-2 text-sm text-tinta-media"><span className="text-acento">✓</span> Verificada por una segunda revisión de IBM Bob contra la página oficial.</p>}
-          {selected.verificacion?.estado === 'dudosa' && <p className="mt-3 rounded-xl border border-linea bg-superficie p-3 text-sm text-tinta">Bob marcó esta ficha para revisar: {selected.verificacion.motivo} Confirmá en la página oficial.</p>}
+          {selected.verificacion?.estado === 'dudosa' && <p className="mt-3 text-sm text-tinta-media">Confirmá los requisitos actualizados en la página del trámite.</p>}
         </div>
         <div className="rounded-2xl border border-linea bg-superficie p-6 shadow-panel">
           {selected.destinos.length > 0 ? <div className="flex flex-wrap gap-3">{selected.destinos.map(d => <a key={d.url} href={d.url} target="_blank" rel="noopener noreferrer" className="rounded-xl bg-acento px-5 py-3 text-sm font-medium text-acento-tinta transition-opacity hover:opacity-90">{d.texto} ↗</a>)}</div>
-            : <p className="text-sm">No identificamos un acceso directo inequívoco. Continuá desde la página oficial.</p>}
+            : <a href={selected.fuente} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-xl bg-acento px-5 py-3 text-sm font-medium text-acento-tinta transition-opacity hover:opacity-90">Ir al trámite ↗</a>}
+          {!!selected.opciones?.length && <div className="mt-5"><p className="mb-3 text-sm font-medium">¿Para qué necesitás el turno?</p><div className="flex flex-wrap gap-3">{selected.opciones.map(o => <a key={`${o.url}-${o.texto}`} href={o.url} target="_blank" rel="noopener noreferrer" className={button}>{o.texto} ↗</a>)}</div></div>}
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-tinta-media">
-            <a className="underline decoration-linea-fuerte underline-offset-4 hover:text-tinta" href={selected.fuente} target="_blank" rel="noopener noreferrer">Página oficial ↗</a>
+            {selected.destinos.length > 0 ? <a className="underline decoration-linea-fuerte underline-offset-4 hover:text-tinta" href={selected.fuente} target="_blank" rel="noopener noreferrer">Ver información oficial ↗</a> : <span>Abre la página de esta gestión. El sitio puede pedirte iniciar sesión.</span>}
             {selected.clics_desde_portada && selected.clics_desde_portada > 1 && <span>En el sitio está a <strong className="text-tinta">{selected.clics_desde_portada} clics</strong> de la portada. Acá, a uno.</span>}
           </div>
         </div>

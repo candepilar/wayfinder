@@ -174,6 +174,7 @@ async function vistaTramite(sitio, t, tab) {
 
   return [
     el('div', {}, el('h1', {}, t.nombre),
+      el('a', { class: 'boton', href: t.ficha || t.fuente, target: '_blank', rel: 'noopener' }, 'Ir al trámite ↗'),
       el('p', { class: 'fuente' }, 'Según la ', el('a', { href: t.fuente, target: '_blank', rel: 'noopener' }, 'ficha oficial')),
       t.clics > 1 ? el('p', { class: 'resumen-bob' }, `En el sitio está a ${t.clics} clics de la portada. Acá, a uno.`) : null,
       el('div', { class: 'acciones' }, escuchar, whatsapp)),

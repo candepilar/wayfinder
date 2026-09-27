@@ -13,7 +13,7 @@ test('dynamic catalog retains whole conditions, only sourced URLs and honest mis
  assert.equal(pasoActual(s.tramites[0],'https://library.example.org/apply'),2);
  c.fichas[0].destinos=[];
  const t=guiaDeCatalogo(c,'abc').tramites[0];
- assert.equal(t.pasos.length,2); assert.match(t.pasos[1].detalle,/no encontró/);
+ assert.equal(t.pasos.length,2); assert.equal(t.pasos[1].opciones.length,0); assert.equal(t.ficha,c.fichas[0].fuente);
  assert.throws(()=>guiaDeCatalogo({sitio:{url:'file:///private'}},'abc'));
  c.fichas[0].destinos=[{url:'https://library.example.org/auth?token=secret'},{url:'http://127.0.0.1/private'},{url:'https://library.example.org/help?topic=join',texto:'Help'}];
  assert.deepEqual(guiaDeCatalogo(c,'abc').tramites[0].pasos[1].opciones.map(o=>o.url),['https://library.example.org/help?topic=join']);

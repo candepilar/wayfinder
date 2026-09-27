@@ -184,3 +184,10 @@ test('packaged real demo works without developer data and keeps task evidence fo
     assert.ok(section.bloques?.length, `Unrefreshed section: ${p.url}`);
   }
 });
+
+test('appointment choices keep official targets and full qualifiers, never mix no-appointment links', () => {
+  const r = extractMunicipal(`<main><h1>Turnos patente</h1><div>Trámites que NO requieren solicitud de turno:</div><div><ul><li><a href="/venta">Venta</a></li></ul></div><div>Trámites que SI requieren solicitud de turno:</div><div><ul><li><a href="/alta">Solicitud de Alta</a></li><li><a href="/modificar">Modificaciones</a> (Cambio de Motor)</li><li><a href="https://externo.example/">Externo</a></li><li><a href="/turno?token=temporal">Temporal</a></li></ul></div></main>`, 'https://example.org/turnos');
+  assert.deepEqual(r.opciones.map(o => o.url), ['https://example.org/alta', 'https://example.org/modificar']);
+  assert.equal(r.opciones[1].texto, 'Modificaciones (Cambio de Motor)');
+  assert.equal(r.opciones[1].fuente, 'https://example.org/turnos');
+});

@@ -36,7 +36,7 @@ export function chatBob({ el, publica, ir, buscarLocal = () => [] }) {
       el('p', { class: 'chat-pregunta' }, t.pregunta),
       el('p', { class: 'chat-respuesta' }, t.respuesta.mensaje),
       ...(t.respuesta.fichas || []).map(f => el('div', { class: 'opcion' }, el('strong', {}, f.nombre),
-        ...(f.destinos || []).map(d => link(d.texto || 'Continuar', d.url)), link('Ver información oficial', f.fuente))),
+        ...(f.destinos || []).map(d => link(d.texto || 'Continuar', d.url)), link('Ir al trámite', f.fuente))),
       (t.respuesta.evidencia || []).length ? el('details', {}, el('summary', {}, 'Ver fuentes'),
         ...t.respuesta.evidencia.map(e => el('p', { class: 'fuente' }, e.texto, ' ', link('Abrir fuente', e.fuente)))) : null,
     )));
