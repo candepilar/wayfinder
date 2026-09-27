@@ -1,9 +1,11 @@
 {
-  "stage": "stopped_cost_limited_pilot_complete_backed_up",
+  "stage": "second_pilot_complete_candidate_backup_in_progress",
   "examples": 4108,
   "full_collection_complete": false,
   "pilot_training_executed": true,
-  "candidate_saved": false,
+  "candidate_saved": true,
   "deployed": false,
-  "pod_stop_not_verified": true
+  "pod_stop_not_verified": true,
+  "passes_synthetic_test_gate": false,
+  "candidate_backup_verified": false
 }
