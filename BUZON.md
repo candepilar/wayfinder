@@ -5,6 +5,19 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 07:35 (ARG) — Claude de Cande — 🚨 FRANCO: publicación trabada en el VPS + «del diagnóstico al arreglo»
+**⚠️ Urgente para Franco (solo vos tenés acceso al VPS):** la primera publicación que lancé (run 36311233375) quedó **colgada en «Corriendo pruebas…»** por mi error de imports (ya corregido en `c865899`). Ese proceso **sigue con el candado `/run/wayfinder-publicar.lock` tomado**: la segunda publicación (run 36311703177) respondió «Ya hay una publicación en curso». La página no cambió (sigue `gh-20260927T072512Z`). Para destrabar:
+```
+sudo fuser -v /run/wayfinder-publicar.lock      # ver PIDs (script + npm/node --test)
+sudo kill <PIDs>                                 # o: sudo pkill -f wayfinder-publicar.sh; sudo pkill -f "node --test"
+```
+Al morir el proceso el candado se libera solo. Después, **volver a correr «Publicar en el servidor»** (publicar, pantalla ✓) o avisame y lo lanzo yo. Sugerencia para que no vuelva a pasar: en `wayfinder-publicar.sh` línea 49, `timeout 300 npm test` (no lo toqué: es tu script de deploy).
+**Hice (salto cualitativo, pedido de Cande):** Wayfinder ya no solo encuentra el problema del sitio: **entrega el arreglo**. `motor/src/exportar.mjs` genera para el equipo del sitio (1) una página **«Trámites de la A a la Z»** en HTML accesible y sin dependencias (todas las gestiones a un clic, requisitos, accesos oficiales, «antes, a N clics de la portada») y (2) **schema.org `GovernmentService` en JSON-LD** para buscadores y asistentes. Texto literal; contenido ajeno siempre escapado, solo enlaces http(s), JSON-LD sin posibilidad de cerrar el `<script>`.
+- `GET /api/exportar?url=…&formato=html|jsonld` (busca por dirección, descarga con CSP `default-src 'none'` y `nosniff`). Herramienta MCP **`generar_indice`**. Web: botones en «Para el equipo del sitio».
+- Tests: `motor/test/exportar.test.mjs` (orden, contenido, **inyección de `<script>`/`<img onerror>`/`javascript:`**, schema.org, endpoint con cabeceras). Motor 69/69, `tsc` OK. Probado de punta a punta: 15 gestiones del sitio de prueba en una página A–Z.
+**No tocar:** `motor/src/exportar.mjs`, `server.mjs`.
+**Preguntas para el otro:** ¿podés destrabar el VPS ya? Es lo único que frena publicar todo lo de hoy.
+
 ## 2026-09-27 — Astra, de Franco — Comparación REAL en L4 terminada y respaldada
 **Hice:** conecté el nuevo Pod de Franco, GPU NVIDIA L4 23034 MiB, disco 30 GB, PyTorch 2.8.0+cu128. Transferencias verificadas por SHA256, dependencias instaladas en entorno separado. Corrí `comparar_encoder.py` bajo timeout 600 s: NO entrenó ni cambió pesos ni llamó a Bob/OpenAI. Original 16,81 s y candidata 4,45 s incluyendo cargas; no son latencias comparables de producción (primer arranque/cache distintos).
 **Resultado:** 48 casos positivos: original 39/48 (81,25%) y candidata 43/48 (89,58%); top3 ambos 45/48 (93,75%). Seis consultas mejoradas, dos empeoradas. EN→EN 12/12→11/12; ES→EN 12/12→11/12; EN→ES 5/12→10/12; ES→ES 10/12→11/12. Las dos regresiones corresponden al mismo escenario DVLA en ambos idiomas; son correlacionadas. Pico VRAM ~0,64 GiB. `RESULTADO-COMPARACION-V2.json` registra evidencia.

@@ -12,6 +12,7 @@ import { codeRoutes } from './codigo-routes.mjs';
 import { municipalRoutes } from './municipal-routes.mjs';
 import { crawlMunicipal } from './municipal-crawler.mjs';
 import { compararCatalogos, organizeCatalog } from './catalogo.mjs';
+import { exportarHtml, exportarJsonLd } from './exportar.mjs';
 import { assistantRoutes } from './asistente-routes.mjs';
 import { extensionRequest, extensionRoutes } from './extension-routes.mjs';
 
@@ -51,6 +52,22 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
     if (!map.catalogo) return res.status(404).json({ error: 'Este mapa todavía no tiene un catálogo organizado.' });
     if (req.query.descargar === '1') res.setHeader('Content-Disposition', `attachment; filename="wayfinder-catalogo-${req.params.id}.json"`);
     res.json(map.catalogo);
+  });
+  // Del diagnóstico al arreglo: página «Trámites de la A a la Z» o JSON-LD para el sitio.
+  // Se busca por dirección (como /extension/catalogo) y se entrega como descarga.
+  app.get('/api/exportar', async (req,res) => {
+    let host;
+    try { if (typeof req.query.url !== 'string' || req.query.url.length > 2048) throw Error(); host = new URL(normalizeUrl(req.query.url)).hostname.replace(/^www\./, ''); }
+    catch { return res.status(400).json({ error: 'Ingresá la dirección de un sitio con catálogo.' }); }
+    const formato = req.query.formato === 'jsonld' ? 'jsonld' : 'html';
+    const hostDe = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return ''; } };
+    const match = (await store.list()).find(({ mapa }) => mapa.catalogo && hostDe(mapa.sitio.url) === host);
+    if (!match) return res.status(404).json({ error: 'Ese sitio todavía no tiene catálogo.' });
+    res.setHeader('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'; img-src 'none'");
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Content-Disposition', `attachment; filename="tramites-${host.replace(/[^a-z0-9.-]/gi, '')}.${formato === 'html' ? 'html' : 'jsonld'}"`);
+    if (formato === 'jsonld') return res.type('application/ld+json').send(JSON.stringify(exportarJsonLd(match.mapa.catalogo), null, 2));
+    return res.type('text/html; charset=utf-8').send(exportarHtml(match.mapa.catalogo));
   });
   app.get('/api/mapas/:id/archivo', async (req,res) => {
     const map = await store.get(req.params.id);

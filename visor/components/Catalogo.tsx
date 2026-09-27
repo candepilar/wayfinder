@@ -5,6 +5,7 @@ import { WebMap } from '@/lib/tipos';
 import { CatalogoSitio, Ficha, Fragmento } from '@/lib/catalogo';
 import Asistente from './Asistente';
 import { buscarFichas } from '@/lib/buscar';
+import { API_BASE } from '@/lib/motor';
 const button = 'rounded-lg border border-linea bg-superficie px-4 py-2 text-sm text-tinta hover:border-acento-borde';
 
 export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onVolver: () => void; onMapa: () => void }) {
@@ -54,7 +55,7 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
         <div className="mt-5 grid gap-4 md:grid-cols-2">{results.map(f => <button key={f.id} onClick={() => setSelected(f)} className="rounded-xl border border-linea bg-superficie p-5 text-left shadow-panel hover:border-acento-borde"><h2 className="font-semibold">{f.nombre}</h2><p className="mt-3 text-sm text-tinta-media">Ver indicaciones y cómo continuar →</p></button>)}</div>
         {!results.length && <div className="mt-5 rounded-xl border border-linea bg-superficie p-5"><h2 className="font-medium">{catalog.fichas.length ? 'No encontramos coincidencias en este catálogo' : 'Todavía no identificamos gestiones con evidencia suficiente'}</h2><p className="mt-2 text-sm text-tinta-media">Eso no significa que no existan. Podés consultar el sitio o explorar el mapa de las páginas leídas.</p><a className="mt-3 inline-block text-sm underline" href={mapa.sitio.url} target="_blank" rel="noopener noreferrer">Ir al sitio de origen ↗</a></div>}
       </>}
-      {catalog.mantenimiento && <Mantenimiento m={catalog.mantenimiento} />}
+      <Mantenimiento m={catalog.mantenimiento} sitio={mapa.sitio.url} fichas={catalog.fichas.length} />
       <details className="mt-10 rounded-xl border border-linea p-4 text-xs text-tinta-media">
         <summary className="cursor-pointer">Fuente y alcance · {mapa.paginas.length} páginas leídas · {catalog.fichas.length} fichas</summary>
         <p className="mt-3">Recorrido {mapa.ejecucion?.estado || 'de alcance limitado'}; {mapa.ejecucion?.pendientes || 0} enlaces pendientes. Lectura de HTML público; páginas que necesitan sesión, JavaScript o documentos adjuntos pueden quedar fuera.</p>
@@ -106,11 +107,19 @@ function ComoLoArmoBob({ catalog, leidas }: { catalog: CatalogoSitio; leidas: nu
 
 const CAMPO: Record<string, string> = { nombre: 'nombre', requisitos: 'requisitos', pasos: 'pasos', costo: 'costo', donde_se_hace: 'dónde se hace', acceso: 'acceso' };
 // Para quien mantiene el sitio: qué cambió desde la lectura anterior y qué falta.
-function Mantenimiento({ m }: { m: NonNullable<CatalogoSitio['mantenimiento']> }) {
+function Mantenimiento({ m, sitio, fichas }: { m?: CatalogoSitio['mantenimiento']; sitio: string; fichas: number }) {
+  const descarga = (formato: string) => `${API_BASE}/exportar?url=${encodeURIComponent(sitio)}&formato=${formato}`;
+  const arreglo = fichas > 0 && <div className="mt-3 rounded-lg border border-acento-borde bg-acento-suave p-4">
+    <p className="font-medium text-tinta">Del diagnóstico al arreglo</p>
+    <p className="mt-1 text-xs leading-relaxed">Descargá una página «Trámites de la A a la Z» para publicar en tu sitio (todas las gestiones a un clic, accesible y sin dependencias) y sus datos estructurados schema.org para que buscadores y asistentes encuentren cada gestión. El texto es el de cada página oficial.</p>
+    <div className="mt-3 flex flex-wrap gap-2"><a className="rounded-lg bg-acento px-3 py-2 text-sm font-medium text-acento-tinta" href={descarga('html')} download>Descargar página A–Z (HTML)</a><a className="rounded-lg border border-linea bg-superficie px-3 py-2 text-sm text-tinta hover:border-acento-borde" href={descarga('jsonld')} download>Descargar schema.org (JSON-LD)</a></div>
+  </div>;
+  if (!m) return <details className="mt-10 rounded-xl border border-linea bg-superficie p-4 text-sm text-tinta-media"><summary className="cursor-pointer font-medium text-tinta">Para el equipo del sitio: qué cambió y qué falta</summary>{arreglo}<p className="mt-3 text-xs">Volvé a recorrer el sitio para registrar qué cambia de una lectura a otra.</p></details>;
   const lista = (titulo: string, items: { nombre: string; fuente: string; detalle?: string }[]) => items.length > 0 && <div className="mt-3"><p className="font-medium text-tinta">{titulo} · {items.length}</p><ul className="mt-1 space-y-1">{items.slice(0, 12).map(x => <li key={x.fuente}><a className="underline" href={x.fuente} target="_blank" rel="noopener noreferrer">{x.nombre}</a>{x.detalle && <span> — {x.detalle}</span>}</li>)}</ul></div>;
   const cifras: [number, string][] = m.primera_lectura ? [[m.sin_acceso.length, 'sin acceso directo']] : [[m.nuevas.length, 'nuevas'], [m.quitadas.length, 'ya no aparecen'], [m.modificadas.length, 'cambiaron'], [m.sin_acceso.length, 'sin acceso directo']];
   return <details className="mt-10 rounded-xl border border-linea bg-superficie p-4 text-sm text-tinta-media">
     <summary className="cursor-pointer font-medium text-tinta">Para el equipo del sitio: qué cambió y qué falta</summary>
+    {arreglo}
     <p className="mt-3 text-xs">{m.primera_lectura ? 'Primera lectura de este sitio: la próxima vez que se recorra vas a ver qué cambió.' : `Comparado con la lectura del ${new Date(m.desde!).toLocaleString('es-AR')}. ${m.sin_cambios} gestiones sin cambios.`}</p>
     <div className="mt-3 flex flex-wrap gap-2">{cifras.map(([n, t]) => <span key={t} className="rounded-full border border-linea px-3 py-1 text-xs"><strong className="text-tinta">{n}</strong> {t}</span>)}</div>
     {lista('Nuevas', m.nuevas)}

@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { Store } from './store.mjs';
 import { raices } from './buscar.mjs';
 import { auditar } from './auditar.mjs';
+import { exportarHtml, exportarJsonLd } from './exportar.mjs';
 
 const VERSION = '2024-11-05';
 
@@ -63,6 +64,11 @@ export function crearServidor({ api = process.env.WAYFINDER_API, dataDir = proce
       description: 'Para mantenimiento: qué gestiones son nuevas, cuáles ya no aparecen, cuáles cambiaron (requisitos, pasos, costo, acceso) desde la lectura anterior del sitio, y cuáles no tienen acceso directo.',
       inputSchema: { type: 'object', properties: { sitio: { type: 'string' } }, required: ['sitio'], additionalProperties: false },
       run: async ({ sitio: id }) => (await sitio(id)).catalogo.mantenimiento ?? { aviso: 'Este catálogo se armó antes del registro de cambios: volvé a recorrer el sitio para compararlo.' },
+    },
+    generar_indice: {
+      description: 'Del diagnóstico al arreglo: genera para el equipo del sitio una página «Trámites de la A a la Z» (HTML accesible, cada gestión a un clic) o sus datos estructurados schema.org GovernmentService (JSON-LD), con el texto literal del sitio.',
+      inputSchema: { type: 'object', properties: { sitio: { type: 'string' }, formato: { type: 'string', enum: ['html', 'jsonld'] } }, required: ['sitio'], additionalProperties: false },
+      run: async ({ sitio: id, formato = 'jsonld' }) => { const c = (await sitio(id)).catalogo; return formato === 'html' ? exportarHtml(c) : exportarJsonLd(c); },
     },
     auditar_catalogo: {
       description: 'Audita el catálogo de un sitio: fichas, accesos directos, consultas cotidianas, descartes, tareas de Bob en paralelo, tiempo, costo, clics desde la portada y alertas bloqueantes.',
