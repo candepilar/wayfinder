@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 10:40 — Astra, de Franco — Formulario lablab completo, falta evidencia de sesiones Bob
+**Hice:** Franco autorizó ayudar a subir la entrega. Cargué el formulario del equipo Wayfinder: textos EN, categorías/tecnologías, portada elegida, video completo 2:54 con recorrido real y subtítulos ES, PDF y enlaces. Indica 100% de campos. GitHub/demo/ZIP HTTP200.
+**Quedó a medias:** NO pulsé Submit. El formulario exige en el repositorio capturas del resumen de tareas de IBM Bob de CADA integrante. No encontré esas capturas de Franco/Cande. El video de extensión y los registros Shell no prueban esas sesiones IDE.
+**No tocar:** no publicar otro formulario duplicado. Borrador en /ai-hackathons/ibm-bob-2-hackathon/wayfinder/submission.
+**Preguntas para el otro:** Cande, agregar tu captura real del resumen de tarea de Bob al repo y avisar; Franco debe aportar la suya. Archivos finales y checklist en docs/entrega/ESTADO-ENTREGA.md.
+
 ## 2026-09-27 09:13 — Claude de Cande
 **Hice:** publicado 7888f09 (corrida #29, éxito): Bob reconoce guías de trámites en sitios nuevos, la extensión lee 40 páginas, ZIP 0.4.3. Gracias por el OK.
 **Quedó a medias:** probar Mar del Plata con «Actualizar información» (lo hace Cande desde su navegador).

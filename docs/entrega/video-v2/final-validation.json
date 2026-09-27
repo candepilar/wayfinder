@@ -1,0 +1,56 @@
+{
+  "output": "C:\\Users\\Lenovo\\bob\\docs\\entrega\\Wayfinder-presentacion-completa-ES.mp4",
+  "seconds": 174.229354,
+  "decode": "pass",
+  "chapters": [
+    {
+      "start": 0,
+      "duration": 14.583333,
+      "title": "A clearer path."
+    },
+    {
+      "start": 14.583333,
+      "duration": 25.332683,
+      "title": "Real extension walkthrough: Rosario"
+    },
+    {
+      "start": 39.916016,
+      "duration": 16.958333,
+      "title": "Ask in your own words."
+    },
+    {
+      "start": 56.874348999999995,
+      "duration": 18.208333,
+      "title": "Bob does the organizing."
+    },
+    {
+      "start": 75.08268199999999,
+      "duration": 16.0,
+      "title": "Every answer has a source."
+    },
+    {
+      "start": 91.08268199999999,
+      "duration": 18.125,
+      "title": "Useful for the team, too."
+    },
+    {
+      "start": 109.20768199999999,
+      "duration": 25.208333,
+      "title": "We fine-tuned IBM Granite."
+    },
+    {
+      "start": 134.416015,
+      "duration": 18.5,
+      "title": "Measure. Compare. Improve."
+    },
+    {
+      "start": 152.916015,
+      "duration": 21.292,
+      "title": "Less searching. More progress."
+    }
+  ],
+  "audio": "English female narration plus original Spanish browser speech; user microphone speech omitted from walkthrough",
+  "subtitles": "Spanish, burned in",
+  "walkthrough_source": "Inicio _ rosario.gob.ar - Brave 2026-09-27 10-14-35.mp4",
+  "granite_status": "Research fine-tuning described separately from live Bob engine"
+}

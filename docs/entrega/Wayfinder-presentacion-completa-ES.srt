@@ -1,0 +1,119 @@
+1
+00:00:00,050 --> 00:00:03,458
+Encontrar el trámite correcto debería ser simple.
+
+2
+00:00:03,578 --> 00:00:08,810
+Wayfinder te ayuda a saber qué necesitás y llegar al siguiente paso oficial.
+
+3
+00:00:08,930 --> 00:00:14,162
+Creado por Candela y Franco, con IBM Bob en el centro de la experiencia.
+
+4
+00:00:14,633 --> 00:00:20,053
+La interfaz principal es una extensión que acompaña al ciudadano en el sitio.
+
+5
+00:00:20,153 --> 00:00:25,069
+Encontrá un trámite, revisá los requisitos y seguí los enlaces oficiales.
+
+6
+00:00:25,983 --> 00:00:28,983
+Obtener certificado de pago de TGI.
+
+7
+00:00:28,983 --> 00:00:34,683
+¿Qué necesitás? No registrar obligaciones fiscales impagas a la fecha de asentamiento.
+
+8
+00:00:35,333 --> 00:00:39,603
+La guía mantiene el próximo paso junto a la página que estás usando.
+
+9
+00:00:39,966 --> 00:00:46,230
+Podés preguntar: «Necesito renovar el carnet. ¿Por dónde empiezo?»
+
+10
+00:00:46,350 --> 00:00:51,918
+Bob relaciona la consulta con un trámite existente y responde con fuentes.
+
+11
+00:00:52,038 --> 00:00:56,454
+Podés seguir preguntando en la misma conversación, sin empezar de cero.
+
+12
+00:00:56,925 --> 00:01:03,261
+Detrás de la interfaz, IBM Bob organiza la información pública en un catálogo.
+
+13
+00:01:03,381 --> 00:01:09,765
+En este recorrido real, organizó 40 páginas en cinco tareas, de a dos a la vez.
+
+14
+00:01:09,885 --> 00:01:14,661
+El resultado: veinte fichas de trámites para buscar y consultar.
+
+15
+00:01:15,133 --> 00:01:20,197
+Una segunda revisión de Bob contrasta las fichas con la información original.
+
+16
+00:01:20,317 --> 00:01:25,717
+La aplicación valida las referencias y conserva los enlaces de la fuente.
+
+17
+00:01:25,837 --> 00:01:30,637
+Así, ciudadanos y equipos pueden revisar de dónde sale la información.
+
+18
+00:01:31,133 --> 00:01:36,893
+Para quienes mantienen el sitio, creamos modos y habilidades de Bob IDE.
+
+19
+00:01:37,013 --> 00:01:43,613
+Seis herramientas MCP permiten buscar, revisar, comparar y exportar el catálogo.
+
+20
+00:01:43,733 --> 00:01:48,749
+Los equipos pueden detectar cambios y exportar un índice de trámites.
+
+21
+00:01:49,258 --> 00:01:54,322
+También entrenamos un modelo de búsqueda especializado sobre IBM Granite.
+
+22
+00:01:54,442 --> 00:02:01,642
+Preparamos 3.750 fichas públicas de trámites, con ejemplos en inglés y español.
+
+23
+00:02:01,762 --> 00:02:09,034
+Esta línea de investigación tiene entrenamiento en GPU y evaluación separada del motor Bob.
+
+24
+00:02:09,154 --> 00:02:13,978
+Su objetivo es relacionar preguntas cotidianas con el trámite correcto por su significado.
+
+25
+00:02:14,466 --> 00:02:21,882
+En la prueba sintética en español, la búsqueda acertó el primer resultado en el 69,6 %.
+
+26
+00:02:22,002 --> 00:02:28,602
+BM25 alcanzó el 66,3 % con las mismas preguntas y documentos.
+
+27
+00:02:28,722 --> 00:02:32,466
+Usamos estas mediciones para orientar las próximas mejoras.
+
+28
+00:02:32,966 --> 00:02:39,998
+Wayfinder combina una extensión amigable, un motor con Bob y un catálogo mantenible.
+
+29
+00:02:40,118 --> 00:02:47,294
+Probá la demo, explorá el repositorio y recorré un trámite desde la consulta al sitio oficial.
+
+30
+00:02:47,414 --> 00:02:53,774
+Un próximo paso más claro para el ciudadano. Mejores herramientas para su equipo.
