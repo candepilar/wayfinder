@@ -61,20 +61,37 @@ export function objetivoEn(tramite, url) {
   return (paso?.opciones || []).filter(o => coincide(o.desde, url)).map(o => ({ url: o.url, texto: o.texto }));
 }
 
+// Búsqueda en lenguaje natural, sin modelo: se quitan palabras vacías y se
+// compara por raíz (primeras 5 letras), así «quiero devolver un producto»
+// encuentra «Devoluciones» y «envíos» encuentra «Envío a domicilio».
+const VACIAS = new Set('a al algo alguna alguno como con cual cuando de del donde el en es esa ese esta este hacer hago la las le lo los me mi mis necesito o para por puedo que quiero se si sin su sus te tengo tu un una uno y ya yo quisiera'.split(' '));
+export function raices(texto) {
+  return [...new Set(normalizar(texto).split(/[^a-z0-9ñ]+/).filter(p => p.length > 2 && !VACIAS.has(p)).map(p => p.slice(0, 5)))];
+}
+const puntaje = (consulta, texto) => { const r = new Set(raices(texto)); return consulta.filter(p => r.has(p)).length; };
+
 export function buscar(sitio, consulta, limite = 6) {
-  const palabras = normalizar(consulta).split(/[^a-z0-9ñ]+/).filter(p => p.length > 2);
+  const palabras = raices(consulta);
   if (!palabras.length) return [];
   return sitio.tramites
     .map(t => {
-      const nombre = normalizar(t.nombre);
       // consultas: cómo lo pediría un vecino (las anota Bob al armar el catálogo).
-      const consultas = normalizar((t.consultas || []).join(' '));
-      const resto = normalizar([...t.antes, ...t.costos].join(' '));
-      const puntos = palabras.reduce((s, p) => s + (nombre.includes(p) ? 3 : 0) + (consultas.includes(p) ? 2 : 0) + (resto.includes(p) ? 1 : 0), 0);
+      const puntos = 3 * puntaje(palabras, t.nombre) + 2 * puntaje(palabras, (t.consultas || []).join(' ')) + puntaje(palabras, [...t.antes, ...t.costos].join(' '));
       return { t, puntos };
     })
     .filter(x => x.puntos > 0)
     .sort((a, b) => b.puntos - a.puntos || a.t.nombre.length - b.t.nombre.length)
     .slice(0, limite)
     .map(x => x.t);
+}
+
+// Enlaces visibles de la página: sin consulta, los primeros (ya vienen
+// priorizados); con consulta, los que comparten más raíces con lo pedido.
+export function buscarEnlaces(enlaces, consulta, limite = 8) {
+  const palabras = raices(consulta);
+  if (!palabras.length) return enlaces.slice(0, limite);
+  return enlaces.map((e, i) => ({ e, i, puntos: puntaje(palabras, e.texto) }))
+    .filter(x => x.puntos > 0)
+    .sort((a, b) => b.puntos - a.puntos || a.i - b.i)
+    .slice(0, limite).map(x => x.e);
 }

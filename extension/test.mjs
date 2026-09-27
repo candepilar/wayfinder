@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {publicPage,destination,enteredPage,tabMessage} from './url.mjs';
-import {buscar,coincide,objetivoEn,pasoActual,sitioDe,tramiteDe} from './guia.mjs';
+import {buscar,buscarEnlaces,coincide,objetivoEn,pasoActual,raices,sitioDe,tramiteDe} from './guia.mjs';
 import {readFile} from 'node:fs/promises';
 import {guiaDeCatalogo} from './catalogo.mjs';
 
@@ -95,4 +95,14 @@ test('la búsqueda entiende cómo lo pide un vecino gracias a las consultas de B
  // Sin consultas (catálogos viejos) la búsqueda sigue funcionando como antes.
  delete c.fichas[0].consultas;
  assert.deepEqual(buscar(guiaDeCatalogo(c,'m'),'perro abandonado'),[]);
+});
+test('buscar enlaces con palabras cotidianas, por raíz y sin palabras vacías',()=>{
+ const e=[{texto:'Inicio'},{texto:'Devoluciones y cambios'},{texto:'Envío a domicilio'},{texto:'Sucursales'},{texto:'Preguntas frecuentes'}];
+ const t=q=>buscarEnlaces(e,q).map(x=>x.texto);
+ assert.deepEqual(t('quiero devolver un producto'),['Devoluciones y cambios']);
+ assert.deepEqual(t('¿cuánto tarda el envío?'),['Envío a domicilio']);
+ assert.deepEqual(t('dónde hay una sucursal'),['Sucursales']);
+ assert.deepEqual(t('quiero'),e.slice(0,8).map(x=>x.texto)); // solo palabras vacías: lista priorizada
+ assert.deepEqual(t('pasaporte'),[]);
+ assert.deepEqual(raices('Quiero DEVOLVER'),['devol']);
 });

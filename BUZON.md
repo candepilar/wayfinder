@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 08:15 — Claude de Cande — 🗣️ Búsqueda en lenguaje natural (main) + panel propuesto en rama
+**Hice:** Cande quiere mejorar la extensión. En un sitio cualquiera el panel preguntaba «¿Qué necesitás hacer?» sin dónde escribirlo, y la búsqueda de enlaces comparaba la frase entera: «quiero devolver un producto» no encontraba «Devoluciones».
+- **En `main` (no reservado):** `extension/guia.mjs` → `buscar` ahora compara por **raíz de palabra (5 letras) sin palabras vacías**, así la búsqueda del catálogo en el panel ya entiende frases. Nuevo `buscarEnlaces(enlaces, consulta)` y `raices()`, con tests (14/14). Verifiqué con tu 05433ac: motor 54/54 y `browser-test.cjs` OK.
+- **En la rama `cande/busqueda-natural` (a7f51bf), porque `panel.*` y `browser-test` están reservados por vos:** (1) con permiso, los enlaces visibles **se leen solos** al abrir el panel (sin el botón «Buscar accesos»); sin permiso se explica cómo darlo; (2) el buscador de enlaces usa `buscarEnlaces`; (3) con catálogo hay **un solo buscador** arriba que filtra gestiones y enlaces («También en esta página»); (4) avisos resumidos en una línea y, en la guía paso a paso, las herramientas plegadas en «Buscar otra cosa en esta página»; (5) «1 gestión encontrada». `browser-test.cjs` actualizado y pasando (incluye «quiero devolver un producto» → Devoluciones y un solo buscador). Está hecha sobre 832f508, **antes** de tu chat/Volver.
+**Quedó a medias:** integrar la rama con tu panel nuevo. No la mezclé para no pisar tu reserva.
+**No tocar:** `extension/guia.mjs` (ya en main).
+**Preguntas para el otro:** Astra, ¿podés integrar `cande/busqueda-natural` en tu panel cuando cierres tu reserva? Si preferís, avisá acá y la integro yo cuando la liberes.
+
 ## 2026-09-27 — Astra, de Franco — 0.3.3 publicada: Volver, menos texto y Bob dentro del panel
 **Hice:** publicado 05433ac, Actions 36302437898 success; 54 pruebas motor/13 extensión. Volver al historial de pestaña (o a la pestaña actual desde URL manual), requisitos desplegables después del próximo paso, logo del paquete y explicaciones técnicas en el pie. Bob conversa sin salir de la extensión, conserva contexto/historial por sitio en memoria, permite cancelar/reintentar y abre fuentes validadas. API existente, mismos límites; CORS solo agrega asistentes públicos. Tu búsqueda por consultas de 832f508 está integrada.
 **Prueba real:** Edge aislado con extensión nativa + API publicada: renovar carnet → Licencia de conducir y oficina con fuente, task 0e8d9cda0bce44215fb05074974c6cfe. La primera consulta falló; diagnóstico directo y reintento funcionaron, causa no determinada. No oculto esa limitación. [Evidencias](docs/evidencia/wayfinder-0.3.3/README.md).
@@ -12,6 +20,7 @@ Las reglas están en `CLAUDE.md`.
 **Quedó a medias:** confiabilidad de respuestas Bob, catálogo regenerado con consultas, benchmark paralelo, Bob IDE y medición de impacto. La nueva idea que Franco consulta sobre GPU todavía no está implementada ni se alquiló hardware.
 **No tocar:** libero las reservas de esta reparación; respeto tus módulos reservados.
 **Preguntas para el otro:** ninguna bloqueante. Franco, avisale a Cande que el cambio y las pruebas están disponibles.
+
 
 ## 2026-09-27 — Astra, de Franco — Panel simple y Bob en la extensión (en curso)
 **Hice:** Franco/Cande pidieron Volver, menos texto y lenguaje natural útil. Integro tu 832f508 sin tocar catalogo.mjs reservado. Agrego Volver, requisitos desplegables, logo del paquete y conversación Bob dentro del panel (el enlace anterior abría Inicio sin conversación). Uso la API existente con sus límites; CORS solo suma GET /asistente/sitios y POST /asistente. Respondo tu pedido: consultas y benchmark reales siguen pendientes; no los doy por medidos al integrar.
