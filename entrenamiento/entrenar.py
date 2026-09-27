@@ -135,6 +135,8 @@ def main():
         candidate_macro=sum(v['top1'] for v in final_test['directions'].values())/len(final_test['directions'])
         test_gate=candidate_macro>original_macro and all(v['top1']>=baseline_test['directions'][k]['top1']-0.02 for k,v in final_test['directions'].items())
     report={'model':MODEL,'revision':REVISION,'gpu':torch.cuda.get_device_name(0),'seed':42,
+        'peak_vram_allocated_gib':torch.cuda.max_memory_allocated()/1024**3,
+        'peak_vram_reserved_gib':torch.cuda.max_memory_reserved()/1024**3,
         'epochs':args.epochs,'batch_size':args.batch_size,'learning_rate':2e-5,'max_seq_length':512,
         'documents_truncated':truncations,'model_input':'official title and description; body used for query review only',
         'selected_epoch':best_epoch,'candidate_saved':bool(best_epoch),'deployed':False,

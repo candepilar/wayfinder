@@ -1,10 +1,18 @@
 # Wayfinder: búsqueda bilingüe de trámites
 
-Estado: recopilación y 40 lotes de generación/revisión completados. Paquete final: **2.482 consultas** (1.238 ES, 1.244 EN) sobre **313 trámites**, con **3.750 fichas oficiales** en el corpus de búsqueda. División: 1.939 entrenamiento, 343 validación y 200 examen. Se excluyeron 60 consultas en la cadena Bob y 2 en la exportación/revisión puntual. No hay un modelo entrenado, descargado ni conectado a producción.
+Paquete inicial completado (antes de la ampliación a todas las fuentes): **2.482 consultas** (1.238 ES, 1.244 EN) sobre **313 trámites**, con **3.750 fichas oficiales** en el corpus de búsqueda. División: 1.939 entrenamiento, 343 validación y 200 examen. Se excluyeron 60 consultas en la cadena Bob y 2 en la exportación/revisión puntual. No hay un modelo entrenado, descargado ni conectado a producción.
 
 Entrega: `paquete-entrenamiento.zip`, verificable con `PAQUETE.json`. Ejecutar según `RUNPOD.md`. El ZIP incluye fuentes, etiquetas y auditoría; no pesos ni credenciales.
 
-## Ampliación del 27/09
+## Ampliación a todas las fuentes utilizables
+
+Franco pidió procesar todos los trámites encontrados. Se agregaron 3.309 fichas a la cola: 3.629 documentos utilizables, 454 lotes totales y hasta 29.032 consultas antes de rechazos. La generación/revisión ampliada está en curso; `ESTADO-AMPLIACION.json` registra el estado y `COBERTURA-AMPLIADA.json` la selección completa. `DATOS-PREPARADOS.json` y el ZIP siguen describiendo el último paquete terminado hasta que la exportación ampliada pase sus controles. El proceso `finalizar_ampliacion.py` reintenta errores una vez, verifica hashes y arma el nuevo paquete; no entrena, publica ni hace operaciones Git.
+
+Se descargaron además 148 títulos/enlaces municipales de Lorca y San Lorenzo de El Escorial. Son candidatos para evaluación en sitios nuevos, no 148 fichas completas ni ejemplos entrenados. Ver `FUENTES-ADICIONALES.json` y `fuentes-adicionales.zip`.
+
+La clasificación temática actual es heurística: muchas fichas quedan en `other`. No equivale a cobertura semántica verificada de todos los tipos de trámite. El catálogo contiene más fuentes españolas que inglesas, aunque se generan consultas en ambos idiomas. Bob debe revisar estos sesgos antes de afirmar calidad general.
+
+## Recopilación inicial del 27/09
 
 Se recopilaron **3.802 registros oficiales**: 3.512 del catálogo abierto AGESIC/Uruguay, 51 snapshots municipales argentinos y 239 fichas inglesas del índice GOV.UK. La Content API permitió recuperar cuerpo completo de 238 de las 239 fichas inglesas; el restante no tiene cuerpo suficiente. Se conserva la fecha de cada fuente y los errores en `FUENTES-RECOPILADAS.json`.
 

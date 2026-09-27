@@ -16,6 +16,7 @@ def main():
               'EXCLUSIONES-REVISION.json']]
     # Only final generation/review records, never Bob workdirs or credentials.
     files += [HERE / 'datos/bob' / (task['id'] + '.json') for task in manifest['tasks']]
+    files += [HERE / name for name in ['COBERTURA-AMPLIADA.json', 'BOB-IDE-ENTRENAMIENTO.md'] if (HERE / name).exists()]
     target = HERE / 'paquete-entrenamiento.zip'
     with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for path in files:

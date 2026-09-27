@@ -1,0 +1,897 @@
+{
+  "selected": 3629,
+  "new_documents": 3309,
+  "first_new_batch_index": 40,
+  "batches": 454,
+  "intended_queries": 29032,
+  "by_language": {
+    "es": 3398,
+    "en": 231
+  },
+  "by_topic": {
+    "business": 277,
+    "civil": 40,
+    "driving": 432,
+    "education": 37,
+    "employment": 34,
+    "environment": 73,
+    "health": 110,
+    "housing": 124,
+    "identity": 52,
+    "immigration": 53,
+    "legal": 68,
+    "other": 2052,
+    "pensions": 77,
+    "tax": 200
+  },
+  "excluded": [
+    {
+      "id": "939691edf20691dafede",
+      "url": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-tgi",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "9d4ceab9b24bf4900a82",
+      "url": "https://www.rosario.gob.ar/inicio/pagar-tgi",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "a3af48d73663b56b4c0a",
+      "url": "https://www.rosario.gob.ar/inicio/certificado-de-pago-de-tasa-de-cementerio",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "4ccc2973e7f5af646a2c",
+      "url": "https://www.rosario.gob.ar/inicio/obtener-certificado-de-pago-de-drei",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "74c5f7bd8e3208239d59",
+      "url": "https://www.rosario.gob.ar/inicio/obtener-duplicado-ddjj-de-chofer-de-taxiremistransporte-escolar-y-especial",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "c4802161754c423b2b8c",
+      "url": "https://www.rosario.gob.ar/inicio/obtener-duplicado-de-chapa-placa-acrilica",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "5f9f0bc77aa50ed403c7",
+      "url": "https://www.rosario.gob.ar/inicio/obtener-final-de-demolicion",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "7d5b8afded08e70c5725",
+      "url": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-construccion-de-isla-callejera",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "e9a33e0f9c1d6ad0d167",
+      "url": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-de-desagues-pluviales",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "803ce74da25eb5711246",
+      "url": "https://www.rosario.gob.ar/inicio/obtener-final-de-obra-parcial",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "fb0218fc3f328def00b2",
+      "url": "https://www.rosario.gob.ar/inicio/pagar-drei",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "d1f3339a1f0f177b0daf",
+      "url": "https://www.rosario.gob.ar/inicio/pagar-patente-automotor",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "4b901bf37a67e6cfa26b",
+      "url": "https://www.rosario.gob.ar/inicio/pagar-tasa-de-cementerio",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "3c140e46d56e5c3a49f9",
+      "url": "https://www.rosario.gob.ar/inicio/renovar-alquiler-de-nichos-sepulturas-y-urnas",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "f465e1827a24969fdb98",
+      "url": "https://www.rosario.gob.ar/inicio/renovar-derecho-de-explotacion-de-licencia-de-taxi",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "2884a5991bed8c50f752",
+      "url": "https://www.rosario.gob.ar/inicio/renovar-estacionamiento-reservado-para-personas-con-discapacidad",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "f1d460cd22a61eabb644",
+      "url": "https://www.rosario.gob.ar/inicio/renovar-medio-boleto-estudiantil",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "a8a93af69d7f0d3356f5",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-acceso-informacion-publica",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "e4e0908390dabb804e55",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-asesoramiento-sobre-alquileres",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "ec309b96e17a81e4dcdc",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-broche-de-tgi-para-corredor-inmobiliario",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "82b9046564f83e12d802",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-caso-social-para-tgi",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "da3994d7148f1081ae55",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-certificado-urbanistico",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "a76771f86c3c9454d437",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-copia-de-historia-clinica",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "a95035e797969f1f0a37",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-cuenta-de-tgi-para-viviendas-en-mayor-area",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "84198c2a1cc19d37985a",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-estacionamiento-reservado-para-personas-con-discapacidad",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "8f2a517dfbe17e664f36",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-cultos-religiosos",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "402340911d877c25dc70",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-ex-combatientes-de-malvinas",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "9103d8abd58395a9874d",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-instituciones-fundaciones-y-clubes",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "4637fb9e354067b6bac8",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-exencion-de-pago-de-tgi-para-jubilados-y-pensionados",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "ca57ee7640ed7dd0985d",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-inicio-de-expediente",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "a9e94cee4679936867c2",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-inicio-de-expediente-de-oficio-judicial",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "1b39c6e4444ebeb8be7c",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-licencia-de-uso-y-libre-afectacion-lula",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "684298f48a68e23220fd",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-medio-boleto-estudiantil",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "a9861a87e3377a72c0ca",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-numeracion-oficial",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "0b03fefa810443cf3314",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-pase-libre-de-colectivos-para-mayores-de-69-anos",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "02049e922cd2bca69ca9",
+      "url": "https://www.rosario.gob.ar/inicio/solicitar-plano-catastral-de-mensura-yo-material-cartografico",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "6f990897addb23592be5",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "3e26e10a29628d91842c",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/106/turnos-centros-de-salud/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "08cc3abfcc4ed96f52a8",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/135/inscripcion-de-cooperativas/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "0b6f31133e96d243e116",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/139/solicitud-de-partidas/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "3ea37a27b0ebf79e666f",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/11/bajas-bromatologicas-de-comercios-sin-rne/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "22710dbfebeebef5a704",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/15/habilitaciones-bromatologicas-de-comercios-sin-rne/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "ee04128d3e05e86d41a2",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/129/inscripcion-al-registro-de-capacitadores/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "56ade75f3672e01ef8ed",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/137/inscripcion-al-registro-de-interesados-para-adquisicion-de-60-sesenta-lotes-con-destino-a-vivienda-familiar/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "c51234bbdb2ffc2f2d03",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/127/liberacion-de-vehiculosmotocicletas/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "c4ede3d5a4259e9d0420",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/130/preinscripcion-a-feria-de-artesanos-y-emprendedores/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "3f00a70ad490e5fa0f68",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/131/preinscripcion-a-feria-sarmiento/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "7f35057b0dc8056ee551",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/132/preinscripcion-a-la-feria-de-moda-circular/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "bb31f72568373bff4ff0",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/133/preinscripcion-a-vgg-mercado/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "27bd56dd6947732391fa",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/134/sanidad-animal-castraciones-atencion-veterinaria/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "39bb08f97dcabd9dc610",
+      "url": "https://vggmunicipalidad.gov.ar/tramite/125/solicitud-de-turno-charlas-de-educacion-vial/",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "d1bcddb574cc3bb2c084",
+      "url": "https://www.gov.uk/view-driving-licence",
+      "reason": "seed_development_example"
+    },
+    {
+      "id": "bc1e8a9e3fd5f4596a67",
+      "url": "https://www.gov.uk/register-to-vote",
+      "reason": "seed_development_example"
+    },
+    {
+      "id": "b5ca22fef80f3a0ea096",
+      "url": "https://www.gov.uk/renew-driving-licence-at-70",
+      "reason": "seed_development_example"
+    },
+    {
+      "id": "7cab27b921d5677053af",
+      "url": "https://www.gov.uk/renew-medical-driving-licence",
+      "reason": "seed_development_example"
+    },
+    {
+      "id": "758d8fd99f12b51c02d5",
+      "url": "https://www.gov.uk/hgv-levy",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "b25467c6b20605509f39",
+      "url": "https://www.gov.uk/exchange-paper-driving-licence",
+      "reason": "seed_development_example"
+    },
+    {
+      "id": "cd4b100a10b965e113ba",
+      "url": "https://www.gov.uk/search-registered-design",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "12d55a2e9f93b1af15b2",
+      "url": "https://www.gov.uk/find-an-insolvency-practitioner",
+      "reason": "incomplete_or_reuse_not_verified"
+    },
+    {
+      "id": "a6f9d799fc33dc3f061c",
+      "url": "https://www.gub.uy/tramites/solicitud-pasaporte-primera-vez",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "991b0b115cd0be43037a",
+      "url": "https://www.gub.uy/tramites/alta-empresas-direccion-nacional-transporte-dnt",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "5f45974968645c594c6b",
+      "url": "https://www.gub.uy/tramites/autorizacion-habilitacion-boites-dancings-prostibulos",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "1c7257ca8a757dceb109",
+      "url": "https://www.gub.uy/tramites/registro-empresas-rivera",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c5b166856d3333281236",
+      "url": "https://www.gub.uy/tramites/solicitud-partidas-rivera",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "d2ce5984c0338072bbfd",
+      "url": "https://www.gub.uy/tramites/usuario-parque-industrial-parque-cientifico-tecnologico",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "666009e6c83791775637",
+      "url": "https://www.gub.uy/tramites/inscripcion-nacimiento-lavalleja",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "27f59225ceff016a9bc7",
+      "url": "https://www.gub.uy/tramites/libreta-conducir-moto-primera-vez-florida",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "875b04cdac2b1a05332f",
+      "url": "https://www.gub.uy/tramites/renovacion-permiso-conducir-canelones",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "3eb4141c95414e6b06ef",
+      "url": "https://www.gub.uy/tramites/cambio-titularidad-vehiculo-transferencia-canelones",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "eb416a7089b8fa985ae2",
+      "url": "https://www.gub.uy/tramites/baja-total-vehiculo-canelones",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "b5412db4fd9192b94eea",
+      "url": "https://www.gub.uy/tramites/descarga-permiso-nacional-circulacion",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "61efb0436dc0d8822ade",
+      "url": "https://www.gub.uy/tramites/consulta-estado-tramite-jubilatorio",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "bda80753fc20b64f89c3",
+      "url": "https://www.gub.uy/tramites/jubilacion-incapacidad-total",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "999efa730ee8c9082b44",
+      "url": "https://www.gub.uy/tramites/resumen-anual-irpf-asistentes-personales",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "3a95f279de7a51f24f6b",
+      "url": "https://www.gub.uy/tramites/tarjeta-uruguay-social",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "32ad2afce91251a1a38e",
+      "url": "https://www.gub.uy/tramites/asistencia-vejez",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "438202ae218df3862a5f",
+      "url": "https://www.gub.uy/tramites/baja-fe-vida",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "7fa27f8a067a2923e7b7",
+      "url": "https://www.gub.uy/tramites/cancelar-prestamos-sociales",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "0694d60c6fe274dc62c5",
+      "url": "https://www.gub.uy/tramites/impagos-deudor-bps",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "3f1c32d51ed4e9f4dfa2",
+      "url": "https://www.gub.uy/tramites/anulacion-fallecimiento-registrado-error",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "6c28662057ebd82ab5c5",
+      "url": "https://www.gub.uy/tramites/reclamos-subsidio-desempleo",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "eaf801787a253dbb053a",
+      "url": "https://www.gub.uy/tramites/rehabilitar-cobros-caducados",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c18f2c9708b4d74b81a8",
+      "url": "https://www.gub.uy/tramites/obtener-resultado-evaluacion-tecnica-ayuda-extraordinaria",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "57b0d523f4bca5c4e467",
+      "url": "https://www.gub.uy/tramites/pago-cuota-convenio-cobro-indebido",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "b65bf26337b4c77b2347",
+      "url": "https://www.gub.uy/tramites/convenio-pago-cobro-indebido",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "a90b5b5dc391af23508b",
+      "url": "https://www.gub.uy/tramites/cambio-prestador-salud-problemas-asistenciales",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "a27103aa39aa8989c2c4",
+      "url": "https://www.gub.uy/tramites/audifonos-ninos-enfermedades-congenitas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "4542b9733629be8a633a",
+      "url": "https://www.gub.uy/tramites/fe-vida",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c58aae29d8f2d3fff4f3",
+      "url": "https://www.gub.uy/tramites/oficios-judiciales",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "20176f3eb19bdffd7481",
+      "url": "https://www.gub.uy/tramites/contribucion-lentes-contacto",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "35838a4d979b644914d0",
+      "url": "https://www.gub.uy/tramites/soluciones-habitacionales",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "45f903bbccf068aeea2a",
+      "url": "https://www.gub.uy/tramites/subsidio-desempleo-despido",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "362560370478b2a78f28",
+      "url": "https://www.gub.uy/tramites/planteamiento-garantias",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "622e4ccb0f4fd977da5d",
+      "url": "https://www.gub.uy/tramites/solicitud-pago-cheque-diferido",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c954aa2ede3669059f18",
+      "url": "https://www.gub.uy/tramites/alta-actividad-socio",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "20aec71e0cacb4160c57",
+      "url": "https://www.gub.uy/tramites/clausura-consorcio",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "b4ada8eae612ec3cdb0b",
+      "url": "https://www.gub.uy/tramites/clausura-personal-embajada-organismos-internacionales",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "4d8e59d7496fb8c6fe11",
+      "url": "https://www.gub.uy/tramites/inactividad-unipersonal-servicios-personales",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "9e249f02b40d0949122c",
+      "url": "https://www.gub.uy/tramites/reiniciar-sociedades-cooperativas-consorcios-inactivos",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "4e0b0f82d3836fe0d5c5",
+      "url": "https://www.gub.uy/tramites/reiniciar-sociedad-hecho-inactiva",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "ca068db017962fcaf95a",
+      "url": "https://www.gub.uy/tramites/reiniciar-sociedad-hecho-clausurada",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "37a6a7717dca62d832b2",
+      "url": "https://www.gub.uy/tramites/inactividad-socio",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "ca08a7daae3be5053666",
+      "url": "https://www.gub.uy/tramites/reiniciar-empresa-unipersonal-dentro-mes-curso",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "296347709c63ab10763a",
+      "url": "https://www.gub.uy/tramites/cambio-representaciones-diplomaticas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "62767a6ab12566592e4a",
+      "url": "https://www.gub.uy/tramites/inactividad-cantinas-ubicadas-liceos-escuelas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "0b47b2d1a1b6b0336be9",
+      "url": "https://www.gub.uy/tramites/alta-sucursales-anexos",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "5a43cd38270f984c04fb",
+      "url": "https://www.gub.uy/tramites/inactividad-sociedades-hecho",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "98dd8750c9e25b1a0a22",
+      "url": "https://www.gub.uy/tramites/cambio-administrador-edificio",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "722f3eef23abe582ad22",
+      "url": "https://www.gub.uy/tramites/inactividad-consorcios",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "e419129ae8ead9d88e42",
+      "url": "https://www.gub.uy/tramites/clausura-fideicomiso-0",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "034aaf3abe56d73388fe",
+      "url": "https://www.gub.uy/tramites/inactividad-cooperativa-trabajo-social",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "035ca545675303883377",
+      "url": "https://www.gub.uy/tramites/inactividad-sociedades-personales-contrato",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "09bbd312310b2ab9f815",
+      "url": "https://www.gub.uy/tramites/inactividad-sociedad-acciones-simplificadas-sas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "78051f3f8b3d145e44b3",
+      "url": "https://www.gub.uy/tramites/clausura-sociedades-personales-contrato-0",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "1d4bdd41529e1301b419",
+      "url": "https://www.gub.uy/tramites/inactividad-monotributo-social-mides",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "d899eea382f364ebb321",
+      "url": "https://www.gub.uy/tramites/clausura-sucursales-otros-locales-0",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "aa7eb949cd81183b7304",
+      "url": "https://www.gub.uy/tramites/clausura-sucursales-empresas-extranjeras",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "7b87cb5a95d7324bd019",
+      "url": "https://www.gub.uy/tramites/clausura-sociedades-hecho",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "8e0e37a24b652a36a7cc",
+      "url": "https://www.gub.uy/tramites/modificacion-titulares-sociedad-hecho-0",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "82e6adf6f37cbf3f7904",
+      "url": "https://www.gub.uy/tramites/clausura-unipersonal-monotributo-social-mides",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c791cec809b39fc8c58c",
+      "url": "https://www.gub.uy/tramites/modificacion-domicilio-constituido",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "464560d763f9b1b5c75d",
+      "url": "https://www.gub.uy/tramites/clausura-unipersonal-fallecimiento-titular",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "bb00ce9d7e1b74c6d71f",
+      "url": "https://www.gub.uy/tramites/modificacion-domicilio-fiscal",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "8bdc705e71f2a77a9c7e",
+      "url": "https://www.gub.uy/tramites/modificacion-giro",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "70430fe261b860adde89",
+      "url": "https://www.gub.uy/tramites/clausura-unipersonal-contratista-obra",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "ef82137e31386fb21e5f",
+      "url": "https://www.gub.uy/tramites/sucesion-contribuyentes-exclusivo-bps",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "0e26686a63c97e987e0f",
+      "url": "https://www.gub.uy/tramites/planes-pago",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "eb3fa7a4540e0a1bb8c7",
+      "url": "https://www.gub.uy/tramites/modificacion-integrantes-monotributo-social-mides",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "f7f60a8ae73d7c8a3f03",
+      "url": "https://www.gub.uy/tramites/clausura-unipersonal-rural",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c18d332c04a16b67ca32",
+      "url": "https://www.gub.uy/tramites/regularizacion-trabajador-baja-oficio",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c1de34571242aba04dcc",
+      "url": "https://www.gub.uy/tramites/clausura-empresa-unipersonal-0",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "9f630f42d7eeb2b2bc32",
+      "url": "https://www.gub.uy/tramites/planteamiento-obras",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c3cace1b6351ca427d22",
+      "url": "https://www.gub.uy/tramites/clausura-sociedades-hecho-monotributo",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "6327723df137fd43e4d0",
+      "url": "https://www.gub.uy/tramites/modificacion-integrantes-organismos-publicos",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "5ee6c044662e11f34c40",
+      "url": "https://www.gub.uy/tramites/clausura-sociedades-hecho-monotributo-social-mides",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "ef333d444f1830a0f88e",
+      "url": "https://www.gub.uy/tramites/clausura-empresa-extranjera-actividad-accidental",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "60286307457cab3a1c18",
+      "url": "https://www.gub.uy/tramites/comunicar-fin-obra",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "6825bb338b226136ad0b",
+      "url": "https://www.gub.uy/tramites/clausura-comisiones-fomento-escolar",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "ce29428e432465232491",
+      "url": "https://www.gub.uy/tramites/clausura-cooperativas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "63eb4b1474ef8873e48b",
+      "url": "https://www.gub.uy/tramites/baja-apoderados-contribuyentes",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "7458ebaa8cd87a65dfad",
+      "url": "https://www.gub.uy/tramites/clausura-fundaciones-asociaciones",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "2e990bc2e761c0c72d78",
+      "url": "https://www.gub.uy/tramites/alta-modificacion-apoderados-contribuyentes",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "c3481d6672aa32c5fdb9",
+      "url": "https://www.gub.uy/tramites/clausura-sociedades-asociaciones-agrarias",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "0052f719f69913439203",
+      "url": "https://www.gub.uy/tramites/modificacion-titulares-sociedad-anonima",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "8b48beff9898671515e3",
+      "url": "https://www.gub.uy/tramites/modificacion-datos-obras",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "a49c93439763bb7888a9",
+      "url": "https://www.gub.uy/tramites/alta-baja-conyuge-colaborador",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "95f5fea76d233137920d",
+      "url": "https://www.gub.uy/tramites/clausura-sociedades-acciones-simplificadas-sas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "8dc7d1f9d073f8dfee55",
+      "url": "https://www.gub.uy/tramites/transformacion-naturaleza-juridica-bps-dgi",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "b5e6a903ab86d3ff40bf",
+      "url": "https://www.gub.uy/tramites/inscribir-monotributo-unipersonal-dentro-mes-curso",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "6443e427acfd2e7b4443",
+      "url": "https://www.gub.uy/tramites/inscribir-empresa-unipersonal-contratista-obra",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "b3f16280c3c2dcc406fd",
+      "url": "https://www.gub.uy/tramites/inscribir-titular-trabajo-domestico",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "574691e375561cd72db5",
+      "url": "https://www.gub.uy/tramites/inscribir-sociedad-anonima-deportiva",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "0e3844597b5f75beee6b",
+      "url": "https://www.gub.uy/tramites/inscribir-sociedades-acciones-simplificadas-sas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "553ad6226eac85455cb4",
+      "url": "https://www.gub.uy/tramites/inscribir-sociedad-anonima",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "dca3a84d3ca2edec332d",
+      "url": "https://www.gub.uy/tramites/inscripcion-sucesion-contribuyente-unipersonal",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "2625e918a1c8fc2a2703",
+      "url": "https://www.gub.uy/tramites/inscribir-sociedades-personales-contrato",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "efe5c7523ce7a381972c",
+      "url": "https://www.gub.uy/tramites/inscribir-asociaciones-civiles-fundaciones",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "080996bf7d36e273ec9a",
+      "url": "https://www.gub.uy/tramites/inscribir-cooperativa",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "e5b9503c56ec27028e26",
+      "url": "https://www.gub.uy/tramites/inscribir-cooperativa-social",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "d1072d1a5c7b235c50a8",
+      "url": "https://www.gub.uy/tramites/inscribir-edificio",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "61919f4bd528bbbfa166",
+      "url": "https://www.gub.uy/tramites/inscribir-agrupaciones-politicas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "1e51e8bc17ff3aadb9e2",
+      "url": "https://www.gub.uy/tramites/inscribir-sucursal-empresa-extranjera",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "6058232422588863e614",
+      "url": "https://www.gub.uy/tramites/inscribir-representaciones-diplomaticas",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "70506b2b766275fff4a4",
+      "url": "https://www.gub.uy/tramites/inscribir-sociedad-comandita-acciones",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "f8b0abfe554ffb417904",
+      "url": "https://www.gub.uy/tramites/inscribir-organismos-internacionales",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "f500dcedc364b69a5af3",
+      "url": "https://www.gub.uy/tramites/inscribir-organismo-estado",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "ac224eb88ca612c31c28",
+      "url": "https://www.gub.uy/tramites/inscribir-comision-fomento-escolar",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "17fb345f3f48a437abbd",
+      "url": "https://www.gub.uy/tramites/inscribir-fideicomiso",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "d280b210f8d3f4c9b7e6",
+      "url": "https://www.gub.uy/tramites/declarar-modificar-actividad-rural",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "42f92096ebf836782ec1",
+      "url": "https://www.gub.uy/tramites/denuncias-diferentes-situaciones-paysandu",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "ff7f5b83842900f81632",
+      "url": "https://www.gub.uy/tramites/bajar-usuario-personal",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "ed4211b69f4c438e6be4",
+      "url": "https://www.gub.uy/tramites/modificacion-integrantes-comision-fomento-escolar",
+      "reason": "insufficient_or_malformed_source"
+    },
+    {
+      "id": "82996279ab52344ad8bd",
+      "url": "https://www.gub.uy/tramites/inscribir-sociedades-anonimas-soporte-notarial-electronico",
+      "reason": "insufficient_or_malformed_source"
+    }
+  ],
+  "status": "expanded_queue_not_reviewed_yet",
+  "previous_prepared_package": "2482 queries remains intact until full export succeeds",
+  "evaluation_note": "Original topic partitions preserved. Expanded held-out topics are synthetic evaluation, not human or unseen-site evidence."
+}

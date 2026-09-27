@@ -1,0 +1,16 @@
+{
+  "new_records": 148,
+  "by_source": {
+    "lorca": 30,
+    "escorial": 118
+  },
+  "new_full_bodies": 0,
+  "status": "downloaded_metadata_not_training_examples",
+  "license_escorial": "cc-by-4.0",
+  "not_added_to_frozen_package": true,
+  "sources": [
+    "https://datos.gob.es/es/catalogo/l01300243-procedimientos-administrativos-online",
+    "https://datos.gob.es/es/catalogo/l01281317-catalogo-de-tramites-administrativos"
+  ],
+  "file_sha256": "cf9f7edc930ab28970278800246644e1ed65b20d6fa4ab8863602d777c6fe038"
+}

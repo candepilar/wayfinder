@@ -1,0 +1,7 @@
+{
+  "stage": "waiting_for_generation_and_review",
+  "updated_at": "2026-09-27T08:50:02.498782+00:00",
+  "model_trained": false,
+  "deployed": false,
+  "batches_expected": 454
+}

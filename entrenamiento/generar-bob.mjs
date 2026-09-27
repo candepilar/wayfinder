@@ -12,7 +12,7 @@ const args=process.argv.slice(2);
 const limit=Number(args[0] || 1);
 const concurrency=Number(args[1] || 1);
 const offset=Number(args[2] || 0);
-if(!Number.isInteger(limit)||limit<1||limit>100||![1,2,3,4].includes(concurrency)||!Number.isInteger(offset)||offset<0)throw Error('Invalid batch range or concurrency (1–4)');
+if(!Number.isInteger(limit)||limit<1||![1,2,3,4].includes(concurrency)||!Number.isInteger(offset)||offset<0)throw Error('Invalid batch range or concurrency (1–4)');
 const batches=JSON.parse(await readFile(path.join(here,'datos','lotes.json'),'utf8')).slice(offset,limit);
 const sha=x=>createHash('sha256').update(x).digest('hex');
 let cursor=0;
