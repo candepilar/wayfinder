@@ -5,6 +5,18 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 08:55 — Claude de Cande — 🤖 Carpeta `.bob/`: modos propios, skills y reglas
+**Hice:** Cande eligió sumar lo que el jurado premió la edición pasada (modo propio + skill). Nueva `.bob/`:
+- `custom_modes.yaml`: **🧭 Coordinador de catálogos** (reparte sitios en subtareas paralelas de 🗺️ y junta la auditoría; groups read/todo/subtask/subagent/skill/mode), **🗺️ Cartógrafo** (corre `catalogo-cli.mjs`, audita con la skill y verifica 5 fichas con subagente explore) y **🔎 Revisor técnico** (diagnóstico pasivo sin parches, según la decisión del 26/09).
+- `skills/auditar-catalogo/`: `SKILL.md` + `auditar.mjs`, que da números reales de un catálogo (fichas por origen, accesos directos, consultas cotidianas, descartes, tareas de Bob y cuántas a la vez, tiempo, costo, task IDs, alertas) y compara **antes/después**. Tests en `motor/test/bob-skill.test.mjs` (motor 56/56).
+- `skills/medir-impacto/SKILL.md`: receta del benchmark una tarea vs paralelas → tabla en `docs/evidencia/impacto/`.
+- `rules/wayfinder.md`: datos no confiables, nada sin cita, reservados, buzón y pruebas.
+- `README.md`: qué hace Bob en el proyecto y **guion de la sesión de Bob IDE con las 4 capturas** para `bob_sessions/`.
+**Ojo:** `bob.ibm.com` está bloqueado desde mi sesión: el formato sale de `CONCURSO.md` (modos YAML, groups, allowedSubagents). El de skills (`SKILL.md` con name/description) y `.bob/rules/` **hay que confirmarlo al abrir Bob IDE**: si no aparecen, avisen acá y lo ajusto.
+**Quedó a medias:** abrir en Bob IDE, verificar que carguen, hacer la sesión y las capturas; correr `medir-impacto` con la API key. Granite: lo de Astra en `entrenamiento/` no lo toqué.
+**No tocar:** `.bob/` hasta que se pruebe en Bob IDE.
+**Preguntas para el otro:** Franco/Astra, ¿alguno puede abrir el repo en Bob IDE y confirmar que aparecen los 3 modos y las 2 skills? Es la base de las capturas obligatorias.
+
 ## 2026-09-27 — Astra, de Franco — Preparación de Granite centrada en trámites
 **Hice:** Franco transmite acuerdo de Cande para avanzar con entrenamiento y priorizar calidad, y aclara que debe centrarse en trámites. Incorporo `entrenamiento/`: recolector reproducible, 290 documentos candidatos (51 fichas municipales del repo + 239 títulos/descripciones oficiales GOV.UK), 20 consultas sintéticas ES/EN sobre 10 trámites con negativos y jurisdicción, hoja de revisión y controles estructurales. Datos grandes quedan fuera de Git; scripts reproducen la descarga. Revisé soporte bilingüe de Granite 97M. Wikipedia/MIRACL y FAQ comerciales investigadas quedan excluidas del corpus principal.
 **Calidad/estado real:** no descargué pesos, no entrené, no alquilé GPU ni cambié producción. Las 290 fuentes NO son 290 ejemplos aprobados: las británicas son metadatos, y las municipales requieren revisar reutilización/vigencia. Los 20 ejemplos son borradores de desarrollo, nunca el examen final. Pasaron referencias, jurisdicción, duplicados y codificación; no afirmo precisión. Disco local ~500 MB libres: pesos/entorno deberán ir a la máquina remota. 48 GB no implica el doble de velocidad que 24 GB.
