@@ -124,7 +124,8 @@ const answerAll = prompt => JSON.parse(prompt.slice(prompt.indexOf('DOCUMENTOS: 
 test('Bob organizes batches as bounded parallel tasks and covers every page sent', async () => {
   const map = mapOfMany(12), events = [];
   let activas = 0, maximo = 0, llamadas = 0;
-  await organizeCatalog(map, { tamanoLote: 3, paralelo: 2, onEvent: e => events.push(e), run: async prompt => {
+  await organizeCatalog(map, { tamanoLote: 3, paralelo: 2, onEvent: e => events.push(e), run: async (prompt, opts) => {
+    for (let k = 0; k < 50; k++) opts.onEvent({ type: 'bob_evento', evento: 'message' });
     llamadas++; activas++; maximo = Math.max(maximo, activas);
     await new Promise(r => setTimeout(r, 20)); activas--;
     return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: answerAll(prompt) }), stats: { task_id: `t${llamadas}`, session_costs: 0.01 } };
@@ -136,6 +137,7 @@ test('Bob organizes batches as bounded parallel tasks and covers every page sent
   assert.equal(map.catalogo.bob.coste, 0.04);
   assert.match(events[0].mensaje, /12 páginas en 4 tareas, 2 a la vez/);
   assert.equal(events.filter(e => e.type === 'catalogo_bob_lote').length, 4);
+  assert.equal(events.filter(e => e.type === 'bob_evento').length, 0); // 200 stream events not flooding the job log
 });
 
 test('a failed Bob batch keeps the fiches of the other batches and is reported as partial', async () => {
@@ -156,4 +158,21 @@ test('Bob everyday phrasings are kept as search keys and unsafe ones are dropped
   await organizeCatalog(map, { run: async () => ({ type: 'result', status: 'success', last_message: JSON.stringify({ fichas: [{ ...proposal(doc), costo_ids: [], requisitos_ids: [], destino_ids: [],
     consultas: ['encontré un perro abandonado', 'Encontré un perro abandonado', 'vacunar a mi gato', 'escribí a info@muni.gob.ar', 'ver https://x.org', 'x'.repeat(81), 42, 'castrar a mi perra', 'a', 'b', 'c', 'd'] }] }) }) });
   assert.deepEqual(map.catalogo.fichas[0].consultas, ['encontré un perro abandonado', 'vacunar a mi gato', 'castrar a mi perra']);
+});
+
+test('a fiche fully extracted from HTML still goes to Bob, keeps its fields and gains everyday phrasings', async () => {
+  const map = mapOf('<main><h1>Sanidad Animal</h1><h2>Requisitos</h2><ul><li>Libreta sanitaria.</li></ul><a class="btn" href="/turno">Iniciar trámite</a></main>');
+  const html = catalogFromHtml(map).fichas[0];
+  assert.ok(html.destinos.length, 'fixture must be a complete HTML fiche');
+  let sent = 0;
+  await organizeCatalog(map, { run: async prompt => {
+    const docs = JSON.parse(prompt.slice(prompt.indexOf('DOCUMENTOS: ') + 12)); sent = docs.length;
+    return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: [{ ...proposal(docs[0]), evidencia_ids: ['b2'], requisitos_ids: [], costo_ids: [], destino_ids: [], consultas: ['encontré un perro abandonado'] }] }) };
+  } });
+  assert.equal(sent, 1);
+  const f = map.catalogo.fichas[0];
+  assert.equal(f.origen, 'html+bob');
+  assert.deepEqual(f.requisitos, html.requisitos); assert.deepEqual(f.destinos, html.destinos);
+  assert.deepEqual(f.consultas, ['encontré un perro abandonado']);
+  assert.equal(map.catalogo.bob.estado, 'completado');
 });

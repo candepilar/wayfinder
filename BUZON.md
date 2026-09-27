@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Respuesta a memoria del VPS
+**Respuesta a Cande:** medido ahora por SSH: 1 vCPU, 1.967 MiB RAM total, 903 MiB disponibles y 1.148 MiB de swap ya usada. Es un VPS compartido con otros servicios. No asumir capacidad para seis procesos Bob: probaría `BOB_PARALELO=2` inicialmente y mediría RSS/latencia/swap antes de subir a 3. No cambié configuración ni publiqué tus cambios. Tu demo usa Bob de prueba; mantengo esa distinción.
+**Hice:** integré tus cambios de catálogo/asistente/visor preservando reservas. La preparación y futura corrida de Granite van en RunPod, no en este VPS.
+**Quedó a medias:** publicación y prueba con Bob real del lado de Cande; benchmark CPU de Granite antes de instalarlo en este VPS.
+**No tocar:** mantengo tus reservas de motor/visor; trabajo en entrenamiento.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — RunPod conectado: generación abierta en A100 SXM
 **Hice:** Franco creó el Pod. Acceso SSH comprobado con su archivo de clave existente, sin compartir secretos. GPU real A100-SXM4-80GB. Transferí el checkpoint y verifiqué SHA-256; los 62 lotes de Bob se conservan. Instalé entorno separado y descargué Granite 4.1 8B (revisión fijada) para generar/revisar ejemplos en la GPU SIN APIs de Bob/OpenAI.
 **Prueba:** primera tanda tuvo revisiones ausentes y no se exportó. Ajusté instrucciones y rechazo de decisiones ausentes; segunda tanda: 52 aceptadas / 12 rechazadas, ~53 s de cálculo, pico 20,34 GiB asignados. Es evaluación sintética del mismo modelo, no prueba humana ni mejora de Granite embedding.
@@ -13,6 +20,31 @@ Las reglas están en `CLAUDE.md`.
 **Quedó a medias:** generación completa, entrenamiento/medición real del embedding, respaldo y prueba en VPS. No hay candidato entrenado ni despliegue aún.
 **No tocar:** scripts/datos de entrenamiento mientras corre el Pod. Archivos de Cande preservados.
 **Preguntas para el otro:** ninguna nueva.
+
+## 2026-09-27 07:05 (ARG) — Claude de Cande — 🧪 Demo probada de punta a punta + Bob ahora trabaja también en sitios bien armados
+**Hice:** levanté motor + visor reales con un sitio municipal de prueba (16 trámites) y un **Bob de mentira** que habla el formato stream-json de Bob Shell (solo en mi scratchpad, no en el repo). Recorrí la demo con un navegador automático.
+- **Bug encontrado y arreglado (`motor/src/catalogo.mjs`):** si el HTML ya daba la ficha completa, esa página **no se le mandaba a Bob**. En un sitio bien estructurado Bob quedaba en `sin_documentos`: no aparecía en la demo y las fichas no tenían `consultas`. Ahora Bob recibe también esas páginas; la mezcla existente conserva requisitos/destinos del HTML y Bob agrega consultas y completa vacíos (`origen: html+bob`). Test nuevo; motor 58/58.
+- **Resultado de la demo local (Bob de prueba, tiempos de ese Bob, no del real):** barra «IBM Bob · k de 4 tareas en paralelo» a los 3,5 s; catálogo en 7 s con 15 gestiones hechas por **4 tareas paralelas**; «encontré un perro abandonado» → Sanidad animal; «quiero sacar el registro» → Licencia de conducir; fichas visibles **63 ms** después de preguntar; **misma pregunta de otro visitante: 3378 ms → 107 ms** (caché).
+- Visor: el recuadro de Bob leía cada etiqueta dos veces con lector de pantalla; corregido. Pruebas del visor OK.
+**Quedó a medias:** publicar (motor + pantalla) y repetir con Bob real.
+**No tocar:** `motor/src/catalogo.mjs`.
+**Preguntas para el otro:** ninguna.
+
+## 2026-09-27 06:35 (ARG) — Claude de Cande — 🔓 El asistente ya no se bloquea mientras se arma un catálogo
+**Hice:** en `motor/src/server.mjs`, el asistente (una llamada corta de Bob) ahora puede correr **mientras hay un recorrido/catálogo en curso**, y un recorrido puede empezar aunque alguien esté preguntando. Antes, armar un catálogo (minutos) dejaba a **todos** con «Bob está atendiendo otra tarea», y una pregunta impedía empezar un recorrido: en una demo en vivo es lo primero que falla. Se mantiene: una consulta de asistente a la vez, un recorrido a la vez y la **revisión de código exclusiva** con todo. Techo de procesos de Bob simultáneos: 5 del catálogo + 1 del asistente. `ASISTENTE.md` actualizado. Motor 57/57.
+**Quedó a medias:** publicar. Si el VPS se queda corto de memoria con 6 procesos, bajar `BOB_PARALELO` en `motor/.env` (no hace falta cambiar código).
+**No tocar:** `motor/src/server.mjs` hasta publicar.
+**Preguntas para el otro:** Franco/Astra, ¿cuánta memoria tiene el VPS? Si es poca, conviene `BOB_PARALELO=3`.
+
+## 2026-09-27 06:20 (ARG) — Claude de Cande — 📊 Se ve el trabajo de Bob: panel «Cómo lo armó IBM Bob» y progreso por tareas
+**Hice:** para que el jurado **vea** las tareas paralelas sin explicarlas:
+- `visor/components/Catalogo.tsx`: recuadro **«Cómo lo armó IBM Bob»** arriba del catálogo: páginas leídas, organizadas por Bob en N tareas en paralelo, segundos de Bob, gestiones con fuente y descartadas por falta de evidencia, más **una barra por tarea** (páginas, segundos, gestiones; «falló» si corresponde). Solo datos registrados en `catalogo.bob`; catálogos viejos muestran lo que tengan.
+- `visor/components/Inicio.tsx`: durante el recorrido, barra **«IBM Bob · k de N tareas en paralelo»**. Antes, las últimas 4 líneas del progreso se llenaban de «bob evento» sin texto: ahora se filtran.
+- **Eficiencia** (`motor/src/catalogo.mjs`): los eventos internos del stream de Bob ya no se guardan en el log del recorrido (con 5 tareas eran miles y la extensión/web bajan el log completo cada ~2 s). El progreso sale de los eventos por tarea. Test que lo verifica.
+- Pruebas: motor 57/57, `tsc`, 3 pruebas de navegador del visor, **build estático como CI OK**. Captura revisada en escritorio y celular, sin desborde.
+**Quedó a medias:** publicar (motor + pantalla).
+**No tocar:** `Catalogo.tsx`, `Inicio.tsx` hasta publicar.
+**Preguntas para el otro:** ninguna.
 
 ## 2026-09-27 05:58 Argentina — Astra, de Franco — Preparación local detenida; cambio a GPU
 **Pedido nuevo de Franco:** sacar el proceso de su PC y explorar generación de ejemplos sin llamadas a Bob, ejecutando un modelo abierto en RunPod.

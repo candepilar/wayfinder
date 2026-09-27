@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { WebMap } from '@/lib/tipos';
-import { Ficha, Fragmento } from '@/lib/catalogo';
+import { CatalogoSitio, Ficha, Fragmento } from '@/lib/catalogo';
 import Asistente from './Asistente';
 import { buscarFichas } from '@/lib/buscar';
 const button = 'rounded-lg border border-linea bg-superficie px-4 py-2 text-sm text-tinta hover:border-acento-borde';
@@ -28,6 +28,7 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
       <p className="text-xs uppercase tracking-widest text-acento">Gestiones del sitio</p>
       <h1 className="mt-2 text-3xl font-semibold">{mapa.sitio.titulo || new URL(mapa.sitio.url).hostname}</h1>
       <p className="mt-3 max-w-2xl text-tinta-media">Encontrá lo que necesitás hacer, revisá las indicaciones y continuá en el sitio de origen.</p>
+      <ComoLoArmoBob catalog={catalog} leidas={mapa.paginas.length} />
       <Asistente contexto={`sitio:${mapa.sitio.url}`} buscarLocal={q => buscarFichas(catalog.fichas, q, 3).map(f => ({ id: f.id, nombre: f.nombre }))} nombre={mapa.sitio.titulo || mapa.sitio.url} onFicha={id => { setSelected(catalog.fichas.find(f => f.id === id) || null); setTimeout(() => document.getElementById('ficha-gestion')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0); }} />
       {selected ? <>
         <button className={`${button} mt-6`} onClick={() => setSelected(null)}>← Volver a las gestiones</button>
@@ -71,3 +72,32 @@ function Bloques({ title, bloques, checklist = false }: { title: string; bloques
         <p key={i} className={`text-sm leading-relaxed ${b.tipo === 'titulo' || b.tipo === 'subtitulo' ? 'font-medium' : 'text-tinta-media'}`}>{b.texto}</p>)}</div>}
   </section>;
 }
+
+// Hace visible el trabajo de Bob: cuántas tareas paralelas, cuánto tardó y qué
+// quedó afuera por falta de evidencia. Solo muestra datos registrados.
+function ComoLoArmoBob({ catalog, leidas }: { catalog: CatalogoSitio; leidas: number }) {
+  const bob = catalog.bob, tareas = bob.tareas || [];
+  if (!['completado', 'parcial'].includes(bob.estado)) return null;
+  const segundos = (ms?: number) => ms == null ? null : ms < 10000 ? (ms / 1000).toFixed(1) : String(Math.round(ms / 1000));
+  const total = segundos(bob.duracion_ms);
+  const enviadas = catalog.calidad.paginas_enviadas_bob;
+  const descartadas = catalog.calidad.descartadas.length;
+  const datos: [string | number, string][] = [
+    [leidas, 'páginas leídas'],
+    ...(enviadas != null ? [[enviadas, tareas.length > 1 ? `organizadas por Bob en ${tareas.length} tareas en paralelo` : 'organizadas por Bob'] as [number, string]] : []),
+    ...(total ? [[`${total} s`, 'de trabajo de Bob'] as [string, string]] : []),
+    [catalog.fichas.length, 'gestiones con fuente'],
+    ...(descartadas ? [[descartadas, 'descartadas por falta de evidencia'] as [number, string]] : []),
+  ];
+  return <details className="mt-5 rounded-xl border border-linea bg-superficie p-4" open={tareas.length > 1}>
+    <summary className="cursor-pointer text-sm font-medium text-tinta">Cómo lo armó IBM Bob</summary>
+    <dl className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-5">{datos.map(([valor, texto]) => <div key={texto} className="flex flex-col-reverse"><dt className="text-xs leading-snug text-tinta-media">{texto}</dt><dd className="text-xl font-semibold text-tinta">{valor}</dd></div>)}</dl>
+    {tareas.length > 1 && <ul className="mt-4 space-y-1.5" aria-label="Tareas de Bob en paralelo">{tareas.map(t => <li key={t.lote} className="flex items-center gap-2 text-xs text-tinta-media">
+      <span className="w-16 shrink-0">Tarea {t.lote}</span>
+      <span className="h-2 flex-1 overflow-hidden rounded-full bg-linea"><span className={`block h-full rounded-full ${t.estado === 'error' ? 'bg-tinta-suave' : 'bg-acento'}`} style={{ width: `${bob.duracion_ms && t.duracion_ms ? Math.max(8, Math.round(100 * t.duracion_ms / bob.duracion_ms)) : 100}%` }} /></span>
+      <span className="w-44 shrink-0 text-right">{t.estado === 'error' ? 'falló · sus páginas quedan afuera' : `${t.paginas} págs · ${segundos(t.duracion_ms) ?? '?'} s · ${t.fichas_aceptadas ?? 0} ${t.fichas_aceptadas === 1 ? 'gestión' : 'gestiones'}`}</span>
+    </li>)}</ul>}
+    <p className="mt-3 text-[11px] leading-relaxed text-tinta-suave">Bob solo elige bloques y enlaces que existen en las páginas leídas; el texto es el del sitio. Lo que no tiene evidencia se descarta.</p>
+  </details>;
+}
+

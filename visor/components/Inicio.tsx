@@ -106,6 +106,9 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
     finally { setCancelando(false); }
   }
   const leidas = Math.max(0, ...events.map(e => e.leidas || 0));
+  // Progreso de las tareas paralelas de Bob en el catálogo (eventos catalogo_bob_*).
+  const bobInicio = [...events].reverse().find(e => e.type === 'catalogo_bob_inicio');
+  const bobProgreso = bobInicio?.lotes ? { total: bobInicio.lotes, paralelo: bobInicio.paralelo ?? bobInicio.lotes, hechas: events.filter(e => e.type === 'catalogo_bob_lote' && e.secuencia > bobInicio.secuencia).length } : null;
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-16">
@@ -152,7 +155,8 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
         <p className="mt-3 px-1 text-xs leading-relaxed text-tinta-suave">Si todavía no hay un catálogo, recorremos hasta {maxPaginas} páginas públicas y organizamos sus gestiones con IBM Bob. Puede tardar unos minutos; la cobertura puede ser parcial.</p>
         {job && <section role="status" aria-live="polite" className="mt-4 rounded-xl border border-linea bg-superficie p-4">
           <div className="flex items-center justify-between gap-3"><p className="text-sm font-medium text-tinta">{buscando ? 'Recorrido en curso' : 'Seguimiento interrumpido'} · {leidas} páginas leídas</p><button type="button" disabled={cancelando} onClick={() => void cancelar()} className="text-xs text-tinta-media underline">{cancelando ? 'Cancelando…' : 'Cancelar'}</button></div>
-          <div className="mt-3 space-y-2 text-xs text-tinta-media">{events.slice(-4).map(event => <p className="break-words" key={event.secuencia}>{event.type === 'pagina' ? '✓ ' : ''}{event.titulo || event.mensaje || event.url || event.type.replaceAll('_', ' ')}</p>)}</div>
+          {bobProgreso && <div className="mt-3"><p className="text-xs font-medium text-acento">IBM Bob · {bobProgreso.hechas} de {bobProgreso.total} tareas en paralelo ({bobProgreso.paralelo} a la vez)</p><div className="mt-2 flex gap-1" aria-hidden="true">{Array.from({ length: bobProgreso.total }, (_, i) => <span key={i} className={`h-1.5 flex-1 rounded-full ${i < bobProgreso.hechas ? 'bg-acento' : 'bg-linea'}`} />)}</div></div>}
+          <div className="mt-3 space-y-2 text-xs text-tinta-media">{events.filter(event => event.type !== 'bob_evento').slice(-4).map(event => <p className="break-words" key={event.secuencia}>{event.type === 'pagina' ? '✓ ' : ''}{event.titulo || event.mensaje || event.url || event.type.replaceAll('_', ' ')}</p>)}</div>
         </section>}
 
         {error && (

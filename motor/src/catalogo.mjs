@@ -39,9 +39,12 @@ export function catalogFromHtml(map) {
 
 /** Bounds apply to whole blocks, never substrings. Omitted content is counted. */
 export function catalogDocuments(map, existing = [], { maxPages = 40, maxChars = 200000, pageChars = 10000 } = {}) {
-  const seen = new Set(existing.filter(f => f.destinos.length).map(f => f.id));
-  const rank = p => (/tramite|servicio|turno|ayuda|envio|devoluc|contact|solicitud|admission|appointment|return|shipping/i.test(p.url) ? 10 : 0) + (p.municipal?.enlaces || []).filter(l => l.accion).length;
-  const candidates = map.paginas.filter(p => !seen.has(p.id)).sort((a,b) => rank(b) - rank(a));
+  // Fiches already extracted from HTML structure also go to Bob: it keeps their
+  // fields (see the merge in organizeCatalog), fills blanks and adds everyday
+  // phrasings. Without this, well-structured sites got no Bob work at all.
+  const html = new Set(existing.map(f => f.id));
+  const rank = p => (/tramite|servicio|turno|ayuda|envio|devoluc|contact|solicitud|admission|appointment|return|shipping/i.test(p.url) ? 10 : 0) + (p.municipal?.enlaces || []).filter(l => l.accion).length + (html.has(p.id) ? 5 : 0);
+  const candidates = [...map.paginas].sort((a,b) => rank(b) - rank(a));
   let total = 0, omittedBlocks = 0;
   const documents = [];
   for (const p of candidates.slice(0, maxPages)) {
@@ -161,7 +164,9 @@ export async function organizeCatalog(map, { workspace, signal, onEvent = () => 
   let terminados = 0;
   const resultados = await enParalelo(grupos, simultaneas, async (documentos, i) => {
     const t0 = Date.now();
-    const result = await run(catalogPrompt(documentos), { workspace: workspace && path.join(workspace, `lote-${i + 1}`), signal, onEvent, timeoutMs: 180000 });
+    // Bob's per-line stream events are not forwarded: with several parallel tasks
+    // they flood the job log that clients poll. Progress comes from batch events.
+    const result = await run(catalogPrompt(documentos), { workspace: workspace && path.join(workspace, `lote-${i + 1}`), signal, onEvent: e => { if (e?.type !== 'bob_evento') onEvent(e); }, timeoutMs: 180000 });
     const aceptadas = acceptBobCatalog(parseBobJson(result, result.streamed), documentos, map);
     terminados++;
     onEvent({ type: 'catalogo_bob_lote', mensaje: `Bob terminó ${terminados} de ${grupos.length} tareas · ${aceptadas.accepted.length} fichas en este lote.`, lote: i + 1, lotes: grupos.length });
