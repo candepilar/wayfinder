@@ -1,5 +1,18 @@
 # Preparación del experimento Granite para Wayfinder
 
+## Actualización: preparación trasladada a RunPod
+
+Franco pidió detener Windows y usar un modelo abierto en la GPU. Se detuvo el generador/finalizador local preservando 62 lotes completos y 3.889 consultas antes del filtro final. El checkpoint de migración (SHA-256 `70f415cd13f4819166d2335bac9ec101038910311c1a1b01cc5e12b2a147117b`) se transfirió por SSH y coincidió en destino.
+
+Hardware verificado: A100-SXM4-80GB, 81.920 MiB de VRAM; disco de contenedor de 30 GB. El panel del usuario muestra 250 GB de RAM, distintos del disco y de la VRAM. PyTorch 2.8.0+cu128, entorno virtual separado, Transformers 4.56.2 y Sentence Transformers 5.1.1.
+
+Se descargó IBM Granite 4.1 8B, revisión `1504002f650e656a0a3789d99574df12e3e94ed0`, para GENERAR ejemplos localmente en la GPU. No se está ajustando ese modelo generativo. Una segunda llamada local al mismo modelo revisa las consultas; sigue sin ser validación humana. La primera prueba omitió algunas decisiones y se descartó el lote; tras ajustar la instrucción y rechazar toda decisión ausente, la repetición aceptó 52 consultas y rechazó 12. Generación: 20,07 s; revisión: 33,14 s; pico de memoria asignada PyTorch: 20,34 GiB. Son medidas de una tanda de ocho documentos, no duración total ni calidad general.
+
+`generar_gpu.py` reanuda los lotes no completados, registra procedencia distinta de Bob y no llama a APIs de Bob/OpenAI. `ejecutar_gpu.py` está iniciado en RunPod: generación/revisión con tandas de hasta 32 documentos, exportación completa, verificación y luego entrenamiento/comparación de Granite embedding 97M. Si falla una etapa, informa el estado y no publica. El generador se libera antes de cargar el modelo de búsqueda. Estado remoto: `ESTADO-GPU.json`.
+
+La automatización de aviso pasó a revisar el Pod cada diez minutos. El registro de procesos Windows y estimación de cuatro horas que sigue abajo es histórico y ya no describe la ejecución actual. El embedding todavía no tiene resultados de entrenamiento; no se publicó nada. Se mantiene pendiente la evidencia real de Bob IDE del concurso.
+
+
 Registro del 27/09/2026, 08:55 UTC (05:55 Argentina). Este documento distingue trabajo comprobado, ejecución pendiente y resultados de modelo todavía inexistentes.
 
 ## Qué se busca mejorar

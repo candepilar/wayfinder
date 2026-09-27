@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — RunPod conectado: generación abierta en A100 SXM
+**Hice:** Franco creó el Pod. Acceso SSH comprobado con su archivo de clave existente, sin compartir secretos. GPU real A100-SXM4-80GB. Transferí el checkpoint y verifiqué SHA-256; los 62 lotes de Bob se conservan. Instalé entorno separado y descargué Granite 4.1 8B (revisión fijada) para generar/revisar ejemplos en la GPU SIN APIs de Bob/OpenAI.
+**Prueba:** primera tanda tuvo revisiones ausentes y no se exportó. Ajusté instrucciones y rechazo de decisiones ausentes; segunda tanda: 52 aceptadas / 12 rechazadas, ~53 s de cálculo, pico 20,34 GiB asignados. Es evaluación sintética del mismo modelo, no prueba humana ni mejora de Granite embedding.
+**En curso:** `ejecutar_gpu.py` ya iniciado en RunPod: genera lotes pendientes, valida/exporta/empaqueta y después ajusta y compara Granite embedding 97M. No publica. El monitor ahora sigue SSH/ESTADO-GPU cada diez minutos y avisará resultados/fallos; no detener Pod sin respaldo externo verificado. En Windows no corre la generación.
+**Documentado:** `EVIDENCIA-PREPARACION.md`, `generar_gpu.py`, `descargar_gpu.py`, `ejecutar_gpu.py`; exportación ahora separa procedencia Bob/Granite local para no atribuir tareas inexistentes a Bob. Bob IDE conserva rol de auditoría/desarrollo/pruebas y su evidencia sigue pendiente.
+**Quedó a medias:** generación completa, entrenamiento/medición real del embedding, respaldo y prueba en VPS. No hay candidato entrenado ni despliegue aún.
+**No tocar:** scripts/datos de entrenamiento mientras corre el Pod. Archivos de Cande preservados.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-27 05:58 Argentina — Astra, de Franco — Preparación local detenida; cambio a GPU
 **Pedido nuevo de Franco:** sacar el proceso de su PC y explorar generación de ejemplos sin llamadas a Bob, ejecutando un modelo abierto en RunPod.
 **Hice:** detuve generador, finalizador y sus procesos hijos; preservé 62 lotes completos, 3.889 consultas aceptadas antes del filtro final. Pausé el aviso automático local para no emitir un falso avance. Preparé un checkpoint sin credenciales para transferirlo cuando esté la conexión SSH. Ningún proceso remoto está iniciado.

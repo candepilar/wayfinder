@@ -38,7 +38,7 @@ def build(allow_partial=False):
         if result.get('input_sha256')!=expected or not result.get('review_completed'):
             missing.append(batch['id']);continue
         accepted.extend(result['accepted']);rejected+=len(result['rejected'])
-        tasks.append({k:result.get(k) for k in ['id','generation_task','review_task','generation_cost','review_cost']})
+        tasks.append({k:result.get(k) for k in ['id','generation_task','review_task','generation_cost','review_cost','generation_model','generation_revision']})
     if missing and not allow_partial:raise ValueError(f'Missing or stale batches: {missing}')
     counts=collections.Counter((r['jurisdiction'],normalized(r['query'])) for r in accepted)
     exclusions_path=HERE/'EXCLUSIONES-REVISION.json'
@@ -81,11 +81,12 @@ def build(allow_partial=False):
         doc['dataset_role']='training_source' if doc['id'] in training_ids else 'evaluation_source' if doc['id'] in evaluation_ids else 'retrieval_distractor'
     (output/'corpus.jsonl').write_text(''.join(json.dumps(d,ensure_ascii=False)+'\n' for d in corpus),encoding='utf-8')
     report={'complete':not missing,'sources_in_retrieval_corpus':len(corpus),'batches_expected':len(batches),
-        'batches_reviewed':len(tasks),'missing_batches':missing,'rejected_in_bob_pipeline':rejected,
+        'batches_reviewed':len(tasks),'missing_batches':missing,'rejected_in_generation_review_pipeline':rejected,
         'discarded_in_export':len(discarded),'examples':sum(map(len,sets.values())),
         'documents_with_queries':len({r['document_id'] for v in sets.values() for r in v}),
         'splits':{k:len(v) for k,v in sets.items()},
         'query_languages':dict(collections.Counter(r['query_language'] if 'query_language' in r else r['language'] for v in sets.values() for r in v)),
+        'generation_origins':dict(collections.Counter(r.get('origin','unspecified') for v in sets.values() for r in v)),
         'language_directions':dict(collections.Counter(r['language']+'->'+r['document_language'] for v in sets.values() for r in v)),
         'families':{k:sorted(v) for k,v in split_families.items()},
         'tasks':tasks,'quality_status':'synthetic_auto_reviewed_not_human_gold',
