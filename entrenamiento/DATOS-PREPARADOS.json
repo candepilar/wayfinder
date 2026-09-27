@@ -1,0 +1,113 @@
+{
+  "complete": false,
+  "sources_in_retrieval_corpus": 3750,
+  "batches_expected": 40,
+  "batches_reviewed": 4,
+  "missing_batches": [
+    "en-002",
+    "es-002",
+    "en-003",
+    "es-003",
+    "en-004",
+    "es-004",
+    "en-005",
+    "es-005",
+    "en-006",
+    "es-006",
+    "en-007",
+    "es-007",
+    "en-008",
+    "es-008",
+    "en-009",
+    "es-009",
+    "en-010",
+    "es-010",
+    "en-011",
+    "es-011",
+    "en-012",
+    "es-012",
+    "en-013",
+    "es-013",
+    "en-014",
+    "es-014",
+    "en-015",
+    "es-015",
+    "en-016",
+    "es-016",
+    "en-017",
+    "es-017",
+    "en-018",
+    "es-018",
+    "en-019",
+    "es-019"
+  ],
+  "rejected_in_bob_pipeline": 11,
+  "discarded_in_export": 0,
+  "examples": 245,
+  "splits": {
+    "train": 205,
+    "test": 40,
+    "validation": 0
+  },
+  "query_languages": {
+    "es": 122,
+    "en": 123
+  },
+  "language_directions": {
+    "es->en": 60,
+    "en->en": 60,
+    "es->es": 62,
+    "en->es": 63
+  },
+  "families": {
+    "train": [
+      "gb:business",
+      "gb:driving",
+      "uy:business"
+    ],
+    "test": [
+      "gb:civil",
+      "uy:civil"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en-000",
+      "generation_task": "9cdd2a861edc181fc0868a73fed69d64",
+      "review_task": "8b6816a4cf251fa44463575563f590d6",
+      "generation_cost": 0.02012,
+      "review_cost": 0.023592
+    },
+    {
+      "id": "es-000",
+      "generation_task": "7f4471bc3660a33d15ae03d72e68c44e",
+      "review_task": "cb37c09dfe819d668b6f8c34172bc53a",
+      "generation_cost": 0.032874,
+      "review_cost": 0.039318
+    },
+    {
+      "id": "en-001",
+      "generation_task": "7e69c54dc0d463a8e2197ff1b3c80b0f",
+      "review_task": "a71a2e684d0abdd29f00c03a09838f1e",
+      "generation_cost": 0.02092,
+      "review_cost": 0.0269
+    },
+    {
+      "id": "es-001",
+      "generation_task": "21c49b9ef36f3962953cf04778826bdb",
+      "review_task": "aed99449d48ded64a643b5e0de78a648",
+      "generation_cost": 0.02943,
+      "review_cost": 0.036006
+    }
+  ],
+  "quality_status": "synthetic_auto_reviewed_not_human_gold",
+  "evaluation_limit": "Held-out topic families on the same source sites; not independent human or unseen-site validation.",
+  "model_trained": false,
+  "discarded": [],
+  "files_sha256": {
+    "corpus.jsonl": "23e8c4d6de75e615c57d18d46cee8cb28952600cebd3e2e32180cecbeb67522c",
+    "test.jsonl": "589218cb9f74d4dc23be0789f5e504171e47541e7385952e1b8e830cc626f3a8",
+    "train.jsonl": "8f11ccd9d061003b9d16280207bb0412050b6a3ec9b005ae83d65a38dc30317a",
+    "validation.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

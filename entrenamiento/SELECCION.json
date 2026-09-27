@@ -1,0 +1,30 @@
+{
+  "selected": 320,
+  "by_language": {
+    "es": 160,
+    "en": 160
+  },
+  "by_topic": {
+    "business": 25,
+    "civil": 13,
+    "driving": 47,
+    "education": 19,
+    "employment": 18,
+    "environment": 15,
+    "health": 16,
+    "housing": 28,
+    "identity": 13,
+    "immigration": 22,
+    "legal": 17,
+    "other": 46,
+    "pensions": 15,
+    "tax": 26
+  },
+  "batches": 40,
+  "intended_queries_per_document": 8,
+  "intended_queries": 2560,
+  "excluded": 173,
+  "selection": "deterministic_topic_balanced_not_random_sample",
+  "generated": false,
+  "training": false
+}

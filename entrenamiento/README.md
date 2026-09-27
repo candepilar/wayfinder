@@ -1,6 +1,27 @@
 # Wayfinder: búsqueda bilingüe de trámites
 
-Estado: preparación de fuentes y ejemplos. No hay un modelo entrenado, descargado ni conectado a producción.
+Estado: recopilación ampliada terminada y generación/revisión de consultas con Bob en curso. No hay un modelo entrenado, descargado ni conectado a producción.
+
+## Ampliación del 27/09
+
+Se recopilaron **3.802 registros oficiales**: 3.512 del catálogo abierto AGESIC/Uruguay, 51 snapshots municipales argentinos y 239 fichas inglesas del índice GOV.UK. La Content API permitió recuperar cuerpo completo de 238 de las 239 fichas inglesas; el restante no tiene cuerpo suficiente. Se conserva la fecha de cada fuente y los errores en `FUENTES-RECOPILADAS.json`.
+
+Para las consultas sintéticas se seleccionaron **320 trámites** (160 por idioma fuente, 14 áreas) y se ejecuta Bob Shell sin herramientas para producir hasta 8 consultas por ficha, cuatro ES y cuatro EN. Una segunda llamada revisa pertinencia y confusiones; se exigen IDs existentes y evidencia literal. Las respuestas conservan IDs de tareas Bob y rechazos. Esta revisión automática del mismo proveedor **no es validación humana ni prueba de precisión de Granite**.
+
+Fuentes nuevas: [Catálogo de trámites y servicios del Estado, AGESIC](https://catalogodatos.gub.uy/dataset/agesic-guia-de-tramites), bajo Licencia de Datos Abiertos – Uruguay (permite adaptación y traducción con atribución). Se seleccionaron campos y normalizaron HTML/espacios; no se usaron datos de ciudadanos. [GOV.UK Content API](https://www.gov.uk/help/reuse-govuk-content), OGL v3.0 excepto indicación contraria. MIRACL y WebFAQ continúan excluidos.
+
+```powershell
+python entrenamiento/ampliar.py
+python entrenamiento/seleccionar.py
+node --env-file=motor/.env entrenamiento/generar-bob.mjs 40 2
+python entrenamiento/exportar.py
+python entrenamiento/diagnostico_bm25.py
+python -m unittest discover -s entrenamiento -p test_datos.py -v
+```
+
+La orden Node utiliza credenciales locales existentes y consume Bob durante la **preparación** de ejemplos. No enviar `.env` al equipo GPU. `exportar.py` falla si faltan lotes; `--parcial` sirve solo para diagnóstico durante el trabajo. El paquete registra hashes, etiquetas sintéticas y familias separadas. No necesita Bob durante el entrenamiento/inferencia de Granite.
+
+`entrenar.py` y `requirements-gpu.txt` preparan el experimento GPU reproducible; ver `RUNPOD.md`. Su ejecución real todavía está pendiente. La verificación local cubre sintaxis y contratos de datos, no compatibilidad CUDA ni calidad del modelo.
 
 Franco y Cande autorizan avanzar y priorizar calidad. El entrenamiento principal se centra en trámites; quedan fuera Wikipedia y FAQ comerciales generales. Granite embedding relaciona una consulta con una ficha: no genera respuestas ni realiza la gestión.
 

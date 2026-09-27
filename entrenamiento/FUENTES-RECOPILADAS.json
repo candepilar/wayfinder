@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-09-27T08:12:45.051033+00:00",
+  "documents": 3802,
+  "by_language": {
+    "es": 3563,
+    "en": 239
+  },
+  "by_source": {
+    "municipal_snapshot": 51,
+    "govuk_transaction_metadata": 239,
+    "agesic_open_procedures": 3512
+  },
+  "content_status": {
+    "snapshot_not_revalidated": 51,
+    "official_api_body": 238,
+    "metadata_only_not_full_procedure": 1,
+    "official_open_dataset_fields": 3512
+  },
+  "uruguay_rows": 3512,
+  "uruguay_resource_updated": "2026-09-27T06:00:34.342801",
+  "errors": [
+    {
+      "url": "https://www.gov.uk/find-an-insolvency-practitioner",
+      "error": "Insufficient body in Content API"
+    }
+  ],
+  "trained": false,
+  "quality_status": "sources_collected_examples_pending"
+}

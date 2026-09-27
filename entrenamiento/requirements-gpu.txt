@@ -1,0 +1,6 @@
+# Install only on the training machine with a compatible CUDA/PyTorch image.
+# Versions checked against PyPI on 2026-09-27; integration execution pending.
+sentence-transformers==6.1.0
+transformers==5.17.0
+datasets==5.0.1
+accelerate==1.15.0
