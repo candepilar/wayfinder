@@ -215,7 +215,7 @@ export function acceptReview(payload, fichas) {
 }
 
 export async function organizeCatalog(map, { workspace, signal, onEvent = () => {}, run = runBob,
-  tamanoLote = entero(process.env.BOB_LOTE, 8, 1, 40), paralelo = entero(process.env.BOB_PARALELO, 2, 1, 8), verificar = process.env.BOB_VERIFICAR !== '0' } = {}) {
+  tamanoLote = entero(process.env.BOB_LOTE, 8, 1, 40), paralelo = entero(process.env.BOB_PARALELO, 2, 1, 8), verificar = process.env.BOB_VERIFICAR !== '0', onParcial = () => {} } = {}) {
   const catalog = catalogFromHtml(map);
   const input = catalogDocuments(map, catalog.fichas);
   catalog.calidad.paginas_revisadas_html = map.paginas.length;
@@ -228,6 +228,13 @@ export async function organizeCatalog(map, { workspace, signal, onEvent = () => 
     catalog.impacto = medirClics(map, catalog);
     map.catalogo = catalog; return catalog;
   }
+  // Resultados progresivos: lo extraído del HTML se ofrece apenas termina la
+  // lectura, y cada tarea de Bob suma sus fichas en cuanto termina, sin esperar
+  // al resto. El catálogo final (con fusión y revisión) reemplaza a este.
+  const htmlIds = new Set(catalog.fichas.map(f => f.id)), deBob = [];
+  const parcial = () => { try { onParcial({ version: 1, parcial: true, sitio: map.sitio, cobertura: map.ejecucion, fichas: [...catalog.fichas, ...deBob], bob: { estado: 'en_curso' } }); } catch { /* un cliente lento no frena el catálogo */ } };
+  parcial();
+  onEvent({ type: 'catalogo_parcial', fichas: catalog.fichas.length, mensaje: catalog.fichas.length ? `Ya hay ${catalog.fichas.length} gestiones; Bob sigue organizando.` : 'Bob está organizando las gestiones.' });
   const grupos = lotes(input.documents, tamanoLote);
   const simultaneas = Math.min(paralelo, grupos.length);
   onEvent({ type: 'catalogo_bob_inicio', mensaje: grupos.length > 1
@@ -249,6 +256,9 @@ export async function organizeCatalog(map, { workspace, signal, onEvent = () => 
       } catch { signal?.throwIfAborted(); revision = { error: true }; }
     }
     terminados++;
+    for (const f of aceptadas.accepted) if (!htmlIds.has(f.id) && !deBob.some(x => x.id === f.id)) deBob.push(revision?.mapa?.get(f.id) ? { ...f, verificacion: revision.mapa.get(f.id) } : f);
+    parcial();
+    onEvent({ type: 'catalogo_parcial', fichas: catalog.fichas.length + deBob.length });
     onEvent({ type: 'catalogo_bob_lote', mensaje: `Bob terminó ${terminados} de ${grupos.length} tareas · ${aceptadas.accepted.length} fichas en este lote.`, lote: i + 1, lotes: grupos.length });
     return { ...aceptadas, revision, result, ms: Date.now() - t0 };
   });

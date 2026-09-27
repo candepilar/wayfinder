@@ -127,3 +127,96 @@ details.bloque > .bloque { border: 0; padding: 0; background: none; }
 .fila-en-curso { display: flex; gap: 8px; align-items: center; }
 .fila-en-curso .resultado { flex: 1; }
 .fila-en-curso small { color: var(--tinta-suave); }
+
+/* ───────────── Capa editorial (27/09) ─────────────
+   Jerarquía por tipografía y aire, no por cajas: títulos en serif, interfaz en
+   sans, filetes de 1 px, rótulos en versalitas y el azul solo para la acción
+   principal. Misma paleta (azul institucional + blanco roto). */
+:root {
+  --serif: "Iowan Old Style", "Charter", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --radio: 6px;
+}
+body { font: 14px/1.55 var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; letter-spacing: 0.005em; }
+main { padding: 20px 18px 28px; gap: 22px; }
+
+/* Cabecera tipo masthead: marca en serif y un filete fino. */
+.cabecera { background: var(--fondo); padding: 14px 18px 12px; border-bottom: 1px solid var(--tinta); }
+.marca { font: 600 19px/1.1 var(--serif); letter-spacing: -0.01em; gap: 8px; }
+.logo { width: 20px; height: 20px; }
+.sitio { font-size: 11.5px; letter-spacing: 0.02em; margin-top: 4px; }
+.cabecera > .enlace { font-size: 12px; text-decoration: none; }
+
+/* Titulares y rótulos de sección. */
+h1 { font: 600 25px/1.18 var(--serif); letter-spacing: -0.015em; }
+h2 { font: 600 10.5px/1.3 var(--sans); letter-spacing: 0.14em; color: var(--tinta-suave); padding-top: 10px; border-top: 1px solid var(--linea-fuerte); margin: 0 0 10px; }
+.vacio { font-size: 13px; line-height: 1.55; }
+.fuente { font-size: 11.5px; line-height: 1.5; }
+
+/* Secciones separadas por filetes, sin tarjetas. */
+.bloque { background: none; border: 0; border-radius: 0; padding: 0; }
+details.bloque { border-top: 1px solid var(--linea-fuerte); padding-top: 12px; }
+details.bloque > summary { font: 600 13px/1.4 var(--sans); color: var(--tinta); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+details.bloque > summary::-webkit-details-marker { display: none; }
+details.bloque > summary::after { content: "+" / ""; font-weight: 400; color: var(--tinta-suave); }
+details.bloque[open] > summary::after { content: "–" / ""; }
+
+/* Campos. */
+.buscador input, .entrada-url input, .chat-bob textarea {
+  border: 1px solid var(--linea-fuerte); border-radius: var(--radio); background: var(--superficie);
+  padding: 12px 13px; font-size: 14px; transition: border-color .15s, box-shadow .15s; }
+.buscador input:focus, .entrada-url input:focus, .chat-bob textarea:focus { outline: none; border-color: var(--acento); box-shadow: 0 0 0 3px var(--acento-suave); }
+.buscador input::placeholder, .chat-bob textarea::placeholder { color: var(--tinta-suave); }
+
+/* Botones: primario en azul, secundario en tinta, sin adornos. */
+.boton { border-radius: var(--radio); padding: 11px 16px; font-weight: 600; letter-spacing: 0.01em; transition: filter .15s, background .15s; }
+.boton.ancho { margin-top: 12px; }
+.secundario { background: transparent; color: var(--tinta); border: 1px solid var(--tinta); }
+.secundario:hover { background: var(--tinta); color: var(--fondo); filter: none; }
+.enlace { color: var(--tinta-media); text-decoration: underline; text-decoration-color: var(--linea-fuerte); text-underline-offset: 3px; font-size: 12.5px; }
+.enlace:hover { color: var(--acento); text-decoration-color: currentColor; }
+
+/* Listas como índice: filas separadas por filetes. */
+.lista { gap: 0; }
+.lista > li { border-bottom: 1px solid var(--linea); }
+.lista > li:first-child { border-top: 1px solid var(--linea); }
+.resultado { background: none; border: 0; border-radius: 0; padding: 12px 22px 12px 0; font-size: 14px; position: relative; }
+.resultado::after { content: "→" / ""; position: absolute; right: 2px; top: 50%; transform: translateY(-50%); color: var(--tinta-suave); transition: transform .15s, color .15s; }
+.resultado:hover { color: var(--acento); }
+.resultado:hover::after { color: var(--acento); transform: translate(2px, -50%); }
+.resultado small { color: var(--tinta-suave); font-size: 11.5px; }
+.lista > li.vacio { border: 0; padding: 8px 0; }
+.acceso { padding-bottom: 8px; }
+.fila-en-curso { gap: 12px; }
+
+/* Guía paso a paso. */
+.pasos { margin-top: 4px; }
+.numero { width: 22px; height: 22px; border-width: 1px; font-size: 11px; }
+.paso.actual .cuerpo { background: var(--superficie); border: 0; border-left: 2px solid var(--acento); border-radius: 0; padding: 10px 12px 12px; margin-top: -2px; }
+.paso .titulo { font-size: 14px; }
+.aqui { text-transform: uppercase; letter-spacing: 0.14em; font-size: 10px; }
+.acciones { gap: 8px; margin-top: 14px; }
+.acciones .boton { padding: 8px 12px; font-size: 12.5px; }
+.resumen-bob { color: var(--tinta-media); font-size: 12px; line-height: 1.5; }
+.resumen-bob::before { content: "IBM Bob · " / ""; color: var(--acento); font-weight: 600; }
+
+/* Conversación: la pregunta como cita editorial. */
+.chat-titulo label { font: 600 17px/1.25 var(--serif); letter-spacing: -0.01em; }
+.chat-pregunta { background: none; border-left: 2px solid var(--acento); border-radius: 0; margin: 12px 0 6px; padding: 2px 0 2px 12px; font: italic 15px/1.45 var(--serif); color: var(--tinta); }
+.chat-respuesta { line-height: 1.6; }
+.chat-turno { border-bottom: 1px solid var(--linea); }
+.chat-mientras { border-top: 1px dashed var(--linea-fuerte); padding-top: 8px; }
+.progreso-bob { font-weight: 600; font-size: 12px; letter-spacing: 0.02em; }
+.progreso-bob .barras span { height: 3px; border-radius: 0; }
+
+/* Pie discreto. */
+.pie { font-size: 11px; border-top: 1px solid var(--linea); }
+.pie summary { cursor: pointer; }
+/* La dirección manual queda siempre a mano, pero no compite con la acción principal. */
+.entrada-url { padding: 12px 18px 14px; background: var(--fondo); }
+.entrada-url label { font: 600 10.5px/1.3 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--tinta-suave); }
+.entrada-url button[type=submit] { background: transparent; color: var(--tinta); border: 1px solid var(--tinta); flex-grow: 0; padding: 10px 14px; }
+.entrada-url button[type=submit]:hover { background: var(--tinta); color: var(--fondo); filter: none; }
+.pie summary { list-style: none; } .pie summary::-webkit-details-marker { display: none; }
+.parcial { display: grid; gap: 8px; }
+.parcial .resumen-bob::before { content: ""; }

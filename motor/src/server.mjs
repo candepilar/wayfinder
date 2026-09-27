@@ -112,7 +112,7 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
       const deadline = setTimeout(() => job.controller.abort(), 600000);
       try {
         const map = await (req.body.catalogo ? crawlMunicipal : crawl)(url, { maxPages, onEvent: emit, signal: job.controller.signal, allowLocal });
-        if (req.body.catalogo) await organize(map, { signal: job.controller.signal, onEvent: emit, workspace: path.join(dataDir, 'bob', `${id}-catalogo`) });
+        if (req.body.catalogo) await organize(map, { signal: job.controller.signal, onEvent: emit, onParcial: c => { job.catalogoParcial = c; }, workspace: path.join(dataDir, 'bob', `${id}-catalogo`) });
         if (req.body.bob) {
           emit({ type: 'bob_inicio', at: new Date().toISOString() });
           try { await analyzeWithBob(map, { signal: job.controller.signal, onEvent: emit, workspace: path.join(dataDir, 'bob', id) }); }
@@ -135,6 +135,12 @@ export function createApp({ dataDir = process.env.WAYFINDER_DATA_DIR || path.joi
         emit({ type: job.estado, mensaje: error.message, at: new Date().toISOString() });
       } finally { clearTimeout(deadline); }
     })();
+  });
+  // Catálogo parcial mientras el recorrido sigue: lo que ya se sabe, sin esperar a Bob.
+  app.get('/api/recorridos/:id/catalogo', (req,res) => {
+    const j = jobs.get(req.params.id);
+    if (!j) return res.status(404).json({ error: 'Recorrido no encontrado.' });
+    return j.catalogoParcial ? res.json(j.catalogoParcial) : res.status(404).json({ error: 'Todavía no hay gestiones para mostrar.' });
   });
   app.get('/api/recorridos/:id', (req,res) => {
     const j = jobs.get(req.params.id);
