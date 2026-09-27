@@ -29,6 +29,31 @@ quedan como cobertura parcial y no se envían a Bob si solo tienen título.
   cancelación, ocupado/reintento y ancho móvil. CI incluye prueba de extensión.
 - No hay medición de tiempo ahorrado al ciudadano, tasa de acierto general ni SLA.
 
+## Publicación y comprobación externa
+
+Commit `26e9461`, Actions `36297515800` exitoso: motor, pruebas de extensión,
+build y despliegue. ZIP público 0.3.0 de 41798 bytes; 17 archivos coinciden con
+el repo (texto normalizando CRLF). SHA256:
+`710C3123D6DD81495986E8267187553471505D73ED62060CEDCD97DC91D6F8D2`.
+
+API pública con Origin de extensión: La Económica conserva 5 fichas. Coto,
+recorrido `c788a241-d4bf-45e5-99e7-e192efb7caf0`: 1 página, 0 fichas, parcial,
+Bob `sin_documentos`. GOV.UK, recorrido `29f2a1ca-3f27-4000-9ec8-992626064a31`:
+5 páginas, 1 ficha (Renew your driving licence) y 1 destino, 19.587 s totales.
+Bob task `206a2949ecdd7061758dbc050dd50e19`, costo 0.024828. Son muestras,
+no una comparación de tiempos ni garantía de cobertura/vigencia.
+
+Edge headless con perfil aislado cargó la extensión real 0.3.0; APIs nativas:
+service worker, panel configurado al clic, fetch de catálogo público (1 ficha)
+y rechazo de inyección en Coto antes de una acción explícita comprobados. Esto
+complementa el puente controlado; no demuestra activación en Chrome/Brave de Franco.
+
+Comparación medida ejecutando el scheduler de `a737a9c` contra el nuevo en el
+mismo fixture HTTP: antes 1 página/0 fichas; después 2 páginas/1 ficha.
+
+Fuentes técnicas: [activeTab](https://developer.chrome.com/docs/extensions/develop/concepts/activeTab).
+Consigna: [guía oficial](https://lablab-ibm-bob-2-hackathon-guide.s3.us.cloud-object-storage.appdomain.cloud/index.html).
+
 ## Uso real de Bob y revisión humana
 
 Bob Shell revisó seis archivos enviados como contexto, task
