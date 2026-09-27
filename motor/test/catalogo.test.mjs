@@ -270,3 +270,25 @@ test('while a crawl is still running, the partial catalogue is served (also to t
   assert.equal(state.estado,'completado');
   assert.equal((await fetch(`${base}/recorridos/no-existe/catalogo`)).status,404);
 });
+
+test('guide/index pages: Bob lists the procedure links it contains; they become direct-access entries, validated', async () => {
+  const u = 'https://muni.example.org/guia-de-tramites';
+  const html = '<main><h1>Guía de trámites</h1><p>Elegí el trámite que necesitás.</p><ul>' +
+    ['licencia', 'tasas', 'poda', 'noticias'].map(x => `<li><a href="/tramites/${x}">${{ licencia: 'Licencia de conducir', tasas: 'Pago de tasas municipales', poda: 'Solicitud de poda', noticias: 'Noticias' }[x]}</a></li>`).join('') + '</ul></main>';
+  const p = extractPage(html, u); p.municipal = extractMunicipal(html, u);
+  const map = { sitio: { url: 'https://muni.example.org/', crawleado_en: '2026-09-27' }, paginas: [p], ejecucion: {} };
+  const vistas = [];
+  await organizeCatalog(map, { verificar: false, onParcial: c => vistas.push(c.fichas.length), run: async prompt => {
+    const doc = JSON.parse(prompt.slice(prompt.indexOf('DOCUMENTOS: ') + 12))[0];
+    const id = texto => doc.enlaces.find(l => l.texto === texto).id;
+    return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: [], indices: [
+      { pagina_id: doc.id, enlace_ids: [id('Licencia de conducir'), id('Pago de tasas municipales'), id('Licencia de conducir'), 'l99'] },
+      { pagina_id: 'inventada', enlace_ids: [id('Solicitud de poda')] }] }) };
+  } });
+  const f = map.catalogo.fichas;
+  assert.deepEqual(f.map(x => x.nombre), ['Licencia de conducir', 'Pago de tasas municipales']);
+  assert.deepEqual(f.map(x => x.fuente), ['https://muni.example.org/tramites/licencia', 'https://muni.example.org/tramites/tasas']);
+  assert.equal(f[0].origen, 'bob-indice'); assert.equal(f[0].lectura, 'solo_enlace'); assert.equal(f[0].encontrado_en, u);
+  assert.equal(map.catalogo.calidad.accesos_de_indices, 2);
+  assert.equal(vistas.at(-1), 2);
+});

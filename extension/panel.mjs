@@ -335,7 +335,7 @@ function herramientas(tab, publica, actualizar = false, mismaPagina = true, busc
     try {
       const previo = await motor(`/extension/catalogo?url=${encodeURIComponent(publica)}`);
       if (previo.catalogo && !actualizar) { await guardarCatalogo(previo); if (revision === estaRevision) await pintar(); return; }
-      const job = await motor('/recorridos', { url: publica, catalogo: true, maxPaginas: 20 });
+      const job = await motor('/recorridos', { url: publica, catalogo: true, maxPaginas: 40 });
       await guardado.escribir(`recorrido:${new URL(publica).origin}`, job.id);
       if (revision === estaRevision) seguir(job.id, publica, estaRevision);
     } catch (error) { if (revision === estaRevision) { estado.textContent = error.message; analizar.disabled = false; } }
