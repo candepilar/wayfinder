@@ -19,6 +19,25 @@ siempre visible y análisis independiente del permiso sobre la pestaña.
   [catálogo público consultado](novogar-catalogo.json): fuente, cobertura y task
   de Bob. Recorrido `83fa3d1d-10d4-449a-ab17-2bcb8ea66dd8`, mapa
   `10797c850b575d0cba6e`, ficha «Políticas de devoluciones y reembolsos».
+- [GOV.UK nativo por teclado](extension-032-native-govuk.json) y
+  [captura](extension-032-native-govuk.png): Enter recupera la guía real
+  «Renew your driving licence» desde la API, sin nuevo POST/recorrido ni navegación;
+  ancho móvil sin desborde. Perfil aislado, no navegador personal.
+
+## Entrega publicada
+
+[Actions 36298754598](https://github.com/candepilar/bob/actions/runs/36298754598)
+exitoso; release integrado `e98b5b3` incluye la corrección de ícono y el catálogo
+paralelo de Cande sin modificar esos módulos. 53 pruebas motor + 12 extensión y
+build CI OK. [ZIP/carpeta verificados](publicacion.json): 43888 bytes, 17 archivos
+coincidentes con repo y copia de escritorio, manifest 0.3.2. Se mantuvo la ruta
+registrada `Desktop/Wayfinder-Chrome-0.2.0`; backup anterior
+`outputs/Wayfinder-backup-0.3.0-before-0.3.2`. Falta Recargar y comprobar en Brave.
+
+Novogar se analizó antes de desplegar el scheduler paralelo: sus tiempos/task no
+miden la mejora de concurrencia. La comparación real solicitada por Cande sigue
+pendiente, igual que evidencia Bob IDE. La salud pública posterior al despliegue
+fue OK, Bob disponible, sin trabajos activos.
 
 12 pruebas de extensión pasan, incluyendo las de Cande; el test de apertura
 es controlado. No se certifica el clic en la barra de Brave del usuario ni cobertura

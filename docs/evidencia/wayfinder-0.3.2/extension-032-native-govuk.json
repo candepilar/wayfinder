@@ -1,0 +1,13 @@
+{
+  "environment": "native unpacked Edge isolated, extension tab",
+  "url": "chrome-extension://bimdilnfcnnghmkmdkeilfobdjlmffah/panel.html",
+  "title": "Renew your driving licence",
+  "calls": [
+    {
+      "url": "https://andromedaweb.store/wayfinder/api/motor/extension/catalogo?url=https%3A%2F%2Fwww.gov.uk%2Frenew-driving-licence",
+      "method": "GET"
+    }
+  ],
+  "noPost": true,
+  "noOverflow": true
+}

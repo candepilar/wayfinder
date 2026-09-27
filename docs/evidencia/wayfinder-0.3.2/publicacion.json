@@ -1,0 +1,12 @@
+{
+  "version": "0.3.2",
+  "zipBytes": 43888,
+  "sha256": "354E5BBEB8F331D200369712903A676FE4DBBA902BE3628E1B794CB22590C476",
+  "files": 17,
+  "repoMatches": true,
+  "desktopMatches": true,
+  "desktopFolder": "Desktop/Wayfinder-Chrome-0.2.0",
+  "backupFolder": "outputs/Wayfinder-backup-0.3.0-before-0.3.2",
+  "actions": "https://github.com/candepilar/bob/actions/runs/36298754598",
+  "releaseCommit": "e98b5b31fce100bda95f7b96c42c2b4d9d44300d"
+}
