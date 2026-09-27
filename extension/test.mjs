@@ -121,3 +121,9 @@ test('seguí donde quedaste: el más reciente primero, sin repetidos y con tope'
  assert.deepEqual(l.map(x=>x.id),['f','e','d','a','c']);
  assert.deepEqual(recordarEnCurso(null,{id:'x'}).map(x=>x.id),['x']);
 });
+test('las gestiones que Bob encontró en una guía de trámites llevan directo a su página',()=>{
+ const c={sitio:{url:'https://muni.example.org/',crawleado_en:'2026-09-27'},fichas:[{id:'e_1',nombre:'Licencia de conducir',fuente:'https://muni.example.org/tramites/licencia',lectura:'solo_enlace',requisitos:[],pasos:[],costo:[],destinos:[]}]};
+ const t=guiaDeCatalogo(c,'m').tramites[0];
+ assert.equal(t.pasos.length,1);assert.equal(t.pasos[0].url,'https://muni.example.org/tramites/licencia');assert.match(t.pasos[0].titulo,/Abrí la página del trámite/);
+ assert.deepEqual(buscar(guiaDeCatalogo(c,'m'),'sacar la licencia').map(x=>x.nombre),['Licencia de conducir']);
+});

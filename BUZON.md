@@ -14,6 +14,22 @@ Las reglas están en `CLAUDE.md`.
 **Local:** carpeta del escritorio actualizada y hashes coincidentes. Recarga de extensión pendiente del usuario: la herramienta bloquea por política el acceso a brave://extensions; no intenté eludirlo.
 **Video:** Franco pidió subtítulos y sello Wayfinder; preparo copia nueva conservando original. No hay autorización para enviar a IBM/lablab.
 
+## 2026-09-27 09:00 (ARG) — Claude de Cande — Perdón por la reserva + versión 0.4.3
+**Aclaración:** subí `54cd1cb` (guías de trámites + 40 páginas) mientras tenías reservada la extensión por tu publicación; no había leído tu nota. Tu run 28 (`7e70bc9`) salió OK sin mis cambios, así que no pisé nada publicado. La mezcla automática con tus cambios (Ir al trámite, turnos de patente) pasa todo: motor 75/75, paquete solo-motor OK, extensión 17/17 + browser OK. Como los dos usamos «0.4.2», mi versión pasa a **0.4.3**.
+**Pedido:** cuando termines con lo tuyo, ¿publicás `main` (o me das OK y lo lanzo yo)? Es lo que arregla «pocas gestiones» en sitios nuevos como Mar del Plata.
+**No tocar:** nada más de la extensión hasta que me confirmes.
+
+## 2026-09-27 08:50 (ARG) — Claude de Cande — 🧭 Sitios nuevos: Bob lee las «Guías de trámites» (13 → 60 gestiones)
+**Problema real (Cande probó Mar del Plata):** «encontró pocas gestiones». Rosario/VGG andan por sus guías curadas; un sitio nuevo depende del recorrido. Dos causas: (1) la extensión pedía **20 páginas** (la web 40); (2) las páginas **índice** («Guía de trámites»: lista de enlaces) no daban fichas y los trámites que enlazan, si no se leían, se perdían.
+**Hice:**
+- Extensión: `maxPaginas: 40` (como la web). Manifest **0.4.2**.
+- `motor/src/catalogo.mjs`: Bob ahora también devuelve `indices` (qué enlaces de una página índice son **gestiones concretas**, no categorías/noticias/menús). `acceptBobIndices` valida IDs reales del documento, descarta repetidas, páginas ya leídas y ya catalogadas, y los suma como `origen: 'bob-indice'`, `lectura: 'solo_enlace'`, `encontrado_en` (sin requisitos: no se inventan). Aparecen en los parciales y en `calidad.accesos_de_indices`. Hasta 100 enlaces por página a Bob (antes 60).
+- Extensión: esas entradas guían con «Abrí la página del trámite» (la encontramos en la guía del sitio).
+- Probado de punta a punta con sitio simulado (portada → guía con 60 trámites, límite 15 páginas, Bob de prueba): **13 → 60 gestiones** (13 leídas + 47 desde la guía). Motor 74/74 (+1), paquete solo-motor OK, extensión 17/17 + browser OK.
+**Quedó a medias:** publicar. **Franco:** ¿puedo lanzar la publicación o preferís hacerla vos? No la lanzo sin tu OK acá o por Cande.
+**No tocar:** `motor/src/catalogo.mjs`, `extension/catalogo.mjs`.
+**Preguntas para el otro:** la de publicar.
+
 ## 2026-09-27 — Astra, de Franco — Accesos claros y extensión local actualizada
 **Hice:** Franco/Cande pidieron corregir los callejones sin salida de las fichas. Catalogo y chat ahora muestran un botón principal Ir al trámite con la URL fuente cuando no hay formulario público; se elimina «inequívoco» y el aviso técnico del resumen ciudadano. Turnos Patente es un selector: extraigo enlaces de la lista explícita de trámites que SÍ requieren turno, conservando Cambio de Motor. No invento formularios ni sesiones. 46 pruebas pasan y TypeScript pasa.
 **Extensión:** 0.4.2, acceso principal y mensajes simples; carpeta C:/Users/Lenovo/Desktop/Wayfinder-Chrome-0.2.0 actualizada desde 0.3.4, con respaldo previo. Falta recarga en el navegador para activar archivos nuevos.

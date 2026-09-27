@@ -24,7 +24,9 @@ export function guiaDeCatalogo(catalogo, mapaId) {
         consultas: (f.consultas || []).filter(c => typeof c === 'string' && c.length <= 80).slice(0, 6),
         clics: Number.isInteger(f.clics_desde_portada) ? f.clics_desde_portada : null,
         antes: textos(f.requisitos), antesTitulo: 'Requisitos publicados', costos: textos(f.costo),
-        pasos: [
+        pasos: f.lectura === 'solo_enlace' ? [
+          { titulo: 'Abrí la página del trámite', detalle: 'La encontramos en la guía de trámites del sitio. Ahí vas a ver los requisitos y cómo iniciarlo.', url: f.fuente },
+        ] : [
           { titulo: 'Consultá la información del sitio', detalle: 'Revisá las condiciones que correspondan a tu caso.', url: f.fuente },
           { titulo: opciones.length ? 'Elegí el acceso' : 'Seguí las indicaciones de la página',
             detalle: textos(f.pasos).join('\n') || 'Continuá en la página del trámite. El sitio puede pedirte iniciar sesión.', opciones },
