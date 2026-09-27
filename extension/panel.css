@@ -117,3 +117,8 @@ details.bloque > summary { font-weight: 600; color: var(--acento); }
 details.bloque[open] > summary { margin-bottom: 10px; }
 details.bloque > .bloque { border: 0; padding: 0; background: none; }
 .chat-mientras { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.progreso-bob { display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: var(--acento); }
+.progreso-bob .barras { display: flex; gap: 3px; }
+.progreso-bob .barras span { flex: 1; height: 5px; border-radius: 99px; background: var(--linea); }
+.progreso-bob .barras span.hecha { background: var(--acento); }
+.resumen-bob { margin: 0; font-size: 12px; color: var(--acento); }

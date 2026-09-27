@@ -64,6 +64,13 @@ function vistaSinSitio(tab) {
   ];
 }
 
+function resumenBob(bob) {
+  if (!bob || !['completado', 'parcial'].includes(bob.estado) || !bob.tareas?.length) return null;
+  const s = bob.duracion_ms ? ` en ${Math.round(bob.duracion_ms / 1000)} s` : '';
+  const paginas = bob.tareas.reduce((n, t) => n + (t.paginas || 0), 0);
+  return el('p', { class: 'resumen-bob' }, `Organizado por IBM Bob: ${paginas} páginas en ${bob.tareas.length} ${bob.tareas.length === 1 ? 'tarea' : 'tareas en paralelo'}${s}.`);
+}
+
 function vistaBuscar(sitio, tab) {
   $sitio.textContent = sitio.dinamico ? sitio.nombre : `Municipalidad de ${sitio.nombre}`;
   const lista = el('ul', { class: 'lista' });
@@ -72,7 +79,8 @@ function vistaBuscar(sitio, tab) {
     const encontrados = input.value.trim() ? buscar(sitio, input.value) : sitio.tramites.slice(0, 5);
     lista.replaceChildren(...(encontrados.length
       ? encontrados.map(t => el('li', {}, el('button', { class: 'resultado', onclick: () => pestana.ir(t.ficha) }, t.nombre)))
-      : [el('li', { class: 'vacio' }, 'No lo encontré entre los trámites recorridos. Probá con otras palabras.')]));
+      : [el('li', { class: 'vacio' }, 'No lo encontré entre los trámites recorridos.'),
+        preguntarABob && el('li', {}, el('button', { class: 'boton secundario ancho', onclick: () => preguntarABob(input.value) }, `Preguntarle a Bob: «${input.value.trim().slice(0, 60)}»`))].filter(Boolean)));
   };
   input.addEventListener('input', () => { pintar(); alConsultar?.(input.value); });
   pintar();
@@ -82,6 +90,7 @@ function vistaBuscar(sitio, tab) {
     el('h1', {}, '¿Qué necesitás hacer?'),
     el('div', { class: 'buscador' }, input),
     el('div', {}, el('h2', {}, 'Gestiones del catálogo'), lista),
+    sitio.dinamico && resumenBob(sitio.bob),
     sitio.dinamico && el('p', { class: 'vacio' }, sitio.tramites.length ? `${sitio.tramites.length === 1 ? '1 gestión encontrada' : `${sitio.tramites.length} gestiones encontradas`}. Puede haber más en el sitio.` : 'Todavía no encontré gestiones. Probá buscar los accesos de esta página.'),
     mapa && el('a', { class: 'enlace', href: mapa, target: '_blank', rel: 'noopener' }, 'Abrir catálogo y mapa en Wayfinder'),
   ];
@@ -146,6 +155,7 @@ let revision = 0;
 let sondeo;
 let elegida = null;
 let cerrarChat = () => {};
+let preguntarABob = null;
 try { const previa = await guardado.leer('url-elegida'); if (previa) elegida = publicPage(previa); } catch {}
 const entrada = el('input', { id: 'url-sitio', type: 'text', inputmode: 'url', autocomplete: 'url', spellcheck: 'false', placeholder: 'Ej.: novogar.com.ar', 'aria-describedby': 'url-error' });
 entrada.value = elegida || '';
@@ -209,17 +219,33 @@ async function pintar() {
     vista.push(encontrado ? el('details', { class: 'bloque' }, el('summary', {}, 'Buscar otra cosa en esta página'), caja) : caja);
   }
   if (estaRevision !== revision) return;
-  cerrarChat();
+  cerrarChat(); preguntarABob = null;
   if (publica) {
     const chat = chatBob({ el, publica, ir: url => pestana.ir(url),
       buscarLocal: q => sitio ? buscar(sitio, q, 3).map(t => ({ nombre: t.nombre, url: t.ficha })) : [] });
-    vista.unshift(chat.node); cerrarChat = chat.dispose;
+    // Primero el buscador (instantáneo); Bob debajo, para lo que no aparece.
+    vista.splice(Math.max(0, vista.length - 1), 0, chat.node); cerrarChat = chat.dispose;
+    preguntarABob = chat.preguntar;
   }
   $contenido.replaceChildren(...vista.filter(Boolean));
   if (publica) {
     const pendiente = await guardado.leer(`recorrido:${new URL(publica).origin}`);
     if (pendiente && estaRevision === revision) seguir(pendiente, publica, estaRevision);
+    else if (!sitio) void catalogoExistente(publica, estaRevision);
   }
+}
+
+// Si Bob ya organizó este sitio, las gestiones aparecen solas al abrir el panel:
+// una consulta de solo lectura por sitio y por sesión, sin iniciar recorridos.
+const consultados = new Set();
+async function catalogoExistente(publica, estaRevision) {
+  const host = new URL(publica).hostname;
+  if (consultados.has(host)) return;
+  consultados.add(host);
+  try {
+    const previo = await motor(`/extension/catalogo?url=${encodeURIComponent(publica)}`);
+    if (previo.catalogo && revision === estaRevision) { await guardarCatalogo(previo); if (revision === estaRevision) await pintar(); }
+  } catch { consultados.delete(host); /* sin conexión: queda el botón «Buscar gestiones» */ }
 }
 
 let alConsultar = null;
@@ -308,8 +334,14 @@ async function seguir(id, publica, estaRevision) {
       await guardado.escribir(`recorrido:${new URL(publica).origin}`, null);
       if (revision === estaRevision) await pintar();
     } else if (job.estado === 'en_curso') {
-      const ultimo = job.eventos?.at(-1);
-      estado.replaceChildren(el('span', {}, ultimo?.leidas ? `Buscando gestiones · ${ultimo.leidas} páginas leídas` : 'Preparando la información del sitio…'),
+      const eventos = job.eventos || [];
+      const leidas = Math.max(0, ...eventos.map(e => e.leidas || 0));
+      const inicio = [...eventos].reverse().find(e => e.type === 'catalogo_bob_inicio');
+      const hechas = inicio ? eventos.filter(e => e.type === 'catalogo_bob_lote' && e.secuencia > inicio.secuencia).length : 0;
+      estado.replaceChildren(
+        inicio?.lotes ? el('span', { class: 'progreso-bob' }, `IBM Bob · ${hechas} de ${inicio.lotes} tareas en paralelo`,
+          el('span', { class: 'barras', 'aria-hidden': 'true' }, Array.from({ length: inicio.lotes }, (_, i) => el('span', { class: i < hechas ? 'hecha' : '' }))))
+          : el('span', {}, leidas ? `Buscando gestiones · ${leidas} páginas leídas` : 'Preparando la información del sitio…'),
         el('button', { class: 'enlace', onclick: async e => {
           e.target.disabled = true;
           try { await motor(`/recorridos/${id}/cancelar`, {}); estado.textContent = 'Cancelando…'; }

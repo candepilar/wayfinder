@@ -48,10 +48,10 @@ const assert=require('node:assert/strict');
    const reply=d=>r.fulfill({contentType:'application/json',body:JSON.stringify(d)});
    if(p.endsWith('/asistente/sitios')){sitiosCalls++;return reply({sitios:[{id:'sitio:https://qa.example.org/',url:'https://qa.example.org/'}]});}
    if(p.endsWith('/asistente')){chatCalls.push(r.request().postDataJSON());if(chatMode==='lento')return new Promise(ok=>releaseChat=ok).then(()=>reply({mensaje:'Listo.',fichas:[],evidencia:[],sugerencias:[]}));if(chatMode==='error')return r.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Bob no está disponible ahora.'})});return reply({mensaje:'Podés asociarte desde este acceso.',fichas:[{id:'join',nombre:'Asociarme',fuente:'https://qa.example.org/join',destinos:[]}],evidencia:[],sugerencias:['Quiero un turno']});}
-   if(p.endsWith('/extension/catalogo'))return reply({mapaId:null});
+   if(p.endsWith('/extension/catalogo'))return reply(scenario==='existente'?{mapaId:'b'.repeat(20),catalogo:{...catalogo,bob:{estado:'completado',duracion_ms:31000,tareas:[{paginas:8},{paginas:8},{paginas:4}]}}}:{mapaId:null});
    if(p.endsWith('/cancelar')){cancelled=true;return reply({estado:'cancelando'});}
    if(p.endsWith('/recorridos')){starts++;jobPolls=0;scanUrl=r.request().postDataJSON().url;sentUrls.push(scanUrl);assert.equal(r.request().postDataJSON().catalogo,true);if(scenario==='busy')return r.fulfill({status:409,contentType:'application/json',body:JSON.stringify({error:'Ya hay un recorrido en curso.'})});return reply({id:'scan-test'});}
-   if(p.endsWith('/recorridos/scan-test')){polls++;jobPolls++;return reply(cancelled?{estado:'cancelado'}:scenario==='cancel'||jobPolls===1?{estado:'en_curso',eventos:[{leidas:2}]}:{estado:'completado',mapaId:'a'.repeat(20)});}
+   if(p.endsWith('/recorridos/scan-test')){polls++;jobPolls++;return reply(cancelled?{estado:'cancelado'}:scenario==='cancel'||jobPolls===1?{estado:'en_curso',eventos:[{secuencia:1,leidas:2},{secuencia:2,type:'catalogo_bob_inicio',lotes:3},{secuencia:3,type:'catalogo_bob_lote'}]}:{estado:'completado',mapaId:'a'.repeat(20)});}
    if(p.endsWith('/catalogo'))return reply(scenario==='manual'?{...catalogo,sitio:{...catalogo.sitio,url:scanUrl},fichas:[{...catalogo.fichas[0],nombre:'Ayuda del sitio ingresado',fuente:new URL('/ayuda',scanUrl).href}]}:catalogo);
    throw Error('Unexpected '+p);
   });
@@ -108,6 +108,8 @@ const assert=require('node:assert/strict');
   report.push({case:'inline Bob and back',passed:['context matched to site','instant local matches while Bob answers','site looked up once per conversation','natural-language request','follow-up history','API error retains draft','tab-history back through controlled API bridge']});
   scenario='cancel';await panel.evaluate(()=>localStorage.clear());await panel.reload();
   await panel.getByRole('button',{name:'Buscar gestiones'}).click();
+  await panel.getByText('IBM Bob · 1 de 3 tareas en paralelo').waitFor();
+  assert.equal(await panel.locator('.progreso-bob .barras span.hecha').count(),1);
   await panel.getByRole('button',{name:'Cancelar recorrido'}).click();
   await panel.getByText('Recorrido cancelado.',{exact:true}).waitFor();assert.equal(cancelled,true);
   scenario='busy';await panel.getByRole('button',{name:'Buscar gestiones'}).click();
@@ -152,6 +154,21 @@ const assert=require('node:assert/strict');
   if(process.env.MANUAL_SCREENSHOT)await panel.screenshot({path:process.env.MANUAL_SCREENSHOT,fullPage:true});
   assert.equal(await panel.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   report.push({case:'manual URLs / tab switch',passed:['URL always visible','permission not internal','own window query','unsafe URL rejected','no typing network or navigation','Novogar and GOV.UK pasted','progress/resume without duplicate','results without tab permission','activation clears manual context','single search box for catalog and page links','mobile no overflow'],sentUrls:sentUrls.slice(-2)});
+  // Si Bob ya organizó el sitio, las gestiones aparecen solas al abrir el panel.
+  scenario='existente';tabUrlOverride=undefined;const antes=starts;
+  await panel.evaluate(()=>localStorage.clear());await panel.reload();
+  await panel.getByRole('button',{name:'Asociarme a la biblioteca',exact:true}).waitFor();
+  await panel.getByText('Organizado por IBM Bob: 20 páginas en 3 tareas en paralelo en 31 s.').waitFor();
+  assert.equal(starts,antes);
+  // Buscador primero; si no encuentra, un toque manda la frase a Bob.
+  assert.ok(await panel.evaluate(()=>{const b=document.querySelector('input[aria-label="Qué gestión necesitás hacer"]'),c=document.querySelector('.chat-bob');return b.compareDocumentPosition(c)&Node.DOCUMENT_POSITION_FOLLOWING;}));
+  chatMode='ok';const antesChat=chatCalls.length;
+  await panel.getByRole('searchbox',{name:'Qué gestión necesitás hacer'}).fill('perdí mi pasaporte');
+  await panel.getByRole('button',{name:'Preguntarle a Bob: «perdí mi pasaporte»'}).click();
+  await panel.getByText('Podés asociarte desde este acceso.',{exact:true}).last().waitFor();
+  assert.equal(chatCalls.at(-1).pregunta,'perdí mi pasaporte');assert.equal(chatCalls.length,antesChat+1);
+  if(process.env.EXIST_SCREENSHOT)await panel.screenshot({path:process.env.EXIST_SCREENSHOT,fullPage:true});
+  report.push({case:'existing catalogue',passed:['gestiones shown on open without clicking','search before Bob, one tap sends unmatched query to Bob','no crawl started','Bob parallel summary','parallel task progress bar']});
   if(process.env.LIVE==='1'){
    deny=false;tabUrlOverride=undefined;
    await active.goto('https://www.coto.com.ar/',{waitUntil:'domcontentloaded',timeout:45000});
