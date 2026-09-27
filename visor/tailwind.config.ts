@@ -20,6 +20,7 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "sans-serif"],
+        serif: ["Iowan Old Style", "Charter", "Source Serif Pro", "Georgia", "Times New Roman", "serif"],
         mono: ["JetBrains Mono", "ui-monospace", "Consolas", "monospace"],
       },
       boxShadow: { panel: "var(--sombra)" },

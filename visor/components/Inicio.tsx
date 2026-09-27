@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import ExtensionButton from './ExtensionButton';
 import Asistente from './Asistente';
 
 import { buscarMapaPorUrl, listarMapas } from "@/lib/mapas";
@@ -111,19 +110,16 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
   const bobProgreso = bobInicio?.lotes ? { total: bobInicio.lotes, paralelo: bobInicio.paralelo ?? bobInicio.lotes, hechas: events.filter(e => e.type === 'catalogo_bob_lote' && e.secuencia > bobInicio.secuencia).length } : null;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-6 py-16">
-      <div className="absolute right-6 top-6"><ExtensionButton /></div>
+    <div id="probar" className="flex flex-col items-center border-t border-linea px-6 py-20">
       <main className="w-full max-w-lg">
         <div className="mb-10 text-center">
-          <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-linea bg-superficie shadow-panel">
-            <IconoMapa />
-          </div>
-          <h1 className="text-[32px] font-semibold leading-tight tracking-tight text-tinta">
-            Tu trámite, a un clic
-          </h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-acento">Probalo sin instalar</p>
+          <h2 className="mt-3 font-serif text-[30px] font-semibold leading-tight tracking-tight text-tinta">
+            Pegá la dirección de un sitio público
+          </h2>
           <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-tinta-media">
-            Pegá la dirección de un sitio público. IBM Bob ordena sus gestiones y te
-            lleva directo a la que necesitás, con requisitos y acceso oficial.
+            IBM Bob ordena sus gestiones y te lleva directo a la que necesitás, con
+            requisitos y acceso oficial.
           </p>
         </div>
 
@@ -228,16 +224,6 @@ function Tarjeta({ mapa, onAbrir }: { mapa: WebMap; onAbrir: () => void }) {
 /* Iconos en SVG inline: son cuatro, y una libreria entera para eso son
    kilobytes y una dependencia mas que mantener. */
 
-function IconoMapa() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="text-acento">
-      <circle cx="12" cy="5" r="2.2" />
-      <circle cx="5.5" cy="18" r="2.2" />
-      <circle cx="18.5" cy="18" r="2.2" />
-      <path d="M12 7.2v3.3M10.6 12.2 7 15.9M13.4 12.2 17 15.9" />
-    </svg>
-  );
-}
 
 function IconoGlobo() {
   return (

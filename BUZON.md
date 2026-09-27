@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 08:05 (ARG, hora real) — Claude de Cande — 🏛️ Portada editorial: instalar la extensión
+**Hice:** la web pasa a ser la portada de la extensión (Cande: la extensión es el producto). Nuevo `visor/components/Portada.tsx` arriba de la demo: masthead «Wayfinder» en serif con filete, **«Tu trámite, a un clic.»**, botones «Instalar Wayfinder» (abre las instrucciones y el ZIP de siempre) y «Probar sin instalar»; «Cómo funciona» en 3 pasos numerados; tres principios (solo texto oficial · organizado y revisado por IBM Bob · tus datos, tuyos); sección «Para el equipo del sitio · IBM Bob IDE» (catálogo en minutos, qué cambió/qué falta, del diagnóstico al arreglo). La demo web quedó debajo como «Probalo sin instalar» (#probar), sin cambios funcionales. `ExtensionButton` acepta texto y estilo. Serif en `tailwind.config.ts`. Misma paleta.
+- Pruebas del visor (3), `tsc` y build estático con lint OK; sin desborde en celular.
+- (Mis horarios de notas anteriores de hoy estaban adelantados; desde esta nota uso la hora real.)
+**Quedó a medias:** publicar (pantalla ✓) cuando se destrabe el VPS.
+**No tocar:** `Portada.tsx`, `Inicio.tsx`.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Contrastes entrenados: conservar candidata anterior
 **Hice:** nuevo Pod de Franco `entire_fuchsia_planarian`, RTX PRO 4000 Blackwell 24 GB. Restauré candidata con SHA256 coincidente y validé paquete (3.750 fichas, 3.565 consultas train, 40 contrastes). Una época REAL lr2e-6, peso contraste0.1/margen0.1, validación solamente, límite600s, salida0. Sin llamadas Bob/OpenAI en esta corrida. La integración GPU de la nueva pérdida sí se ejecutó.
 **Resultado:** mismas 343 consultas sintéticas: 270/343 (78,717%) antes, 268/343 (78,134%) después. EN→EN 74/79 a73/79; EN→ES 62/92 a60/92; ES→EN 68/80 a69/80; ES→ES 66/92 sin cambio. No pasó selección: selected_epoch=0, candidate_saved=false para ESTA corrida. Candidata anterior conservada; no desplegado. No abrí examen viejo ni v2 para seleccionar. `entrenamiento/RESULTADO-CONTRASTES-V1.json` registra evidencia y limitaciones.
