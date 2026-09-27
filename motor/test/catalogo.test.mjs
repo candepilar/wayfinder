@@ -135,7 +135,7 @@ test('Bob organizes batches as bounded parallel tasks and covers every page sent
   assert.equal(map.catalogo.bob.estado, 'completado');
   assert.equal(map.catalogo.bob.tareas.length, 4); assert.equal(map.catalogo.bob.tareas_paralelas, 2);
   assert.equal(map.catalogo.bob.coste, 0.04);
-  assert.match(events[0].mensaje, /12 páginas en 4 tareas, 2 a la vez/);
+  assert.match(events.find(e => e.type === 'catalogo_bob_inicio').mensaje, /12 páginas en 4 tareas, 2 a la vez/);
   assert.equal(events.filter(e => e.type === 'catalogo_bob_lote').length, 4);
   assert.equal(events.filter(e => e.type === 'bob_evento').length, 0); // 200 stream events not flooding the job log
 });
@@ -231,4 +231,42 @@ test('Bob reviews its own fiches: confirmed, flagged with a reason, invalid revi
   await organizeCatalog(falla, { run: run(() => { throw Error('timeout'); }) });
   assert.equal(falla.catalogo.fichas.length, 2); assert.equal(falla.catalogo.bob.estado, 'completado');
   assert.deepEqual(falla.catalogo.calidad.revision_bob, { confirmadas: 0, dudosas: 0, sin_revision: 2, tareas: 0 });
+});
+
+test('progressive results: HTML fiches right after reading, then each Bob task adds its own before the others finish', async () => {
+  const map = mapOfMany(6), vistas = [];
+  let liberar; const segunda = new Promise(r => liberar = r);
+  const hecho = organizeCatalog(map, { tamanoLote: 3, paralelo: 2, verificar: false, onParcial: c => vistas.push(c.fichas.map(f => f.nombre)), run: async prompt => {
+    if (prompt.includes('service-3')) await segunda;
+    return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: answerAll(prompt) }) };
+  } });
+  for (let i = 0; i < 50 && vistas.length < 2; i++) await new Promise(r => setTimeout(r, 5));
+  assert.equal(vistas[0].length, 0);          // HTML: estas páginas no traen ficha estructurada
+  assert.equal(vistas[1].length, 3);          // la primera tarea ya sumó sus 3, la segunda sigue
+  assert.equal(map.catalogo, undefined);      // el catálogo final todavía no existe
+  liberar(); await hecho;
+  assert.equal(vistas.at(-1).length, 6); assert.equal(map.catalogo.fichas.length, 6);
+});
+
+test('while a crawl is still running, the partial catalogue is served (also to the extension)', async t => {
+  const origin=http.createServer((req,res)=>{
+    res.setHeader('Content-Type',req.url==='/robots.txt'?'text/plain':'text/html');
+    if(req.url==='/robots.txt') return res.end('User-agent: *\nDisallow:');
+    res.end('<main><h1>Afiliación</h1><h2>Requisitos</h2><ul><li>DNI.</li></ul><a class="btn" href="/enviar">Iniciar solicitud</a></main>');
+  }).listen(0,'127.0.0.1');await new Promise(r=>origin.once('listening',r));
+  const dataDir=await mkdtemp(path.join(os.tmpdir(),'catalog-parcial-'));
+  let liberar;const bobTrabajando=new Promise(r=>liberar=r);
+  const {app}=createApp({dataDir,allowLocal:true,organize:(m,o)=>organizeCatalog(m,{...o,run:async()=>{await bobTrabajando;return {type:'result',status:'success',last_message:'{"fichas":[]}'};}})});
+  const server=app.listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));
+  t.after(async()=>{liberar();origin.closeAllConnections();server.closeAllConnections();await Promise.all([new Promise(r=>origin.close(r)),new Promise(r=>server.close(r))]);await rm(dataDir,{recursive:true,force:true});});
+  const base=`http://127.0.0.1:${server.address().port}/api`;
+  const {id}=await(await fetch(`${base}/recorridos`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:`http://127.0.0.1:${origin.address().port}/`,maxPaginas:2,catalogo:true})})).json();
+  let parcial;
+  for(let i=0;i<100;i++){const r=await fetch(`${base}/recorridos/${id}/catalogo`,{headers:{Origin:'chrome-extension://abcdefghijklmnopabcdefghijklmnop'}});if(r.status===200){parcial=await r.json();break;}await new Promise(r=>setTimeout(r,20));}
+  assert.equal(parcial.parcial,true);assert.equal(parcial.fichas[0].nombre,'Afiliación');
+  assert.equal((await(await fetch(`${base}/recorridos/${id}`)).json()).estado,'en_curso');
+  liberar();
+  let state;for(let i=0;i<100;i++){state=await(await fetch(`${base}/recorridos/${id}`)).json();if(state.estado!=='en_curso')break;await new Promise(r=>setTimeout(r,20));}
+  assert.equal(state.estado,'completado');
+  assert.equal((await fetch(`${base}/recorridos/no-existe/catalogo`)).status,404);
 });

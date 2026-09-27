@@ -354,6 +354,7 @@ async function guardarCatalogo({ catalogo, mapaId }) {
   const cache = (await guardado.leer('catalogos')) || [];
   await guardado.escribir('catalogos', [sitio, ...cache.filter(s => s.nombre !== sitio.nombre)].slice(0, 8));
 }
+let parcialVisto = { id: null, n: 0, tramites: [] };
 async function seguir(id, publica, estaRevision) {
   if (revision !== estaRevision) return;
   const estado = document.getElementById('motor-estado');
@@ -371,12 +372,24 @@ async function seguir(id, publica, estaRevision) {
     } else if (job.estado === 'en_curso') {
       const eventos = job.eventos || [];
       const leidas = Math.max(0, ...eventos.map(e => e.leidas || 0));
+      // Resultados progresivos: si el motor ya tiene gestiones, se muestran sin
+      // esperar a que Bob termine. Solo se piden de nuevo cuando cambió la cantidad.
+      const avisoParcial = eventos.filter(e => e.type === 'catalogo_parcial').at(-1);
+      if (avisoParcial?.fichas > 0 && (parcialVisto.id !== id || parcialVisto.n !== avisoParcial.fichas)) {
+        try { parcialVisto = { id, n: avisoParcial.fichas, tramites: guiaDeCatalogo(await motor(`/recorridos/${encodeURIComponent(id)}/catalogo`), 'parcial').tramites }; }
+        catch { /* se reintenta en la próxima vuelta */ }
+        if (revision !== estaRevision) return;
+      }
+      const parcial = parcialVisto.id === id && parcialVisto.tramites.length ? el('div', { class: 'parcial' },
+        el('p', { class: 'resumen-bob' }, `Ya encontré ${parcialVisto.tramites.length} ${parcialVisto.tramites.length === 1 ? 'gestión' : 'gestiones'}; Bob sigue organizando el resto.`),
+        el('ul', { class: 'lista' }, parcialVisto.tramites.slice(0, 8).map(t => el('li', {}, el('button', { class: 'resultado', onclick: () => pestana.ir(t.ficha) }, t.nombre))))) : null;
       const inicio = [...eventos].reverse().find(e => e.type === 'catalogo_bob_inicio');
       const hechas = inicio ? eventos.filter(e => e.type === 'catalogo_bob_lote' && e.secuencia > inicio.secuencia).length : 0;
       estado.replaceChildren(
         inicio?.lotes ? el('span', { class: 'progreso-bob' }, `IBM Bob · ${hechas} de ${inicio.lotes} tareas en paralelo`,
           el('span', { class: 'barras', 'aria-hidden': 'true' }, Array.from({ length: inicio.lotes }, (_, i) => el('span', { class: i < hechas ? 'hecha' : '' }))))
           : el('span', {}, leidas ? `Buscando gestiones · ${leidas} páginas leídas` : 'Preparando la información del sitio…'),
+        parcial,
         el('button', { class: 'enlace', onclick: async e => {
           e.target.disabled = true;
           try { await motor(`/recorridos/${id}/cancelar`, {}); estado.textContent = 'Cancelando…'; }

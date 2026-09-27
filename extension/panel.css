@@ -218,3 +218,5 @@ details.bloque[open] > summary::after { content: "–" / ""; }
 .entrada-url button[type=submit] { background: transparent; color: var(--tinta); border: 1px solid var(--tinta); flex-grow: 0; padding: 10px 14px; }
 .entrada-url button[type=submit]:hover { background: var(--tinta); color: var(--fondo); filter: none; }
 .pie summary { list-style: none; } .pie summary::-webkit-details-marker { display: none; }
+.parcial { display: grid; gap: 8px; }
+.parcial .resumen-bob::before { content: ""; }

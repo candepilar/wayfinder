@@ -51,7 +51,7 @@ const assert=require('node:assert/strict');
    if(p.endsWith('/extension/catalogo'))return reply(scenario==='existente'?{mapaId:'b'.repeat(20),catalogo:{...catalogo,bob:{estado:'completado',duracion_ms:31000,tareas:[{paginas:8},{paginas:8},{paginas:4}]}}}:{mapaId:null});
    if(p.endsWith('/cancelar')){cancelled=true;return reply({estado:'cancelando'});}
    if(p.endsWith('/recorridos')){starts++;jobPolls=0;scanUrl=r.request().postDataJSON().url;sentUrls.push(scanUrl);assert.equal(r.request().postDataJSON().catalogo,true);if(scenario==='busy')return r.fulfill({status:409,contentType:'application/json',body:JSON.stringify({error:'Ya hay un recorrido en curso.'})});return reply({id:'scan-test'});}
-   if(p.endsWith('/recorridos/scan-test')){polls++;jobPolls++;return reply(cancelled?{estado:'cancelado'}:scenario==='cancel'||jobPolls===1?{estado:'en_curso',eventos:[{secuencia:1,leidas:2},{secuencia:2,type:'catalogo_bob_inicio',lotes:3},{secuencia:3,type:'catalogo_bob_lote'}]}:{estado:'completado',mapaId:'a'.repeat(20)});}
+   if(p.endsWith('/recorridos/scan-test')){polls++;jobPolls++;return reply(cancelled?{estado:'cancelado'}:scenario==='cancel'||jobPolls===1?{estado:'en_curso',eventos:[{secuencia:1,leidas:2},{secuencia:2,type:'catalogo_bob_inicio',lotes:3},{secuencia:3,type:'catalogo_bob_lote'},{secuencia:4,type:'catalogo_parcial',fichas:1}]}:{estado:'completado',mapaId:'a'.repeat(20)});}
    if(p.endsWith('/catalogo'))return reply(scenario==='manual'?{...catalogo,sitio:{...catalogo.sitio,url:scanUrl},fichas:[{...catalogo.fichas[0],nombre:'Ayuda del sitio ingresado',fuente:new URL('/ayuda',scanUrl).href}]}:catalogo);
    throw Error('Unexpected '+p);
   });
@@ -70,6 +70,7 @@ const assert=require('node:assert/strict');
   await panel.getByRole('button',{name:'Marcado ✓',exact:true}).waitFor();
   assert.equal(await active.locator('.wayfinder-objetivo').count(),1);
   await panel.getByRole('button',{name:'Buscar gestiones'}).click();
+  await panel.getByText('Gestiones del catálogo',{exact:true}).waitFor(); // vista final (la ficha ya aparecía antes, en los resultados parciales)
   await panel.getByRole('button',{name:'Asociarme a la biblioteca',exact:true}).waitFor();
   assert.equal(starts,1);assert.ok(polls>=2);
   await panel.reload();await panel.getByRole('button',{name:'Asociarme a la biblioteca',exact:true}).waitFor();
@@ -109,13 +110,16 @@ const assert=require('node:assert/strict');
   scenario='cancel';await panel.evaluate(()=>localStorage.clear());await panel.reload();
   await panel.getByRole('button',{name:'Buscar gestiones'}).click();
   await panel.getByText('IBM Bob · 1 de 3 tareas en paralelo').waitFor();
+  // Resultados progresivos: la gestión ya encontrada se puede abrir mientras Bob sigue.
+  await panel.getByText('Ya encontré 1 gestión; Bob sigue organizando el resto.').waitFor();
+  assert.equal(await panel.locator('.parcial').getByRole('button',{name:'Asociarme a la biblioteca',exact:true}).count(),1);
   assert.equal(await panel.locator('.progreso-bob .barras span.hecha').count(),1);
   await panel.getByRole('button',{name:'Cancelar recorrido'}).click();
   await panel.getByText('Recorrido cancelado.',{exact:true}).waitFor();assert.equal(cancelled,true);
   scenario='busy';await panel.getByRole('button',{name:'Buscar gestiones'}).click();
   await panel.getByText('Ya hay un recorrido en curso.',{exact:true}).waitFor();
   assert.equal(await panel.getByRole('button',{name:'Buscar gestiones'}).isEnabled(),true);
-  report.push({case:'controlled browser',passed:['JS links','auto read with permission','natural-language search by word roots','accent search','actual highlight receipt','scan/progress/catalog','cache reload','permission denied','cancel','busy/retry','mobile no overflow'],starts,polls});
+  report.push({case:'controlled browser',passed:['JS links','progressive results while Bob works','auto read with permission','natural-language search by word roots','accent search','actual highlight receipt','scan/progress/catalog','cache reload','permission denied','cancel','busy/retry','mobile no overflow'],starts,polls});
   scenario='manual';cancelled=false;deny=false;tabUrlOverride='';
   await panel.evaluate(()=>window.tabActivated.forEach(fn=>fn({tabId:1,windowId:2})));
   await panel.getByText(/Todavía no tengo permiso/).waitFor();

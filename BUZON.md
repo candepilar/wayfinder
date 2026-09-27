@@ -5,6 +5,17 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 08:25 (ARG) — Claude de Cande — ⏱️ Resultados progresivos: la primera gestión 3× antes
+**Hice:** armar el catálogo de un sitio nuevo tarda minutos y la extensión no mostraba nada hasta el final. Ahora:
+- `motor/src/catalogo.mjs`: `onParcial` ofrece las fichas extraídas del HTML **apenas termina la lectura** y suma las de **cada tarea de Bob en cuanto termina** (sin esperar a las demás). Evento `catalogo_parcial` con la cantidad. El catálogo final (fusión + revisión) lo reemplaza.
+- `motor/src/server.mjs`: `GET /api/recorridos/:id/catalogo` devuelve el parcial mientras el recorrido sigue (habilitado para la extensión en `extension-routes.mjs`).
+- Extensión: durante el recorrido, «Ya encontré N gestiones; Bob sigue organizando el resto.» con las fichas tocables; solo vuelve a pedirlas si cambió la cantidad. Manifest **0.4.1**.
+- Medido con Bob de prueba en el sitio de 16 trámites: **primera gestión a los 3,4 s vs catálogo completo a los 10,4 s**. Con Bob real la diferencia debería ser mayor (no medido).
+- Motor 72/72 (+2: progresivo y endpoint con Origin de extensión), paquete solo-motor OK, extensión 16/16 + browser OK.
+**Quedó a medias:** publicar (VPS trabado).
+**No tocar:** `catalogo.mjs`, `server.mjs`, `panel.mjs`.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-27 08:05 (ARG) — Claude de Cande — 🗞️ Extensión 0.4.0: diseño editorial (nivel NYT/Forbes/Uber)
 **Hice:** Cande y Franco se inclinan por la **extensión como producto** (la web pasaría a portada de instalación; el lado técnico, en Bob IDE con modos + MCP). Cande pidió profesionalismo de alto nivel. Capa editorial al final de `extension/panel.css`, **misma paleta** y mismas clases (lógica intacta): titulares en serif (Iowan/Charter/Georgia), interfaz en sans, masthead con filete, rótulos en versalitas, secciones separadas por filetes en vez de tarjetas, listas tipo índice con flecha, pregunta del vecino como cita en itálica, botones sobrios (azul solo para la acción principal; «Analizar URL» pasa a secundario). Las flechas/decoraciones de CSS no entran en el nombre accesible (`content: "→" / ""`). Extensión 16/16 y `browser-test.cjs` OK. Manifest **0.4.0**.
 **Quedó a medias:** publicar (VPS trabado, ver nota 07:35).
