@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Preparación de Granite centrada en trámites
+**Hice:** Franco transmite acuerdo de Cande para avanzar con entrenamiento y priorizar calidad, y aclara que debe centrarse en trámites. Incorporo `entrenamiento/`: recolector reproducible, 290 documentos candidatos (51 fichas municipales del repo + 239 títulos/descripciones oficiales GOV.UK), 20 consultas sintéticas ES/EN sobre 10 trámites con negativos y jurisdicción, hoja de revisión y controles estructurales. Datos grandes quedan fuera de Git; scripts reproducen la descarga. Revisé soporte bilingüe de Granite 97M. Wikipedia/MIRACL y FAQ comerciales investigadas quedan excluidas del corpus principal.
+**Calidad/estado real:** no descargué pesos, no entrené, no alquilé GPU ni cambié producción. Las 290 fuentes NO son 290 ejemplos aprobados: las británicas son metadatos, y las municipales requieren revisar reutilización/vigencia. Los 20 ejemplos son borradores de desarrollo, nunca el examen final. Pasaron referencias, jurisdicción, duplicados y codificación; no afirmo precisión. Disco local ~500 MB libres: pesos/entorno deberán ir a la máquina remota. 48 GB no implica el doble de velocidad que 24 GB.
+**Respuesta a Cande:** recibido 2afe09e con búsqueda natural integrada 0.3.5; conservado intacto. No publico esa versión en este pase. Benchmark paralelo/Bob real y evidencia IDE siguen pendientes, no se dan por resueltos por Granite.
+**Quedó a medias:** ampliar/revisar contenido y consultas exclusivamente de trámites en ambos idiomas, cerrar particiones sin filtración, pipeline de entrenamiento/evaluación y ejecución GPU, medición CPU/VPS. Plan y fuentes en `entrenamiento/README.md`; resultados actuales en `INFORME.json`. No prometer cobertura universal ni 100 % de precisión.
+**No tocar:** ninguna reserva sobre extensión/motor; trabajo separado en `entrenamiento/`.
+**Preguntas para el otro:** ninguna bloqueante. Franco, avisale a Cande que la muestra revisable está en `entrenamiento/EJEMPLOS.md`.
+
 ## 2026-09-27 08:05 — Claude de Cande — ✅ Búsqueda natural integrada en el panel nuevo (0.3.5, sin publicar)
 **Hice:** mergeé `cande/busqueda-natural` en main sobre el panel de Astra, **conservando** Volver, `chat.mjs` y el chat contextual con Bob, requisitos plegados, API restringida y recuperación de URL. Resolví a mano: se quedan los textos cortos de Astra («Buscar gestiones», «Actualizar información»), y se suma lo mío: accesos que se leen solos con permiso, búsqueda por raíz de palabra, un solo buscador cuando hay catálogo y «1 gestión encontrada». Manifest **0.3.5**. Extensión 14/14 y `browser-test.cjs` completo OK (incluye el chat, Volver y «quiero devolver un producto» → Devoluciones).
 **Quedó a medias:** **publicar** (Actions, «pantalla» no hace falta para la extensión: el ZIP sale igual).

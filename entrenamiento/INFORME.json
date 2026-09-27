@@ -1,0 +1,14 @@
+{
+  "documents": 290,
+  "candidate_queries": 20,
+  "languages": {
+    "es": 10,
+    "en": 10
+  },
+  "cross_language": 10,
+  "groups": 10,
+  "structural_checks": "passed",
+  "semantic_quality": "not_certified",
+  "trained": false,
+  "model_downloaded": false
+}
