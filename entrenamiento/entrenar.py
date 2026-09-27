@@ -59,8 +59,10 @@ def main():
     parser.add_argument('--output',type=Path,default=Path('modelos/experimento-01'))
     parser.add_argument('--epochs',type=int,default=3,choices=[1,2,3])
     parser.add_argument('--batch-size',type=int,default=16)
+    parser.add_argument('--learning-rate',type=float,default=2e-5)
     parser.add_argument('--check-data',action='store_true')
     args=parser.parse_args()
+    if not 0<args.learning_rate<=1e-3:parser.error('learning-rate must be positive and <= 0.001')
     corpus,splits,manifest=load_data(args.data)
     if args.check_data:
         print(json.dumps({'checks':'passed','corpus':len(corpus),'splits':{s:len(v) for s,v in splits.items()},'synthetic':True}));return
@@ -103,7 +105,7 @@ def main():
     best_macro=sum(v['top1'] for v in baseline_validation['directions'].values())/len(baseline_validation['directions'])
     best_epoch=0;best_validation=baseline_validation
     loss=losses.MultipleNegativesRankingLoss(model)
-    optimizer=torch.optim.AdamW(model.parameters(),lr=2e-5,weight_decay=0.01)
+    optimizer=torch.optim.AdamW(model.parameters(),lr=args.learning_rate,weight_decay=0.01)
     best_path=args.output/'best'
     for epoch in range(1,args.epochs+1):
         model.train();losses_seen=[]
@@ -137,7 +139,7 @@ def main():
     report={'model':MODEL,'revision':REVISION,'gpu':torch.cuda.get_device_name(0),'seed':42,
         'peak_vram_allocated_gib':torch.cuda.max_memory_allocated()/1024**3,
         'peak_vram_reserved_gib':torch.cuda.max_memory_reserved()/1024**3,
-        'epochs':args.epochs,'batch_size':args.batch_size,'learning_rate':2e-5,'max_seq_length':512,
+        'epochs':args.epochs,'batch_size':args.batch_size,'learning_rate':args.learning_rate,'max_seq_length':512,
         'documents_truncated':truncations,'model_input':'official title and description; body used for query review only',
         'selected_epoch':best_epoch,'candidate_saved':bool(best_epoch),'deployed':False,
         'passes_synthetic_test_gate':test_gate,

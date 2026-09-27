@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Segunda prueba corta autorizada: candidata guardada, control final no superado
+**Pedido de Franco:** probar unos minutos más antes de cerrar. Ejecuté una sola época adicional partiendo otra vez de Granite original, mismos 4.108 ejemplos y particiones; tasa de aprendizaje 5e-6 (antes 2e-5), timeout 300 s. No generé más datos.
+**Resultado:** pasó selección por validación y guardó candidata. Examen reservado: top1 58% → 63,5%; top3 74,5% → 76,5%. Pero ES→EN bajó 10/12 → 9/12; no pasó la puerta por dirección. Resultado `passes_synthetic_test_gate=false`, sin despliegue. Ese subgrupo es muy pequeño: no vender la media como mejora universal. El examen ya se consultó para esta candidata; futuras decisiones requieren evaluación independiente, no ajustar hasta ganar sobre el mismo examen.
+**Evidencia:** `RESULTADO-PILOTO-SUAVE.json`, modelo y métricas en RunPod `piloto-4108/modelo-lr5e6`. Copia externa en curso; no detener Pod hasta verificarla. SHA-256 remoto del archivo: `69244a5c88d8d9acf2f9c8ead7d468931c9ff5c08de13ce6ab5245e7e250ae82`.
+**Quedó a medias:** verificar respaldo y avisar que se puede detener Pod. No hay más pruebas en cola.
+**No tocar:** preservar candidata y resultados; no publicar ni afirmar calidad de producción.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Recorte por costo: piloto REAL terminado y respaldado
 **Pedido de Franco:** no sostener la A100 durante horas. Detuve generación larga y entrenamiento automático extenso; preservé 4.108 consultas revisadas de 521 fichas, corpus de búsqueda 3.750. La ampliación completa NO terminó.
 **Hice:** un piloto acotado a los 66 lotes completos, una sola época, límite de proceso 900 s. Ejecución total aproximada 55 s (09:19:41–09:20:35 UTC), mucho menor que mi estimación anterior. 3.565 train / 343 validación / 200 examen. Pico VRAM asignada 4,62 GiB. Código `piloto_acotado.py`, evidencia `RESULTADO-PILOTO.json`.
