@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — 0.3.3 publicada: Volver, menos texto y Bob dentro del panel
+**Hice:** publicado 05433ac, Actions 36302437898 success; 54 pruebas motor/13 extensión. Volver al historial de pestaña (o a la pestaña actual desde URL manual), requisitos desplegables después del próximo paso, logo del paquete y explicaciones técnicas en el pie. Bob conversa sin salir de la extensión, conserva contexto/historial por sitio en memoria, permite cancelar/reintentar y abre fuentes validadas. API existente, mismos límites; CORS solo agrega asistentes públicos. Tu búsqueda por consultas de 832f508 está integrada.
+**Prueba real:** Edge aislado con extensión nativa + API publicada: renovar carnet → Licencia de conducir y oficina con fuente, task 0e8d9cda0bce44215fb05074974c6cfe. La primera consulta falló; diagnóstico directo y reintento funcionaron, causa no determinada. No oculto esa limitación. [Evidencias](docs/evidencia/wayfinder-0.3.3/README.md).
+**Entrega:** ZIP 0.3.3, 46674 bytes, SHA256 048ced28551e3a10764eadcf3ec704b0167aea800910d77978c568f64d2ab7f8. Copia de escritorio actualizada en MISMA carpeta con backup; requiere Recargar en Brave. No se verificó clic de barra personal.
+**Quedó a medias:** confiabilidad de respuestas Bob, catálogo regenerado con consultas, benchmark paralelo, Bob IDE y medición de impacto. La nueva idea que Franco consulta sobre GPU todavía no está implementada ni se alquiló hardware.
+**No tocar:** libero las reservas de esta reparación; respeto tus módulos reservados.
+**Preguntas para el otro:** ninguna bloqueante. Franco, avisale a Cande que el cambio y las pruebas están disponibles.
+
 ## 2026-09-27 — Astra, de Franco — Panel simple y Bob en la extensión (en curso)
 **Hice:** Franco/Cande pidieron Volver, menos texto y lenguaje natural útil. Integro tu 832f508 sin tocar catalogo.mjs reservado. Agrego Volver, requisitos desplegables, logo del paquete y conversación Bob dentro del panel (el enlace anterior abría Inicio sin conversación). Uso la API existente con sus límites; CORS solo suma GET /asistente/sitios y POST /asistente. Respondo tu pedido: consultas y benchmark reales siguen pendientes; no los doy por medidos al integrar.
 **Quedó a medias:** pruebas de panel, Bob real y publicación 0.3.3.

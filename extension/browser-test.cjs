@@ -34,7 +34,7 @@ const assert=require('node:assert/strict');
   });
   await panel.exposeFunction('message',m=>active.evaluate(m=>new Promise(resolve=>window.highlightListener(m,{},resolve)),m));
   await panel.exposeFunction('navigate',url=>active.goto(url));
-  await panel.exposeFunction('back',()=>active.goBack());
+  await panel.exposeFunction('back',async()=>{await active.goBack();});
   await panel.addInitScript(()=>{
    window.tabActivated=[];window.runtimeMessages=[];
    const noop={addListener:()=>{}};
@@ -90,6 +90,7 @@ const assert=require('node:assert/strict');
   await active.goto('https://qa.example.org/join');
   await panel.getByRole('button',{name:'← Volver',exact:true}).click();
   await active.waitForURL('https://qa.example.org/');
+  assert.equal(await panel.locator('#url-error').innerText(),'');
   if(process.env.CHAT_SCREENSHOT)await panel.screenshot({path:process.env.CHAT_SCREENSHOT,fullPage:true});
   report.push({case:'inline Bob and back',passed:['context matched to site','natural-language request','follow-up history','API error retains draft','tab-history back through controlled API bridge']});
   scenario='cancel';await panel.evaluate(()=>localStorage.clear());await panel.reload();

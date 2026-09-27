@@ -1,0 +1,63 @@
+{
+  "native": true,
+  "scope": "Real isolated Edge extension APIs; panel opened as extension tab, not toolbar click",
+  "manifest": "0.3.3",
+  "url": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+  "question": "quiero renovar mi carnet de conducir, a dónde tengo que ir?",
+  "result": {
+    "estado": "orientacion",
+    "mensaje": "Tenés que ir a la Oficina Carnet de Conductor, en Av. Juan D. Perón 1549, 2º piso, de lunes a viernes de 7:00 a 15:00 hs. Recordá abonar el costo antes de presentarte con el turno confirmado, de lo contrario no podés realizar el trámite.",
+    "fichas": [
+      {
+        "id": "p_6f990897addb2359",
+        "nombre": "Licencia de conducir",
+        "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+        "fecha": "2026-09-26T21:31:00.660Z",
+        "destinos": []
+      }
+    ],
+    "evidencia": [
+      {
+        "texto": "Oficina Carnet de Conductor",
+        "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+        "campo": "donde_se_hace"
+      },
+      {
+        "texto": "Horario: Lunes a viernes, de 7:00 a 15:00",
+        "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+        "campo": "donde_se_hace"
+      },
+      {
+        "texto": "Av. Juan D. Perón 1549 - 2º piso",
+        "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+        "campo": "donde_se_hace"
+      },
+      {
+        "texto": "Importante: Recordá abonar el monto correspondiente a tu licencia antes de presentarte con el turno confirmado, de lo contrario no podrás realizar el trámite.",
+        "fuente": "https://vggmunicipalidad.gov.ar/tramite/21/licencia-de-conducir/",
+        "campo": "costo"
+      }
+    ],
+    "sugerencias": [
+      "¿Qué necesito llevar para la renovación?",
+      "¿Cuánto cuesta renovar la licencia?",
+      "¿Cómo saco el turno?"
+    ],
+    "bob": {
+      "estado": "completado",
+      "task_id": "0e8d9cda0bce44215fb05074974c6cfe"
+    },
+    "alcance": {
+      "bloques_omitidos": 0,
+      "fichas_omitidas": 0,
+      "lectura": "2026-09-26T21:12:12.818Z"
+    },
+    "contactos": [
+      {
+        "nombre": "Ver todos los teléfonos",
+        "url": "https://vggmunicipalidad.gov.ar/telefonos-utiles/"
+      }
+    ]
+  },
+  "errors": []
+}

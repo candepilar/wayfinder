@@ -1,0 +1,10 @@
+{
+  "version": "0.3.3",
+  "commit": "05433ac",
+  "ci": "https://github.com/candepilar/bob/actions/runs/36302437898",
+  "bytes": 46674,
+  "sha256": "048ced28551e3a10764eadcf3ec704b0167aea800910d77978c568f64d2ab7f8",
+  "installed_path": "C:\\Users\\Lenovo\\Desktop\\Wayfinder-Chrome-0.2.0",
+  "backup": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-26\\pod\\outputs\\Wayfinder-backup-0.3.2-before-0.3.3",
+  "requires_browser_reload": true
+}
