@@ -32,7 +32,7 @@ export function crearServidor({ api = process.env.WAYFINDER_API, dataDir = proce
     return s;
   }
   const resumenFicha = f => ({ id: f.id, nombre: f.nombre, fuente: f.fuente, clics_desde_portada: f.clics_desde_portada ?? null,
-    accesos: (f.destinos || []).map(d => ({ texto: d.texto, url: d.url })), faltantes: f.faltantes || [] });
+    accesos: (f.destinos || []).map(d => ({ texto: d.texto, url: d.url })), faltantes: f.faltantes || [], revision_bob: f.verificacion ?? null });
 
   const herramientas = {
     listar_sitios: {

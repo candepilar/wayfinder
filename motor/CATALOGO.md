@@ -74,6 +74,13 @@ Remove-Item Env:BOB_LOTE, Env:BOB_PARALELO; node --env-file-if-exists=.env src/c
   caracteres. La búsqueda del visor, la de la extensión y el ranking del asistente las
   usan, así que las consultas comunes se resuelven al instante y sin llamar a Bob por
   pregunta. Catálogos generados antes no las tienen: hay que volver a recorrerlos.
+- **Revisión de Bob (27/09):** en cada tarea, después de organizar, una segunda llamada
+  de Bob en rol de **revisor** compara cada ficha con su página y la marca
+  `verificacion: {estado: 'confirmada'}` o `{estado: 'dudosa', motivo}`. Solo se aceptan
+  IDs de fichas existentes y motivos breves sin enlaces; el motivo es una nota de Bob,
+  no información del sitio. Si el revisor falla, las fichas quedan sin marcar.
+  Resumen en `calidad.revision_bob`. Se desactiva con `BOB_VERIFICAR=0` (ahorra una
+  llamada por tarea).
 - Una ficha por página. No se combinan automáticamente requisitos de páginas distintas.
   Encabezados/párrafos de contexto se preservan; categorías complejas requieren revisión.
 - Un catálogo vacío no significa que el sitio no tenga gestiones. Si Bob falla, quedan

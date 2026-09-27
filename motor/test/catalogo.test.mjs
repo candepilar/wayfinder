@@ -124,7 +124,7 @@ const answerAll = prompt => JSON.parse(prompt.slice(prompt.indexOf('DOCUMENTOS: 
 test('Bob organizes batches as bounded parallel tasks and covers every page sent', async () => {
   const map = mapOfMany(12), events = [];
   let activas = 0, maximo = 0, llamadas = 0;
-  await organizeCatalog(map, { tamanoLote: 3, paralelo: 2, onEvent: e => events.push(e), run: async (prompt, opts) => {
+  await organizeCatalog(map, { tamanoLote: 3, paralelo: 2, verificar: false, onEvent: e => events.push(e), run: async (prompt, opts) => {
     for (let k = 0; k < 50; k++) opts.onEvent({ type: 'bob_evento', evento: 'message' });
     llamadas++; activas++; maximo = Math.max(maximo, activas);
     await new Promise(r => setTimeout(r, 20)); activas--;
@@ -211,4 +211,24 @@ test('maintenance: what changed on the site since the previous reading, by sourc
   assert.deepEqual(c.modificadas[0].cambios[0].agregados, ['Boleta anterior.']);
   assert.deepEqual(c.sin_acceso.map(x => x.nombre), ['Tasa']);
   assert.equal(compararCatalogos(null, ahora).primera_lectura, true);
+});
+
+test('Bob reviews its own fiches: confirmed, flagged with a reason, invalid reviews ignored, reviewer failure is harmless', async () => {
+  const run = review => async prompt => {
+    if (prompt.includes('rol de REVISOR')) return review(prompt);
+    return { type: 'result', status: 'success', last_message: JSON.stringify({ fichas: answerAll(prompt) }) };
+  };
+  const ids = prompt => JSON.parse(prompt.slice(prompt.indexOf('FICHAS: ') + 8, prompt.indexOf(' DOCUMENTOS: '))).map(f => f.pagina_id);
+  const map = mapOfMany(4);
+  await organizeCatalog(map, { tamanoLote: 4, run: run(prompt => { const [a, b, c, d] = ids(prompt); return { type: 'result', status: 'success', last_message: JSON.stringify({ revision: [
+    { pagina_id: a, estado: 'confirmada' }, { pagina_id: b, estado: 'dudosa', motivo: 'El requisito corresponde a otra gestión.' },
+    { pagina_id: c, estado: 'dudosa', motivo: 'ver https://x.org' }, { pagina_id: 'inventada', estado: 'confirmada' }, { pagina_id: d, estado: 'quizas' }] }) }; }) });
+  const v = map.catalogo.fichas.map(f => f.verificacion?.estado ?? null);
+  assert.deepEqual(v, ['confirmada', 'dudosa', null, null]);
+  assert.equal(map.catalogo.fichas[1].verificacion.motivo, 'El requisito corresponde a otra gestión.');
+  assert.deepEqual(map.catalogo.calidad.revision_bob, { confirmadas: 1, dudosas: 1, sin_revision: 2, tareas: 1 });
+  const falla = mapOfMany(2);
+  await organizeCatalog(falla, { run: run(() => { throw Error('timeout'); }) });
+  assert.equal(falla.catalogo.fichas.length, 2); assert.equal(falla.catalogo.bob.estado, 'completado');
+  assert.deepEqual(falla.catalogo.calidad.revision_bob, { confirmadas: 0, dudosas: 0, sin_revision: 2, tareas: 0 });
 });

@@ -11,6 +11,13 @@ Las reglas están en `CLAUDE.md`.
 **No tocar:** no reemplazar diseños existentes con esta imagen sin decidir su uso.
 **Preguntas para el otro:** ninguna.
 
+## 2026-09-27 07:30 (ARG) — Claude de Cande — 🔍 Bob se revisa a sí mismo (segunda pasada)
+**Hice:** en cada tarea del catálogo, después de organizar, **una segunda llamada de Bob en rol de revisor** compara cada ficha con su página y la marca `confirmada` o `dudosa` con motivo (validado: solo IDs existentes, motivo breve sin enlaces; nota de Bob, no dato del sitio). Si el revisor falla, las fichas quedan sin marcar. `calidad.revision_bob` resume. Web: «✓ Verificada por Bob» en tarjetas y ficha, aviso con motivo en las dudosas, «15/16 confirmadas por una segunda revisión de Bob» en el recuadro y lista «Bob las marcó para revisar» para el equipo del sitio. MCP (`revision_bob` en fichas) y auditoría también. Se apaga con `BOB_VERIFICAR=0` (cuesta 1 llamada más por tarea).
+- Probado de punta a punta con Bob de prueba (15 confirmadas, 1 dudosa con motivo). Motor 70/70; paquete solo-motor OK; visor 3 pruebas OK; `tsc` OK.
+**Sigue trabado:** la publicación en el VPS (ver nota de las 07:35). Franco está entrenando: cuando pueda, matar el proceso colgado.
+**No tocar:** `motor/src/catalogo.mjs`, `Catalogo.tsx` (sigo con diseño).
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-27 — Astra, de Franco — Dos épocas adicionales REALES: sin mejora, conservar candidata anterior
 **Hice:** Franco pidió entrenar más para subir acierto. L4 aún encendida; continué desde la candidata lr5e-6 con dos épocas, lr2e-6, timeout600. Nuevas opciones `--initial-model`, `--validation-only`, `--reference-validation`. Se seleccionó exclusivamente por validación, protegiendo direcciones tanto contra candidata inicial como contra original. Examen viejo y borrador v2 no se evaluaron ni añadieron a entrenamiento. Once tests de datos/evaluación y sintaxis pasaron antes de la corrida; ejecución GPU salió 0.
 **Resultado:** misma validación 343 consultas: inicial 78,717%; época1 77,551%; época2 78,134%. Ninguna seleccionada: selected_epoch=0, candidate_saved=false PARA ESTA CORRIDA. Se conserva intacta candidata anterior; no interpretar como pérdida del modelo guardado. `RESULTADO-CONTINUACION.json` incluye resultados por época, procedencia de pesos y hashes. No se afirmó mejora ni se ejecutó despliegue.
