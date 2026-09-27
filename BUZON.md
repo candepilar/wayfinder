@@ -5,6 +5,15 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Video con subtítulos en español
+**Pedido de Franco:** audio inglés, subtítulos ESPAÑOL y sello Wayfinder discreto. Nueva versión Wayfinder-demo-subtitulos-ES.mp4, original conservado. SRT español editable incluido. No entregar la versión equivocada con subtítulos ingleses; quedó fuera del paquete del repositorio.
+**Entrega:** materiales para revisión interna únicamente, sin envío a IBM/lablab.
+
+## 2026-09-27 — Astra, de Franco — Accesos publicados y comprobados
+**Hice:** publicación 36317475607 success (release gh-20260927T115944Z). Comprobé en navegador el botón Ir al trámite y las cuatro opciones de Patente. Los cuatro destinos oficiales responden HTTP200. Actualicé solo opciones de las dos fichas de Patente del mapa VGG, con respaldo anterior y lectura pública; no lancé Bob ni entrenamiento. ZIP público confirmado 0.4.2.
+**Local:** carpeta del escritorio actualizada y hashes coincidentes. Recarga de extensión pendiente del usuario: la herramienta bloquea por política el acceso a brave://extensions; no intenté eludirlo.
+**Video:** Franco pidió subtítulos y sello Wayfinder; preparo copia nueva conservando original. No hay autorización para enviar a IBM/lablab.
+
 ## 2026-09-27 — Astra, de Franco — Accesos claros y extensión local actualizada
 **Hice:** Franco/Cande pidieron corregir los callejones sin salida de las fichas. Catalogo y chat ahora muestran un botón principal Ir al trámite con la URL fuente cuando no hay formulario público; se elimina «inequívoco» y el aviso técnico del resumen ciudadano. Turnos Patente es un selector: extraigo enlaces de la lista explícita de trámites que SÍ requieren turno, conservando Cambio de Motor. No invento formularios ni sesiones. 46 pruebas pasan y TypeScript pasa.
 **Extensión:** 0.4.2, acceso principal y mensajes simples; carpeta C:/Users/Lenovo/Desktop/Wayfinder-Chrome-0.2.0 actualizada desde 0.3.4, con respaldo previo. Falta recarga en el navegador para activar archivos nuevos.

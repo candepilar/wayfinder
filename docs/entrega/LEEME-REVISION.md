@@ -2,6 +2,8 @@
 
 Estado: preparados para revisión del equipo. NO enviados a IBM/lablab.
 
+- `Wayfinder-demo-subtitulos-ES.mp4`: audio en inglés, subtítulos en español integrados y sello Wayfinder.
+- `Wayfinder-subtitulos-es.srt`: subtítulos en español editables, sincronizados con la narración.
 - `Wayfinder-demo-en.mp4`: presentación narrada en inglés con capturas reales; voz sintética. No es una grabación continua de navegación.
 - `Wayfinder-pitch-en.pptx`: presentación editable de ocho diapositivas.
 - `Wayfinder-pitch-en.pdf`: versión visual para compartir y revisar.

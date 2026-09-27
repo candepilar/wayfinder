@@ -1,0 +1,251 @@
+1
+00:00:00,102 --> 00:00:05,083
+Esto es Wayfinder, creado por Candela y
+Franco. Una persona quiere
+
+2
+00:00:05,103 --> 00:00:09,746
+resolver un trámite, sin tener que entender
+cómo está organizado un sitio público.
+
+3
+00:00:10,528 --> 00:00:14,965
+A la vez, el equipo que mantiene ese sitio
+debe tener actualizados los requisitos,
+
+4
+00:00:15,064 --> 00:00:20,199
+los accesos y las indicaciones. Conectamos
+esas necesidades:
+
+5
+00:00:20,219 --> 00:00:25,404
+una guía para el ciudadano y herramientas para
+mantener el catálogo con IBM Bob.
+
+6
+00:00:26,910 --> 00:00:31,904
+El problema empieza con la información
+dispersa: los requisitos están
+
+7
+00:00:31,924 --> 00:00:36,672
+en una página y el formulario en otra. Los
+menús reflejan a la institución,
+
+8
+00:00:36,692 --> 00:00:41,595
+en vez de a quien necesita ayuda. Mantener una
+guía útil se vuelve
+
+9
+00:00:41,615 --> 00:00:47,200
+una tarea repetitiva. Wayfinder lee un
+conjunto limitado de páginas públicas
+
+10
+00:00:47,220 --> 00:00:51,541
+y organiza la información en fichas útiles
+para ciudadanos y desarrolladores.
+
+11
+00:00:53,022 --> 00:00:56,984
+Esta es una consulta real de nuestra demo:
+«Necesito renovar
+
+12
+00:00:57,004 --> 00:01:02,410
+mi licencia de conducir. ¿Por dónde empiezo?».
+Bob selecciona
+
+13
+00:01:02,430 --> 00:01:07,834
+una ficha existente. La interfaz muestra su
+fuente y el texto que la respalda.
+
+14
+00:01:08,603 --> 00:01:13,609
+Si no se identificó un enlace directo al
+formulario, se aclara.
+
+15
+00:01:13,629 --> 00:01:18,390
+La extensión te guía sobre el sitio abierto:
+resalta enlaces, muestra
+
+16
+00:01:18,410 --> 00:01:21,635
+una lista de requisitos y permite retomar un
+recorrido anterior.
+
+17
+00:01:23,118 --> 00:01:28,357
+Para el equipo del sitio, el proceso empieza
+con información pública.
+
+18
+00:01:28,377 --> 00:01:32,891
+El motor la reparte en tareas acotadas de Bob
+que pueden correr en paralelo.
+
+19
+00:01:33,673 --> 00:01:39,027
+Una segunda revisión de Bob contrasta las
+fichas seleccionadas con sus fuentes.
+
+20
+00:01:39,047 --> 00:01:44,169
+Al volver a leer, se pueden detectar
+requisitos modificados y accesos faltantes.
+
+21
+00:01:44,189 --> 00:01:48,666
+El equipo puede exportar un índice accesible
+de trámites y datos estructurados:
+
+22
+00:01:48,686 --> 00:01:51,358
+la revisión se convierte en algo concreto que
+puede publicar.
+
+23
+00:01:52,830 --> 00:01:57,876
+Bob forma parte del producto en
+funcionamiento: organiza catálogos
+
+24
+00:01:57,896 --> 00:02:02,605
+y selecciona fichas existentes para orientar
+la conversación. El servidor valida
+
+25
+00:02:02,625 --> 00:02:07,669
+los identificadores y mantiene el control de
+los enlaces. En una prueba real,
+
+26
+00:02:07,689 --> 00:02:12,876
+Bob incluyó una cifra sin fuente. Conservamos
+la validación de citas
+
+27
+00:02:12,896 --> 00:02:17,669
+y quitamos ese resumen, manteniendo la
+información que sí tenía respaldo.
+
+28
+00:02:17,689 --> 00:02:23,017
+El repositorio también incluye modos de
+coordinador, cartógrafo y revisor,
+
+29
+00:02:23,037 --> 00:02:28,108
+habilidades y seis herramientas MCP. Los
+archivos de configuración
+
+30
+00:02:28,128 --> 00:02:30,619
+no se presentan como prueba de una sesión del
+IDE que no se grabó.
+
+31
+00:02:32,118 --> 00:02:35,732
+Evaluamos la búsqueda rápida con las mismas 92
+consultas sintéticas
+
+32
+00:02:35,752 --> 00:02:41,107
+en español y 3.512 documentos. Wayfinder
+
+33
+00:02:41,127 --> 00:02:45,746
+acertó el primer resultado en el 69,6 % de los
+casos, frente al
+
+34
+00:02:45,766 --> 00:02:51,376
+66,3 % de BM25. En otra prueba controlada, con
+16 trámites,
+
+35
+00:02:51,617 --> 00:02:55,359
+los primeros resultados aparecieron a los 3,4
+segundos y el catálogo completo
+
+36
+00:02:55,379 --> 00:03:00,847
+y revisado, a los 10,4 segundos. Esa prueba
+utiliza respuestas simuladas de Bob.
+
+37
+00:03:01,629 --> 00:03:06,184
+Son mediciones de desarrollo: no prueban la
+precisión con toda la población
+
+38
+00:03:06,204 --> 00:03:07,639
+ni un ahorro de trabajo humano.
+
+39
+00:03:09,126 --> 00:03:13,642
+También exploramos un modelo multilingüe
+pequeño de IBM Granite para búsqueda,
+
+40
+00:03:13,662 --> 00:03:17,417
+con 3.750 fichas públicas de trámites y
+ejemplos
+
+41
+00:03:17,437 --> 00:03:21,696
+en inglés y español. Este experimento sigue
+separado del producto publicado.
+
+42
+00:03:22,465 --> 00:03:26,659
+Los entrenamientos posteriores no mejoraron la
+validación. Por eso conservamos
+
+43
+00:03:26,679 --> 00:03:31,311
+la versión candidata anterior, sin afirmar un
+avance que no ocurrió.
+
+44
+00:03:31,331 --> 00:03:36,478
+El producto sigue usando búsqueda rápida y
+Bob. El siguiente paso de investigación
+
+45
+00:03:36,498 --> 00:03:39,840
+es evaluar consultas independientes de
+ciudadanos y el rendimiento al desplegarlo.
+
+46
+00:03:41,334 --> 00:03:46,341
+El prototipo está en línea y el repositorio es
+público. Podés probar
+
+47
+00:03:46,361 --> 00:03:51,637
+la demo web o instalar la extensión en modo
+desarrollador. Lo próximo
+
+48
+00:03:51,657 --> 00:03:55,477
+es probar recorridos completos de ciudadanos y
+medir el trabajo de mantenimiento
+
+49
+00:03:55,497 --> 00:04:00,748
+con equipos reales. Wayfinder guía a las
+personas hacia los servicios oficiales
+
+50
+00:04:00,768 --> 00:04:04,653
+y ayuda al equipo responsable a revisar y
+mantener
+
+51
+00:04:04,673 --> 00:04:07,164
+esa información. Muchas gracias.
