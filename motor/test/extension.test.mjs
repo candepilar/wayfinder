@@ -27,6 +27,10 @@ test('extension can find a public catalog; CORS excludes unrelated operations an
  assert.equal((await fetch(`${base}/extension/catalogo?url=invalid`,{headers})).status,400);
  assert.equal((await fetch(`${base}/extension/catalogo?url=https://library.example.org/`,{headers:{Origin:'https://evil.example'}})).status,403);
  assert.equal((await fetch(`${base}/recorridos`,{method:'OPTIONS',headers:{...headers,'Access-Control-Request-Method':'POST'}})).status,204);
+ const sites=await fetch(`${base}/asistente/sitios`,{headers});
+ assert.equal(sites.status,200); assert.equal(sites.headers.get('access-control-allow-origin'),origin);
+ assert.equal((await fetch(`${base}/asistente`,{method:'OPTIONS',headers:{...headers,'Access-Control-Request-Method':'POST'}})).status,204);
+ assert.equal((await fetch(`${base}/codigo`,{method:'OPTIONS',headers:{...headers,'Access-Control-Request-Method':'POST'}})).status,403);
 });
 
 test('navigation-only discovery reaches service evidence; robots/nofollow remain enforced; JS shell is partial',async t=>{

@@ -5,8 +5,8 @@ import { normalizeUrl } from './network.mjs';
 export function extensionRequest(req) {
   if (!/^chrome-extension:\/\/[a-p]{32}$/.test(req.headers.origin || '')) return false;
   const method = req.method === 'OPTIONS' ? req.headers['access-control-request-method'] : req.method;
-  return method === 'GET' && (/^\/api\/extension\/catalogo$/.test(req.path) || /^\/api\/recorridos\/[a-f0-9-]+$/.test(req.path) || /^\/api\/mapas\/[a-f0-9]{20}\/catalogo$/.test(req.path))
-    || method === 'POST' && (/^\/api\/recorridos$/.test(req.path) || /^\/api\/recorridos\/[a-f0-9-]+\/cancelar$/.test(req.path));
+  return method === 'GET' && (/^\/api\/asistente\/sitios$/.test(req.path) || /^\/api\/extension\/catalogo$/.test(req.path) || /^\/api\/recorridos\/[a-f0-9-]+$/.test(req.path) || /^\/api\/mapas\/[a-f0-9]{20}\/catalogo$/.test(req.path))
+    || method === 'POST' && (/^\/api\/asistente$/.test(req.path) || /^\/api\/recorridos$/.test(req.path) || /^\/api\/recorridos\/[a-f0-9-]+\/cancelar$/.test(req.path));
 }
 
 export function extensionRoutes(app, store) {

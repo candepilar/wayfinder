@@ -94,3 +94,16 @@ button:disabled { opacity: .6; cursor: wait; }
 .entrada-url button[type=submit] { flex-grow: 1; }
 .entrada-url [role=alert]:empty { display: none; }
 .entrada-url [role=alert] { margin-block: 8px; }
+.cabecera { position: sticky; top: 0; z-index: 2; }
+.cabecera > .enlace { float: right; padding: 5px 0 5px 12px; }
+.logo { width: 28px; height: 28px; object-fit: contain; background: transparent; }
+.chat-titulo, .chat-acciones { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.chat-titulo label { font-weight: 600; }
+.chat-bob textarea { margin: 12px 0 6px; width: 100%; resize: vertical; border: 1px solid var(--linea-fuerte); border-radius: 8px; padding: 10px; background: var(--fondo); color: var(--tinta); font: inherit; }
+.chat-log { max-height: 340px; overflow-y: auto; overflow-wrap: anywhere; }
+.chat-log:empty, .chat-bob [role=status]:empty { display: none; }
+.chat-pregunta { background: var(--acento-suave); border-radius: 8px; padding: 8px; margin-left: 16px; }
+.chat-respuesta { white-space: pre-wrap; }
+.chat-turno { padding-bottom: 12px; border-bottom: 1px solid var(--linea); }
+.chat-bob [role=status] { margin-top: 8px; }
+[hidden] { display: none !important; }

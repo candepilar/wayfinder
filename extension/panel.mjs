@@ -2,6 +2,7 @@ import { buscar, objetivoEn, pasoActual, sitioDe, tramiteDe } from './guia.mjs';
 import { destination, publicPage, enteredPage, tabMessage } from './url.mjs';
 import { guiaDeCatalogo, motor } from './catalogo.mjs';
 import { accesosVisibles } from './pagina.mjs';
+import { chatBob } from './chat.mjs';
 
 const rutas = await (await fetch(new URL('./rutas.json', import.meta.url))).json();
 const $contenido = document.getElementById('contenido');
@@ -23,6 +24,7 @@ const pestana = {
     return { id: tab?.id ?? null, url: tab?.url || '' };
   },
   async ir(url) {
+    elegida = null; await guardado.escribir('url-elegida', null);
     if (!enExtension) { const p = new URLSearchParams(location.search); p.set('url', url); location.search = p; return; }
     const { id } = await this.actual();
     if (id != null) await chrome.tabs.update(id, { url });
@@ -80,7 +82,7 @@ function vistaBuscar(sitio, tab) {
     el('h1', {}, '¿Qué necesitás hacer?'),
     el('div', { class: 'buscador' }, input),
     el('div', {}, el('h2', {}, 'Gestiones del catálogo'), lista),
-    sitio.dinamico && el('p', { class: 'vacio' }, `${sitio.tramites.length} gestiones encontradas · cobertura parcial. ${sitio.tramites.length ? 'Revisá las condiciones en su fuente.' : 'El HTML leído no permitió identificar gestiones. Podés buscar los accesos de la página abierta abajo.'}`),
+    sitio.dinamico && el('p', { class: 'vacio' }, sitio.tramites.length ? `${sitio.tramites.length} gestiones encontradas. Puede haber más en el sitio.` : 'Todavía no encontré gestiones. Probá buscar los accesos de esta página.'),
     mapa && el('a', { class: 'enlace', href: mapa, target: '_blank', rel: 'noopener' }, 'Abrir catálogo y mapa en Wayfinder'),
   ];
 }
@@ -99,10 +101,8 @@ async function vistaTramite(sitio, t, tab) {
     } }), el('span', {}, texto)))));
   // Si cada camino ya dice qué pide, los requisitos generales de la ficha pasan
   // a segundo plano: suelen ser de casos particulares (ej. convenios de deuda).
-  const porCamino = t.pasos.some(p => p.opciones?.some(o => o.necesitas));
   const antes = !t.antes.length ? null
-    : porCamino ? el('details', { class: 'bloque' }, el('summary', {}, `${t.antesTitulo} · según la ficha`), lista())
-    : el('section', { class: 'bloque' }, el('h2', {}, 'Antes de empezar, tené a mano'), lista());
+    : el('details', { class: 'bloque' }, el('summary', {}, 'Qué necesitás tener a mano'), lista());
 
   const costos = t.costos.length
     ? el('details', { class: 'bloque' }, el('summary', {}, 'Costo y formas de pago'), el('ul', {}, t.costos.map(c => el('li', {}, c))))
@@ -135,9 +135,8 @@ async function vistaTramite(sitio, t, tab) {
   return [
     el('div', {}, el('h1', {}, t.nombre),
       el('p', { class: 'fuente' }, 'Según la ', el('a', { href: t.fuente, target: '_blank', rel: 'noopener' }, 'ficha oficial'))),
-    porCamino ? null : antes,
     el('section', {}, el('h2', {}, `Pasos · ${t.pasos.length}`), pasos),
-    porCamino ? antes : null,
+    antes,
     costos,
     el('button', { class: 'enlace', onclick: () => pestana.ir(sitio.portada) }, 'Buscar otro trámite'),
   ];
@@ -146,8 +145,9 @@ async function vistaTramite(sitio, t, tab) {
 let revision = 0;
 let sondeo;
 let elegida = null;
+let cerrarChat = () => {};
 try { const previa = await guardado.leer('url-elegida'); if (previa) elegida = publicPage(previa); } catch {}
-const entrada = el('input', { id: 'url-sitio', type: 'text', inputmode: 'url', autocomplete: 'url', spellcheck: 'false', placeholder: 'Ej.: novogar.com.ar', 'aria-describedby': 'url-ayuda url-error' });
+const entrada = el('input', { id: 'url-sitio', type: 'text', inputmode: 'url', autocomplete: 'url', spellcheck: 'false', placeholder: 'Ej.: novogar.com.ar', 'aria-describedby': 'url-error' });
 entrada.value = elegida || '';
 const errorUrl = el('p', { id: 'url-error', class: 'vacio', role: 'alert' });
 const enviarUrl = el('button', { type: 'submit', class: 'boton' }, 'Analizar URL');
@@ -166,10 +166,17 @@ const formularioUrl = el('form', { class: 'entrada-url', onsubmit: async e => {
   finally { enviarUrl.disabled = false; }
 } }, el('label', { for: 'url-sitio' }, 'Dirección del sitio'),
   el('div', { class: 'buscador' }, entrada, enviarUrl),
-  el('p', { id: 'url-ayuda', class: 'fuente' }, 'Pegá una URL para consultar el catálogo sin permiso sobre la pestaña. Solo se envía al tocar Analizar URL, sin parámetros ni fragmentos.'),
   errorUrl,
   el('button', { type: 'button', class: 'enlace', onclick: usarPestana }, 'Usar pestaña actual'));
 $contenido.before(formularioUrl);
+const volver = el('button', { class: 'enlace', type: 'button', onclick: async () => {
+  errorUrl.textContent = '';
+  if (elegida) { await usarPestana(); return; }
+  if (!enExtension) { errorUrl.textContent = 'No hay una página anterior en esta vista previa.'; return; }
+  try { const tab = await pestana.actual(); await chrome.tabs.goBack(tab.id); }
+  catch { errorUrl.textContent = 'No hay una página anterior en esta pestaña.'; }
+} }, '← Volver');
+document.querySelector('.cabecera').prepend(volver);
 async function usarPestana() {
   elegida = null; errorUrl.textContent = '';
   await guardado.escribir('url-elegida', null);
@@ -193,15 +200,19 @@ async function pintar() {
   if (publica && !sitio) {
     $sitio.textContent = new URL(publica).hostname;
     vista.splice(0, vista.length, el('h1', {}, '¿Qué necesitás hacer en este sitio?'),
-      el('p', { class: 'vacio' }, 'Encontrá un acceso de la página abierta o pedile al motor que organice la información pública con Bob.'));
+      el('p', { class: 'vacio' }, 'Buscá un acceso o contale a Bob qué necesitás.'));
   }
   if (publica) {
-    if (elegida) vista.unshift(el('p', { class: 'fuente' }, `Consultando la dirección ingresada: ${publica}`));
     let mismaPagina = false;
     try { mismaPagina = publicPage(tab.url) === publica; } catch {}
     vista.push(herramientas(tab, publica, sitio?.dinamico, mismaPagina));
   }
   if (estaRevision !== revision) return;
+  cerrarChat();
+  if (publica) {
+    const chat = chatBob({ el, publica, ir: url => pestana.ir(url) });
+    vista.unshift(chat.node); cerrarChat = chat.dispose;
+  }
   $contenido.replaceChildren(...vista.filter(Boolean));
   if (publica) {
     const pendiente = await guardado.leer(`recorrido:${new URL(publica).origin}`);
@@ -235,7 +246,7 @@ function herramientas(tab, publica, actualizar = false, mismaPagina = true) {
         if (!items.length) lista.append(el('li', { class: 'vacio' }, 'No encontré ese acceso visible. Podés abrir un menú del sitio y volver a buscar.'));
       };
       input.addEventListener('input', mostrar); mostrar();
-      visibles.replaceChildren(el('p', { class: 'vacio' }, `${enlaces.length} accesos detectados en esta página (máximo 120). No son requisitos ni gestiones verificadas.`), el('div', { class: 'buscador' }, input), lista);
+      visibles.replaceChildren(el('p', { class: 'vacio' }, `${enlaces.length} accesos encontrados`), el('div', { class: 'buscador' }, input), lista);
     } catch (error) {
       visibles.replaceChildren(el('p', { class: 'vacio' }, `${error.message} Tocá el ícono de Wayfinder en la pestaña que querés usar y reintentá.`));
     } finally { leer.disabled = false; }
@@ -243,7 +254,7 @@ function herramientas(tab, publica, actualizar = false, mismaPagina = true) {
   const analizar = el('button', { class: 'boton secundario ancho', id: 'motor-iniciar', onclick: async () => {
     analizar.disabled = true;
     const estaRevision = revision;
-    estado.textContent = 'Buscando un catálogo disponible…';
+    estado.textContent = 'Buscando información…';
     try {
       const previo = await motor(`/extension/catalogo?url=${encodeURIComponent(publica)}`);
       if (previo.catalogo && !actualizar) { await guardarCatalogo(previo); if (revision === estaRevision) await pintar(); return; }
@@ -251,15 +262,13 @@ function herramientas(tab, publica, actualizar = false, mismaPagina = true) {
       await guardado.escribir(`recorrido:${new URL(publica).origin}`, job.id);
       if (revision === estaRevision) seguir(job.id, publica, estaRevision);
     } catch (error) { if (revision === estaRevision) { estado.textContent = error.message; analizar.disabled = false; } }
-  } }, actualizar ? 'Volver a recorrer con Bob' : 'Consultar catálogo con Bob');
-  caja.append(el('h2', {}, 'Tu próximo paso'), ...(mismaPagina ? [leer,
-    el('p', { class: 'fuente' }, 'Los nombres y enlaces visibles se procesan solo en tu navegador. No se envían a Bob ni se guardan. No completamos formularios.'), visibles] : [
-    el('p', { class: 'vacio' }, 'Podés consultar este catálogo sin abrir el sitio. Para buscar o marcar enlaces en su página, abrilo y tocá allí el ícono de Wayfinder.'),
+  } }, actualizar ? 'Actualizar información' : 'Buscar gestiones');
+  caja.append(el('h2', {}, 'Explorar el sitio'), ...(mismaPagina ? [leer, visibles] : [
+    el('p', { class: 'vacio' }, 'Abrí el sitio para señalar sus enlaces.'),
     el('button', { class: 'boton secundario ancho', onclick: async () => {
       elegida = null; await guardado.escribir('url-elegida', null); await pestana.ir(publica); await pintar();
     } }, 'Abrir sitio en esta pestaña')]),
-    analizar, el('p', { class: 'fuente' }, `Al consultar, enviamos esta dirección al motor: ${publica}. Lee contenido público sin tu sesión y respeta robots.txt. Algunos sitios necesitan JavaScript o acceso privado y no pueden organizarse.`), estado,
-    el('a', { class: 'enlace', href: destination(publica), target: '_blank', rel: 'noopener' }, 'Hablar con Bob / abrir Wayfinder'));
+    analizar, el('p', { class: 'fuente' }, 'Algunos sitios requieren iniciar sesión o no permiten leer toda su información.'), estado);
   return caja;
 }
 
@@ -284,7 +293,7 @@ async function seguir(id, publica, estaRevision) {
       if (revision === estaRevision) await pintar();
     } else if (job.estado === 'en_curso') {
       const ultimo = job.eventos?.at(-1);
-      estado.replaceChildren(el('span', {}, ultimo?.mensaje || `Leyendo información pública${ultimo?.leidas ? ` · ${ultimo.leidas} páginas` : '…'}`),
+      estado.replaceChildren(el('span', {}, ultimo?.leidas ? `Buscando gestiones · ${ultimo.leidas} páginas leídas` : 'Preparando la información del sitio…'),
         el('button', { class: 'enlace', onclick: async e => {
           e.target.disabled = true;
           try { await motor(`/recorridos/${id}/cancelar`, {}); estado.textContent = 'Cancelando…'; }

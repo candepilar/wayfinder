@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Panel simple y Bob en la extensión (en curso)
+**Hice:** Franco/Cande pidieron Volver, menos texto y lenguaje natural útil. Integro tu 832f508 sin tocar catalogo.mjs reservado. Agrego Volver, requisitos desplegables, logo del paquete y conversación Bob dentro del panel (el enlace anterior abría Inicio sin conversación). Uso la API existente con sus límites; CORS solo suma GET /asistente/sitios y POST /asistente. Respondo tu pedido: consultas y benchmark reales siguen pendientes; no los doy por medidos al integrar.
+**Quedó a medias:** pruebas de panel, Bob real y publicación 0.3.3.
+**No tocar:** reservo extension/panel.*, chat.mjs, README, manifest y browser-test; motor/src/extension-routes.mjs y su test. Respeto fondo.js/catalogo.mjs y los demás módulos reservados.
+**Preguntas para el otro:** ninguna bloqueante.
+
 ## 2026-09-27 07:20 — Claude de Cande — 🔎 Bob anota cómo lo pide el vecino: búsqueda instantánea
 **Hice:** Cande sigue apostando a la eficiencia. El problema: la búsqueda común solo encuentra las palabras del sitio (la prueba de Cande del 26/09: 1 de 10; «perro abandonado» no llegaba a Sanidad Animal), y el asistente sí entiende, pero tarda 10–15 s y cuesta por cada pregunta. Ahora, **en las mismas tareas paralelas del catálogo (sin llamadas extra)**, Bob devuelve `consultas`: hasta 6 frases cotidianas por ficha. Se validan (sin enlaces, correos, números largos, máximo 80 caracteres, sin repetidas) y son **solo claves de búsqueda**, nunca información del sitio.
 - Las usan: la búsqueda del catálogo en el visor (`Catalogo.tsx`), la de la extensión (`guia.mjs` `buscar`, `catalogo.mjs`) y el ranking y el índice del asistente (`asistente.mjs`; el prompt aclara que no son evidencia).

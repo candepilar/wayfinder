@@ -1,9 +1,13 @@
-# Wayfinder para el navegador · 0.3.2
+# Wayfinder para el navegador · 0.3.3
 
 Panel lateral para Chrome, Brave y Edge 116+. Mantiene las guías de Rosario/VGG,
 y permite trabajar con otras páginas públicas sin una lista fija de municipios.
 
-## Pegar una dirección (0.3.2)
+## Panel simple y Bob integrado
+
+**Volver** regresa en el historial de la pestaña; si consultaste una URL manual, vuelve al sitio abierto. Bob conversa dentro del panel, elige el contexto del sitio, conserva hasta diez intercambios en memoria por sitio y permite cancelar/reintentar. No cambia de web al preguntar. Los requisitos están desplegables y el próximo paso va primero. Los detalles técnicos y de privacidad quedan en el pie desplegable.
+
+## Pegar una dirección (0.3.3)
 
 El campo **Dirección del sitio** está siempre visible. Pegá `novogar.com.ar` o
 una URL http/https y tocá **Analizar URL**. Consulta el catálogo o inicia un
@@ -28,7 +32,7 @@ el motor: volvé a su dirección para ver el estado o cancelarlo.
 2. **Buscar accesos de esta página** lee los nombres/enlaces visibles del DOM ya
    renderizado, incluidos los generados con JavaScript. Podés buscar por texto,
    marcar un enlace y abrirlo. Esto no confirma requisitos ni completa gestiones.
-3. **Consultar catálogo con Bob** envía la dirección mostrada (sin query/hash)
+3. **Buscar gestiones** envía la dirección mostrada (sin query/hash)
    al motor. Recupera un catálogo disponible o inicia un recorrido público con
    progreso, cancelación y recuperación al reabrir el panel. El botón de volver
    a recorrer permite actualizar un catálogo guardado.
