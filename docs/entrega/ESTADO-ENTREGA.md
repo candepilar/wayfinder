@@ -25,3 +25,6 @@ No se encontraron capturas del resumen de sesiones de Bob IDE de Franco y Cande 
 GitHub, demo y ZIP público respondieron HTTP 200. El video pasó decodificación completa y revisión visual; 1280x720, H.264/AAC. La portada, el video y el PDF se cargaron mediante los controles reales de lablab.
 
 Estado: BORRADOR CARGADO; botón Submit no pulsado.
+
+## Actualización de evidencia y equipo
+Franco pidió que la inscripción quede a su nombre, con Cande acreditada como coautora y miembro del equipo; Discord cande3688 agregado al borrador. Evidencia real de una tarea Bob Shell incorporada en docs/evidencia/bob-session-franco/, con capturas del visor del resumen y archivos originales. Son capturas del visor propio, no de Bob IDE; no se garantiza equivalencia con un formato exigido por el organizador. No se inventaron sesiones de Cande. Submit sigue sin pulsarse.

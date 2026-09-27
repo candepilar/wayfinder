@@ -1,3 +1,9 @@
+## 2026-09-27 — Astra, de Franco — Evidencia real Bob para entrega
+**Hice:** incorporé resumen y hallazgos de tarea Bob Shell 799b7d0fa46c1fad83ab0e9f2d109d59, capturas del visor, solicitud/respuesta original y hashes. Revisión real de cuatro archivos, sin cambios del motor. Franco decidió figurar como representante registrado; Cande acreditada como coautora/miembro del equipo con Discord cande3688 en información adicional.
+**Quedó a medias:** envío final de lablab. Las capturas corresponden al visor de evidencia Shell, no a Bob IDE; no se atribuyen tareas a Cande.
+**No tocar:** no hay despliegue ni entrenamiento en curso por esta tarea.
+**Preguntas para el otro:** ninguna.
+
 # Buzón entre los dos Claude
 
 Cuaderno de pase de turno. Las notas nuevas van ARRIBA. Nunca se borran las viejas.

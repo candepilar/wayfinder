@@ -1,0 +1,3715 @@
+{
+  "started": "2026-09-27T13:40:49.206Z",
+  "finished": "2026-09-27T13:41:30.803Z",
+  "events": [
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:40:59.221Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.011Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.011Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.050Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.079Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.103Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.157Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.217Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.232Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.263Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.299Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.343Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.380Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.464Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.465Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.492Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.525Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.597Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.598Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.655Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.709Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.743Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.755Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.825Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.852Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.904Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.910Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.957Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:01.986Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.024Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.063Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.102Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.145Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.196Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.217Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.274Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.410Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.417Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.417Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.417Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.473Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.485Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.528Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.581Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.604Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.641Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.678Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.732Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.785Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.835Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.848Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.877Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.914Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.960Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:02.998Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.026Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.077Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.131Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.188Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.242Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.337Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.357Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.357Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.376Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.386Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.415Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.453Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.494Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.530Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.586Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.619Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.662Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.733Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.739Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.766Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.866Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.874Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.885Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.926Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:03.967Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.038Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.110Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.111Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.270Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.272Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.273Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.273Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.296Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.314Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.355Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.394Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.609Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.611Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.612Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.613Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.616Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.631Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.671Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.702Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.738Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.777Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.822Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.864Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.911Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.931Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:04.971Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.007Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.046Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.107Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.133Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.197Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.203Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.317Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.331Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.331Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.355Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.404Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.433Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.480Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.550Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.663Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.664Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.686Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.717Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.742Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.838Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.947Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.948Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.949Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.949Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:05.989Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.022Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.043Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.099Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.124Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.165Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.203Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.233Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.274Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.310Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.349Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.422Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.517Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.517Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.546Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.605Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.606Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.620Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.666Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.704Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.734Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.804Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.850Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.881Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.928Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:06.951Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.012Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.018Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.067Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.077Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.111Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.184Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.247Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.300Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.361Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.383Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.410Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.462Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.499Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.529Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.570Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.617Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.687Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.703Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.824Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.825Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.826Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.841Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.878Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.923Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.960Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:07.990Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.119Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.120Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.132Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.162Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.211Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.278Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.301Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.330Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.406Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.407Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.486Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.495Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.506Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.535Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.611Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.617Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.650Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.714Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.746Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.784Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.803Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.859Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.892Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.924Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.959Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:08.996Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.034Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.073Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.111Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.154Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.190Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.239Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.265Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.305Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.341Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.380Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.423Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.458Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.497Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.536Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.575Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.662Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.691Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.729Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.770Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.811Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.849Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.888Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.927Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:09.962Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.005Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.056Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.087Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.122Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.164Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.199Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.238Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.278Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.316Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.354Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.395Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.442Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.469Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.508Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.548Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.589Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.624Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.662Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.783Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.783Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.820Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.868Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.896Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.934Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:10.973Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.011Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.051Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.088Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.126Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.164Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.203Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.250Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.283Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.320Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.358Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.396Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.435Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.476Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.516Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.554Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.593Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.643Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.671Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.709Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.751Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.788Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.827Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.866Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.904Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.943Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:11.982Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.031Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.060Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.102Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.134Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.172Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.213Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.256Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.293Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.331Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.368Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.417Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.443Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.481Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.521Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.606Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.606Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.634Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.675Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.710Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.751Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.802Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.832Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.866Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.904Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.945Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:12.983Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.022Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.061Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.098Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.137Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.185Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.219Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.255Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.293Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.333Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.371Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.408Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.445Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.486Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.523Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.574Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.600Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.640Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.686Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.717Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.757Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.795Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.834Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.872Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.911Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.963Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:13.991Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.029Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.067Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.108Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.147Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.184Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.224Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.265Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.314Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.354Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.382Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.421Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.461Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.499Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.540Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.578Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.618Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.655Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.693Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.742Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.773Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.812Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.895Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.931Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:14.968Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.009Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.094Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.150Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.190Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.238Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.266Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.305Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.344Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.381Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.422Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.466Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.506Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.543Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.582Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.630Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.659Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.697Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.737Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.775Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.813Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.852Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.891Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.929Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:15.968Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.017Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.045Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.084Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.123Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.160Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.199Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.237Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.276Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.314Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.352Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.400Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.428Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.468Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.505Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.544Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.582Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.622Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.663Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.700Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.737Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.785Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.817Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.852Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.891Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.929Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:16.967Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.004Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.042Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.087Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.119Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.166Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.196Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.234Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.272Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.311Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.349Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.389Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.424Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.463Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.500Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.552Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.579Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.634Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.655Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.692Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.740Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.770Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.811Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.846Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.883Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.922Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.962Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:17.997Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.037Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.083Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.114Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.152Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.191Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.229Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.267Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.307Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.344Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.382Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.422Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.517Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.535Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.577Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.613Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.654Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.691Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.729Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.765Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.807Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.845Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.896Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.926Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.961Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:18.999Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.039Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.078Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.118Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.155Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.193Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.231Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.282Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.309Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.346Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.385Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.422Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.464Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.502Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.541Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.578Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.617Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.667Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.696Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.734Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.773Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.812Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.851Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.888Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.929Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:19.968Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.006Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.054Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.086Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.125Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.160Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.212Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.239Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.276Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.315Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.352Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.400Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.455Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.474Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.524Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.544Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.604Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.627Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.672Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.725Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.734Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.785Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.843Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.850Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.911Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:20.955Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.001Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.099Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.099Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.121Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.144Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.230Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.236Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.241Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.272Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.313Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.383Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.429Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.437Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.478Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.504Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.571Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.597Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.657Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.679Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.704Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.773Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.820Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.898Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.899Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.904Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:21.988Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.000Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.011Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.068Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.142Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.143Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.175Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.203Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.238Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.287Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.321Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.391Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.415Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.512Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.513Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.513Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.548Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.624Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.647Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.699Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.715Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.791Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.805Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.849Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:22.923Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.015Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.109Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.128Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.128Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.130Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.181Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.216Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.243Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.271Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.313Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.441Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.447Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.447Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.514Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.515Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.566Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.594Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.625Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.694Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.713Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.755Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.779Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.817Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.857Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.919Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.958Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:23.993Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.020Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.085Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.093Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.126Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.224Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.245Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.251Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.281Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.351Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.432Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.432Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.468Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.568Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.568Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.568Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.644Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.655Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.692Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.797Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.814Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.815Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.834Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.883Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:24.928Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.036Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.037Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.039Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.066Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.181Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.181Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.229Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.254Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.275Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.299Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.355Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.418Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.429Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.472Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.492Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.538Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.574Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.610Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.656Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.726Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.739Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.768Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.810Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.904Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.913Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:25.927Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.092Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.098Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.098Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.099Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.125Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.191Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.227Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.248Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.286Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.322Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.364Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.412Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.440Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.478Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.549Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.688Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.688Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.688Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.688Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.711Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.893Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.893Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.894Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.894Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:26.908Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.032Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.051Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.054Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.112Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.128Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.160Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.243Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.244Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.278Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.303Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.337Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.369Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.407Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.448Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.492Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.553Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.562Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.600Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.696Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.696Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.749Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.752Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.801Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.830Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.895Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.921Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:27.949Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.007Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.031Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.151Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.152Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.153Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.193Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.219Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.293Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.324Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.366Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.419Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.432Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.503Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.504Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.550Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.640Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.641Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.645Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.689Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.726Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.787Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:28.809Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.008Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.009Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.010Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.037Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.038Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.111Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.150Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.151Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.173Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.201Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.241Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.264Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.304Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.366Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.437Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.450Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.591Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.592Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.594Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.596Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.628Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.656Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.726Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.748Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.777Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "message",
+      "at": "2026-09-27T13:41:29.842Z"
+    },
+    {
+      "type": "bob_evento",
+      "evento": "result",
+      "estado": "success",
+      "at": "2026-09-27T13:41:30.059Z"
+    }
+  ],
+  "result": {
+    "type": "result",
+    "timestamp": "2026-09-27T13:41:30.060Z",
+    "status": "success",
+    "stats": {
+      "task_id": "799b7d0fa46c1fad83ab0e9f2d109d59",
+      "duration_ms": 32142,
+      "session_costs": 0.049072,
+      "max_cost": 0.5,
+      "tool_calls": 0
+    },
+    "streamed": "```json\n{\n  \"summary\": \"Wayfinder motor uses IBM Bob Shell (ask mode, no tools) as a structured-extraction pipeline: HTML parsing seeds a procedure catalog, Bob fills gaps and adds everyday phrasings in parallel batches, a second Bob pass reviews each entry, and an MCP server exposes the catalog read-only to agents. All Bob output is validated against the original block IDs before any text is accepted.\",\n  \"workflow\": [\n    {\n      \"step\": \"1 – Seed catalog from HTML structure\",\n      \"file\": \"motor/src/catalogo.mjs\",\n      \"lines\": \"25-41\",\n      \"observation\": \"catalogFromHtml() extracts procedure entries directly from parsed municipal.tramite sections. Each entry is finished via finish(), which deduplicates destinations and computes faltantes. This runs before Bob is invoked and provides the baseline fichas array.\"\n    },\n    {\n      \"step\": \"2 – Rank and batch pages for Bob\",\n      \"file\": \"motor/src/catalogo.mjs\",\n      \"lines\": \"44-68\",\n      \"observation\": \"catalogDocuments() ranks pages by URL keywords and existing HTML ficha membership (html.has(p.id) adds +5), then slices to maxPages=40 and enforces per-page (10 000 chars) and total (200 000 chars) budgets at block granularity. Omitted block counts are recorded for quality reporting.\"\n    },\n    {\n      \"step\": \"3 – Bob extraction pass (parallel batches) + optional review pass\",\n      \"file\": \"motor/src/catalogo.mjs\",\n      \"lines\": \"265-293\",\n      \"observation\": \"organizeCatalog() splits documents into lotes (default 8 pages each), runs up to BOB_PARALELO=2 batches concurrently via enParalelo(). Each batch calls runBob with catalogPrompt, then if verificar≠'0' calls runBob again with reviewPrompt. Results are accepted only via acceptBobCatalog/acceptReview, which check every block/link ID against the originating document.\"\n    },\n    {\n      \"step\": \"4 – Citizen question answered via Bob with citation guard\",\n      \"file\": \"motor/src/asistente.mjs\",\n      \"lines\": \"84-112\",\n      \"observation\": \"answerWithBob() builds a ranked evidence context (max 28 000 chars), calls runBob in ask mode (maxTurns=1, timeoutMs=55 000), then passes the JSON proposal through validateAnswer(). A 'Cifra sin cita.' error triggers a deterministic fallback message rather than surfacing Bob's uncited figure, and summaryOmitted is flagged in the response.\"\n    }\n  ],\n  \"validation_gates\": [\n    {\n      \"file\": \"motor/src/catalogo.mjs\",\n      \"lines\": \"105-143\",\n      \"observation\": \"acceptBobCatalog() enforces that every block and link ID returned by Bob exists in the originating document object. pagina_id, titulo_id (must be tipo='titulo', ≤240 chars), all field _ids arrays, and destino_ids are each checked against sources/blocks/linkMap. Any ID that cannot be resolved rejects the entire ficha and records a reason in rejected[].\"\n    },\n    {\n      \"file\": \"motor/src/asistente.mjs\",\n      \"lines\": \"46-82\",\n      \"observation\": \"validateAnswer() enforces: estado is one of three allowed values; mensaje ≤1600 chars and contains no URLs; fichas_ids and evidencia_ids have no duplicates and stay within count limits; every evidencia_id must belong to a cited ficha_id; any number in mensaje must appear literally in the cited evidence blocks. An aclaracion response is stripped to only its first ¿?-delimited question.\"\n    },\n    {\n      \"file\": \"motor/src/bob.mjs\",\n      \"lines\": \"29-63\",\n      \"observation\": \"runBob() enforces a 2 MB stdout cap (kills child if exceeded), a configurable timeout (default 120 s for analysis, 55 s for assistant), and passes --disable-mcp --disable-subagents --disable-tool-groups with an explicit read,edit,execute,... list, ensuring Bob runs in a sandboxed ask mode with no filesystem or network access during extraction.\"\n    }\n  ],\n  \"maintenance_improvement\": {\n    \"file\": \"motor/src/catalogo.mjs\",\n    \"lines\": \"330-334\",\n    \"observation\": \"Batch cost aggregation uses costes[0] as fallback when not every element is a number (line 333: '? Number(...) : costes[0]'). If mixed numeric/undefined costs are returned across parallel tasks, the reported catalog.bob.coste silently drops all but the first task's cost instead of summing what is available or flagging the gap. The fix is to sum only the numeric elements and store the count of tasks with known costs alongside, so operators can tell at a glance whether the reported figure is partial: replace the ternary with { coste: costes.filter(c => typeof c === 'number').reduce((a,b)=>a+b,0) || null, tareas_con_coste: costes.filter(c => typeof c === 'number').length }.\"\n  },\n  \"limits\": [\n    \"Source files cover extraction, validation, assistant, and MCP layers only; crawler (network.mjs), route graph (rutas.mjs), search stemmer (buscar.mjs), and audit logic (auditar.mjs) were not supplied and their behavior cannot be verified.\",\n    \"No test files were supplied; correctness of edge cases (e.g., empty bloques, all batches failing) is inferred from control-flow reading, not from observed test output.\",\n    \"Runtime behavior of Bob Shell (the child process spawned via runBob) depends on external BOB_ENTRY binary and BOB_API_KEY; actual LLM responses and cost figures cannot be assessed from source alone.\",\n    \"The review pass (reviewPrompt / acceptReview) is conditionally skipped when BOB_VERIFICAR=0; whether it is enabled in production deployments cannot be determined from these files.\",\n    \"catalogDocuments enforces a maxPages=40 hard ceiling; sites with more crawled pages silently omit lower-ranked pages with no operator alert beyond the paginas_omitidas counter in calidad.\"\n  ]\n}\n```"
+  }
+}
