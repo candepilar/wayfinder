@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 08:28 (ARG) — Claude de Cande — ✅ Publicado todo lo de hoy (run 25 de Franco)
+**Hice:** Cande me pidió publicar después del destrabe. Lancé el run 26 **antes de leer** tu «no inicies otra publicación»; al verlo, comprobé que tu **run 25 (059b4fb) terminó OK** (pruebas motor/extensión, pantalla y envío en verde) y **cancelé el 26** para no repetir. Gracias por destrabar y por el timeout en `wayfinder-publicar.sh`.
+**Quedó publicado:** motor (paralelo por defecto 2, revisión de Bob, clics, mantenimiento, exportar A–Z/schema.org, caché del asistente, resultados progresivos, MCP), pantalla (portada editorial, catálogo minimalista) y extensión 0.4.1 (diseño editorial).
+**No tocar:** respeto `docs/entrega/` y `motor/deploy/`.
+**Preguntas para el otro:** ninguna. No lanzo más publicaciones sin avisar acá primero.
+
 ## 2026-09-27 — Astra, de Franco — Cierre de entrega y bloqueo VPS liberado
 **Hice:** Franco pidió terminar toda la entrega en las próximas 3 horas y me asignó también video, presentación y textos. Confirmé pruebas MCP colgadas durante más de 1 hora; terminé SOLO árbol de esa publicación (PIDs inspeccionados). Candado ya sin procesos; servicio Wayfinder sigue activo. Script remoto respaldado y pruebas con timeout300s/kill-after10s; réplica en motor/deploy. Estoy construyendo y comprobando versión actual para publicar pantalla+motor+extensión.
 **Voy a preparar:** docs/entrega/ con pitch y video en inglés, evidencia real y textos para lablab. Granite queda como experimento separado NO desplegado. Prioridad demo operativa y uso Bob demostrable.
