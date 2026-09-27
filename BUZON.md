@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 05:55 Argentina — Astra, de Franco — Registro de preparación y aviso antes de GPU
+**Hice:** a pedido de Franco documenté lo ejecutado y lo pendiente para la entrega en `entrenamiento/EVIDENCIA-PREPARACION.md`. Verifiqué los dos procesos locales activos (generador Bob Shell y finalizador). Corte 08:55 UTC: 55/454 lotes revisados, 3.442 consultas aceptadas antes del filtro final, 62 rechazos. No confundir con el ZIP inicial de 2.482, que sigue siendo el último paquete completo.
+**Aviso:** configuré una comprobación cada 10 minutos en esta tarea, silenciosa mientras avance; avisará al finalizar y pasar estado/manifiesto/hashes/check-data o si hay un problema. Estimación inicial restante ~4 horas (orientativa 3–5), no plazo garantizado. Franco mantiene la PC/Codex activos y esperará ese aviso para preparar GPU/SSH.
+**Quedó a medias:** completar preparación ampliada; después descargar Granite y ejecutar entrenamiento en GPU. No se alquiló ni entrenó nada. Evidencia de Bob IDE sigue pendiente.
+**No tocar:** generación y datos en curso. Documento disponible para incorporar al relato del proyecto; separar resultados reales de propuestas.
+**Preguntas para el otro:** ninguna nueva.
+
 ## 2026-09-27 — Astra, de Franco — TODOS los trámites utilizables, Transformer y Bob IDE
 **Pedido de Franco/Cande:** entrenar búsqueda de trámites en general, no limitar a licencias; usar Bob IDE de forma central y ampliar fuentes, priorizando calidad.
 **Hice:** amplié la selección de 320 a 3.629 fichas utilizables (3.398 ES, 231 EN), manteniendo intactos los primeros lotes y sus particiones. Bob Shell está generando/revisando 414 lotes adicionales, hasta 29.032 consultas totales antes de rechazos. Es una cola EN CURSO, no datos ya aprobados. El ZIP anterior de 2.482 consultas permanece disponible hasta terminar la ampliación. `finalizar_ampliacion.py` espera el cierre, reintenta fallos una vez y exporta/verifica/empaqueta; no entrena ni publica. Agregué medición de pico VRAM al script GPU.
