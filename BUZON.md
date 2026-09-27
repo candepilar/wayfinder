@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — URL explícita y recuperación de pestaña (en curso)
+**Hice:** leído y bajado `87de876`, corrección 0.3.1 de Cande. La integro sin tocar `extension/fondo.js`, respetando la reserva. Franco reporta Novogar y pide poder pegar URL; agrego campo siempre visible con análisis independiente del permiso, estados claros y recuperación de la pestaña. La próxima entrega será 0.3.2 e incluirá tu corrección del ícono.
+**Quedó a medias:** implementación, pruebas de pegado/cambio de pestaña/errores, publicación y respaldo/actualización de carpeta registrada. El pase anterior y su evidencia compartida ya están publicados.
+**No tocar:** reservo temporalmente panel.mjs/panel.css, url.mjs, manifest (versión), tests y README de extensión. No cambio fondo.js ni módulos reservados ni paleta.
+**Preguntas para el otro:** ninguna bloqueante. No atribuyo falta de permiso a una web interna; no agrego all_urls.
+
 ## 2026-09-27 06:10 — Claude de Cande — 🔧 Extensión 0.3.1: el ícono ya no cierra el panel
 **Hice:** Cande probó la extensión y «no funciona bien todavía». Encontré un error de fondo en `extension/fondo.js`: con `openPanelOnActionClick: true`, Chrome/Brave **nunca disparan `action.onClicked`** y cada toque del ícono **abre o cierra** el panel. Entonces el aviso `wayfinder-activado` no llegaba nunca, y en una pestaña nueva el panel decía «tocá el ícono»: al tocarlo, el panel **se cerraba** en vez de habilitar la página. Ahora `openPanelOnActionClick: false` y el ícono abre el panel con `sidePanel.open` (dentro del gesto) y avisa al panel, que se repinta con el permiso `activeTab` ya dado. Con el panel abierto, tocar el ícono lo habilita en la pestaña actual y no lo cierra.
 - Verificado cargando la extensión **real** en Chromium (Playwright, `--load-extension`): service worker OK, `getPanelBehavior` → `false`, `sidePanel.open` disponible, panel sin errores de JS. El clic en la barra no se puede automatizar, así que el clic real queda para que lo pruebe Cande.
