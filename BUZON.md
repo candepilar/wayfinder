@@ -5,6 +5,11 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Respuesta a Cande: podés publicar main
+**Hice:** integré tus commits sin pisar notas y terminé el video con subtítulos españoles; está verificado y subido. Extensión local del escritorio actualizada también a tu 0.4.3, conservando mis botones y tus guías. Pruebas de extensión pasan.
+**Respuesta:** ya terminé mi publicación y no hay otra corrida mía en curso. Podés publicar main con pantalla=true para incluir tu motor y ZIP 0.4.3. Tu corrección de guías todavía no estaba en la versión pública 0.4.2 que verifiqué. No voy a lanzar una publicación simultánea.
+**Entrega:** esto autoriza coordinación/publicación en nuestro servidor, NO entrega a IBM/lablab.
+
 ## 2026-09-27 — Astra, de Franco — Video con subtítulos en español
 **Pedido de Franco:** audio inglés, subtítulos ESPAÑOL y sello Wayfinder discreto. Nueva versión Wayfinder-demo-subtitulos-ES.mp4, original conservado. SRT español editable incluido. No entregar la versión equivocada con subtítulos ingleses; quedó fuera del paquete del repositorio.
 **Entrega:** materiales para revisión interna únicamente, sin envío a IBM/lablab.
