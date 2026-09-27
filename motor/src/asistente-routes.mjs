@@ -15,6 +15,12 @@ export function assistantRoutes(app, { dataDir, store, busy = () => false, run =
   const demo = demoDir ? new Store(demoDir) : null;
   const starts = new Map();
   let running = false, globalStarts = [];
+  // Same question on the same catalogue reading → same validated answer, instantly,
+  // without spending Bob, rate limit or waiting for another task. Memory only.
+  const answers = new Map();
+  const answerKey = (contexto, leido, pregunta, historial) => JSON.stringify([contexto, leido,
+    pregunta.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[¿?¡!.,;:]+/g, ' ').replace(/\s+/g, ' ').trim(),
+    historial.map(m => [m.rol, m.texto])]);
   async function sites() {
     const maps = (await store.list()).filter(x => x.mapa.catalogo);
     const municipal = await Promise.all(Object.entries(municipalities).map(async ([key, m]) => {
@@ -29,9 +35,11 @@ export function assistantRoutes(app, { dataDir, store, busy = () => false, run =
     if (typeof contexto !== 'string' || contexto.length > 2100 || typeof pregunta !== 'string' || !pregunta.trim() || pregunta.length > 1000 ||
       !Array.isArray(historial) || historial.length > 8 || historial.some(m => !m || !['user','assistant'].includes(m.rol) || typeof m.texto !== 'string' || m.texto.length > 1600)) return res.status(400).json({ error: 'Elegí un sitio y escribí una consulta de hasta 1000 caracteres.' });
     if (!available()) return res.status(503).json({ error: 'Bob no está disponible ahora. Podés seguir usando las fichas y sus accesos.' });
-    if (running || busy()) return res.status(409).json({ error: 'Bob está atendiendo otra tarea. Esperá un momento y volvé a enviar tu consulta.' });
     const site = (await sites()).find(s => s.id === contexto);
     if (!site) return res.status(404).json({ error: 'Todavía no hay información de ese sitio. Abrí su dirección para crear el catálogo.' });
+    const key = answerKey(contexto, site.mapa.sitio.crawleado_en, pregunta, historial);
+    const saved = answers.get(key);
+    if (saved && now() - saved.at < 3600000) return res.json({ ...saved.body, guardada: true });
     // Recheck after disk reads, then reserve synchronously.
     if (running || busy()) return res.status(409).json({ error: 'Bob está atendiendo otra tarea. Probá en un momento.' });
     const at = now();
@@ -48,7 +56,10 @@ export function assistantRoutes(app, { dataDir, store, busy = () => false, run =
       const result = await run(site.mapa.catalogo || catalogFromHtml(site.mapa), pregunta.trim(), historial, { workspace, signal: controller.signal });
       const candidates = site.id.startsWith('municipio:') ? buildCatalog(site.id.slice(10), site.mapa).contactos : site.mapa.paginas.flatMap(p => (p.municipal?.enlaces || []).filter(l => /^(contacto|contactos|contact|contact us|atenci[oó]n al cliente)$/i.test(l.texto)).map(l => ({ nombre: l.texto, url: l.url })));
       const contacts = [...new Map(candidates.filter(c => { try { normalizeUrl(c.url); return new URL(c.url).origin === new URL(site.mapa.sitio.url).origin; } catch { return false; } }).map(c => [c.url, { nombre: c.nombre, url: c.url }])).values()].slice(0, 3);
-      if (!controller.signal.aborted && !res.destroyed) res.json({ ...result, contactos: contacts.length ? contacts : [{ nombre: 'Consultar el sitio de origen', url: site.mapa.sitio.url }] });
+      const body = { ...result, contactos: contacts.length ? contacts : [{ nombre: 'Consultar el sitio de origen', url: site.mapa.sitio.url }] };
+      answers.delete(key); answers.set(key, { at: now(), body });
+      if (answers.size > 300) answers.delete(answers.keys().next().value);
+      if (!controller.signal.aborted && !res.destroyed) res.json(body);
       else if (!res.destroyed) res.status(504).json({ error: 'La respuesta tardó demasiado. Volvé a intentarlo.' });
     } catch {
       if (!res.destroyed) res.status(502).json({ error: 'Bob no pudo completar esta respuesta. Tu consulta sigue disponible para reintentar; también podés explorar las fichas.' });

@@ -116,3 +116,4 @@ h2.separado { margin-top: 18px; }
 details.bloque > summary { font-weight: 600; color: var(--acento); }
 details.bloque[open] > summary { margin-bottom: 10px; }
 details.bloque > .bloque { border: 0; padding: 0; background: none; }
+.chat-mientras { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }

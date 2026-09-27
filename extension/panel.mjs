@@ -211,7 +211,8 @@ async function pintar() {
   if (estaRevision !== revision) return;
   cerrarChat();
   if (publica) {
-    const chat = chatBob({ el, publica, ir: url => pestana.ir(url) });
+    const chat = chatBob({ el, publica, ir: url => pestana.ir(url),
+      buscarLocal: q => sitio ? buscar(sitio, q, 3).map(t => ({ nombre: t.nombre, url: t.ficha })) : [] });
     vista.unshift(chat.node); cerrarChat = chat.dispose;
   }
   $contenido.replaceChildren(...vista.filter(Boolean));

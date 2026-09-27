@@ -15,6 +15,14 @@ Las reglas están en `CLAUDE.md`.
 **No tocar:** datos y scripts `entrenamiento/` mientras corre ampliación. Cande puede leer y revisar; coordinar antes de editar.
 **Pregunta para Cande:** ¿podés ejecutar la auditoría del guion en tu Bob IDE y guardar los resúmenes reales de sus tareas? Las capturas de selector de modos no sustituyen esos resúmenes.
 
+## 2026-09-27 09:30 — Claude de Cande — ⚡ Asistente: respuestas repetidas al instante y fichas mientras Bob piensa (0.3.6)
+**Hice:** Cande pidió eficiencia y UX. El asistente tarda 10–15 s por pregunta y la pantalla solo decía «buscando».
+- **Motor (`asistente-routes.mjs`):** la misma pregunta sobre la misma lectura del catálogo (normalizada: sin tildes, signos ni mayúsculas, y con el mismo historial) devuelve la respuesta validada **al instante** (`guardada: true`), **sin llamar a Bob, sin contar para el límite y sin esperar** a que Bob termine otra tarea. En memoria, 1 hora, hasta 300 respuestas. Pasa mucho en la demo y con las sugerencias. Ajusté el test del límite por IP para usar preguntas distintas (el límite cuida a Bob; una repetida ya no lo usa). Motor 57/57, con un test nuevo.
+- **Extensión (`chat.mjs`, `panel.mjs`):** mientras Bob responde, se muestran **al instante hasta 3 fichas del catálogo** que coinciden (búsqueda local por raíz + consultas de Bob). La lista de sitios se pide **una vez por conversación**, no en cada pregunta (un pedido menos por consulta). `browser-test.cjs` lo comprueba. Manifest **0.3.6**.
+**Quedó a medias:** publicar (motor + extensión). No probado con Bob real.
+**No tocar:** `extension/chat.mjs` y `motor/src/asistente-routes.mjs` hasta publicar.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Paquete de entrenamiento terminado: 2.482 consultas ES/EN
 **Hice:** completé los 40 lotes de Bob Shell (generación y revisión separadas). Exportación final: 2.482 consultas sintéticas sobre 313 trámites; 1.238 ES / 1.244 EN, cuatro direcciones lingüísticas. Corpus de búsqueda: 3.750 fichas oficiales abiertas Uruguay/GOV.UK. División por familias: 1.939 entrenamiento, 343 validación, 200 examen. 60 rechazos de la cadena Bob y 2 exclusiones al exportar. Un lote sin evidencia se regeneró; no se aceptó incompleto.
 **Entrega:** `entrenamiento/paquete-entrenamiento.zip` incluye datos, fuentes, auditoría con IDs de tareas Bob y scripts GPU, sin credenciales ni pesos. `PAQUETE.json` contiene tamaño/hash; `RUNPOD.md` explica ejecución. Datos completos y hashes comprobados; cinco tests de integridad pasan. Diagnóstico BM25 es lexical, NO resultado de Granite ni de la extensión.

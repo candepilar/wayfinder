@@ -23,7 +23,7 @@ const assert=require('node:assert/strict');
   await active.goto('https://qa.example.org/');await active.waitForTimeout(100);
   await active.evaluate(()=>{window.chrome={runtime:{onMessage:{addListener:fn=>window.highlightListener=fn}}};});
   const panel=await ctx.newPage(), errors=[];panel.on('pageerror',e=>errors.push(e.message));
-  let chatMode='ok',chatCalls=[];
+  let chatMode='ok',chatCalls=[],sitiosCalls=0,releaseChat=null;
   let deny=false,starts=0,polls=0,jobPolls=0,scenario='normal',cancelled=false,tabUrlOverride,scanUrl='https://qa.example.org/';
   const sentUrls=[],tabQueries=[];
   await panel.exposeFunction('activeTab',q=>{tabQueries.push(q);return {id:1,url:tabUrlOverride??active.url()};});
@@ -46,8 +46,8 @@ const assert=require('node:assert/strict');
   await panel.route('**/wayfinder/api/motor/**',r=>{
    const p=new URL(r.request().url()).pathname;
    const reply=d=>r.fulfill({contentType:'application/json',body:JSON.stringify(d)});
-   if(p.endsWith('/asistente/sitios'))return reply({sitios:[{id:'sitio:https://qa.example.org/',url:'https://qa.example.org/'}]});
-   if(p.endsWith('/asistente')){chatCalls.push(r.request().postDataJSON());if(chatMode==='error')return r.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Bob no está disponible ahora.'})});return reply({mensaje:'Podés asociarte desde este acceso.',fichas:[{id:'join',nombre:'Asociarme',fuente:'https://qa.example.org/join',destinos:[]}],evidencia:[],sugerencias:['Quiero un turno']});}
+   if(p.endsWith('/asistente/sitios')){sitiosCalls++;return reply({sitios:[{id:'sitio:https://qa.example.org/',url:'https://qa.example.org/'}]});}
+   if(p.endsWith('/asistente')){chatCalls.push(r.request().postDataJSON());if(chatMode==='lento')return new Promise(ok=>releaseChat=ok).then(()=>reply({mensaje:'Listo.',fichas:[],evidencia:[],sugerencias:[]}));if(chatMode==='error')return r.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Bob no está disponible ahora.'})});return reply({mensaje:'Podés asociarte desde este acceso.',fichas:[{id:'join',nombre:'Asociarme',fuente:'https://qa.example.org/join',destinos:[]}],evidencia:[],sugerencias:['Quiero un turno']});}
    if(p.endsWith('/extension/catalogo'))return reply({mapaId:null});
    if(p.endsWith('/cancelar')){cancelled=true;return reply({estado:'cancelando'});}
    if(p.endsWith('/recorridos')){starts++;jobPolls=0;scanUrl=r.request().postDataJSON().url;sentUrls.push(scanUrl);assert.equal(r.request().postDataJSON().catalogo,true);if(scenario==='busy')return r.fulfill({status:409,contentType:'application/json',body:JSON.stringify({error:'Ya hay un recorrido en curso.'})});return reply({id:'scan-test'});}
@@ -85,6 +85,15 @@ const assert=require('node:assert/strict');
   await panel.getByRole('button',{name:'Quiero un turno',exact:true}).click();
   await panel.waitForFunction(()=>document.querySelector('textarea').disabled===false);
   assert.equal(chatCalls[1].historial.length,2);
+  // Mientras Bob piensa, ya se ven las fichas del catálogo que coinciden.
+  chatMode='lento';
+  await panel.getByRole('textbox',{name:'Tu mensaje para Bob'}).fill('me quiero asociar');
+  await panel.getByRole('button',{name:'Enviar',exact:true}).click();
+  await panel.getByText('Mientras Bob responde, esto coincide con lo que escribiste:').waitFor();
+  assert.equal(await panel.locator('.chat-mientras').getByRole('button',{name:'Asociarme a la biblioteca'}).count(),1);
+  releaseChat();await panel.getByText('Listo.',{exact:true}).waitFor();
+  assert.equal(await panel.locator('.chat-mientras').isHidden(),true);
+  assert.equal(sitiosCalls,1);
   chatMode='error';
   await panel.getByRole('textbox',{name:'Tu mensaje para Bob'}).fill('necesito ayuda');
   await panel.getByRole('button',{name:'Enviar',exact:true}).click();
@@ -96,7 +105,7 @@ const assert=require('node:assert/strict');
   await active.waitForURL('https://qa.example.org/');
   assert.equal(await panel.locator('#url-error').innerText(),'');
   if(process.env.CHAT_SCREENSHOT)await panel.screenshot({path:process.env.CHAT_SCREENSHOT,fullPage:true});
-  report.push({case:'inline Bob and back',passed:['context matched to site','natural-language request','follow-up history','API error retains draft','tab-history back through controlled API bridge']});
+  report.push({case:'inline Bob and back',passed:['context matched to site','instant local matches while Bob answers','site looked up once per conversation','natural-language request','follow-up history','API error retains draft','tab-history back through controlled API bridge']});
   scenario='cancel';await panel.evaluate(()=>localStorage.clear());await panel.reload();
   await panel.getByRole('button',{name:'Buscar gestiones'}).click();
   await panel.getByRole('button',{name:'Cancelar recorrido'}).click();

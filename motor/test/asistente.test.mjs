@@ -64,8 +64,10 @@ test('unavailable, model failure and per-IP limits leave the catalogue usable', 
   const offline=await fixture(t,{available:()=>false});assert.equal((await offline.post()).status,503);
   const failed=await fixture(t,{run:async()=>{throw Error('secret provider error');}});const fail=await failed.post();assert.equal(fail.status,502);assert.doesNotMatch(await fail.text(),/secret provider/);
   const limited=await fixture(t,{run:async()=>({mensaje:'test'})});
-  for(let i=0;i<8;i++){assert.equal((await limited.post()).status,200);while(limited.busy())await new Promise(r=>setTimeout(r,5));}
-  assert.equal((await limited.post()).status,429);assert.equal((await fetch(`${limited.base}/sitios`)).status,200);
+  for(let i=0;i<8;i++){assert.equal((await limited.post({pregunta:`consulta ${i}`})).status,200);while(limited.busy())await new Promise(r=>setTimeout(r,5));}
+  assert.equal((await limited.post({pregunta:'consulta nueva'})).status,429);
+  // A repeated question is answered from memory: no Bob call, no limit.
+  assert.equal((await limited.post({pregunta:'Consulta 3?'})).status,200);assert.equal((await fetch(`${limited.base}/sitios`)).status,200);
 });
 
 test('disconnect aborts the model and releases the worker', async t => {
@@ -77,4 +79,22 @@ test('disconnect aborts the model and releases the worker', async t => {
   assert.equal(aborted,true);
   for(let i=0;i<50&&f.busy();i++)await new Promise(r=>setTimeout(r,10));
   assert.equal(f.busy(),false);
+});
+
+test('a repeated question on the same catalogue is answered instantly without calling Bob again', async t => {
+  let calls=0, release;
+  const f=await fixture(t,{run:async()=>{calls++;return {mensaje:`respuesta ${calls}`};}});
+  const first=await (await f.post({pregunta:'¿Cómo me afilio?'})).json();
+  assert.equal(first.mensaje,'respuesta 1'); assert.equal(first.guardada,undefined);
+  const again=await (await f.post({pregunta:'como me afilio'})).json();
+  assert.equal(again.mensaje,'respuesta 1'); assert.equal(again.guardada,true); assert.equal(calls,1);
+  // Different history is a different conversation: Bob answers again.
+  const follow=await (await f.post({pregunta:'como me afilio',historial:[{rol:'user',texto:'hola'}]})).json();
+  assert.equal(follow.mensaje,'respuesta 2'); assert.equal(calls,2);
+  // A cached answer does not wait for Bob to finish another task.
+  const slow=await fixture(t,{run:async()=>{calls++;if(calls>3)await new Promise(r=>release=r);return {mensaje:'ok'};}});
+  assert.equal((await slow.post({pregunta:'rápida'})).status,200);
+  const pending=slow.post({pregunta:'lenta'}); while(!slow.busy())await new Promise(r=>setTimeout(r,5));
+  assert.equal((await slow.post({pregunta:'rapida'})).status,200);
+  release(); assert.equal((await pending).status,200);
 });
