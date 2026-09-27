@@ -85,3 +85,14 @@ test('tocar el ícono abre el panel y avisa, también con el panel ya abierto',a
  alTocar({id:7,windowId:3});
  assert.deepEqual(llamadas.slice(1),[['open',3],['msg','wayfinder-activado']]);
 });
+test('la búsqueda entiende cómo lo pide un vecino gracias a las consultas de Bob',()=>{
+ const c={sitio:{url:'https://muni.example.org/',crawleado_en:'2026-09-27'},fichas:[
+  {id:'a',nombre:'Sanidad Animal',fuente:'https://muni.example.org/sanidad',requisitos:[],pasos:[],costo:[],destinos:[],consultas:['encontré un perro abandonado','vacunar a mi gato']},
+  {id:'b',nombre:'Pagar TGI',fuente:'https://muni.example.org/tgi',requisitos:[],pasos:[],costo:[],destinos:[],consultas:['pagar la tasa de mi casa']}]};
+ const s=guiaDeCatalogo(c,'m');
+ assert.deepEqual(buscar(s,'perro abandonado').map(t=>t.nombre),['Sanidad Animal']);
+ assert.deepEqual(buscar(s,'tasa de mi casa').map(t=>t.nombre),['Pagar TGI']);
+ // Sin consultas (catálogos viejos) la búsqueda sigue funcionando como antes.
+ delete c.fichas[0].consultas;
+ assert.deepEqual(buscar(guiaDeCatalogo(c,'m'),'perro abandonado'),[]);
+});

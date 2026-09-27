@@ -149,3 +149,11 @@ test('a failed Bob batch keeps the fiches of the other batches and is reported a
   assert.deepEqual(map.catalogo.bob.tareas.map(t => t.estado), ['error', 'completado']);
   assert.match(map.catalogo.calidad.advertencias.join(' '), /1 de 2 tareas de Bob fallaron; sus 3 páginas/);
 });
+
+test('Bob everyday phrasings are kept as search keys and unsafe ones are dropped', async () => {
+  const map = mapOf('<main><h1>Sanidad Animal</h1><p>Vacunación antirrábica y castración gratuita.</p><a href="/turno">Pedir turno</a></main>');
+  const doc = catalogDocuments(map).documents[0];
+  await organizeCatalog(map, { run: async () => ({ type: 'result', status: 'success', last_message: JSON.stringify({ fichas: [{ ...proposal(doc), costo_ids: [], requisitos_ids: [], destino_ids: [],
+    consultas: ['encontré un perro abandonado', 'Encontré un perro abandonado', 'vacunar a mi gato', 'escribí a info@muni.gob.ar', 'ver https://x.org', 'x'.repeat(81), 42, 'castrar a mi perra', 'a', 'b', 'c', 'd'] }] }) }) });
+  assert.deepEqual(map.catalogo.fichas[0].consultas, ['encontré un perro abandonado', 'vacunar a mi gato', 'castrar a mi perra']);
+});

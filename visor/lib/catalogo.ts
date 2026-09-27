@@ -4,6 +4,7 @@ export type Ficha = {
   requisitos: Fragmento[]; pasos: Fragmento[]; costo: Fragmento[]; donde_se_hace: Fragmento[];
   destinos: { texto: string; url: string; fuente: string; estado: string }[];
   formulario: string | null; faltantes: string[]; validacion_humana: boolean;
+  consultas?: string[];
 };
 export type CatalogoSitio = {
   version: number; estado: string; sitio: { url: string; titulo?: string; crawleado_en: string };

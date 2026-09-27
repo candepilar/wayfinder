@@ -21,6 +21,7 @@ export function guiaDeCatalogo(catalogo, mapaId) {
         texto: d.texto || 'Abrir acceso', url: d.url, sitio: new URL(d.url).hostname, desde: f.fuente,
       }));
       return { id: `${mapaId}:${f.id}`, nombre: f.nombre, ficha: f.fuente, fuente: f.fuente,
+        consultas: (f.consultas || []).filter(c => typeof c === 'string' && c.length <= 80).slice(0, 6),
         antes: textos(f.requisitos), antesTitulo: 'Requisitos publicados', costos: textos(f.costo),
         pasos: [
           { titulo: 'Consultá la información del sitio', detalle: 'Revisá las condiciones que correspondan a tu caso.', url: f.fuente },

@@ -67,6 +67,13 @@ Remove-Item Env:BOB_LOTE, Env:BOB_PARALELO; node --env-file-if-exists=.env src/c
   `catalogo.bob.tareas` registra task_id, costo, duración y fichas de cada lote;
   `duracion_ms` es el tiempo total de Bob. Cada tarea respeta `BOB_MAX_COST`, así que
   el techo de costo de un recorrido es tareas × `BOB_MAX_COST`.
+- **Consultas cotidianas (27/09):** en la misma tarea, Bob anota para cada ficha hasta 6
+  frases con las que una persona común la pediría («encontré un perro abandonado» →
+  Sanidad Animal). Son **solo claves de búsqueda**: no se muestran como información del
+  sitio y se descartan las que traen enlaces, correos, números largos o más de 80
+  caracteres. La búsqueda del visor, la de la extensión y el ranking del asistente las
+  usan, así que las consultas comunes se resuelven al instante y sin llamar a Bob por
+  pregunta. Catálogos generados antes no las tienen: hay que volver a recorrerlos.
 - Una ficha por página. No se combinan automáticamente requisitos de páginas distintas.
   Encabezados/párrafos de contexto se preservan; categorías complejas requieren revisión.
 - Un catálogo vacío no significa que el sitio no tenga gestiones. Si Bob falla, quedan

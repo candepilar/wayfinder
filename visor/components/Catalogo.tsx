@@ -13,7 +13,7 @@ export default function Catalogo({ mapa, onVolver, onMapa }: { mapa: WebMap; onV
   const [selected, setSelected] = useState<Ficha | null>(null);
   const results = useMemo(() => {
     const terms = fold(query).split(/\s+/).filter(Boolean);
-    return catalog.fichas.filter(f => terms.every(t => fold([f.nombre, ...f.requisitos.map(b => b.texto), ...f.pasos.map(b => b.texto)].join(' ')).includes(t)));
+    return catalog.fichas.filter(f => terms.every(t => fold([f.nombre, ...(f.consultas || []), ...f.requisitos.map(b => b.texto), ...f.pasos.map(b => b.texto)].join(' ')).includes(t)));
   }, [catalog, query]);
   function descargar() {
     const url = URL.createObjectURL(new Blob([JSON.stringify(catalog, null, 2)], { type: 'application/json' }));

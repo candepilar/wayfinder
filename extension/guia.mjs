@@ -67,8 +67,10 @@ export function buscar(sitio, consulta, limite = 6) {
   return sitio.tramites
     .map(t => {
       const nombre = normalizar(t.nombre);
+      // consultas: cómo lo pediría un vecino (las anota Bob al armar el catálogo).
+      const consultas = normalizar((t.consultas || []).join(' '));
       const resto = normalizar([...t.antes, ...t.costos].join(' '));
-      const puntos = palabras.reduce((s, p) => s + (nombre.includes(p) ? 3 : 0) + (resto.includes(p) ? 1 : 0), 0);
+      const puntos = palabras.reduce((s, p) => s + (nombre.includes(p) ? 3 : 0) + (consultas.includes(p) ? 2 : 0) + (resto.includes(p) ? 1 : 0), 0);
       return { t, puntos };
     })
     .filter(x => x.puntos > 0)
