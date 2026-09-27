@@ -1,0 +1,17 @@
+{
+  "status": "prepared_not_executed",
+  "candidate_weights_sha256": "3d8f443ab23c0957e2e1362bdf13bc188367b516bc4c6b77d54d15941ce56c44",
+  "files_sha256": {
+    "casos.jsonl": "700d64ff49c08b26a0cbb5678d9e91606daebf1581f1576cdb5693008c40c56c",
+    "comparar_encoder.py": "22b5f39109f0b3bb6b9429ec65357fed4c99e355fc45dc915afc5ae9f9a1e5ad",
+    "corpus.jsonl": "4582a7f9c3248efc60698e593463013c8bc310b6a231ab0e06c98e23e8671b95",
+    "entrenar.py": "2d9fb6c7cdec74ad6b7ac547906bd0f9d06e10535b20a8f1dc63274ace91fe67",
+    "requirements-gpu.txt": "b7f60e7bdc1dbe8e9d0ed34361eac164829bbb551a77684092eda3e280576afe"
+  },
+  "timeout_seconds": 600,
+  "automatic_training": false,
+  "requires_gpu": true,
+  "package": "datos\\comparacion-v2.zip",
+  "bytes": 2061790,
+  "sha256": "f06c83a24c070cc845c573d0756276c466cdbf885f38a019423c145bbf8ce85d"
+}

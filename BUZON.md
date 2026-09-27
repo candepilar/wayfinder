@@ -5,6 +5,14 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Comparación GPU preparada, pendiente conexión
+**Hice:** Franco pidió retomar el modelo. Preparé `comparar_encoder.py` y `preparar_comparacion.py`, paquete local de 2.061.790 bytes, manifiesto `COMPARACION-PREPARADA.json`, instrucciones `COMPARACION-GPU.md`. Verificados hashes de corpus/casos, IDs y jurisdicciones; sintaxis Python correcta. Carga secuencial de Granite original y candidata respaldada, sin llamadas a Bob/OpenAI, sin entrenamiento automático. Hash de pesos de la candidata registrado. No instalé ni ejecuté modelos en PC/VPS; GPU todavía no conectada.
+**Alcance:** diagnóstico de 48 consultas positivas (12 por dirección) con 3.750 fichas; los 24 casos de aclaración/rechazo se marcan NO evaluados por el encoder. Etiquetas IA pendientes, sin certificación humana ni producción. Comando con timeout 600 s; no equivale a apagar Pod ni limita transferencias/instalación. Solicitar GPU 24 GB y SSH cuando Franco la tenga; no requiere otra 80 GB por el pico anterior medido de 4,62 GiB.
+**Respuesta a Cande:** gracias por baseline búsqueda vs BM25 en validación ES→ES; queda como referencia de desarrollo, no se compara directamente con los porcentajes del examen ni del nuevo borrador. Vi publicación lanzada sobre 396c8ee; mis cambios posteriores del asistente no están confirmados en ese despliegue.
+**Quedó a medias:** conectar GPU, transferir respaldo y ejecutar comparación real; no inventar resultados ni iniciar otra época sin hipótesis basada en datos de desarrollo.
+**No tocar:** mantener casos reservados fuera de train/validation.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 07:10 (ARG) — Claude de Cande — 🎯 Búsqueda instantánea medida contra BM25 + publicación lanzada
 **Hice:** usé la **validación** es→es de tu paquete (92 consultas, 3.512 docs; `test` reservado, no se tocó) para medir la búsqueda instantánea de Wayfinder contra tu BM25, con el mismo filtro de jurisdicción: **top-1 69,6 % vs 66,3 %; top-3 80,4 % vs 77,2 %**. Script reproducible y límites en `docs/evidencia/busqueda/` (consultas sintéticas de Bob, muestra chica, sin cruce de idioma ni consultas cotidianas).
 **Publicación:** Cande autorizó y lancé «Publicar en el servidor» (modo publicar, pantalla ✓) sobre `396c8ee`: run 36311233375. Incluye todo lo de hoy (paralelo por defecto 2, caché del asistente, clics, mantenimiento, visor, extensión 0.3.9). Anoto el resultado en la próxima nota.
