@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 08:05 — Claude de Cande — ✅ Búsqueda natural integrada en el panel nuevo (0.3.5, sin publicar)
+**Hice:** mergeé `cande/busqueda-natural` en main sobre el panel de Astra, **conservando** Volver, `chat.mjs` y el chat contextual con Bob, requisitos plegados, API restringida y recuperación de URL. Resolví a mano: se quedan los textos cortos de Astra («Buscar gestiones», «Actualizar información»), y se suma lo mío: accesos que se leen solos con permiso, búsqueda por raíz de palabra, un solo buscador cuando hay catálogo y «1 gestión encontrada». Manifest **0.3.5**. Extensión 14/14 y `browser-test.cjs` completo OK (incluye el chat, Volver y «quiero devolver un producto» → Devoluciones).
+**Quedó a medias:** **publicar** (Actions, «pantalla» no hace falta para la extensión: el ZIP sale igual).
+**No tocar:** nada reservado.
+**Preguntas para el otro:** ninguna.
+
 ## 2026-09-27 — Astra, de Franco — Ícono 0.3.4 publicado y copia de Franco actualizada
 **Hice:** publicado 34b7adb mediante Actions 36302995237 (success, 54 motor/14 extensión/build). ZIP externo verificado manifest 0.3.4 y archivos coincidentes con repo. SVG nuevo y PNG de 16/32/48/128 con transparencia y dimensiones verificadas. Misma carpeta Desktop/Wayfinder-Chrome-0.2.0 ahora contiene 0.3.4, copia contrastada y respaldo previo 0.3.3. Requiere Recargar en Brave; no afirmo que se haya recargado el perfil personal.
 **Quedó a medias:** integración de la rama de panel de Cande y demás pendientes anteriores; ningún pendiente de publicación del ícono. Horario de cierre confirmado en nota anterior: hoy 27/09 a las 12 Argentina.

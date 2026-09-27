@@ -1,4 +1,4 @@
-import { buscar, objetivoEn, pasoActual, sitioDe, tramiteDe } from './guia.mjs';
+import { buscar, buscarEnlaces, objetivoEn, pasoActual, sitioDe, tramiteDe } from './guia.mjs';
 import { destination, publicPage, enteredPage, tabMessage } from './url.mjs';
 import { guiaDeCatalogo, motor } from './catalogo.mjs';
 import { accesosVisibles } from './pagina.mjs';
@@ -74,7 +74,7 @@ function vistaBuscar(sitio, tab) {
       ? encontrados.map(t => el('li', {}, el('button', { class: 'resultado', onclick: () => pestana.ir(t.ficha) }, t.nombre)))
       : [el('li', { class: 'vacio' }, 'No lo encontré entre los trámites recorridos. Probá con otras palabras.')]));
   };
-  input.addEventListener('input', pintar);
+  input.addEventListener('input', () => { pintar(); alConsultar?.(input.value); });
   pintar();
   let mapa = null;
   try { mapa = destination(tab.url); } catch { /* página no pública: sin enlace al mapa */ }
@@ -82,7 +82,7 @@ function vistaBuscar(sitio, tab) {
     el('h1', {}, '¿Qué necesitás hacer?'),
     el('div', { class: 'buscador' }, input),
     el('div', {}, el('h2', {}, 'Gestiones del catálogo'), lista),
-    sitio.dinamico && el('p', { class: 'vacio' }, sitio.tramites.length ? `${sitio.tramites.length} gestiones encontradas. Puede haber más en el sitio.` : 'Todavía no encontré gestiones. Probá buscar los accesos de esta página.'),
+    sitio.dinamico && el('p', { class: 'vacio' }, sitio.tramites.length ? `${sitio.tramites.length === 1 ? '1 gestión encontrada' : `${sitio.tramites.length} gestiones encontradas`}. Puede haber más en el sitio.` : 'Todavía no encontré gestiones. Probá buscar los accesos de esta página.'),
     mapa && el('a', { class: 'enlace', href: mapa, target: '_blank', rel: 'noopener' }, 'Abrir catálogo y mapa en Wayfinder'),
   ];
 }
@@ -205,7 +205,8 @@ async function pintar() {
   if (publica) {
     let mismaPagina = false;
     try { mismaPagina = publicPage(tab.url) === publica; } catch {}
-    vista.push(herramientas(tab, publica, sitio?.dinamico, mismaPagina));
+    const caja = herramientas(tab, publica, sitio?.dinamico, mismaPagina, !sitio || !!encontrado);
+    vista.push(encontrado ? el('details', { class: 'bloque' }, el('summary', {}, 'Buscar otra cosa en esta página'), caja) : caja);
   }
   if (estaRevision !== revision) return;
   cerrarChat();
@@ -220,37 +221,50 @@ async function pintar() {
   }
 }
 
-function herramientas(tab, publica, actualizar = false, mismaPagina = true) {
+let alConsultar = null;
+function herramientas(tab, publica, actualizar = false, mismaPagina = true, buscadorPropio = true) {
   const caja = el('section', { class: 'bloque' });
   const estado = el('p', { class: 'vacio', id: 'motor-estado', role: 'status' });
-  const visibles = el('div', {});
-  const leer = el('button', { class: 'boton ancho', onclick: async () => {
+  const visibles = el('div', { class: 'visibles' });
+  let enlaces = null;
+  const lista = el('ul', { class: 'lista' });
+  const input = el('input', { type: 'search', placeholder: 'Ej.: quiero devolver un producto', 'aria-label': 'Qué necesitás hacer en esta página' });
+  const mostrar = () => {
+    if (!enlaces) return;
+    const items = buscarEnlaces(enlaces, input.value);
+    lista.replaceChildren(...items.map(o => el('li', {}, el('div', { class: 'acceso' },
+      el('button', { class: 'resultado', onclick: () => pestana.ir(o.url) }, o.texto, el('small', {}, ` · ${o.sitio}`)),
+      el('button', { class: 'enlace marcar', title: 'Marcarlo en la página', onclick: async e => {
+        const r = await pestana.resaltar(tab.id, [o]);
+        e.target.textContent = r?.marcados ? 'Marcado ✓' : 'Ya no está; tocá «Volver a leer»';
+      } }, 'Mostrar dónde está')))));
+    if (!items.length) lista.append(el('li', { class: 'vacio' }, 'No encontré un acceso con esas palabras. Probá con otras, o abrí un menú del sitio y tocá «Volver a leer».'));
+  };
+  input.addEventListener('input', mostrar);
+  // Con catálogo, se escribe una sola vez arriba y acá se ven los enlaces de la página.
+  alConsultar = buscadorPropio ? null : valor => { input.value = valor; mostrar(); };
+  const leer = el('button', { class: 'enlace', onclick: () => cargar(true) }, 'Volver a leer la página');
+  // Se leen solos al abrir el panel si ya hay permiso sobre la pestaña; si no,
+  // se explica cómo darlo sin mostrar un error.
+  async function cargar(manual = false) {
     leer.disabled = true;
     try {
       if (!enExtension) throw Error('Esta función necesita la extensión instalada.');
       const actual = await pestana.actual();
-      if (actual.id !== tab.id || actual.url !== tab.url) throw Error('Cambió la página. Volvé a abrir la guía.');
+      if (actual.id !== tab.id || actual.url !== tab.url) throw Error('Cambió la página.');
       const [resultado] = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: accesosVisibles });
-      const enlaces = resultado?.result?.enlaces || [];
-      const lista = el('ul', { class: 'lista' });
-      const input = el('input', { type: 'search', placeholder: 'Ej.: ayuda, envíos, sucursales', 'aria-label': 'Buscar acceso en la página' });
-      const mostrar = () => {
-        const consulta = input.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-        const items = enlaces.filter(e => e.texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(consulta)).slice(0, 20);
-        lista.replaceChildren(...items.map(o => el('li', {}, el('div', { class: 'opcion' },
-          el('button', { class: 'resultado', onclick: () => pestana.ir(o.url) }, o.texto, el('small', {}, ` · ${o.sitio}`)),
-          el('button', { class: 'enlace', onclick: async e => {
-            const r = await pestana.resaltar(tab.id, [o]);
-            e.target.textContent = r?.marcados ? 'Marcado en la página' : 'El enlace cambió; volvé a leer la página';
-          } }, 'Mostrar dónde está')))));
-        if (!items.length) lista.append(el('li', { class: 'vacio' }, 'No encontré ese acceso visible. Podés abrir un menú del sitio y volver a buscar.'));
-      };
-      input.addEventListener('input', mostrar); mostrar();
-      visibles.replaceChildren(el('p', { class: 'vacio' }, `${enlaces.length} accesos encontrados`), el('div', { class: 'buscador' }, input), lista);
+      enlaces = resultado?.result?.enlaces || [];
+      visibles.replaceChildren(...[buscadorPropio && el('div', { class: 'buscador' }, input)].filter(Boolean),
+        el('p', { class: 'fuente' }, `${enlaces.length} accesos visibles en esta página. `, leer), lista);
+      mostrar();
+      if (manual) input.focus();
     } catch (error) {
-      visibles.replaceChildren(el('p', { class: 'vacio' }, `${error.message} Tocá el ícono de Wayfinder en la pestaña que querés usar y reintentá.`));
+      visibles.replaceChildren(el('p', { class: 'vacio' }, manual ? `${error.message} ` : '',
+        'Para buscar en esta página, tocá el ícono de Wayfinder en la barra del navegador.'),
+        el('button', { class: 'boton ancho', onclick: () => cargar(true) }, 'Buscar accesos de esta página'));
     } finally { leer.disabled = false; }
-  } }, 'Buscar accesos de esta página');
+  }
+  if (mismaPagina) cargar();
   const analizar = el('button', { class: 'boton secundario ancho', id: 'motor-iniciar', onclick: async () => {
     analizar.disabled = true;
     const estaRevision = revision;
@@ -263,11 +277,12 @@ function herramientas(tab, publica, actualizar = false, mismaPagina = true) {
       if (revision === estaRevision) seguir(job.id, publica, estaRevision);
     } catch (error) { if (revision === estaRevision) { estado.textContent = error.message; analizar.disabled = false; } }
   } }, actualizar ? 'Actualizar información' : 'Buscar gestiones');
-  caja.append(el('h2', {}, 'Explorar el sitio'), ...(mismaPagina ? [leer, visibles] : [
+  caja.append(el('h2', {}, buscadorPropio ? 'Buscar en esta página' : 'También en esta página'), ...(mismaPagina ? [visibles] : [
     el('p', { class: 'vacio' }, 'Abrí el sitio para señalar sus enlaces.'),
     el('button', { class: 'boton secundario ancho', onclick: async () => {
       elegida = null; await guardado.escribir('url-elegida', null); await pestana.ir(publica); await pintar();
     } }, 'Abrir sitio en esta pestaña')]),
+    el('h2', { class: 'separado' }, '¿No aparece?'),
     analizar, el('p', { class: 'fuente' }, 'Algunos sitios requieren iniciar sesión o no permiten leer toda su información.'), estado);
   return caja;
 }
