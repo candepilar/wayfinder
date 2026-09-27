@@ -1,4 +1,6 @@
-# Wayfinder para el navegador · 0.3.3
+# Wayfinder para el navegador · 0.3.4
+
+Ícono 0.3.4: flecha de orientación azul; fuente vectorial `icon.svg` y PNG de 16/32/48/128 px.
 
 Panel lateral para Chrome, Brave y Edge 116+. Mantiene las guías de Rosario/VGG,
 y permite trabajar con otras páginas públicas sin una lista fija de municipios.

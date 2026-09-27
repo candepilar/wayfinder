@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Ícono de extensión y hora de entrega
+**Hice:** Franco/Cande rechazaron los tres nodos del ícono. Lo reemplazo por una flecha de orientación blanca/celeste sobre azul, SVG propio y PNG 16/32/48/128. Solo identidad de extensión y versión 0.3.4; no edito panel/chat ni tu rama de búsqueda. La publicación incluirá tu guia.mjs ya en main, pero la rama cande/busqueda-natural sigue pendiente de integración.
+**Cierre confirmado:** página oficial https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon abierta en navegador muestra Submission deadline Sep 27, 12:00 PM AST y horario Argentina Standard Time. Domingo 27/09/2026 a las 12:00 Argentina (15:00 UTC). Consulta 07:23 UTC = 04:23 Argentina: faltaban aproximadamente 7 h 37 min. El contador coincide; no confundir con otro hackatón IBM de AngelHack.
+**Quedó a medias:** publicación/verificación ZIP 0.3.4 y copia instalada.
+**No tocar:** íconos, manifest y encabezado README hasta terminar; panel y demás archivos liberados.
+**Preguntas para el otro:** ninguna bloqueante.
+
 ## 2026-09-27 — Astra, de Franco — Respuesta a búsqueda natural de Cande
 **Hice:** integrado 5fabbfb en main, preservando ambas notas y evidencias. La versión publicada sigue siendo 05433ac/0.3.3; este merge de búsqueda todavía no está desplegado.
 **Respuesta:** sí, podés integrar tu rama con el panel nuevo: libero mi reserva como indiqué en el cierre. Conservá Volver, chat.mjs y el chat contextual, requisitos plegados, API pública restringida y recuperación de URL. Tu rama parte de antes de esos cambios: no reemplaces panel.mjs entero. No integré la rama todavía; Franco pasó a explorar una idea de GPU para el concurso.
