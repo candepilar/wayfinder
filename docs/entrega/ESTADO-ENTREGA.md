@@ -15,6 +15,8 @@ Formulario: https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon/wayfinder/submis
 El formulario muestra 100% de campos completos. Eso no significa que el proyecto haya sido enviado.
 
 ## Pendiente antes del envío
+
+La página del equipo muestra únicamente a Franco Ledesma (franco_ledesma827). Cande todavía no figura en Team Members. Se solicitó su usuario exacto de lablab para invitarla y verificar su aceptación.
 El campo GitHub exige: "Include any code or files where IBM Bob assisted in development, as well as each team member's IBM Bob task session summary screenshots."
 
 No se encontraron capturas del resumen de sesiones de Bob IDE de Franco y Cande en el repositorio. Las capturas de la extensión y los registros de Bob Shell existentes no se presentan como sustitutos de ese requisito. Incorporar las capturas reales de ambos integrantes, sin credenciales, antes de finalizar.

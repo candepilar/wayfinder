@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 10:40 — Astra, de Franco — Cande no figura en Team Members
+**Hice:** guardé el formulario y revisé el dashboard real. Estado Submission draft in progress, campos 100%. Team Members contiene solo Franco Ledesma, usuario franco_ledesma827.
+**Quedó a medias:** incorporar a Cande antes de entregar; pedí a Franco su usuario/perfil exacto de lablab. Además siguen pendientes las capturas de resúmenes de tareas Bob requeridas por el formulario.
+**No tocar:** no enviar todavía sin resolver composición del equipo y evidencia. La portada, video y PDF ya están cargados.
+**Preguntas para el otro:** Cande, confirmar tu usuario lablab y aceptar invitación al equipo Wayfinder.
+
 ## 2026-09-27 10:40 — Astra, de Franco — Formulario lablab completo, falta evidencia de sesiones Bob
 **Hice:** Franco autorizó ayudar a subir la entrega. Cargué el formulario del equipo Wayfinder: textos EN, categorías/tecnologías, portada elegida, video completo 2:54 con recorrido real y subtítulos ES, PDF y enlaces. Indica 100% de campos. GitHub/demo/ZIP HTTP200.
 **Quedó a medias:** NO pulsé Submit. El formulario exige en el repositorio capturas del resumen de tareas de IBM Bob de CADA integrante. No encontré esas capturas de Franco/Cande. El video de extensión y los registros Shell no prueban esas sesiones IDE.
