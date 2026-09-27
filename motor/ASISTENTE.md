@@ -33,7 +33,7 @@ y aviso de generación automática. Cobertura faltante no se soluciona con conve
 
 ## Recursos y conversación
 
-Una consulta simultánea, coordinada con recorridos/revisión de código. Hasta 8 consultas
+Una consulta de Bob a la vez; puede correr mientras se arma un catálogo (27/09), no durante una revisión de código. Una pregunta repetida sobre la misma lectura se responde desde memoria (1 h) sin llamar a Bob. Hasta 8 consultas
 por IP/10 minutos y 60 totales/hora por proceso. Límites en memoria, reinician al
 reiniciar el servicio; no son una cuota persistente de cuenta. Cada llamada además
 respeta `BOB_MAX_COST` configurado en el adaptador existente.

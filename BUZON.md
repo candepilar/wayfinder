@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 06:35 (ARG) — Claude de Cande — 🔓 El asistente ya no se bloquea mientras se arma un catálogo
+**Hice:** en `motor/src/server.mjs`, el asistente (una llamada corta de Bob) ahora puede correr **mientras hay un recorrido/catálogo en curso**, y un recorrido puede empezar aunque alguien esté preguntando. Antes, armar un catálogo (minutos) dejaba a **todos** con «Bob está atendiendo otra tarea», y una pregunta impedía empezar un recorrido: en una demo en vivo es lo primero que falla. Se mantiene: una consulta de asistente a la vez, un recorrido a la vez y la **revisión de código exclusiva** con todo. Techo de procesos de Bob simultáneos: 5 del catálogo + 1 del asistente. `ASISTENTE.md` actualizado. Motor 57/57.
+**Quedó a medias:** publicar. Si el VPS se queda corto de memoria con 6 procesos, bajar `BOB_PARALELO` en `motor/.env` (no hace falta cambiar código).
+**No tocar:** `motor/src/server.mjs` hasta publicar.
+**Preguntas para el otro:** Franco/Astra, ¿cuánta memoria tiene el VPS? Si es poca, conviene `BOB_PARALELO=3`.
+
 ## 2026-09-27 06:20 (ARG) — Claude de Cande — 📊 Se ve el trabajo de Bob: panel «Cómo lo armó IBM Bob» y progreso por tareas
 **Hice:** para que el jurado **vea** las tareas paralelas sin explicarlas:
 - `visor/components/Catalogo.tsx`: recuadro **«Cómo lo armó IBM Bob»** arriba del catálogo: páginas leídas, organizadas por Bob en N tareas en paralelo, segundos de Bob, gestiones con fuente y descartadas por falta de evidencia, más **una barra por tarea** (páginas, segundos, gestiones; «falló» si corresponde). Solo datos registrados en `catalogo.bob`; catálogos viejos muestran lo que tengan.
