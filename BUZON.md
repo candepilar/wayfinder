@@ -5,6 +5,13 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Materiales de entrega para revisión
+**Hice:** preparé docs/entrega con PowerPoint editable, PDF de ocho diapositivas, video narrado en inglés con capturas reales, guion y borrador del formulario. Se distinguen métricas sintéticas, Bob real y Granite experimental no desplegado. El video es una presentación narrada, no una sesión continua del IDE. No inventé evidencia del IDE.
+**Demo:** el ajuste del resumen sin cita fue publicado por workflow 36316068153 (success). Consulta real de licencia VGG comprobada, task 87de54a455018f8cd803324978e2c9d3; evidencia en bob-live-vgg.json. MCP comprobado contra API pública.
+**Quedó a medias:** revisión de Franco/Cande y autorización expresa para entregar. NO enviado a IBM/lablab; no completar ni enviar formulario sin autorización de Franco. GitHub y coordinación interna sí autorizados.
+**No tocar:** conservar respaldos de entrenamiento; este paquete no despliega Granite.
+**Preguntas para el otro:** si existe grabación real de Bob IDE, dejar ruta para incorporarla. Avisar a Cande que el paquete está disponible para revisión.
+
 ## 2026-09-27 — Astra, de Franco — Publicación destrabada y ajuste de respuesta Bob
 **Hice:** run36315386853 terminó success; release gh-20260927T112053Z activa. Portada nueva visible y ZIP público extensión0.4.1 verificado (54.574bytes; SHA256 6e2fe89521e28cb00951e8c037eab68a157faeee9d737ec2391bbfcd0d42a141). 88 tests locales pasaron antes. Repo público confirmado; GitHub redirige ahora a candepilar/wayfinder.
 **Hallazgo real:** consulta VGG licencia devuelve cifra sin cita; Bob sí respondió (task aafb134bde109852489961b28f1f39d0), pero validador bloqueó resumen. Arreglo: guardia estricta intacta, solo ante cifra sin cita se omite resumen y sugerencias del modelo y se revalidan fichas/evidencias/enlaces con mensaje determinista. IDs inválidos siguen fallando. 11 pruebas del asistente pasan, incluida regresión. Publicaré este ajuste del motor por el flujo existente.

@@ -1,0 +1,61 @@
+[
+  {
+    "title": "Wayfinder",
+    "lead": "Clear paths to public services",
+    "body": "A browser guide for citizens.\nA catalog maintenance workflow built with IBM Bob.",
+    "foot": "Candela + Franco Ledesma   /   IBM Bob 2.0 Hackathon",
+    "narration": "This is Wayfinder, built by Candela and Franco. A citizen wants to complete a procedure, not understand how a government website is organized. At the same time, the team maintaining that website has to keep requirements, entry points and guidance accurate. We connect those needs: a browser guide for citizens, backed by a catalog maintenance workflow that uses IBM Bob."
+  },
+  {
+    "title": "The maintenance problem",
+    "lead": "The citizen searches.\nThe team repeats the work.",
+    "body": "Requirements and entry points are scattered across pages.\n\nTeams must collect evidence, check changes and repair navigation.",
+    "image": "portada-live.png",
+    "foot": "Current public prototype. Coverage is limited to the pages read.",
+    "narration": "The problem begins with scattered information. Requirements live on one page, the application link on another, and menus reflect the institution rather than the person asking for help. Maintaining a useful guide becomes repetitive work. Wayfinder reads a bounded set of public pages and organizes the evidence into records the citizen and the development team can both use."
+  },
+  {
+    "title": "A citizen’s next step",
+    "lead": "Ask in everyday language.\nKeep the official source.",
+    "body": "Find a procedure and inspect its evidence.\n\nOpen the official entry point, or the source page when no direct link was identified.",
+    "image": "bob-live.png",
+    "foot": "Live VGG web demo. The citizen completes the procedure on the official site.",
+    "narration": "Here is a real query from our public demonstration: I need to renew my driving licence. Where do I start? Bob selects an existing procedure record. The interface presents the source and the supporting text. If we did not identify a direct application link, it says so. The extension adds guidance over the open website, including link highlighting, a checklist and the ability to continue a previous journey."
+  },
+  {
+    "title": "The site team’s workflow",
+    "lead": "A catalog that can be audited and maintained",
+    "body": "Read public pages and retain source blocks.\n\nOrganize records with bounded Bob tasks.\n\nReview the records, compare changes and export an A–Z index.",
+    "foot": "Custom IDE modes and skills are included. The MCP service exposes six read-only tools.",
+    "narration": "For the site team, the workflow starts with public page evidence. The motor divides that evidence into bounded Bob tasks, which can run concurrently. A second Bob pass reviews selected records against their sources. Successive readings can reveal changed requirements and missing entry points. The team can export an accessible procedures index and structured data, turning the audit into something concrete it can publish."
+  },
+  {
+    "title": "What IBM Bob actually does",
+    "lead": "Runtime work, with inspectable evidence",
+    "body": "Bob Shell organizes catalogs and guides queries.\n\nServer validation checks block IDs, links and cited numbers.\n\nIDE assets provide coordinator, cartographer and reviewer modes.",
+    "foot": "Live assistant task: 87de54a455018f8cd803324978e2c9d3. MCP protocol checked against the public API.",
+    "narration": "Bob is part of the running product. It organizes catalogs and selects existing records for conversational guidance. The server validates identifiers and keeps links under application control. In one real test, Bob included an uncited number. We kept the citation guard and removed the unsupported summary while preserving valid evidence. The repository also includes coordinator, cartographer and reviewer modes, skills and six MCP tools. Configuration files are not presented as proof of an unrecorded IDE session."
+  },
+  {
+    "title": "Measured results",
+    "lead": "Instant search, without a model call",
+    "body": "69.6% top-1 for Wayfinder\n66.3% for BM25\n\nSame 92 Spanish validation queries and jurisdiction filter.",
+    "chart": true,
+    "foot": "Synthetic queries, 3,512 documents. Controlled fixture: first results 3.4 s, full catalog 10.4 s with simulated Bob.",
+    "narration": "We measured instant search on the same ninety-two synthetic Spanish validation questions and thirty-five hundred and twelve documents. Wayfinder reached sixty-nine point six percent top-one, compared with sixty-six point three for BM25. In a separate controlled sixteen-procedure fixture, initial results appeared at three point four seconds and the full reviewed catalog at ten point four seconds. That timing uses simulated Bob. These are development measurements, not population-wide accuracy or proven human labor savings."
+  },
+  {
+    "title": "Granite research",
+    "lead": "A separate retrieval experiment",
+    "body": "3,750 public procedure records.\nEnglish and Spanish training examples.\n\nWe kept the previous candidate when further training failed to improve validation.",
+    "foot": "Not deployed. Latest contrast experiment: 270/343 to 268/343 on the same synthetic validation set.",
+    "narration": "We also explored a small multilingual IBM Granite retrieval model using thirty-seven hundred and fifty public procedure records and English and Spanish examples. It remains separate from production. Later training did not improve our validation results, so we preserved the previous candidate rather than claiming a breakthrough. The live product continues to use instant search and Bob. Independent citizen queries and a deployment benchmark are the next gates for that research."
+  },
+  {
+    "title": "A working prototype to try",
+    "lead": "Less searching for citizens.\nA clearer maintenance task for teams.",
+    "body": "Live demo\nandromedaweb.store/wayfinder/\n\nSource and reproducible evidence\ngithub.com/candepilar/wayfinder",
+    "foot": "Public HTML only. Partial coverage is explicit. No form submission. No guarantee of current requirements.",
+    "narration": "The prototype is online and the repository is public. You can try the web demonstration or install the extension in developer mode. Our next step is to test complete citizen journeys and measure maintenance work with real site teams. Wayfinder guides people to official services, and gives the team responsible for those services a way to inspect and maintain the information. Thank you."
+  }
+]
