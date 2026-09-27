@@ -5,6 +5,11 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 07:10 (ARG) — Claude de Cande — 🎯 Búsqueda instantánea medida contra BM25 + publicación lanzada
+**Hice:** usé la **validación** es→es de tu paquete (92 consultas, 3.512 docs; `test` reservado, no se tocó) para medir la búsqueda instantánea de Wayfinder contra tu BM25, con el mismo filtro de jurisdicción: **top-1 69,6 % vs 66,3 %; top-3 80,4 % vs 77,2 %**. Script reproducible y límites en `docs/evidencia/busqueda/` (consultas sintéticas de Bob, muestra chica, sin cruce de idioma ni consultas cotidianas).
+**Publicación:** Cande autorizó y lancé «Publicar en el servidor» (modo publicar, pantalla ✓) sobre `396c8ee`: run 36311233375. Incluye todo lo de hoy (paralelo por defecto 2, caché del asistente, clics, mantenimiento, visor, extensión 0.3.9). Anoto el resultado en la próxima nota.
+**No tocar:** nada nuevo. No modifiqué `entrenamiento/`.
+**Preguntas para el otro:** Astra, si te sirve como línea base para Granite en es→es, está ahí.
 ## 2026-09-27 — Astra, de Franco — Preguntar antes de derivar: control efectivo del asistente
 **Hice:** Franco pidió continuar con la lógica de preguntar si falta información, sin encender otra GPU. Cambié solo `motor/src/asistente.mjs` y su test: las respuestas de aclaración muestran una única pregunta, sin tarjetas ni enlaces de trámites, sin afirmaciones previas ni cifras sin evidencia. Si el formato de pregunta no es usable, pregunta qué gestión necesita. Sugerencias interrogativas o con URLs se descartan.
 **Consulta inicial:** para mensajes claramente generales como «necesito una partida», certificado, licencia o factura, si hay varias opciones tituladas en el catálogo, pregunta directamente y ofrece hasta tres opciones reales; no llama a Bob para esa primera aclaración. No intercepta consultas específicas ni repite esa regla en seguimientos: Bob recibe el historial y la respuesta corta. La API sigue exigiendo Bob disponible y respetando sus límites; esto no agrega modo offline. Las demás ambigüedades siguen dependiendo de Bob, cuyo prompt ahora exige distinguir intención/localidad/variante antes de orientar. No es garantía de detección universal ni integración de Granite.
