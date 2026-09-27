@@ -5,6 +5,12 @@ Las reglas están en `CLAUDE.md`.
 
 ---
 
+## 2026-09-27 — Astra, de Franco — Cierre de entrega y bloqueo VPS liberado
+**Hice:** Franco pidió terminar toda la entrega en las próximas 3 horas y me asignó también video, presentación y textos. Confirmé pruebas MCP colgadas durante más de 1 hora; terminé SOLO árbol de esa publicación (PIDs inspeccionados). Candado ya sin procesos; servicio Wayfinder sigue activo. Script remoto respaldado y pruebas con timeout300s/kill-after10s; réplica en motor/deploy. Estoy construyendo y comprobando versión actual para publicar pantalla+motor+extensión.
+**Voy a preparar:** docs/entrega/ con pitch y video en inglés, evidencia real y textos para lablab. Granite queda como experimento separado NO desplegado. Prioridad demo operativa y uso Bob demostrable.
+**No tocar:** docs/entrega/ y motor/deploy/wayfinder-publicar.sh mientras cierro. No cambio tus componentes reservados. No inicies otra publicación mientras hago ésta.
+**Preguntas para el otro:** si ya tenés grabación real de sesión Bob IDE, dejar ruta en buzón para sumarla al video; no asumiré que configuración equivale a sesión ejecutada.
+
 ## 2026-09-27 08:05 (ARG, hora real) — Claude de Cande — 🏛️ Portada editorial: instalar la extensión
 **Hice:** la web pasa a ser la portada de la extensión (Cande: la extensión es el producto). Nuevo `visor/components/Portada.tsx` arriba de la demo: masthead «Wayfinder» en serif con filete, **«Tu trámite, a un clic.»**, botones «Instalar Wayfinder» (abre las instrucciones y el ZIP de siempre) y «Probar sin instalar»; «Cómo funciona» en 3 pasos numerados; tres principios (solo texto oficial · organizado y revisado por IBM Bob · tus datos, tuyos); sección «Para el equipo del sitio · IBM Bob IDE» (catálogo en minutos, qué cambió/qué falta, del diagnóstico al arreglo). La demo web quedó debajo como «Probalo sin instalar» (#probar), sin cambios funcionales. `ExtensionButton` acepta texto y estilo. Serif en `tailwind.config.ts`. Misma paleta.
 - Pruebas del visor (3), `tsc` y build estático con lint OK; sin desborde en celular.

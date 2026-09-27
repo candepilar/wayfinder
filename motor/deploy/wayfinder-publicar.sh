@@ -46,7 +46,7 @@ chown -R root:wayfinder "$NEW"
 chmod -R u=rwX,g=rX,o=rX "$NEW"
 
 echo "Corriendo pruebas..."
-if ! (cd "$NEW/motor" && npm test > "$WORK/tests.txt" 2>&1); then tail -30 "$WORK/tests.txt"; echo "FALLARON LAS PRUEBAS: no se publica."; rm -rf "$NEW"; exit 1; fi
+if ! (cd "$NEW/motor" && timeout --kill-after=10s 300s npm test > "$WORK/tests.txt" 2>&1); then tail -30 "$WORK/tests.txt"; echo "FALLARON LAS PRUEBAS: no se publica."; rm -rf "$NEW"; exit 1; fi
 grep -E '^ℹ (tests|pass|fail)' "$WORK/tests.txt"
 
 if [[ "$MODO" == "probar" ]]; then echo "PRUEBA OK: la versión se armó y pasó las pruebas. No se activó."; rm -rf "$NEW"; exit 0; fi
