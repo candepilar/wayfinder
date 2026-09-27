@@ -118,12 +118,12 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
           <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-linea bg-superficie shadow-panel">
             <IconoMapa />
           </div>
-          <h1 className="text-[28px] font-semibold leading-tight tracking-tight text-tinta">
-            Entendé un sitio entero
+          <h1 className="text-[32px] font-semibold leading-tight tracking-tight text-tinta">
+            Tu trámite, a un clic
           </h1>
-          <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-tinta-media">
-            Dale una dirección y te devolvemos el mapa de todo lo que hay adentro:
-            secciones, páginas, formularios y cómo se llega a cada cosa.
+          <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-tinta-media">
+            Pegá la dirección de un sitio público. IBM Bob ordena sus gestiones y te
+            lleva directo a la que necesitás, con requisitos y acceso oficial.
           </p>
         </div>
 
@@ -152,7 +152,7 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
           </div>
         </form>
 
-        <p className="mt-3 px-1 text-xs leading-relaxed text-tinta-suave">Si todavía no hay un catálogo, recorremos hasta {maxPaginas} páginas públicas y organizamos sus gestiones con IBM Bob. Puede tardar unos minutos; la cobertura puede ser parcial.</p>
+        <p className="mt-3 px-1 text-center text-xs leading-relaxed text-tinta-suave">La primera vez leemos hasta {maxPaginas} páginas públicas; puede tardar unos minutos.</p>
         {job && <section role="status" aria-live="polite" className="mt-4 rounded-xl border border-linea bg-superficie p-4">
           <div className="flex items-center justify-between gap-3"><p className="text-sm font-medium text-tinta">{buscando ? 'Recorrido en curso' : 'Seguimiento interrumpido'} · {leidas} páginas leídas</p><button type="button" disabled={cancelando} onClick={() => void cancelar()} className="text-xs text-tinta-media underline">{cancelando ? 'Cancelando…' : 'Cancelar'}</button></div>
           {bobProgreso && <div className="mt-3"><p className="text-xs font-medium text-acento">IBM Bob · {bobProgreso.hechas} de {bobProgreso.total} tareas en paralelo ({bobProgreso.paralelo} a la vez)</p><div className="mt-2 flex gap-1" aria-hidden="true">{Array.from({ length: bobProgreso.total }, (_, i) => <span key={i} className={`h-1.5 flex-1 rounded-full ${i < bobProgreso.hechas ? 'bg-acento' : 'bg-linea'}`} />)}</div></div>}
@@ -168,11 +168,9 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
           </p>
         )}
 
-        {onMunicipio && <section className="mt-10 rounded-xl border border-acento-borde bg-acento-suave p-5">
-          <p className="text-xs font-semibold uppercase tracking-wider text-tinta-suave">Nuevo · Orientación municipal</p>
-          <h2 className="mt-2 text-xl font-semibold text-tinta">Encontrá tu trámite y avanzá</h2>
-          <p className="mt-2 text-sm leading-relaxed text-tinta-media">Elegí tu municipio. Te orientamos con requisitos, pasos y acceso al sitio oficial.</p>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+        {onMunicipio && <section className="mt-10">
+          <h2 className="px-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-tinta-suave">O elegí tu municipio</h2>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
             <button onClick={() => onMunicipio('rosario')} className="rounded-lg border border-linea bg-superficie px-4 py-3 text-sm font-medium text-tinta hover:border-acento-borde">Rosario →</button>
             <button onClick={() => onMunicipio('vgg')} className="rounded-lg border border-linea bg-superficie px-4 py-3 text-sm font-medium text-tinta hover:border-acento-borde">Villa Gobernador Gálvez →</button>
           </div>
@@ -183,7 +181,7 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
         {mapas.length > 0 && (
         <section className="mt-12">
           <h2 className="mb-3 px-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-tinta-suave">
-            Mapas listos
+            Sitios listos
           </h2>
           <ul className="space-y-2">
             {mapas.map((mapa) => (
@@ -200,8 +198,7 @@ export default function Inicio({ onAbrir, onMunicipio }: { onAbrir: (mapa: WebMa
 }
 
 function Tarjeta({ mapa, onAbrir }: { mapa: WebMap; onAbrir: () => void }) {
-  const analizadas = mapa.paginas.filter((p) => p.resumen).length;
-  const formularios = mapa.paginas.reduce((n, p) => n + (p.formularios?.length ?? 0), 0);
+  const gestiones = mapa.catalogo?.fichas.length ?? 0;
 
   return (
     <button
@@ -216,15 +213,9 @@ function Tarjeta({ mapa, onAbrir }: { mapa: WebMap; onAbrir: () => void }) {
           {mapa.sitio.url.replace(/^https?:\/\//, "")}
         </p>
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-tinta-media">
-          <span>{mapa.paginas.length} páginas</span>
+          <span>{gestiones ? `${gestiones} ${gestiones === 1 ? 'gestión' : 'gestiones'}` : 'Sin gestiones organizadas'}</span>
           <span className="text-tinta-suave">·</span>
-          <span>{analizadas} analizadas</span>
-          {formularios > 0 && (
-            <>
-              <span className="text-tinta-suave">·</span>
-              <span>{formularios} formularios</span>
-            </>
-          )}
+          <span>{mapa.paginas.length} páginas leídas</span>
         </div>
       </div>
       <span className="shrink-0 text-tinta-suave transition-transform group-hover:translate-x-0.5 group-hover:text-tinta-media">

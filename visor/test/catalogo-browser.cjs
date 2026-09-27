@@ -17,6 +17,7 @@ const map={sitio:catalog.sitio,paginas:[{id:'f1',url:ficha.fuente,titulo:ficha.n
   await page.goto(process.argv[2]||'http://127.0.0.1:3001/');
   await page.getByLabel('Dirección del sitio').fill('library.example.org');await page.getByRole('button',{name:'Abrir',exact:true}).click();
   await page.getByRole('heading',{name:'Biblioteca',exact:true}).waitFor();
+  await page.getByText('Para el equipo del sitio: qué cambió y qué falta').click();
   const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Descargar catálogo JSON'}).click();
   const download=await downloadPromise;assert.deepEqual(JSON.parse(await fs.readFile(await download.path(),'utf8')),catalog);
   await page.getByLabel('¿Qué necesitás hacer?').fill('afiliacion');
@@ -25,7 +26,7 @@ const map={sitio:catalog.sitio,paginas:[{id:'f1',url:ficha.fuente,titulo:ficha.n
   await page.getByRole('checkbox').check();assert.equal(await page.getByRole('checkbox').isChecked(),true);
   assert.equal(await page.getByRole('link',{name:'Solicitar afiliación ↗'}).getAttribute('href'),ficha.formulario);
   assert.equal(await page.getByRole('link',{name:'Solicitar afiliación ↗'}).getAttribute('target'),'_blank');
-  assert.equal(await page.getByText('No identificado en la información leída. Consultá la fuente.',{exact:true}).count(),2);
+  assert.equal(await page.getByText('No identificado en la información leída: costo, dónde se hace. Consultá la página oficial.',{exact:true}).count(),1);
   await page.getByRole('button',{name:'← Volver a las gestiones'}).click();
   await page.getByLabel('¿Qué necesitás hacer?').fill('inexistente');
   await page.getByText('No encontramos coincidencias en este catálogo',{exact:true}).waitFor();

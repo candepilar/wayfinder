@@ -9,7 +9,7 @@ type Turn = { pregunta: string; respuesta: Answer };
 type Site = { id: string; nombre: string; url: string };
 const button = 'rounded-lg border border-linea bg-superficie px-3 py-2 text-sm text-tinta hover:border-acento-borde disabled:opacity-50';
 
-export default function Asistente({ contexto, nombre, onFicha, buscarLocal }: { contexto?: string; nombre?: string; onFicha?: (id: string) => void; buscarLocal?: (consulta: string) => { id: string; nombre: string }[] }) {
+export default function Asistente({ contexto, nombre, onFicha, buscarLocal, titulo = 'Contame qué necesitás hacer.' }: { contexto?: string; nombre?: string; onFicha?: (id: string) => void; buscarLocal?: (consulta: string) => { id: string; nombre: string }[]; titulo?: string }) {
   const id = useId();
   const [sites, setSites] = useState<Site[]>([]);
   const [selected, setSelected] = useState(contexto || '');
@@ -65,9 +65,9 @@ export default function Asistente({ contexto, nombre, onFicha, buscarLocal }: { 
   // Mientras Bob piensa (10–15 s), lo que ya coincide en el catálogo local.
   const mientras = pending && buscarLocal ? (() => { try { return buscarLocal(pending).slice(0, 3); } catch { return []; } })() : [];
   const suggestions = turns.length ? turns.at(-1)!.respuesta.sugerencias : ['¿Qué puedo hacer en este sitio?', 'Necesito encontrar una gestión'];
-  return <section aria-label="Asistente Bob" className="mt-7 overflow-hidden rounded-2xl border border-acento-borde bg-superficie shadow-panel">
-    <div className="flex flex-wrap items-start justify-between gap-3 bg-acento-suave p-5">
-      <div className="flex min-w-0 flex-1 basis-64 items-start gap-3"><span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-acento-borde text-lg text-acento">✳</span><div><p className="text-xs font-medium uppercase tracking-wider text-tinta-media">Bob · guía con IA</p><h2 className="mt-1 text-lg font-semibold text-tinta">Contame qué necesitás hacer.</h2><p className="mt-2 text-sm leading-relaxed text-tinta-media">Conversá, encontrá tu gestión y abrí el acceso desde acá.</p></div></div>
+  return <section aria-label="Asistente Bob" className="mt-7 overflow-hidden rounded-2xl border border-linea bg-superficie shadow-panel">
+    <div className="flex flex-wrap items-start justify-between gap-3 border-b border-linea p-5">
+      <div className="flex min-w-0 flex-1 basis-64 items-start gap-3"><span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-acento-borde text-lg text-acento">✳</span><div><p className="text-xs font-medium uppercase tracking-wider text-tinta-media">Bob · guía con IA</p><h2 className="mt-1 text-lg font-semibold text-tinta">{titulo}</h2><p className="mt-2 text-sm leading-relaxed text-tinta-media">Conversá, encontrá tu gestión y abrí el acceso desde acá.</p></div></div>
       {turns.length > 0 && <button className="shrink-0 text-xs text-tinta-media underline" onClick={() => reset()}>Empezar de nuevo</button>}
     </div>
     <div className="p-5">
