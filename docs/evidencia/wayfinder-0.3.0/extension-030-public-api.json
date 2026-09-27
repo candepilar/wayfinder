@@ -1,0 +1,90 @@
+{
+  "date": "2026-09-27T05:34:36.637Z",
+  "tests": [
+    {
+      "case": "La Economica existing public catalog",
+      "mapaId": "2b34b4876fc880f7321e",
+      "fiches": 5
+    },
+    {
+      "url": "https://www.coto.com.ar/",
+      "job": "c788a241-d4bf-45e5-99e7-e192efb7caf0",
+      "mapaId": "01fff844870ac3ff70e1",
+      "elapsed_ms": 3735,
+      "pages": 1,
+      "fiches": [],
+      "coverage": {
+        "estado": "parcial",
+        "limite": 5,
+        "intentadas": 1,
+        "pendientes": 0,
+        "omitidas": 0,
+        "exclusiones": [],
+        "errores": [],
+        "sin_contenido_util": [
+          "https://www.coto.com.ar/"
+        ],
+        "advertencias": [
+          "Hay páginas sin contenido útil en el HTML público. Pueden depender de JavaScript o restringir la lectura; el recorrido no equivale a cobertura completa. Usá los accesos visibles de la extensión en la página abierta."
+        ],
+        "duracion_ms": 261,
+        "alcance": "HTML público del mismo origen. Sin sesiones, JavaScript ni acceso a destinos de gestión detectados. Clasificación heurística; requiere revisión humana."
+      },
+      "bob": {
+        "estado": "sin_documentos",
+        "motivo": "No hay páginas adicionales con evidencia para Bob."
+      }
+    },
+    {
+      "url": "https://www.gov.uk/renew-driving-licence",
+      "job": "29f2a1ca-3f27-4000-9ec8-992626064a31",
+      "mapaId": "ba5df6672944b1ea8070",
+      "elapsed_ms": 19587,
+      "pages": 5,
+      "fiches": [
+        {
+          "name": "Renew your driving licence",
+          "source": "https://www.gov.uk/renew-driving-licence",
+          "destinations": 1
+        }
+      ],
+      "coverage": {
+        "estado": "parcial",
+        "limite": 5,
+        "intentadas": 5,
+        "pendientes": 152,
+        "omitidas": 4,
+        "exclusiones": [
+          {
+            "url": "https://www.gov.uk/sign-in-universal-credit",
+            "motivo": "robots, nofollow o destino de gestión"
+          },
+          {
+            "url": "https://www.gov.uk/universal-credit/print",
+            "motivo": "robots, nofollow o destino de gestión"
+          },
+          {
+            "url": "https://www.gov.uk/sign-in",
+            "motivo": "robots, nofollow o destino de gestión"
+          },
+          {
+            "url": "https://www.gov.uk/contact-the-dvla/y",
+            "motivo": "robots, nofollow o destino de gestión"
+          }
+        ],
+        "errores": [],
+        "sin_contenido_util": [],
+        "advertencias": [],
+        "duracion_ms": 3966,
+        "alcance": "HTML público del mismo origen. Sin sesiones, JavaScript ni acceso a destinos de gestión detectados. Clasificación heurística; requiere revisión humana."
+      },
+      "bob": {
+        "estado": "completado",
+        "generado_en": "2026-09-27T05:34:58.768Z",
+        "task_id": "206a2949ecdd7061758dbc050dd50e19",
+        "coste": 0.024828,
+        "fichas_aceptadas": 1
+      }
+    }
+  ]
+}

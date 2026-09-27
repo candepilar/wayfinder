@@ -1,0 +1,13 @@
+{
+  "fixture": "public library navigation-only service",
+  "baseline": "a737a9c",
+  "changed": "26e9461",
+  "before": {
+    "pages": 1,
+    "fiches": 0
+  },
+  "after": {
+    "pages": 2,
+    "fiches": 1
+  }
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "case": "controlled browser",
+    "passed": [
+      "JS links",
+      "local filtering",
+      "accent search",
+      "actual highlight receipt",
+      "scan/progress/catalog",
+      "cache reload",
+      "permission denied",
+      "cancel",
+      "busy/retry",
+      "mobile no overflow"
+    ],
+    "starts": 3,
+    "polls": 4
+  },
+  {
+    "case": "anonymous public Coto with real DOM and controlled Chrome API bridge",
+    "url": "https://www.coto.com.ar/",
+    "accesses": 106,
+    "highlighted": 1,
+    "destination": "https://www.coto.com.ar/sucursales/",
+    "examples": [
+      {
+        "texto": "Sucursales",
+        "url": "https://www.coto.com.ar/sucursales",
+        "sitio": "www.coto.com.ar"
+      }
+    ]
+  }
+]

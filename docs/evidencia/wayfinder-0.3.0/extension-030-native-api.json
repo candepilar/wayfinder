@@ -1,0 +1,25 @@
+{
+  "environment": "isolated headless Edge, real extension APIs; not Franco Chrome/Brave",
+  "version": "0.3.0",
+  "panel": {
+    "openPanelOnActionClick": true
+  },
+  "permissions": {
+    "origins": [
+      "https://andromedaweb.store/*",
+      "https://auth.afip.gob.ar/*",
+      "https://siat.rosario.gob.ar/*",
+      "https://vggmunicipalidad.gov.ar/*",
+      "https://www.rosario.gob.ar/*",
+      "https://www.vggmunicipalidad.gov.ar/*"
+    ],
+    "permissions": [
+      "activeTab",
+      "storage",
+      "scripting",
+      "sidePanel"
+    ]
+  },
+  "publicCatalogFiches": 1,
+  "ungrantedCoto": "denied before explicit action"
+}
